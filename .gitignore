@@ -22,3 +22,24 @@ main.dvi
 main.run.xml
 
 main.synctex.gz
+
+#Extras que me salieron al compilar el documento
+main.aux
+
+main.bcf
+
+main.blg
+
+main.fdb_latexmk
+
+main.fls
+
+main.lof
+
+main.log
+
+main.out
+
+main.toc
+
+main.lot
