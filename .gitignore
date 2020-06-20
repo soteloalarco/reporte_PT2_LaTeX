@@ -23,7 +23,6 @@ main.run.xml
 
 main.synctex.gz
 
-#Extras que me salieron al compilar el documento
 main.aux
 
 main.bcf
@@ -43,3 +42,33 @@ main.out
 main.toc
 
 main.lot
+
+principal.pdf
+
+principal.bbl
+
+principal.dvi
+
+principal.run.xml
+
+principal.synctex.gz
+
+principal.aux
+
+principal.bcf
+
+principal.blg
+
+principal.fdb_latexmk
+
+principal.fls
+
+principal.lof
+
+principal.log
+
+principal.out
+
+principal.toc
+
+principal.lot
