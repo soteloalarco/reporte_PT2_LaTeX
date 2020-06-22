@@ -17,11 +17,12 @@
 % CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%La plantilla base fue utilizada y modificada por Fernando Salazar y Rolando Sotelo
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
 
+% La plantilla base fue utilizada y modificada por Fernando Salazar y Rolando Sotelo
+
+%----------------------------------------------------------------------------------------
+%	Configuración de Paquetes y otros documentos
+%----------------------------------------------------------------------------------------
 \documentclass[
 12pt, % The default document font size, options: 10pt, 11pt, 12pt
 %oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
@@ -37,20 +38,19 @@ headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
 ]{MastersDoctoralThesis} % The class file specifying the document structure
-
+% Paquetes:
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
-
 \usepackage{mathpazo} % Use the Palatino font by default
-
 \usepackage[backend=biber,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
-
 \addbibresource{example.bib} % The filename of the bibliography
-
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+\usepackage{xcolor}
+\newcommand\myworries[1]{\textcolor{red}{#1}} %Para incorporar TODOs en el documento (en color rojo)
+\setlength\parindent{0pt} %Para evitar la sangría default que implementa la clase
 
 %----------------------------------------------------------------------------------------
-%	MARGIN SETTINGS
+%	Configuracion de margenes
 %----------------------------------------------------------------------------------------
 
 \geometry{
@@ -64,7 +64,7 @@ headsepline, % Uncomment to get a line under the header
 }
 
 %----------------------------------------------------------------------------------------
-%	THESIS INFORMATION
+%	Información general del Reporte
 %----------------------------------------------------------------------------------------
 
 \thesistitle{SIMULADOR DE MODELOS DE TRÁFICO PARA NODOS IOT EN UNA RED CELULAR DE 5G} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
@@ -75,7 +75,7 @@ headsepline, % Uncomment to get a line under the header
 \addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
 \subject{Comunicaciones Móviles} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
-\keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
+\keywords{mMTC, NB-IoT, PD-NOMA, 5G, simulador de eventos discretos, QoS.} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
 \university{\href{http://www.university.com}{Unidad Profesional interdisciplinaria de Ingeniería y Tecnologías Avanzadas}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
 \department{\href{http://department.university.com}{Department or School Name}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
 \group{\href{http://researchgroup.university.com}{Research Group Name}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
@@ -102,7 +102,7 @@ headsepline, % Uncomment to get a line under the header
 
 \vspace*{.06\textheight}
 {\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
-\textsc{\Large Trabajo Terminal}\\[0.5cm] % Thesis type
+\textsc{\Large Proyecto Terminal}\\[0.5cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
 {\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
@@ -140,49 +140,27 @@ headsepline, % Uncomment to get a line under the header
 %	DECLARATION PAGE
 %----------------------------------------------------------------------------------------
 
-\begin{declaration}
-\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-\noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
-
-\begin{itemize} 
-\item This work was done wholly or mainly while in candidature for a research degree at this University.
-\item Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-\item Where I have consulted the published work of others, this is always clearly attributed.
-\item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-\item I have acknowledged all main sources of help.
-\item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
-\end{itemize}
- 
-\noindent Signed:\\
-\rule[0.5em]{25em}{0.5pt} % This prints a line for the signature
- 
-\noindent Date:\\
-\rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
-\end{declaration}
-
-\cleardoublepage
-
 %----------------------------------------------------------------------------------------
 %	QUOTATION PAGE
 %----------------------------------------------------------------------------------------
 
-\vspace*{0.2\textheight}
-
-\noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
-
-\hfill Dave Barry
-
 %----------------------------------------------------------------------------------------
-%	ABSTRACT PAGE
+%	Resumen / Abstract
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
+Resumen: \\
+\textit{En este documento se presenta el desarrollo de un simulador a nivel de sistema, programado bajo el paradigma de eventos discretos, que permite modelar el servicio que la red de comunicación celular de quinta generación (5G), ofrece a nodos de Internet de las cosas (IoT). El simulador se enfocó en el caso de uso mIoT, el cual comprende principalmente de nodos IoT estáticos de baja complejidad que además se encuentran en gran cantidad dentro de los escenarios de esta red. La arquitectura del simulador contempló cuatro módulos clave para su ejecución: un modelo de despliegue de UEs, un modelo de canal, un esquema de acceso múltiple al medio no ortogonal y modelos de tráfico adecuados para modelar distintos servicios. Asimismo, se consideró el fundamentar la fiabilidad de los resultados obtenidos por el simulador mediante la previa prueba e implementación de modelos de tráfico ya estudiados en la literatura concerniente al desempeño de sistemas celulares. Con los resultados del simulador se determinaron qué configuraciones y parámetros iniciales de la arquitectura de red propuesta satisfacen una óptima calidad de servicio (QoS) para el caso de uso mIoT.}\newline \\
+\emph{Palabras clave: \keywordnames}\\ 
+Abstract: \\ 
+\emph{Keywords: \keywordnames}\\
+
+\myworries{TODO: Realizar una mejor versión del abstract y agregar su traducción}
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
-%	ACKNOWLEDGEMENTS
+%	Agradecimientos
 %----------------------------------------------------------------------------------------
 
 \begin{acknowledgements}
@@ -191,7 +169,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 \end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
-%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%	Listas de Figuras / Contenido / Tablas
 %----------------------------------------------------------------------------------------
 
 \tableofcontents % Prints the main table of contents
@@ -201,7 +179,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 \listoftables % Prints the list of tables
 
 %----------------------------------------------------------------------------------------
-%	ABBREVIATIONS
+%	Abreviaciones
 %----------------------------------------------------------------------------------------
 
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
@@ -212,7 +190,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 \end{abbreviations}
 
 %----------------------------------------------------------------------------------------
-%	PHYSICAL CONSTANTS/OTHER DEFINITIONS
+%	Constantes Físicas
 %----------------------------------------------------------------------------------------
 
 \begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
@@ -225,7 +203,7 @@ Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
 \end{constants}
 
 %----------------------------------------------------------------------------------------
-%	SYMBOLS
+%	Simbolos
 %----------------------------------------------------------------------------------------
 
 \begin{symbols}{lll} % Include a list of Symbols (a three column table)
@@ -241,7 +219,7 @@ $\omega$ & angular frequency & \si{\radian} \\
 \end{symbols}
 
 %----------------------------------------------------------------------------------------
-%	DEDICATION
+%	Dedicatoria
 %----------------------------------------------------------------------------------------
 
 \dedicatory{For/Dedicated to/To my\ldots} 
@@ -261,15 +239,15 @@ $\omega$ & angular frequency & \si{\radian} \\
 
 
 %----------------------------------------------------------------------------------------
-%	THESIS CONTENT - APPENDICES
+%	Apéndices
 %----------------------------------------------------------------------------------------
 
-\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+%\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
 
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-\include{Appendices/AppendixA}
+%\include{Appendices/ApendiceA}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 
