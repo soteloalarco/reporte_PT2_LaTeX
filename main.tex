@@ -37,16 +37,17 @@
 	%chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 	%consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
 	]{MastersDoctoralThesis} % The class file specifying the document structure
-	% Paquetes:
-	\usepackage[utf8]{inputenc} % Required for inputting international characters
-	\usepackage[T1]{fontenc} % Output font encoding for international characters
-	\usepackage{mathpazo} % Use the Palatino font by default
-	\usepackage[backend=biber,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
-	\addbibresource{example.bib} % The filename of the bibliography
-	\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
-	\usepackage{xcolor}
-	\newcommand\myworries[1]{\textcolor{red}{#1}} %Para incorporar TODOs en el documento (en color rojo)
-	\setlength\parindent{0pt} %Para evitar la sangría default que implementa la clase
+	
+% Paquetes:
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{mathpazo} % Use the Palatino font by default
+\usepackage[backend=biber,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\addbibresource{Proyecto Terminal 2 UPIITA.bib} % The filename of the bibliography
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+\usepackage{xcolor}
+\newcommand\myworries[1]{\textcolor{red}{#1}} %Para incorporar TODOs en el documento (en color rojo)
+\setlength\parindent{0pt} %Para evitar la sangría default que implementa la clase
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -142,7 +143,7 @@ Dr. Noe \textsc{Torres Cruz}
 %----------------------------------------------------------------------------------------
 
 %\begin{declaration}
-%\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
+\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
 %\noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
 
 %\begin{itemize} 
