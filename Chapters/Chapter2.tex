@@ -1,0 +1,153 @@
+% Chapter 2
+
+\chapter{Marco Teórico} % Main chapter title
+
+\label{Chapter2} 
+
+El objetivo de este capítulo fue revisar los fundamentos de la teoría de los sistemas de comunicaciones móviles, comenzando desde las distribuciones de probabilidad utilizadas para caracterizar los fenómenos más importantes en este ámbito, después se ahondó en las pérdidas en un sistema celular por medio de los modelos de canal más comunes y con su caracterización en parámetros a larga y pequeña escala, p.ej., la pérdida por trayectoria y el desvanecimiento de las señales de radio.\newline
+
+Además, se repasó la teoría del concepto celular, es decir, la geometría celular clásica que sirve para la eficiencia en la planificación de los recursos y por lo tanto el problema más importante en estos sistemas: los efectos de la interferencia. \newline
+
+Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunicaciones, los organismos más importantes de estandarización de redes móviles y algunos conceptos de las simulaciones a nivel de sistema orientados a eventos discretos en conjunto con los lenguajes de programación más utilizados.\newline
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\section{DISTRIBUCIONES ESTADÍSTICAS EN TELECOMUNICACIONES}
+
+El uso de modelos estadísticos es importante para describir \parencite{Correia2018}:
+\begin{itemize}
+    \item Llamadas telefónicas y conexiones de datos
+    \item Influencia del usuario en el rendimiento de la red
+    \item Propagación no guiada en ambientes aleatorios
+    \item Movilidad del usuario
+\end{itemize}
+
+Comúnmente se utilizan las siguientes distribuciones de probabilidad en telecomunicaciones \parencite{Correia2018}:
+
+\begin{enumerate}
+    \item Distribución Uniforme: Es usada para describir la fase de una señal. También, se ha utilizado para simular el despliegue de BSs \parencite{TurjmanSmallCells}.
+    \item Distribución Normal (Gaussiana): Es usada para describir fluctuaciones alrededor de un valor medio, p.ej. shadowing. Esta distribución no puede ser usada para describir entidades que no pueden ser negativas.
+    \item Distribución Log-Normal: Es usada para describir entidades como la potencia de una señal, amplitudes, principalmente el desvanecimiento lento.
+    \item Distribución Rayleigh: Es usada para describir el desvanecimiento rápido-intenso.
+    \item Distribución Susuki: Describe conjuntamente el desvanecimiento lento y rápido.
+    \item Distribución Rice: Es usada para describir el desvanecimiento rápido - no-intenso.
+    \item Distribución Exponencial: Es ampliamente usada para describir la duración de diferentes fenómenos, principalmente asociados con el desvanecimiento de señales y las llamadas telefónicas.
+    \item Distribución de Bernoulli: Es usada para describir la ocupación de canales de telecomunicaciones.
+    \item Distribución binomial: Es usada para describir llamadas telefónicas.
+    \item Distribución de Poisson: Es usada para describir la generación de llamadas telefónicas.
+\end{enumerate}
+
+Las PDF y CDF son de suma importancia en el área de las telecomunicaciones ya que ayudan a caracterizar estadísticamente diferentes fenómenos.\newline
+
+\myworries{TODO: incluir procedimientos para generar variables aleatorias a partir de una distribución uniforme}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{MODELADO DEL CANAL CELULAR}
+
+Los modelos de propagación por radio se clasifican en modelos a gran escala y a pequeña escala. Los efectos a gran escala generalmente ocurren en el orden de cientos a miles de metros de distancia. Los efectos a pequeña escala se localizan y ocurren temporalmente (en el orden de unos pocos segundos) o espacialmente (en el orden de unos pocos metros). Los parámetros del canal generalmente se dividen en Pérdida por trayectoria (PL), parámetros de gran escala (LSP, como sombreado, dispersión de retardo, dispersión angular, etc.) y parámetros de pequeña escala (como demora, ángulo de llegada y salida, etc.), que reflejan conjuntamente las características de desvanecimiento del canal. El procedimiento de generación de los coeficientes del canal se puede apreciar en la Figura 1. La pérdida de ruta generalmente se expresa en una o dos fórmulas y un conjunto de valores numéricos de parámetros, que reflejan las relaciones con el entorno de transmisión, la distancia y la frecuencia, etc. \newline
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=0.8]{Figures/Procedimiento de generación de coeficientes de canal}
+\decoRule
+\caption[Procedimiento de generación de coeficientes de canal]{Procedimiento de generación de coeficientes de canal [Fuente: 3GPP TR36.873]}
+\label{fig:Procedimiento de generacion de coeficientes de canal}
+\end{figure}
+
+El rendimiento a nivel de enlace es un fenómeno de pequeña escala el cual lidia con cambios instantáneos en el canal a través de áreas e instantes de tiempo pequeños donde se considera la potencia recibida como constante, por otra parte, en las simulaciones a nivel de sistema para determinar el rendimiento en general del sistema para un gran número de usuarios esparcidos en una área geográfica es necesario incorporar parámetros de larga escala como el comportamiento estadístico de la interferencia, así como los niveles de señal experimentados por cada usuario a través de largas distancias, ignorando las características transitorias del canal (las de pequeña escala) [12]. En una simulación a nivel de sistema, principalmente se busca la probabilidad de que un usuario en particular alcance un servicio aceptable en el sistema, para esto es necesario contemplar los efectos de los múltiples usuarios para cada enlace individual entre un móvil y la estación base. Por lo tanto en las simulaciones a nivel de sistema se suelen omitir los parámetros a pequeña escala.\newline
+
+\subsection{Relaciones Generales de Propagación}
+
+
+La pérdida por trayectoria $L_p\ $ se define como \parencite{Correia2018}:
+
+\begin{equation}
+L_{p[dB]}=P_{tx[dBm]}+G_{tx[dBi]}-P_{rx\left[dBm\right]}+G_{rx\left[dBi\right]}
+\label{eqn:Lp}
+\end{equation}
+
+Donde:\newline
+\[P_{tx}\to Potencia\ de\ la\ antena\ transmisora\ \] 
+\[G_{tx}\to Ganancia\ de\ la\ antena\ transmisora\ \] 
+\[P_{rx}\to Potencia\ de\ la\ antena\ receptora\ \ \] 
+\[G_{rx}\to Ganancia\ de\ la\ antena\ receptora\ \ \] 
+En muchas aplicaciones la ganancia de la antena es referida al dipolo de media longitud de onda:\newline
+\begin{equation}
+G_{[dBi]} = G_{[dBd]}+{2.15} 
+\label{eqn:Gain}
+\end{equation}
+La Potencia Isotrópica Radiada Efectiva (EIRP) se define como:
+\begin{equation}
+P_{EIRP[dBm]}=P_{tx\left[dBm\right]}{\ +\ G}_{tx[dBi]}
+\label{eqn:EIRP}
+\end{equation}
+
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{}
+
+
+\subsection{Subsection 1}
+
+Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
+
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+
+\subsection{Subsection 2}
+Morbi rutrum odio eget arcu adipiscing sodales. Aenean et purus a est pulvinar pellentesque. Cras in elit neque, quis varius elit. Phasellus fringilla, nibh eu tempus venenatis, dolor elit posuere quam, quis adipiscing urna leo nec orci. Sed nec nulla auctor odio aliquet consequat. Ut nec nulla in ante ullamcorper aliquam at sed dolor. Phasellus fermentum magna in augue gravida cursus. Cras sed pretium lorem. Pellentesque eget ornare odio. Proin accumsan, massa viverra cursus pharetra, ipsum nisi lobortis velit, a malesuada dolor lorem eu neque.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Main Section 2}
+
+Sed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.

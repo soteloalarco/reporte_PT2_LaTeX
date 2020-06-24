@@ -17,7 +17,7 @@
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{Introducción}
+\section{INTRODUCCIÓN}
 
 Imaginar nuestra vida sin los beneficios brindados por los sistemas de comunicación de hoy en día, o tan sólo sin la tecnología presente en este ámbito desde los últimos 20 años es ya muy difícil, y esto se debe a que en el presente una gran parte de las tareas y actividades, muchas de ellas cruciales para el funcionamiento de nuestras sociedades, operan eficientemente sí y sólo sí se está propiamente conectado y en facultades de compartir información \parencite{Fettweis2014}.\newline
 
@@ -35,7 +35,11 @@ Las limitaciones presentes hasta ahora para las comunicaciones IoT celulares, se
 
 Este proyecto presenta el diseño de un simulador de eventos discretos, el cual modeló el servicio prestado por la arquitectura de red celular que aquí se propone a nodos IoT. Su arquitectura contempló la próxima generación móvil a implementarse (5G) y los servicios seleccionados para atender a aplicaciones del caso de uso mIoT. Este simulador se enfocó en el tráfico generado por dispositivos NB-IoT y con los resultados obtenidos se esclareció sobre qué configuraciones de red son ideales para conseguir una óptima calidad de servicio.\newline
 
-\section{Planteamiento del problema}
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{PLANTEAMIENTO DEL PROBLEMA}
 
 En los recientes años se ha estado presenciando la definición de la tecnología de comunicación móvil 5G en estándares, para su posterior introducción a partir de 2020, y como se resalta en \parencite{Fettweis2016} la nueva generación no sólo seguirá la línea de incrementar la velocidad de transmisión como se ha venido haciendo en cada salto generacional, sino que también traerá consigo la posibilidad de una conectividad adicional sin precedentes, todo esto motivado por la cantidad masiva de dispositivos de IoT que se esperan. Según Ericsson Mobility Report \parencite{Ericsson2019}, 22.3 mil millones de dispositivos en el 2024, pertenecerán a una aplicación de IoT. De manera que 5G dará servicio a una enorme cantidad de dispositivos IoT, cada dispositivo enviará pequeños paquetes de datos a lo largo de mucho tiempo, además de que existirá una cierta sincronía en el tráfico generado. Lo anterior ha provocado el desarrollo de nuevas tecnologías que proponen distintas formas de agrupamiento de estos nodos, distintas formas de acceder a los recursos, distintas propuestas de comunicación entre ellos y nuevas formas de que ahorren energía. Siempre teniendo en cuenta los KPIs de la red, como dar servicio a una cantidad masiva de nodos, la duración de la batería de estos y la menor latencia en comunicaciones críticas \footnote{\ Comunicaciones\ que\ requieren\ de\ una\ urgente\ respuesta\ debido\ a\ su\ naturaleza,\ por\ ejemplo\ los\ coches\ auto-dirigidos.} , como se menciona en \parencite{NGMN}.\newline
 
@@ -48,14 +52,18 @@ Los patrones de tráfico de nodos de IoT varían según su caso de uso, los cual
 
 Por lo anterior, para la red 5G se necesitan realizar simulaciones en sus distintos casos de uso, que generen resultados sobre qué arquitectura de red y tecnologías brindan un resultado óptimo. Con la realización de este proyecto se pretende aportar al campo de las comunicaciones móviles de quinta generación, que está específicamente interesado en el servicio prestado a los nodos de IoT, de una herramienta de simulación que genere resultados que permitan realizar comparaciones entre distintas configuraciones de red. Todo esto con el fin de que la red 5G próxima a ser desplegada, cumpla con una óptima calidad de servicio para el caso de uso mIoT.\newline
 
-\section{Objetivos}
-\subsection{Objetivo General}
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+
+\section{OBJETIVOS}
+\subsection{OBJETIVO GENERAL}
 
 Diseñar e implementar un simulador de teletráfico para el ambiente de Internet de las cosas masivo (mIoT) en una red celular de quinta generación (5G), por medio de la programación de eventos discretos, con la finalidad de evaluar el desempeño de esta red en términos de la cantidad de recursos requeridos para satisfacer niveles esperados de calidad de servicio (QoS).\newline
 
-\subsection{Objetivos Específicos}
+\subsection{OBJETIVOS ESPECÍFICOS}
 
-\begin{enumerate}
+\begin{itemize}
     \item Determinar el escenario a implementar, mediante el análisis de requerimientos, para definir después los parámetros de entrada en el modelado del simulador.
     \item Seleccionar los modelos (despliegue, propagación, técnica de acceso múltiple) aplicables a una simulación a nivel de sistema para la comunicación entre nodos IoT y la red 5G.
     \item Seleccionar y determinar los modelos de tráfico a analizar para nodos IoT que hayan sido propuestos en la red 5G, mediante la lectura de distintas publicaciones en revistas científicas, para simular el modelo más adecuado según los alcances propuestos.
@@ -65,9 +73,13 @@ Diseñar e implementar un simulador de teletráfico para el ambiente de Internet
     \item Implementar una técnica de paralelismo, mediante el uso de multiprocesamiento, con la finalidad de reducir los tiempos de ejecución de las simulaciones.
     \item Evaluar y analizar cada modelo analítico con el uso de escenarios de pruebas y calibración para poder realizar comparaciones con los resultados teóricos esperados y verificar la fiabilidad del simulador 
     \item Simular el modelo de sistema propuesto, mediante la variación de los parámetros de entrada, para caracterizar el desempeño del sistema en términos del tráfico que se puede ofrecer y la cantidad de recursos requeridos para satisfacer objetivos de QoS.
-\end{enumerate}
+\end{itemize}
 
-\section{Justificación}
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+
+\section{JUSTIFICACIÓN}
 
 En la gran mayoría de los trabajos de investigación revisados, se han realizado estudios de rendimiento de los sistemas de comunicación móvil de quinta generación. Estos se concentran en evaluar distintos modelos, frecuentemente se considera, un modelo de distribución de BSs y UEs, uno de canal, y un esquema de acceso multiple, sin embargo no hay mucha investigación acerca de incorporar todos estos componentes en conjunto con modelos de tráfico para el caso específico de mIoT. La aportación que se pretende hacer con este proyecto se encuentra precisamente en ese ámbito.\newline
 
@@ -79,7 +91,11 @@ Este proyecto servirá como referencia a los investigadores y estudiantes que bu
 
 Por otra parte, se debe enfatizar que el desarrollo de este proyecto requiere de la aplicación de conocimientos relacionados a la informática (entre los que se incluyen desarrollo de software y algoritmos computacionales), así como del dominio de conceptos propios de las telecomunicaciones (por ejemplo, análisis de tráfico y caracterización de enlaces inalámbricos). De acuerdo a lo anterior, se considera que este proyecto pertenece al campo de aplicación de la ingeniería telemática. Además, se debe notar que, si bien los fenómenos simulados corresponden al proceso de transmisión de información, dichos fenómenos están siendo analizados en el contexto de un sistema con características telemáticas (nodos mIoT conectados a la red 5G).\newline
 
-\section{Propuesta de Solución}
+%----------------------------------------------------------------------------------------
+%	SECTION 5
+%----------------------------------------------------------------------------------------
+
+\section{PROPUESTA DE SOLUCIÓN}
 
 Considerando lo expuesto anteriormente, se propone desarrollar un simulador a nivel sistema que será programado bajo el paradigma de eventos discreto. La elección de una simulación a nivel de sistema se deriva del enfoque que tendrá nuestro proyecto hacia los distintos tipos de tráfico de nodos NB-IoT y la simulación de cada uno de ellos como fuente de tráfico. Las simulaciones a nivel de sistema permiten modelar el comportamiento de múltiples radio bases, múltiples nodos como fuentes de tráfico, la propagación de las señales y la interferencia que estas causan, a la vez que se realizan abstracciones más simples de lo que sucede más allá de estas interacciones. Esto facilita la implementación de una gran cantidad de actores. La generación de variables aleatorias vendrá de la mano de las distintas aplicaciones mIoT y sus patrones de transmisión estocásticos, además de la localización de  nodos en un plano la cual no será uniforme.\newline
 
@@ -93,7 +109,11 @@ Se considerará un modelo de despliegue de nodos IoT que seguirá un proceso pun
 
 Este análisis conllevará en conjuntos de la red 5G y los dispositivos NB-IoT en un ambiente masivo, conseguirá resultados que podrán brindar una base fundamental para evaluar el desempeño de estas redes y por supuesto, su dimensionamiento en términos de objetivos de QoS.\newline
 
-\section{Alcances}
+%----------------------------------------------------------------------------------------
+%	SECTION 6
+%----------------------------------------------------------------------------------------
+
+\section{ALCANCES}
 
 Se obtendrán resultados que permitan analizar las configuraciones de la arquitectura de red propuesta que conllevan a una óptima calidad de servicio. Teniendo como métricas principales la densidad de usuarios soportada y la tasa de transmisión máxima alcanzada. Estos resultados reflejarán a su vez las ventajas que puede traer la selección de cierta arquitectura de red y su despliegue. Es aquí donde se encuentra una de las ventajas de realizar un simulador, ya que con la ayuda de múltiples computadoras, se podrán simular miles de nodos mIoT en esta red. Las configuraciones y parámetros de la red podrán modificarse al inicio de cada simulación, y podrán ser inspeccionados mientras esta corre. La variación de estos parámetros a lo largo de múltiples simulaciones permitirá generar tablas y gráficas de los resultados obtenidos.\newline
 
