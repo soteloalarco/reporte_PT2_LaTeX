@@ -25,7 +25,7 @@
 \documentclass[
 	12pt, % The default document font size, options: 10pt, 11pt, 12pt
 	%oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
-	english, % ngerman for German
+	spanish, % ngerman for German
 	singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
 	%draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
 	%nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
@@ -43,7 +43,7 @@
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage{mathpazo} % Use the Palatino font by default
 \usepackage[backend=biber,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
-\addbibresource{Proyecto Terminal 2 UPIITA.bib} % The filename of the bibliography
+\addbibresource{Referencias.bib} % The filename of the bibliography
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{xcolor}
 \newcommand\myworries[1]{\textcolor{red}{#1}} %Para incorporar TODOs en el documento (en color rojo)
@@ -88,7 +88,7 @@
 }
 
 \begin{document}
-
+%\bibliographystyle{IEEEtran}
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
 
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
@@ -289,6 +289,7 @@ $\omega$ & angular frequency & \si{\radian} \\
 %----------------------------------------------------------------------------------------
 
 \printbibliography[heading=bibintoc]
+%\bibliography{Referencias}
 
 %----------------------------------------------------------------------------------------
 
