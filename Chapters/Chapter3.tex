@@ -4,7 +4,7 @@
 
 \label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-Los trabajos y estudios ya realizados que están relacionados con nuestra propuesta de proyecto terminal o marcan un precedente a esta, se encuentran en esta sección, con la finalidad de presentar antecedentes, y dejar ver discrepancias y similitudes con estos.\newline
+En este Capítulo se encuentra el estudio de los trabajos ya realizados que están relacionados con nuestra propuesta de proyecto terminal o marcan un precedente a esta, con la finalidad de presentar antecedentes, y dejar ver discrepancias y similitudes con estos.\newline
 
 La complejidad que puede representar el realizar un análisis acertado, de una red móvil, ha resultado en la necesidad de realizar simulaciones de estas. En "Análisis de rendimiento en sistemas celulares 4G mediante algoritmos de asignación de recursos (canal, sub-portadoras)" \parencite{Celis2016}, encontramos un proyecto terminal realizado por alumnos de la UPIITA, en el cual se realizó la simulación, bajo el paradigma de eventos discretos, de un sistema celular 4G, enfocando su investigación en distintos esquemas de reúso de frecuencias y calendarizadores para obtener resultados sobre qué combinación de estos y bajo qué condiciones permitían al sistema tener un mayor desempeño. En este proyecto la simulación se llevó a cabo utilizando Matlab, el paradigma de programación fue el de eventos discretos por lo que presenta un buen precedente a nuestro proyecto en la UPIITA y es también un ejemplo de cómo el trabajo de dimensionar los sistemas de comunicación móviles es una necesitad recurrente en cada generación. \newline
 
@@ -113,11 +113,51 @@ En el enlace Ascendente, la interferencia inter-celdas proviene de todos los otr
 
 \section{\textit{'NOMA Aided Narrowband IoT for Machine Type Communications With User Clustering'}}
 
+Los autores en \parencite{Shahini2019} desarrollaron un esquema NOMA en el dominio de potencia con agrupación de usuarios en un sistema NB-IoT. Resolvieron un problema de optimización para maximizar el rendimiento total de la red al optimizar la asignación de recursos de los dispositivos MTC y la agrupación de NOMA al tiempo que satisface los requisitos de potencia de transmisión y QoS.  Además, diseñaron un algoritmo heurístico eficiente para resolver el problema de optimización propuesto mediante la optimización conjunta de la agrupación NOMA y la asignación de recursos de dispositivos MTC.\newline
+
+En su modelo de sistema consideraron un escenario de una única celda (solo un eNB), que admite dispositivos MTC basado en el estándar NB-IoT. Asumieron que no hay interferencia entre células de otras células vecinas. \newline
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=.6]{Figures/Modelo de sistema de una sola celda usando clusterización}
+\decoRule
+\caption[Grupos NOMA que incluyen dispositivos mMTC y URLLC, donde los dispositivos MTC comparten los subcanales asignados a cada clúster NOMA.]{Grupos NOMA que incluyen dispositivos mMTC y URLLC, donde los dispositivos MTC comparten los subcanales asignados a cada clúster NOMA.}
+\label{fig:NOMA_NBIOT}
+\end{figure}
+
+Los dispositivos activos de URLLC y mMTC comparten un PRB para la transmisión de datos de enlace ascendente en un intervalo de tiempo de transmisión (TTI). Se supone que el ancho de banda disponible de un PRB se divide en un conjunto de frecuencias de subcanal S y el ancho de banda de cada subcanal es W . De hecho, el ancho de banda del sistema se puede dividir por igual en 48 o 12 subportadoras en los sistemas NB-IoT.\newline
+
+En particular, el espacio de subportadora de 3.75 kHz puede ser soportado para transmisiones de enlace ascendente [9] . Por lo tanto, en este artículo, consideraron un PRB con 48 subportadoras de 3.75 kHz para las transmisiones de datos de enlace ascendente. Tenga en cuenta que, a diferencia del FDMA de una sola portadora (SC-FDMA) que se usa actualmente para las transmisiones de enlace ascendente en NB-IoT, este modelo de sistema puede admitir más dispositivos conectados al asignar múltiples dispositivos a cada subportadora. Por lo tanto, los dispositivos MTC se deben clasificar en diferentes grupos para compartir los mismos recursos espectrales asignados a su grupo.\newline
+
+Propusieron un esquema NOMA de dominio de potencia agrupando dispositivos mMTC y URLLC en una red NB-IoT como se muestra en la Figura~\ref{fig:NOMA_NBIOT} . Según el esquema NOMA, los dispositivos mMTC y URLLC comparten cada subportadora (subcanal) y transmiten datos de manera no ortogonal, es decir, más de un usuario puede compartir el mismo subcanal. Por lo tanto, los dispositivos se dividen en diferentes grupos, llamados grupos NOMA.\newline
+
+Para decodificar con éxito los mensajes del mensaje recibido combinado, el eNB emplea el esquema SIC. Por lo tanto, los usuarios deben ordenarse en cada grupo de acuerdo con el método SIC.\newline
+
+La tasa de datos alcanzable de un dispositivo m (mMTC) en términos de la tasa agregada sobre las subportadoras asignadas se puede expresar como:
+\begin{equation}
+{R_{m}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\alpha _{m}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {M}\backslash m} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}} } }}} }\right)
+\label{eqn:Rm}
+\end{equation}
+
+Del mismo modo, la Tasa de datos alcanzable de un dispositivo u (URLLC) puede determinarse mediante el teorema de Shannon-Hartley. Hay que tomar en cuenta que los rangos de URLLC siempre son mayores que los de mMTC en cada clúster NOMA. Por lo tanto, reciben interferencia de todos los miembros del clúster mMTC, así como de los miembros del clúster URLLC con rangos más altos. 
+Por lo tanto, la tasa de datos alcanzable de un dispositivo u URLLC sobre las subportadoras asignadas es:
+
+\begin{equation}
+{R_{u}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\beta _{u}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{u}^{s}} }\right |}^{2}}p_{u}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {U}\backslash u} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\beta _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}}} \sum \limits _{m \in \mathcal {M}} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}} } }}} }\right)
+\label{eqn:Ru}
+\end{equation}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{}
+\section{\textit{'Connectivity Maximization for Narrowband IoT Systems with NOMA'}}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{\textit{'Connection Density Maximization of Narrowband IoT Systems with NOMA'}}
+
 
 \myworries{TODO: ACTUALIZAR estado del arte de acuerdo a los articulos nuevos que tomamos en consideración}\newline

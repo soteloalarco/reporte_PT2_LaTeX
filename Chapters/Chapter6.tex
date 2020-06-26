@@ -4,12 +4,91 @@
 
 \label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+En este Cap+itulo se explica la implementación del modelo de sistema propuesto en 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{}
+\section{Esquema de acceso múltiple al medio- no ortogonal basado en potencia (PD-NOMA)}
+$Initialization$
+$Input: C , R_{m}^{th} , R_{u}^{th} , P_{m}^{max} , P_{u}^{max} , h_{m}^{s} , and h_{u}^{s} ,$
+$\forall m \in \mathcal {M} , \forall u \in \mathcal {U} , \forall s \in \mathcal {S}$
+$URLLC Clustering$
+$Sorting URLLC devices \forall u \in \mathcal {U} : {\tilde h_{1}} \geq {\tilde h_{2}} \geq \cdots \geq {\tilde h_{U}}$
+$for all u \in \mathcal {U} do$
+$if U < C do$
+$Assign URLLC \{ 1,2,\ldots,U\} to the lowest rank (k=1 ) of the first U clusters of \{ 1, 2, \ldots, U\} .$
+$else$
+$Assign URLLC \{ 1,2,\ldots,C\} to the lowest rank of all C clusters, and \{ C + 1,\ldots,U\} to the higher ranks, and find \bar {k}$
+$end if$
+$end for$
+$mMTC Clustering$
+$Sorting mMTC devices \forall m \in \mathcal {M} : {\tilde h_{1}} \geq {\tilde h_{2}} \geq \cdots \geq {\tilde h_{M}}$
+$for all k \in \mathcal {K} do$
+$if U < C do$
+$Assign mMTC \{ 1,\ldots,(C-U)\} to the lowest rank (k=1 ) of \{ (U+1),\ldots,C\} clusters, and remaining mMTC \{(C-U)+1, \ldots,M\} to the next available ranks of clusters.$
+$else$
+$Assign mMTC \{ 1, 2, \ldots, (\bar {k}C-U)\} to the \bar {k}^{th} rank of clusters \left \{{ {(U - (\bar k - 1)C) + 1,\ldots,C} }\right \} , and remaining mMTC \left \{{ {(\bar kC - U) + 1,\ldots,M} }\right \} to the next available ranks of clusters.$
+$end if$
+$end for$
+$Resource Allocation for NOMA Clusters$
+$Set {R_{u}} = 0 , {R_{m}} = 0 , p_{m}^{s}=P_{m}^{max} and p_{u}^{s}= P_{u}^{max} , \forall m \in \mathcal {M} , \forall u \in \mathcal {U} , \forall s \in \mathcal {S} , {\hat S} \leftarrow \emptyset,~~S_{a}^{c} \leftarrow \emptyset,~~{C_{ns}} \leftarrow \mathcal {C}$
+$While {\mathcal{ S}} \ne \emptyset and {R_{u}} < R_{u}^{th} and {R_{m}} < R_{m}^{th}$
+$Select the best cluster c^{*} , \forall c \in \mathcal {C} , for each sub-carrier s \in \mathcal {S} :$
+${c^{*}} = \mathop {\arg \max }\limits _{c \in {C_{ns}}} \left ({{\sum \nolimits _{u \in \mathcal {U}} {R_{u} + \sum \nolimits _{m \in \mathcal {M}} {R_{m}} } } }\right) ;$
+$Allocate the sub-carrier s to the cluster c^{*} :$
+$Set {\gamma ^{s,{c^{*}}}} = 1 , and update S_{a}^{c^{*}} \leftarrow S_{a}^{c^{*}} \cup \{ s\} , \hat S \leftarrow \hat S \cup \{ s\}$
+$Update the rates: {R_{u}} = {R_{u}} + {R_{u,s}} , {R_{m}} = {R_{m}} + {R_{m,s}}$
+$Update the powers: URLLC and mMTC of c^{*} individually perform SUWF over all allocated sub-carriers:$
+$p_{m}^{s} = \frac {p_{m}^{s}}{{\left |{ {S_{a}^{c^{*}}} }\right | + 1}} , p_{u}^{s} = \frac {p_{u}^{s}}{{\left |{ {S_{a}^{c^{*}}} }\right | + 1}} , \forall s \in \mathcal {S}$
+$if {R_{u}} \geq R_{u}^{th} and {R_{m}} \geq R_{m}^{th} , \forall m,u from cluster c^{*} do$
+${C_{ns}} \leftarrow {C_{ns}}\backslash \{{c^{*}}\}$
+$end if$
+$\mathcal {S} \leftarrow \mathcal {S}\backslash \hat S$
+$if {R_{u}} \geq R_{u}^{th} and {R_{m}} \geq R_{m}^{th} , \forall m \in \mathcal {M} , \forall u \in \mathcal {U} do$
+$for all s \in \mathcal {S} do$
+${c^{*}} = \mathop {\arg \max }\limits _{c \in {C}} \left ({{\sum \nolimits _{u \in \mathcal {U}} {R_{u} + \sum \nolimits _{m \in \mathcal {M}} {R_{m}} } } }\right)$
+$Set {\gamma ^{s,{c^{*}}}} = 1 , S_{a}^{c^{*}} \leftarrow S_{a}^{c^{*}} \cup \{ s\}$
+$end for$
+$Update p_{m}^{s} = \frac {p_{m}^{s}}{{\left |{ {S_{a}^{c^{*}}} }\right | + 1}} , p_{u}^{s} = \frac {p_{u}^{s}}{{\left |{ {S_{a}^{c^{*}}} }\right | + 1}}$
+$end if$
+$End while$\\
+
+\makeatletter
+% Reinsert missing \algbackskip
+\def\algbackskip{\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{algorithm}
+    \caption{My algorithm}\label{euclid}
+    \hspace*{\algorithmicindent} \textbf{Input} \\
+    \hspace*{\algorithmicindent} \textbf{Output} 
+    \begin{algorithmic}[1]
+    \Procedure{MyProcedure}{}
+%    \Procedure{MyProcedure}{$x,y$}
+%     % Input:
+%     \Comment{Input: x}
+%     % Output:
+%     \Comment{Output:y}
+    \State $\textit{stringlen} \gets \textit{length of } \textit{string}$
+    \State $i \gets \textit{patlen}$
+    \BState \emph{top}:
+    \If {$i > \textit{stringlen}$} \Return false
+    \EndIf
+    \State $j \gets \textit{patlen}$
+    \BState \emph{loop}:
+    \If {$\textit{string}(i) = \textit{path}(j)$}
+    \State $j \gets j-1$.
+    \State $i \gets i-1$.
+    \State \textbf{goto} \emph{loop}.
+    \State \textbf{close};
+    \EndIf
+    \State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
+    \State \textbf{goto} \emph{top}.
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
