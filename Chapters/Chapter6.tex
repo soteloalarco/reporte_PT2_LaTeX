@@ -30,7 +30,20 @@ En este Captitulo se explica la implementación del modelo de sistema propuesto 
 %----------------------------------------------------------------------------------------
 
 \section{Esquema de acceso múltiple al medio no ortogonal, basado en potencia (PD-NOMA)}
+
+De acuerdo con el modelo de sistema propuesto (sección XXX), se propuso implementar un esquema de acceso múltiple no ortogonal (NOMA) \parencite{DIng2017}, ya que es el más apto para el estándar NB-IoT debido a que ayuda en el incremento de la conectividad de usuarios.\\
+
+Como se vio en la sección XXX, el estándar Narrow-Band IoT se caracteriza por proporcionar un ancho de banda muy pequeño de apenas 180KHz, lo suficiente para brindar 48 sub-portadoras de 3.75Khz y así proveer tasas de datos de hasta 20kbps en transmisiones de subida (uplink). Entonces, para incrementar la conectividad masiva de usuarios tipo maquina soportados por NB-IoT se estudió que una solución prometedora [2] es el adoptar un esquema no ortogonal (NOMA) en el dominio de la potencia, es decir, diferentes niveles de potencia por parte de los usuarios deberán ser considerados para poder decodificar secuencialmente los mensajes del lado del receptor haciendo uso de la cancelación sucesiva de interferencia (SIC).\\
+
+En \parencite{Shahini2019} los autores propusieron un esquema NOMA basado en NB-IoT para incrementar el número de dispositivos conectados a través de un agrupamiento óptimo de los usuarios y una optimización en la asignación de recursos, de acuerdo con la maximización de la tasa de transmisión total de subida de los dispositivos MTC. Nuestro modelo de sistema concuerda con emplear un agrupamiento NOMA para usuarios NB-IoT con varios requerimientos de calidad de servicio por lo que se utilizaron los algoritmos correspondientes a la optimización de los grupos NOMA y la asignación de recursos descritos en [2].\\
+
+Es preciso recordar que para lograr una mayor tasa de datos, de acuerdo con el Teorema de Shannon-Hartley (Sección 2.7), el ancho de banda debe ser elevado o una relación S/N alta. Para el caso de NB-IoT se cuenta con un ancho de banda muy pequeño (3.75KHz), por lo cual alcanzar una buena relación S/N (en este caso, para sistemas celulares S/I) es de suma importancia.\\
+
 \subsection{Algoritmo de Agrupación SIC}
+Se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC, estos necesitan ser clasificados dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo.\\
+
+Por lo tanto, un mensaje combinado de los dispositivos mMTC y uRLLC con ruido aditivo es recibido en la BS, la BS emplea la recepción SIC de acuerdo en cómo son ordenados los dispositivos. \\
+
 
 \subsection{Validación de Algoritmo}
 
@@ -39,38 +52,75 @@ En este Captitulo se explica la implementación del modelo de sistema propuesto 
 \subsection{Validación de Algoritmo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       EJEMPLO DE ALGORITMO EN LATEX       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+U: Lista de dispositivos uRLLC\\
+M: Lista de dispositivoss mMTC\\
+S: Lista de Subportadoras s\\
+C: Lista de Grupos NOMA\\
+ $R_{m}^{th}:$ Tasa objetivo del enésimo dispositivo m mMTC\\ 
+ $R_{u}^{th}:$ Tasa objetivo del enésimo dispositivo u uRLLC\\
+ $P_{m}^{max}:$ Potencia máxima del enésimo dispositivo m mMTC (i.e. 23dBm)\\
+ $P_{u}^{max}:$ Potencia máxima del enésimo dispositivo u uRLLC (i.e. 23dBm)\\
+ $h_{m}^{s}:$ Ganancia de canal del enésimo dispositivo m mMTC sobre la portadora s\\
+ $h_{u}^{s}:$ Ganancia de canal del enésimo dispositivo u uRLLC sobre la portadora s\\
+ ${\hat S}$: Lista de subportadoras asignadas\\
+ $S_{a}^{c}$: Lista de subportadoras asignadas al enésimo cluster\\
+ ${C_{ns}}$: Lista de cluster con tasas insatisfechas\\
+
 \makeatletter
 % Reinsert missing \algbackskip
 \def\algbackskip{\hskip-\ALG@thistlm}
 \makeatother
 
 \begin{algorithm}
-    \caption{My algorithm}\label{euclid}
-    \hspace*{\algorithmicindent} \textbf{Input} \\
-    \hspace*{\algorithmicindent} \textbf{Output} 
+    \caption{Algoritmo de agrupamiento y asignación de recursos para NOMA}\label{euclid}
+    \hspace*{\algorithmicindent} \textbf{Entrada} $U, M, S, C , R_{m}^{th} , R_{u}^{th} , P_{m}^{max} , P_{u}^{max} , h_{m}^{s} , \ and \ h_{u}^{s} ,\forall m \in \mathcal {M} , \forall u \in \mathcal {U} , \forall s \in \mathcal {S}$  \\
+    \hspace*{\algorithmicindent} \textbf{Salida} Asignaciones (Asignación de todas las subportadoras [48, NB-IoT singletone]) \\
+     
     \begin{algorithmic}[1]
-    \Procedure{MyProcedure}{}
-%    \Procedure{MyProcedure}{$x,y$}
-%     % Input:
-%     \Comment{Input: x}
-%     % Output:
-%     \Comment{Output:y}
-    \State $\textit{stringlen} \gets \textit{length of } \textit{string}$
-    \State $i \gets \textit{patlen}$
-    \BState \emph{top}:
-    \If {$i > \textit{stringlen}$} \Return false
-    \EndIf
-    \State $j \gets \textit{patlen}$
-    \BState \emph{loop}:
-    \If {$\textit{string}(i) = \textit{path}(j)$}
-    \State $j \gets j-1$.
-    \State $i \gets i-1$.
-    \State \textbf{goto} \emph{loop}.
-    \State \textbf{close};
-    \EndIf
-    \State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-    \State \textbf{goto} \emph{top}.
+    \Procedure{Agrupación de dispositivos uRLLC}{}\\
+    Cálculo de la ganancia de canal promedio del enésimo dispositivo u\\
+    ${\tilde h_{u}} =\sum \nolimits _{s \in \mathcal {S}} {h_{u}^{s}}{/_{|S|}}$\\
+    Se ordenan descendentemente las ganancias de canal promedio de cada dispositivo u, i.e. $\forall u \in \mathcal {U} : {\tilde h_{1}} \geq {\tilde h_{2}} \geq \cdots \geq {\tilde h_{U}}$ 
+    \For{\textbf{each} u in U}
+        \If {$|U|<|C|$} 
+        \State Asignar uRLLC al rango mas bajo (k=1)
+        \Else
+        \State Asignar uRLLC al siguiente rango (k=2) [Solo se podrán asignar hasta un segundo rango]
+        \EndIf
+    \EndFor
+    \State Encontrar ${\tilde k}$, rango y grupo en el que se quedó la última asignación uRLLC
+    \EndProcedure\\
+    
+    \Procedure{Agrupación de dispositivos mMTC}{${\tilde k}$}\\
+    Cálculo de la ganancia de canal promedio del enésimo dispositivo u\\
+    ${\tilde h_{m}} =\sum \nolimits _{s \in \mathcal {S}} {h_{m}^{s}}{/_{|S|}}$\\
+    Se ordenan descendentemente las ganancias de canal promedio de cada dispositivo u, i.e. $\forall m \in \mathcal {M} : {\tilde h_{1}} \geq {\tilde h_{2}} \geq \cdots \geq {\tilde h_{M}}$ 
+    \For{\textbf{each} m in M}
+        \If {$|M|<|C|$} 
+        \State Asignar mMTC al rango ${\tilde k}$
+        \Else
+        \State Asignar mMTC al siguiente rango \ldots
+        \EndIf
+    \EndFor
+    \EndProcedure\\
+    
+    \Procedure{Asignación de subportadoras}{}\\
+    $Inicialización: $ \\${R_{u}} = 0 , {R_{m}} = 0 , p_{m}^{s}=P_{m}^{max} \ y \ p_{u}^{s}= P_{u}^{max} , \forall m \in \mathcal {M} , \forall u \in \mathcal {U} , \forall s \in \mathcal {S}.$\\ 
+    ${\hat S} \leftarrow \emptyset,~~S_{a}^{c} \leftarrow \emptyset,~~{C_{ns}} \leftarrow \mathcal {C}$ \\
+
+    \For{\textbf{each} s in S}
+        \State Seleccionar al mejor cluster $c^{*}$\\
+        \State ${c^{*}} = \mathop {\arg \max }\limits _{c \in {C_{ns}}} \left ({{\sum \nolimits _{u \in \mathcal {U}} {R_{u} + \sum \nolimits _{m \in \mathcal {M}} {R_{m}} } } }\right) ;$ \\
+        \State donde:\\
+        \State ${R_{m}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\alpha _{m}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {M}\backslash m} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}} } }}} }\right)$\\
+        
+        \State ${R_{u}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\beta _{u}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{u}^{s}} }\right |}^{2}}p_{u}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {U}\backslash u} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\beta _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}}} \sum \limits _{m \in \mathcal {M}} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}} } }}} }\right)$\\
+
+    \EndFor
+    
     \EndProcedure
+    
     \end{algorithmic}
 \end{algorithm}
 
