@@ -493,8 +493,8 @@ bookmarksopen=true,
 bookmarksopenlevel=0,
 hypertexnames=false,
 colorlinks=true,% Set to false to disable coloring links
-citecolor=blue!75,% The color of citations
-linkcolor=blue!55,% The color of references to document elements (sections, figures, etc)
+citecolor=blue!90,% The color of citations
+linkcolor=blue!75,% The color of references to document elements (sections, figures, etc)
 urlcolor=mdtRed,% The color of hyperlinks (URLs)
 pdfstartview={FitV},
 unicode,
