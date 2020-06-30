@@ -310,9 +310,294 @@ Por lo tanto, de acuerdo a las métricas que serán consideradas, los KPIs a con
 %----------------------------------------------------------------------------------------
 
 \section{ANÁLISIS DE MODELOS PARA LA EVALUACIÓN DE REDES 5G/IoT}
+En el modelado de redes 5g / IoT entran diferentes aspectos para representar y caracterizar el comportamiento correcto de estas redes. Para este caso, desde el punto de vista de simulaciones a nivel de sistema, los modelos se suelen concentrar en las capas superiores de la pila TCP / IP.\newline
+
+Los aspectos más importantes y considerados en la literatura \parencite{WirelessSim}, son:
+
+\begin{enumerate}
+    \item  Modelo de despliegue de BSs y UEs.
+    \item  Modelo de antenas (MIMO, MISO, entre otras) y formación de haz.
+    \item  Modulación y codificación.
+    \item  Modelo de canal.
+    \item  Patrones de Movilidad.
+    \item  Calendarizadores (planificadores de recursos).
+    \item  Esquema de acceso múltiple al medio.
+    \item  Modelos de tráfico.
+\end{enumerate}
+
+Como se puede leer, una simulación se puede realizar tan compleja como se desee, para este proyecto se contemplan solamente algunos de estos aspectos que son compatibles para una simulación a nivel de sistema. Estas simulaciones dan una buena estimación de un análisis fundamental desde la perspectiva del dimensionamiento que puede alcanzar una red.\newline
+Los modelos que se incluyen en el simulador son los siguientes:
+
 \subsection{MODELO DE DESPLIEGUE DE BSs Y UEs}
+
+La teoría del diseño celular da una forma simplificada de un diseño idealizado para redes móviles, esta se desarrolló en la literatura desde el comienzo del concepto celular [1975 aprox.], sin embargo este despliegue uniforme que propone la teoría celular, es poco realista ya que nunca se tiene una instalación regular, esto debido a que la densidad del tráfico varia espacial y temporalmente. En el despliegue de BS, frecuentemente en ubicaciones donde se concentraba mayor cantidad de tráfico lo que se realiza es instalar otra BS y por lo tanto esto rompe con esta uniformidad.\newline
+
+En el modelado de posicionamiento de las estaciones base y los nodos IoT existen diferentes estrategias de despliegue (como se puede ver en la \textit{Figura~\ref{fig:BSs}}) y es de mucha importancia dependiendo los objetivos de la simulación, es decir, para un alcance comercial resulta importante simular el despliegue determinístico de los actores de la red de acuerdo al escenario donde se vaya a montar una determinada red, por otro lado para un alcance con fines de análisis en el diseño y dimensionamiento de estas redes resulta más adecuado un despliegue aleatorio. \newline
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=1]{Diferentes estrategias de despliegue para BSs}
+\decoRule
+\caption[Diferentes estrategias de despliegue para BSs]{Diferentes estrategias de despliegue para BSs}
+\label{fig:BSs}
+\end{figure}
+
+Muchos autores coinciden en que varias distribuciones de redes móviles siguen un proceso estocástico \parencite{Kouzayha2018}\parencite{Zhang2017}. La geometría estocástica es una rama de la probabilidad con muchas aplicaciones que permiten el estudio de fenómenos aleatorios en el plano o en dimensiones superiores \parencite{Haenggi2009}. Está intrínsecamente relacionada con la teoría de los procesos puntuales. Inicialmente su desarrollo fue estimulado por aplicaciones en biología, astronomía y ciencias de los materiales. Hoy en día, también se utiliza en análisis de imágenes y en el contexto de redes de comunicación. Recientemente se ha utilizado con éxito para modelar la distribución espacial de células pequeñas como las femtoceldas \parencite{TurjmanSmallCells}. \newline
+
+Para esto, la distribución de terminales móviles se realiza de acuerdo con varios procesos de punto estacionario de Poisson independientes con intensidad \textit{$\lambda$m}. Con un PPP estacionario, la distancia entre un terminal móvil y su BS de servicio se distribuye independientemente de la ubicación exacta del terminal móvil.\newline
+
+En este proyecto no se propone simular un ambiente uniforme, establecido o determinístico por lo que se seguirá el despliegue de una geometría estocástica siguiendo un PPP.\newline
+
+% \parencite{}
+\myworries{colocar PPP}
+\subsubsection{Poisson Point Process}
+
+
 \subsection{MODELO DE CANAL}
+
+Para conducir al diseño preciso y confiable de un sistema 5G es necesario tener buen conocimiento de las características del canal de propagación a través de las frecuencias de microondas y ondas milimétricas. \newline
+
+Los modelos de canal son necesarios para simular la propagación de una manera reproducible y rentable, y se utilizan para diseñar y comparar con precisión las interfaces de radio aire y el despliegue del sistema. Los parámetros comunes del modelo de canal inalámbrico incluyen frecuencia de portadora, ancho de banda, distancia 2D o 3D entre el transmisor (Tx) y el receptor (Rx), los efectos ambientales y otros requisitos necesarios para construir equipos y sistemas estandarizados a nivel mundial. El desafío definitivo para un modelo de canal 5G es proporcionar una base física fundamental, a la vez flexible y precisa, especialmente en un amplio rango de frecuencias como 0.5--100 GHz \parencite{Rappaport2017}. Los modelos de canal investigados se dividen principalmente de acuerdo al escenario en el que se están diseñando, ya sea \textit{Urban Macro (UMa) o Urban Micro (UMi)}, además de la condición del ambiente si es que hay línea de vista (\textit{LoS}) entre el UE y la BS.\newline
+
+Existe una gama amplia de modelos de canal propuestos para redes 5G, (p.ej. 3GPP, WINNER I/II, QuaDRiga/ mmMagic, 5GCM, METIS, MiWEBA, IEEE \parencite{WirelessSim}). Aunque existen diversos modelos, los modelos de canal 3GPP y WINNER II son los más conocidos y empleados en la industria de comunicaciones móviles \parencite{Sun2016}, conteniendo una gran diversidad de escenarios de despliegue como lo son \textit{UMi, UMa, indoor office (InH)}, etc. Además proveen parámetros clave del canal incluyendo probabilidades de línea de vista (\textit{LoS}), modelos de pérdida por trayectoria, retardos y niveles de potencia por trayectoria \parencite{Sun2016}. \newline
+
+En la búsqueda del modelo de canal a implementar en el simulador nos enfocamos en buscar un modelo teórico y estocástico en vez de uno empírico, ya que nuestro proyecto va más enfocado en el teletráfico. Los modelos empíricos suelen ser más sofisticados y piden una gran cantidad de parámetros de entrada. Por lo tanto buscamos los modelos estocásticos que se adaptaran al rango de frecuencia de transmisión y a los ambientes urbanos que se proponen.\newline
+
+En \parencite{Sun2016}, los autores evaluaron tres diferentes modelos de propagación estocásticos de perdida por trayectoria a larga escala para ser implementados a través de la banda de frecuencias de microondas y ondas milimétricas. ABG, CI y CIF son modelos estadísticos de propagación para multi-frecuencias (estocásticos) que describen los parámetros de larga escala con pérdida de trayectoria de acuerdo a la distancia.
+
+Los modelos evaluados fueron: 
+\begin{enumerate}
+\item  ABG: Modelo Alpha-Beta-Gamma.
+\item  CI: Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano.
+\item  CIF: Modelo CI con un exponente de pérdida de trayectoria ponderado en frecuencia.
+\end{enumerate}
+
+ Para el primero, la ecuación del modelo ABG está dada por:
+ \begin{equation}
+    L^{ABG}_p(f,d)_{\left[dB\right]}=10alpha {\ log}_{10}\left(\frac{d}{1m}\right)+\beta +\ 10gamma {\ log}_{10}\left(\frac{f}{1GHz}\right)+\ x^{ABG}_{\sigma .}, donde\ d\ge 1m
+    \label{eqn:ABG}
+\end{equation}
+
+\[\alpha \to coeficiente\ que\ representa\ la\ dependencia\ de\ la\ perdida\ por\ trayectoria\ con\ la\ distancia\] 
+\[\gamma \to coeficiente\ que\ representa\ la\ dependencia\ de\ la\ perdida\ por\ trayectoria\ con\ la\ frecuencia\] 
+\[\beta \to es\ un\ valor\ de\ compensación\ para\ la\ pérdida\ por\ trayectoria\ (en\ dB's)\] 
+\[x^{ABG}_{\sigma .}\to es\ una\ variable\ aleatoria\ gaussiana\ de\ media\ cero\ con\ una\ desviaci\textrm{ó}n\ est\textrm{á}ndar \]
+\[sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ multitrayectoria)\]
+\[desvanecimiento\ tipo\ Rayleigh \] 
+
+Para el segundo, la ecuación del modelo CI está dada por:
+\begin{equation}
+    L^{CI}_p(f,d)_{\left[dB\right]}=32.4+\ 10\ n{\ log}_{10}\left(\frac{d}{d_0}\right)+{\ 20\ log}_{10}\left(d_0\right)+{20\ log}_{10}\left(f\right)+x^{CI}_{\sigma .}, donde\ d\ge d_0
+    \label{eqn:CI}
+\end{equation}
+\[x^{CI}_{\sigma .}\to es\ una\ variable\ aleatoria\ gaussiana\ de\ media\ cero\ con\ una\ desviaci\textrm{ó}n\ est\textrm{á}ndar \]
+\[sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ multitrayectoria)\]
+\[desvanecimiento\ tipo\ Rayleigh\] 
+
+Para el tercero, la ecuación del modelo CIF está dada por:
+\begin{equation}
+    L^{CIF}_p(f,d)_{\left[dB\right]}=32.4+\ 10\ n{\left(1+b \left(\frac{f-f_0}{f_0}\right) \right)log}_{10}\left(d\right)+{20\ log}_{10}\left(f\right)+x^{CIF}_{\sigma .},  donde\ d\ge 1m
+    \label{eqn:CIF}
+\end{equation}
+\[x^{CIF}_{\sigma .}\to es\ una\ variable\ aleatoria\ gaussiana\ de\ media\ cero\ con\ una\ desviaci\textrm{ó}n\ est\textrm{á}ndar  \]
+\[ sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ multitrayectoria)\]
+\[desvanecimiento\ tipo\ Rayleigh\] 
+
+Cada uno de estos modelos han sido recientemente estudiados por organizaciones de estandarización como 3GPP y son propuestos para el uso en el diseño de sistemas inalámbricos de comunicación de 5G enfocados en escenarios \textit{UMa, UMi, InH,y SM}.\newline
+
+De acuerdo al análisis de sensibilidad en \parencite{Sun2016}, se demostró que el modelo CI es el más adecuado para entornos al aire libre debido a su precisión, simplicidad y rendimiento de sensibilidad, dado que la pérdida de trayectoria medida depende poco de la frecuencia en ambientes exteriores más allá del primer metro de propagación de espacio libre.\newline
+
+Por otro lado, el modelo CIF es muy adecuado para entornos interiores, ya que proporciona una desviación estándar más pequeña que el modelo ABG en muchos casos, incluso con menos parámetros del modelo y tiene una precisión superior cuando se analiza con el análisis de sensibilidad.\newline
+
+Los modelos CI y CIF son más robustos y precisos en comparación con el modelo ABG, por lo que es confiable la aplicación del modelo CI para simular entornos en exteriores y el CIF para interiores \parencite{Sun2016}.\newline
+
+De acuerdo a lo propuesto en la \textit{sección \ref{} }, el ambiente urbano que consideraremos está dirigido a un entorno en exteriores por la aplicación de los sensores a implementar. Por lo que se selecciona al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano) como el que ayudará a caracterizar las perdidas por trayectoria y desvanecimiento por el canal. 
+
+Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia en 3D entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]) . Además de esto también pide un valor d${}_{0}$ que es la distancia cercana de referencia al espacio libre, los autores proponen a d${}_{0}$ = 1 m en modelos de pérdida de trayectoria 5G ya que las distancias de cobertura serán más cortas a frecuencias más altas. 
+
+
 \subsection{ESQUEMA DE ACCESO MÚLTIPLE AL MEDIO}
+
+\subsubsection{Acceso Múltiple No Ortogonal (NOMA)}
+
+El acceso múltiple no ortogonal (NOMA) se ha convertido en un principio importante para el diseño de técnicas de acceso por radio para las redes inalámbricas de quinta generación (5G) \parencite{DIng2017}. NOMA se puede clasificar en dos categorías, el dominio de código NOMA (CD-NOMA) y el dominio de potencia NOMA (PD-NOMA). CD-NOMA utiliza diferentes códigos en el mismo recurso para lograr una ganancia de multiplexación, mientras que PD-NOMA asigna a los usuarios niveles de potencia distintos para maximizar el rendimiento. En comparación con el acceso múltiple ortogonal (OMA) que se ha aplicado ampliamente en los sistemas de comunicación inalámbrica existentes, NOMA posee el potencial de mejorar aún más la eficiencia espectral del sistema y la capacidad de conectividad.\newline
+
+Como se mencionaba, PD-NOMA utiliza el dominio de la potencia para el acceso múltiple donde diferentes usuarios son servidos con diferentes niveles de potencia, como las señales de los diferentes usuarios se sobreponen, los receptores aprovechan la cancelación sucesiva de interferencia (SIC) para distinguir a cada una. Como varios usuarios son admitidos en la misma ranura de tiempo, frecuencia o código, la interferencia co-canal será fuerte en los sistemas NOMA \parencite{Ding2016}, por lo que no es realista el asegurar a todos los usuarios del sistema que utilicen NOMA conjuntamente, por esta razón, una alternativa es utilizar un esquema hibrido donde NOMA sea combinado con el esquema convencional ortogonal OMA. El rendimiento de este esquema hibrido es muy dependiente de como los usuarios son agrupados \parencite{Ding2016}. El agrupamiento de usuarios seleccionara a los usuarios con los que se les asignará el mismo bloque de recursos ortogonales.\newline
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=1]{Figures/Cancelación Sucesiva de Interferencia (SIC)}
+\decoRule
+\caption[Cancelación Sucesiva de Interferencia (SIC)]{Cancelación Sucesiva de Interferencia (SIC), [Fuente: R. Kizilirmak 2017]}
+\label{fig:SIC}
+\end{figure}
+
+En la \textit{Figura~\ref{fig:SIC}}, las dos señales de información indicadas con diferentes colores se superponen en el transmisor. La señal recibida en el receptor SIC incluye todas estas tres señales. La primera señal que SIC decodifica es la más fuerte, mientras que la otra es tratada como ruido. La primera señal decodificada se resta de la señal recibida y si la decodificación es perfecta, la forma de onda con la otra señal se obtiene con precisión. SIC itera el proceso hasta que encuentra la señal deseada \parencite{Kizilirmak2016}.\newline
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=1]{Figures/Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora}
+\decoRule
+\caption[Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora.]{Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora, [Fuente: Ding 2017]}
+\label{fig:NOMADL}
+\end{figure}
+
+Como se muestra en la \textit{Figura~\ref{fig:NOMADL}}, la idea clave del NOMA en el dominio de potencia es asignar más potencia al usuario con condiciones de canal más pobres. El usuario 1 decodifica su propio mensaje directamente tratando el mensaje del usuario 2 como ruido y por otro lado, el usuario 2 realiza SIC, es decir, primero decodifica el mensaje del usuario 1 y luego elimina este mensaje de su observación antes de decodificar su propio mensaje.
+
+Suponga que el usuario 1 es un dispositivo IoT que requiere solo una baja velocidad de datos, y el usuario 2 es un usuario que exige una alta velocidad de datos. Cuando se utiliza OFDMA, que es un ejemplo típico de OMA, cada usuario se asigna a la sub-portadora. En este ejemplo, la eficiencia espectral de OMA es pobre ya que el dispositivo IoT tiene más ancho de banda de lo que realmente necesita, mientras que al usuario de banda ancha no se le asigna suficiente ancho de banda. Por otro lado, el uso de NOMA fomenta el intercambio de espectro, es decir, el usuario de banda ancha también puede tener acceso a la sub-portadora ocupada por el dispositivo IoT, en la F\textit{igura 24} se puede observar gráficamente la asignación del espectro en los dos esquemas.
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=1]{Figures/Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios}
+\decoRule
+\caption[Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios.]{Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios, [Fuente: R. Kizilirmak 2017]}
+\label{fig:OFDMANOMA}
+\end{figure}
+
+Dada la madurez técnica de OFDMA, es muy probable que este tipo de OMA se incorpore a las redes 5G \parencite{DIng2017} y la forma en que múltiples sub-portadoras OFDMA se pueden combinar de manera eficiente con NOMA ha recibido mucha atención.
+
+Acerca del uso de arreglos múltiples de antenas, estos aún no han sido estudiados para poder alcanzar un rendimiento óptimo del sistema, el ordenamiento de usuarios en escenarios de MIMO-NOMA es una tarea difícil \parencite{DIng2017}. En el caso de SISO, los canales de los usuarios son escalados, por lo que es sencillo ordenar a los usuarios de acuerdo con las condiciones de su canal. Sin embargo, cuando los nodos están equipados con antenas múltiples, los canales de los usuarios están en forma de vectores o matrices, lo que significa que ordenar a los usuarios de acuerdo con las condiciones de sus canales como en el caso SISO se vuelve difícil. 
+
+Como resultado, el uso de NOMA soporta eficientemente la conectividad masiva y cumple con los diversos requisitos de QoS de los usuarios. El diseño de NOMA en transmisiones de subida (\textit{uplink}) ha sido propuesto en \parencite{Al-Imari2014} y el diseño óptimo de NOMA en transmisiones de bajada (\textit{downlink}) ha sido propuesto en \parencite{Zhu2019}.
+
+Por una parte, en \parencite{Zhang2017} se implementó NOMA emparejando selectivamente dos usuarios, es decir, se escogía a un usuario con una condición de canal muy buena (cerca de la BS) y otro con una condición de canal muy pobre (en el borde de la celda). Por otro lado en \parencite{Shahini2019}, se implementó NOMA usando la técnica de agrupamiento de usuarios, para esto, considerando un entorno donde conviven dispositivos mMTC y URLLC (mayores requisitos de velocidad de datos en comparación con los dispositivos mMTC), de igual manera se agrupan a un grupo de usuarios (p.ej., 2, 3 o 4 usuarios) de diferente tipo (mMTC y URLLC), se ordenan convenientemente para implementar SIC.
+
+Entonces, como vemos hay dos maneras de implementar NOMA. Las dos son propuestas que han sido estudiadas para para cubrir los requerimientos de mMTC ya que NB-IoT no es capaz de proveer conectividad a una cantidad masiva de dispositivos IoT como se espera en el futuro.
+
+Por lo tanto, en el simulador se propone implementar NOMA usando la técnica de agrupamiento de usuarios, en nuestro caso como consideraremos dos tipos de clase de sensores NB-IoT clase I y clase II (con mayores requisitos de velocidad de datos en comparación con clase I). La relación de la distribución de dispositivos clase 1 con los de clase 2 será de 3 a 1. Con el fin de que por lo menos se un dispositivo de clase II se agrupe con tres de clase I.
+
 \subsection{MODELOS DE TRÁFICO}
 
+Los modelos de tráfico en comunicaciones móviles buscan acercarse, lo más posible a cómo transmiten datos o realizan peticiones de acceso los dispositivos que intentan modelar. Estos modelos de tráfico pueden clasificarse en modelos de tráfico\textbf{ }agregado y modelos de tráfico fuente \parencite{Laner2013}, el tráfico agregado simula un flujo de tráfico que se agrupa para recibir un tratamiento común, mientras que en los modelos de tráfico fuente es justamente cada una de las fuentes generadoras del tráfico la que se simula y frecuentemente se hace acompañada de una cadena de Markov que intenta representar los distintos estados del dispositivo fuente y la probabilidad de transición entre ellos.\newline
 
+Sin importar el modelo de tráfico a utilizar, en \parencite{Laner2013} se señala que los modelos de tráfico que pretendan simular el comportamiento de dispositivos de MTC (\textit{Machine Type Communications}) deben:
+
+\begin{itemize}
+\item  Capturar con precisión el comportamiento de un solo dispositivo de MTC 
+\item  Permitir la simulación concurrente de una cantidad masiva de dispositivos con su potencial reacción síncrona a un evento.
+\end{itemize}
+
+La importancia de la elección correcta de un modelo de tráfico para los dispositivos IoT recae en un diseño correcto y la optimización futura de la red y el cumplimiento de su respectiva QoS sin comprometer los servicios convencionales de datos, voz y video. Sin embargo, antes de elegir un modelo es importante conocer las propiedades del tráfico máquina a máquina (M2M, \textit{Machine to Machine}), el cual se considera una forma de transmisión de datos que no requiere necesariamente de la interacción humana (ETSI, 2010) y corresponde justamente al tráfico de los nodos IoT, de \parencite{Laner2013} tenemos:
+
+\begin{itemize}
+\item  Cantidad masiva de dispositivos
+\item  Pocos paquetes de un tamaño pequeño a ser transmitidos por dispositivo
+\item  Periodos largos entre dos transmisiones consecutivas
+\item  Tráfico de subida (\textit{uplink)} dominante
+\item  Transmisiones en tiempo real y transmisiones tolerantes al retraso
+\item  Paquetes no sincronizados y paquetes sincronizados
+\item  Activación de tráfico que depende del espacio y tiempo
+\end{itemize}
+
+Además, se hace  la distinción de 3 patrones de tráfico que pueden presentarse en estos dispositivos:
+
+\begin{enumerate}
+    \item \underbar{Actualización periódica (PU, }\textit{\underbar{Periodic Update}}\underbar{):} Este tipo de tráfico ocurre cuando el dispositivo transmite reportes de estado y/o actualizaciones de estado de manera periódica. Puede verse como una activación por evento que ocurre por el mismo dispositivo en un intervalo periódico. Típicamente, el tráfico PU no necesita transmitirse en tiempo real y cuenta además de un patrón periódico de tiempo con un tamaño constante en sus paquetes. Un ejemplo típico de estos dispositivos son medidores inteligentes (por ejemplo gas, electricidad, agua).
+    \item \underbar{Activación por evento (ED, }\textit{\underbar{Event-Driven}}\underbar{):} En caso de que un evento desencadene la transmisión de datos de un dispositivo, el patrón de tráfico corresponde a esta segunda clase. Un evento puede ser causado ya sea por la medición de un parámetro que sobrepasó un límite y activó alguna alarma o bien por el nodo que actúa como servidor y envía comandos al dispositivo. El tráfico \textit{Event-Driven} puede requerir ser transmitido tanto en tiempo real o no, un ejemplo de mensajes de subida que debieran ser transmitidos en tiempo real son alarmas y notificaciones médicas de emergencia, en cuanto a los mensajes de bajada, estos podrían ser la distribución de mensajes de emergencia locales, por ejemplo en caso de sismo o tsunamis. En algunos casos, como ya se mencionó, este tráfico no necesita ser transmitido en tiempo real. Por ejemplo, cuando un dispositivo IoT envía una actualización de su ubicación al servidor o se reciba una actualización de \textit{firmware }desde este.
+    \item \underbar{Intercambio de carga útil (PE, }\textit{\underbar{Payload Exchange}}\underbar{):} este último tipo de tráfico ocurre después de una transmisión previa (PU o ED). Comprende todos los casos en los que es necesario un mayor intercambio de datos entre el dispositivo que envía y su servidor, este tráfico se espera sea predominantemente de subida y puede ser de tamaño constante o variable según la aplicación.\newline
+\end{enumerate}
+
+Las aplicaciones en el mundo real que implementan dispositivos de IoT serán casi siempre una combinación de estos tipos de tráfico más un estado de reposo o de ahorro de batería.\newline
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=1]{Figures/Estructura de los estados principales del tráfico M2M}
+\decoRule
+\caption[Estructura de los estados principales del tráfico M2M]{Estructura de los estados principales del tráfico M2M}
+\label{fig:}
+\end{figure}
+
+Ahora se presentan los modelos de tráfico más recurrentes en la literatura para la simulación de comunicaciones M2M.\newline
+
+\subsubsection{Modelos de tráfico agregado}
+
+Han sido propuestos por la 3GPP al reconocer la importancia de caracterizar el tráfico M2M. Se trata en realidad de 2 modelos de tráfico agregado generado por una gran cantidad de usuarios, el primero modela el tráfico generado de forma aleatoria y el segundo modela tráfico síncrono en el tiempo, esto se puede observar en la \textit{Tabla~\ref{tab:trafico3gpp}}.\newline
+
+\begin{itemize}
+\item  \textit{Modelo 1} - Modelo de tráfico agregado sin correlación 3GPP: Genera tráfico sin correlación en un intervalo específico de tiempo. Lo que significa que no se tomarían en cuenta la correlación entre los dispositivos IoT. Utiliza una distribución uniforme para modelar el tráfico agregado en un intervalo de tiempo específico.
+\item  \textit{Modelo 2 -} Modelo de tráfico agregado con correlación 3GPP: Este modelo genera tráfico correlacionado en un intervalo de tiempo, asumiendo que todas las máquinas se encuentran sincronizadas. Utiliza una distribución beta para modelar en tráfico agregado en un intervalo de tiempo específico.
+\end{itemize}
+
+\begin{table}
+\caption{Modelos de tráfico agregado propuestos por la 3GPP para comunicaciones M2M}
+\label{tab:trafico3gpp}
+\centering
+\begin{tabular}{*{2}{m{8.5cm}}}\\
+\textbf{Sincronizado/Coordinado/Correlacionado\newline (En un intervalo limitado en el tiempo)} & \textbf{No sincronizado/No coordinado/ No correlacionado\newline (En un intervalo limitado en el tiempo)} \\ \hline
+Distribución de probabilidad de arribo de paquetes/peticiones f(t) en [0,1] : \underbar{Beta} (3,4) & Distribución de probabilidad de arribo de paquetes/peticiones f(t) en [0,1]: \underbar{Uniforme} \\ 
+Número de dispositivos: 1 000, 3 000, 5 000, 10 000, 30 000. & Número de dispositivos: 1 000, 3 000, 5 000, 10 000, 30 000. \\ 
+Periodo \textit{T }: 10 s & Periodo \textit{T }: 60 s \\ 
+\end{tabular}
+\end{table}
+
+La principal ventaja de los modelos de tráfico agregado es su fácil implementación (en términos de una baja complejidad computacional) cuando se simulan una gran cantidad de dispositivos. Por otro lado, como se menciona en \parencite{IoTTrafficHossfeld}, la precisión de estos modelos al reflejar el comportamiento real del sistema es su principal desventaja.
+
+\subsubsection{Modelos de tráfico fuente}
+
+Los modelos de tráfico fuente de dispositivos MTC, modelan justamente el tráfico que genera cada uno de los dispositivos. Este tipo de modelado es más preciso que el de tráfico agregado ya que modela el comportamiento de cada fuente, sin embargo, puede fácilmente volverse muy complejo cuando se agrega una gran cantidad de dispositivos (fuentes). A continuación se presentan y analizan dos modelos de tráfico fuente.\newline
+
+\begin{itemize}
+\item  \textit{Modelo 3:} Modelo de fuente de \textit{Semi-Markov} (\textit{Semi-Markov Models, SMM)}\\
+
+En este modelo de fuente cada dispositivo se modela utilizando una cadena de Markov en la que se define la probabilidad de transición entre estados. Los estados que se encontrarán casi siempre modelados son los mencionados anteriormente: el de actualización periódica (PU), el de activación por evento (ED) y el de intercambio de carga útil. La \textit{Figura~\ref{fig:SMM}} muestra cómo se verían modelados los estados de un dispositivo en una cadena de Markov.\newline
+
+La probabilidad de transición entre el mismo estado es 0, además los tiempos de espera y la longitud de los mensajes son generados de acuerdo a una distribución de probabilidad que es independiente de cada estado y potencialmente distinta para cada uno de ellos \parencite{IoTTrafficHossfeld}.\newline
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=1]{Figures/Cadena de Markov del modelo SMM}
+\decoRule
+\caption[Cadena de Markov del modelo SMM]{Cadena de Markov del modelo SMM}
+\label{fig:SMM}
+\end{figure}
+
+La principal ventaja del modelo de tráfico fuente SMM es que permitiría una descripción más detallada del comportamiento de los dispositivos IoT de manera individual, sin embargo no es capaz de capturar la relación que existe entre dos dispositivos cercanos que pudieran tener una cierta sincronía entre ellos, otra desventaja es que la complejidad del sistema aumenta considerablemente entre más dispositivos se simulan a diferencia de los modelos de tráfico agregado.\newline
+
+\item  \textit{Modelo 4:} Modelo de fuente de Procesos de Poisson emparejados Markov-modulados (CMMPP\textit{, Coupled Markov Modulated Poisson Process)}
+
+En el modelo de tráfico CMPP cada dispositivo MTC es representado como una entidad por separado en el que a diferencia del modelo SMM sí puede representarse una sincronización espacial y temporal entre dispositivos similares. La clave en el diseño del modelo CMMPP se presenta en encontrar un balance entre el emparejamiento entre distintos dispositivos y una complejidad tolerable del sistema cuando se tiene una gran cantidad de dispositivos \parencite{Gupta2018}.
+
+Los procesos de Poisson Modulados con Markov (\textit{Markov modulated Poisson processes, MMPP}) consisten en procesos de Poisson que son modulados por la tasa $\lambda_{i[t]}$, que viene determinada por el estado de una cadena de Markov $sn[t]$, este principio se ve presentado en la \textit{Figura~\ref{fig:CMMPP}} donde \textit{p${}_{i,j}$}${}_{\ }$son las probabilidades de transición entre los estados de la cadena. En este modelo cada dispositivo \textit{n} del total\textit{ N} se encuentra representado por una cadena de Markov y un correspondiente proceso de Poisson. Debido a que existe una alta correlación en el cambio de estados de distintos dispositivos, tanto en el espacio como en el tiempo, es necesario realizar un emparejamiento. En los modelos genéricos, el emparejamiento se realiza introduciendo enlaces bidireccionales entre los dispositivos, pero esto sería sin lugar a dudas muy complejo de simular, de manera que en \parencite{Gupta2018} se propone un proceso de fondo actuando como \textit{maestro} el cual modula todos los dispositivos.
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=1]{Figures/Modelo MMPP en dispositivos MTC}
+\decoRule
+\caption[Modelo CMMPP en dispositivos MTC]{Modelo CMMPP: cada dispositivo MTC n está representado por una cadena de Markov con estados sn, que establecen el parámetro $\lambda$. Este parámetro es el promedio de la tasa de arribos, el cual modela el respectivo proceso de Poisson}
+\label{fig:CMMPP}
+\end{figure}
+
+\end{itemize}
+
+La principal ventaja como ya se mencionó del tráfico fuente frente al tráfico agregado es su precisión, por otra parte, la del tráfico agregado es su fácil implementación para un gran número de dispositivos. El modelo CMMPP es un intermedio entre estos dos casos, es decir mantiene la precisión del modelado de tráfico fuente mientras se mantiene la viabilidad para un gran número de máquinas. A continuación se presenta la \textit{Tabla~\ref{tab:Traficos}} con una comparativa entre los distintos modelos mencionados.\newline
+\begin{table}
+\caption{Comparativa entre los modelos de tráfico MTC abordados}
+\label{tab:Traficos}
+\centering
+\begin{tabular}{|p{3in}|p{1in}|p{0.8in}|p{1in}|} \\  
+\textbf{\textit{Métrica}} & \textbf{Agregado~} & \textbf{SMM} & \textbf{CMMPP} \\ \hline 
+\textit{Modelado de los dispositivos} &  & \checkmark & \checkmark \\ \hline 
+\textit{Modelado de dispositivos coordinados} & \checkmark &  & \checkmark \\ \hline 
+\textit{Coordinación espacial y temporal} &  &  & \checkmark \\ \hline 
+\textit{Modelado de los paquetes} &  & \checkmark &  \\ \hline 
+\textit{Modelado de la tasa de arribo} & \checkmark & \checkmark & \checkmark \\ \hline 
+\textit{Tiempo de ejecución aleatorio factible} &  & \checkmark & \checkmark \\ \hline 
+\textit{Ubicación del dispositivo} &  & \checkmark & \checkmark \\ \hline 
+\textit{Emparejamiento de estados} &  &  & \checkmark \\ \hline 
+\textit{Complejidad (N número de dispositivos)} & O(1) & O(N) & O(N) \\  
+\end{tabular}
+\end{table}
+
+
+
+
+Como puede observarse en la \textit{Tabla~\ref{tab:Traficos}}, las ventajas que trae consigo la utilización de un modelo de tráfico como el CMMPP son bastante convenientes para modelar el tráfico de dispositivos mIoT, pues este es capaz de simular la relación espacial y temporal que existiría entre los nodos. Si se regresa a la \textit{Tabla~\ref{tab:appssim}} en la que se presentan los servicios que se simularan, se encuentra que servicios como el monitoreo de la condición del aire en la ciudad, la detección de terremotos, la manipulación de la iluminación y demás tendrá un comportamiento similar en un espacio confinado y para poder hacer hincapié en la importancia del diseño de la red para a la hora de cumplir con la QoS esperada, es necesario que se implemente la posibilidad de recibir una gran cantidad de dispositivos en el caso de uso mMTC, los cuales estarían tratando de acceder a los recursos del sistema simultáneamente. De manera que el modelo CMMPP es el seleccionado para la simulación de este sistema complementándolo con un modelo determinístico para las aplicaciones que sólo producen tráfico periódico.\newline
+
+Una explicación resumida del modelado  de tráfico fuente CMMPP se realiza a continuación \parencite{Gupta2018}:
+
+\begin{enumerate}
+\item  Un conjunto de \textit{k }estados se definen, cada uno asociado con una tasa de generación de paquetes ${\lambda }_k$. Un dispositivo IoT se encuentra en todo momento en algún de estos estados representados en una cadena de Markov formada por los estados antes mencionados.
+\item  La transición entre los \textit{k} estados para cualquier \textit{n-ésimo}\textbf{\textit{ }}dispositivo está definida por una matriz \textit{k x k} de $P_n$ la cual es a su vez una función de dos matrices de transición $P_u$ y $P_c$ (Para comportamiento no coordinado/no sincronizado y comportamiento coordinado/sincronizado respectivamente) definidas por la red de N nodos.
+\item  Un factor de correlación espacial ${\delta }_n$ se asigna a cada dispositivo \textit{n. }Esto modela qué tanto se involucra un dispositivo durante la generación de tráfico coordinado en la red y dicta efectivamente la contribución de $P_c$ en la matriz resultante de probabilidad de transición de ese dispositivo.
+\item  Se define un proceso $\mathit{\Theta}\left(t\right)$ el cual controla la matriz de  transición instantánea de estado del \textit{n-ésimo}\textbf{\textit{ }}dispositivo en el instante \textit{t.}
+\end{enumerate}
