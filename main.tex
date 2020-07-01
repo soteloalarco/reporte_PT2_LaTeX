@@ -26,6 +26,7 @@
 	12pt, % The default document font size, options: 10pt, 11pt, 12pt
 	%oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
 	spanish, % ngerman for German
+	es-tabla,
 	singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
 	%draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
 	%nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
@@ -42,10 +43,22 @@
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage{mathpazo} % Use the Palatino font by default
-\usepackage[backend=biber,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\usepackage[backend=biber,style=ieee,natbib=true]{biblatex} % Para Formato IEEE
 \addbibresource{Referencias.bib} % The filename of the bibliography
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{xcolor}
+\usepackage{lscape} %Para poner páginas horizontales
+\usepackage{rotating}
+\usepackage{algorithm}
+\usepackage[T1]{fontenc} % Codificación de fuente
+\usepackage{lmodern} % Fuente compatible
+\usepackage[noend]{algpseudocode}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\renewcommand{\spanishtablename}{Tabla}
+\renewcommand{\spanishlisttablename}{Índice de tablas}
+%\renewcommand{\acknowledgmentsname}{Agradecimientos}
+%\addto\captionsspanish{\renewcommand{\acknowledgmentsname}{Agrade}}
 \newcommand\myworries[1]{\textcolor{red}{#1}} %Para incorporar TODOs en el documento (en color rojo)
 \setlength\parindent{0pt} %Para evitar la sangría default que implementa la clase
 
@@ -54,9 +67,9 @@
 %----------------------------------------------------------------------------------------
 
 \geometry{
-	paper=a4paper, % Change to letterpaper for US letter
-	inner=2.5cm, % Inner margin
-	outer=3.8cm, % Outer margin
+	paper=letterpaper, % Change to letterpaper for US letter
+	inner=2cm, % Inner margin
+	outer=2cm, % Outer margin
 	bindingoffset=.5cm, % Binding offset
 	top=1.5cm, % Top margin
 	bottom=1.5cm, % Bottom margin
@@ -100,19 +113,21 @@
 \begin{titlepage}
 \begin{center}
 
-\vspace*{.06\textheight}
-{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
-\textsc{\Large Proyecto Terminal II}\\[0.5cm] % Thesis type
+%\vspace*{.06\textheight}
+{\scshape\LARGE \univname\par}\vspace{1cm} % University name
+\includegraphics[scale=.8]{LogoUPIITA}\\ % University/department logo - uncomment to place it
+\vspace*{.03\textheight}
+\textsc{\Large Proyecto Terminal II}\\[0.7cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
 {\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
-\HRule \\[1.5cm] % Horizontal line
+\HRule \\[0.4cm] % Horizontal line
 
 \begin{minipage}[t]{0.4\textwidth}
 \begin{flushleft} \large
 \emph{Autores:}\\
+Rolando \textsc{Sotelo Alarcon} \newline
 Luis Fernando \textsc{Salazar Ordoñez} \newline
-Rolando \textsc{Sotelo Alarcon} 
 \end{flushleft}
 \end{minipage}
 \begin{minipage}[t]{0.4\textwidth}
@@ -121,7 +136,7 @@ Rolando \textsc{Sotelo Alarcon}
 Dr. Domingo \textsc{Lara Rodriguez} \newline
 Dr. Noe \textsc{Torres Cruz}
 \end{flushright}
-\end{minipage}\\[3cm]
+\end{minipage}\\[1cm]
  
 \vfill
 
@@ -131,8 +146,7 @@ Dr. Noe \textsc{Torres Cruz}
  
 \vfill
 
-{\large \today}\\[4cm] % Date
-%\includegraphics{LogoUPIITA} % University/department logo - uncomment to place it
+{\large Julio 2020}\\[4cm] % Date
  
 \vfill
 \end{center}
@@ -143,7 +157,7 @@ Dr. Noe \textsc{Torres Cruz}
 %----------------------------------------------------------------------------------------
 
 %\begin{declaration}
-\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
+%\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
 %\noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
 
 %\begin{itemize} 
@@ -168,11 +182,11 @@ Dr. Noe \textsc{Torres Cruz}
 %	QUOTATION PAGE
 %----------------------------------------------------------------------------------------
 
-\vspace*{0.2\textheight}
+%\vspace*{0.2\textheight}
 
-\noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
+%\noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
 
-\hfill Dave Barry
+%\hfill Dave Barry
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT PAGE
@@ -181,12 +195,12 @@ Dr. Noe \textsc{Torres Cruz}
 \begin{abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 Resumen:
-\textit{En este documento se presenta el desarrollo de un simulador a nivel de sistema, programado bajo el paradigma de eventos discretos, que permite modelar el servicio que la red de comunicación celular de quinta generación (5G), ofrece a nodos de Internet de las cosas (IoT). El simulador se enfocó en el caso de uso mIoT, el cual comprende principalmente de nodos IoT estáticos de baja complejidad que además se encuentran en gran cantidad dentro de los escenarios de esta red. La arquitectura del simulador contempló cuatro módulos clave para su ejecución: un modelo de despliegue de UEs, un modelo de canal, un esquema de acceso múltiple al medio no ortogonal y modelos de tráfico adecuados para modelar distintos servicios. Asimismo, se consideró el fundamentar la fiabilidad de los resultados obtenidos por el simulador mediante la previa prueba e implementación de modelos de tráfico ya estudiados en la literatura concerniente al desempeño de sistemas celulares. Con los resultados del simulador se determinaron qué configuraciones y parámetros iniciales de la arquitectura de red propuesta satisfacen una óptima calidad de servicio (QoS) para el caso de uso mIoT.}\newline \\
-\emph{Palabras clave: \keywordnames}\\ 
-Abstract: \\ 
-\emph{Keywords: \keywordnames}\\
+En este documento se presenta el desarrollo de un simulador a nivel de sistema, programado bajo el paradigma de eventos discretos, que permite modelar el servicio que la red de comunicación celular de quinta generación (5G), ofrece a nodos de Internet de las cosas (IoT). El simulador se enfocó en el caso de uso mIoT, el cual comprende principalmente de nodos IoT estáticos de baja complejidad que además se encuentran en gran cantidad dentro de los escenarios de esta red. La arquitectura del simulador contempló cuatro módulos clave para su ejecución: un modelo de despliegue de UEs, un modelo de canal, un esquema de acceso múltiple al medio no ortogonal y modelos de tráfico adecuados para modelar distintos servicios. Asimismo, se consideró el fundamentar la fiabilidad de los resultados obtenidos por el simulador mediante la previa prueba e implementación de modelos de tráfico ya estudiados en la literatura concerniente al desempeño de sistemas celulares. Con los resultados del simulador se determinaron qué configuraciones y parámetros iniciales de la arquitectura de red propuesta satisfacen una óptima calidad de servicio (QoS) para el caso de uso mIoT.\newline \\
+Palabras clave: \keywordnames\\ 
+\textit{Abstract: }\\ 
+\textit{Keywords: \keywordnames}\\
 
-\myworries{TODO: Realizar una mejor versión del abstract y agregar su traducción}
+\myworries{TODO: Realizar la actualización del abstract y agregar su traducción al ingles}
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -195,7 +209,7 @@ Abstract: \\
 
 \begin{acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
+Agradecimientos\ldots
 \end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
@@ -211,48 +225,137 @@ The acknowledgments and the people to thank go here, don't forget to include you
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
-
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
-
-\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
-\textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
-
+\textbf{3GPP} & \textbf{3}rd \textbf{G}eneration \textbf{P}artnership \textbf{P}roject\\
+\textbf{4G} & Cuarta generación de Comunicaciones Móviles\\
+\textbf{5G NR} & 5G New Radio\\
+\textbf{ARIB} &	Association of Radio Industries and Businesses\\
+\textbf{ARPU} &	Average Revenue Per User\\
+\textbf{ATIS} & Alliance for Telecommunications Industry Solutions\\
+\textbf{AWGN} &	Additive White Gussian Noise\\
+\textbf{apd} & Average Power Decay (a.k.a. PLE)\\
+\textbf{BS} & Base Station\\
+\textbf{BSs} & Base Stations\\
+\textbf{BW} & Bandwidth\\
+\textbf{CCSA} &	China Communications Standars Associations\\
+\textbf{CD-NOMA} & Code Division NOMA\\
+\textbf{CIoT} & Cellular IoT\\
+\textbf{CMMPP} & Coupled Markov Modulated Poisson Process\\
+\textbf{CT} & Central Terminal\\
+\textbf{DES} & Discrete Event Simulation\\
+\textbf{DL} & Downlink\\
+\textbf{ED} & Event-Driven\\
+\textbf{EIRP} & Efective Isotropic Radiated Power\\
+\textbf{eMBB} &	Enhanced Mobile Broadband\\
+\textbf{eMTC} &	Enhanced Machine Type Communications\\
+\textbf{ETSI} &	European Telecommunications Standars institute\\
+\textbf{fc} & Frecuencia Portadora\\
+\textbf{GIL} & Global Interpreter Lock\\
+\textbf{HTC} & Human Type Communication\\
+\textbf{IEEE} &	Institute of Electrical and Electronics Engineers\\
+\textbf{IFT} & Instituto Federal de Telecomunicaciones\\
+\textbf{InH} & Indoor Hotspot\\
+\textbf{IoT} & Internet of Things\\
+\textbf{ITU} & International Telecommunication Union\\
+\textbf{ITU-R} & ITU Radiocommunications\\
+\textbf{KPI} & Key Performance Indicator\\
+\textbf{KPIs} &	Key Performance Indicators\\
+\textbf{LoS} & Line of Sight\\
+\textbf{LPWAN} & Low Power Wide Area Networks\\
+\textbf{LSP} & Large-Scale Parameters\\
+\textbf{LTE} & Long Term Evolution\\
+\textbf{LTE-M} & LTE-MTC\\
+\textbf{M2M} & Machine to Machine\\
+\textbf{MA} & Multiple Access\\
+\textbf{MAC} & Media Access Control\\
+\textbf{MIMO} &	Multiple Inputs Multiple Outputs\\
+\textbf{mIoT} &	Massive IoT\\
+\textbf{MMPP} &	Markov Modulated Poisson Process\\
+\textbf{mMTC} &	Massive Machine Type Communications\\
+\textbf{MS} & Mobile Station\\
+\textbf{MT} & Mobile Terminal\\
+\textbf{MTC} & Machine Type Communication\\
+\textbf{MTs} & Mobile Terminals\\
+\textbf{M2M} &Machine to machine\\
+\textbf{NB-IoT} & Narrow-Band Internet of Things\\
+\textbf{NGMN} &	Next Generation Mobile Networks\\
+\textbf{NLoS} &	Non-Line of Sight\\
+\textbf{NOMA} &	Non-Orthogonal Multiple Access\\
+\textbf{OFDMA} & Orthogonal Frequency Division Multiple Access\\
+\textbf{OMA} & Orthogonal Multiple Access\\
+\textbf{PD-NOMA} & Power Division NOMA\\
+\textbf{PE} & Payload Exchange\\
+\textbf{PL} & Path Loss\\
+\textbf{PLE} & Path Loss Exponent\\
+\textbf{PPP} & Poisson Point Process\\
+\textbf{PRB} & Physical Resource Block\\
+\textbf{PSM} & Power Saving Mode\\
+\textbf{PU} & Periodic Update\\
+\textbf{QoS} & Quality of Service\\
+\textbf{RAN} & Radio Access Networks\\
+\textbf{RF} & Radio Frequency\\
+\textbf{RFID} & Radio Frequency Identification\\
+\textbf{Rx} & Receiver\\
+\textbf{SA} & System Aspects\\
+\textbf{SC-FDMA} & Single Carrier Frequency Division Multiple Access\\
+\textbf{SF} & Shadow Fading\\
+\textbf{SIC} & Successive Interference Cancelation\\
+\textbf{SINR} & Signal to Interference plus Noise Ratio\\
+\textbf{SISO} & Single Input Single Output\\
+\textbf{SM} & Suburban Macro\\
+\textbf{SMM} & Semi-Markov Model\\
+\textbf{TDD} & Time Division Duplexing\\
+\textbf{TDMA} &	Time Division Multiple Access\\
+\textbf{TR} & Technical Report\\
+\textbf{TSDO} &	Telecommunications Standards Development Organization\\
+\textbf{TSDOs} & Telecommunications Standards Development Organizations\\
+\textbf{TSDSI} & Telecommunications Standards Development Society, India\\
+\textbf{TSG} & Technical Specifications Group\\
+\textbf{TTA} & Telecommunications Technology Association of Korea\\
+\textbf{TTC} & Telecommunication Technology Committee\\
+\textbf{Tx} & Transmitter\\
+\textbf{UE} & User Equipment\\
+\textbf{UL} & Uplink\\
+\textbf{UMa} & Urban Macro\\
+\textbf{UMi} & Urban Micro\\
+\textbf{UMTS} &	Universal Mobile Telecommunications System\\
+\textbf{URLLC} & Ultra-Reliable and Low-Latency Communications\\
 \end{abbreviations}
 
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
 %----------------------------------------------------------------------------------------
 
-\begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
+%\begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
 
 % The \SI{}{} command is provided by the siunitx package, see its documentation for instructions on how to use it
 
-Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
+%Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
 %Constant Name & $Symbol$ & $Constant Value$ with units\\
 
-\end{constants}
+%\end{constants}
 
 %----------------------------------------------------------------------------------------
 %	SYMBOLS
 %----------------------------------------------------------------------------------------
 
-\begin{symbols}{lll} % Include a list of Symbols (a three column table)
-\myworries{TODO: Agregar los simbolos con formato}
-$a$ & distance & \si{\meter} \\
-$P$ & power & \si{\watt} (\si{\joule\per\second}) \\
+%\begin{symbols}{lll} % Include a list of Symbols (a three column table)
+%\myworries{TODO: Agregar simbolos}
+%$a$ & distance & \si{\meter} \\
+%$P$ & power & \si{\watt} (\si{\joule\per\second}) \\
 %Symbol & Name & Unit \\
 
-\addlinespace % Gap to separate the Roman symbols from the Greek
+%\addlinespace % Gap to separate the Roman symbols from the Greek
 
-$\omega$ & angular frequency & \si{\radian} \\
+%$\omega$ & angular frequency & \si{\radian} \\
 
-\end{symbols}
+%\end{symbols}
 
 %----------------------------------------------------------------------------------------
 %	DEDICATION
 %----------------------------------------------------------------------------------------
 
-\dedicatory{For/Dedicated to/To my\ldots} 
+\dedicatory{For/Dedicated to/To my \ldots} 
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -265,7 +368,6 @@ $\omega$ & angular frequency & \si{\radian} \\
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 
-\myworries{TODO: Aplicar formato IEEE para referencias}
 \include{Chapters/Chapter1}
 \include{Chapters/Chapter2} 
 \include{Chapters/Chapter3}
@@ -291,7 +393,8 @@ $\omega$ & angular frequency & \si{\radian} \\
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 \printbibliography[heading=bibintoc]
-%\bibliography{Referencias}
+
+%\bibliography{Referencias} Aqui intenté implementar Ieee pero no jaló
 
 %----------------------------------------------------------------------------------------
 
