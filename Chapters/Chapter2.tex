@@ -97,7 +97,7 @@ El receptor puede recibir una señal atenuada directa (también llamada señal d
 
 Se considera a la propagación en el espacio libre como la mínima atenuación que una señal puede sufrir en el medio.\newline
 
-La potencia disponible en la antena receptora ${\ P}_{rx}$ con una propagación en el espacio libre se define como (también conocida como Formula de Friis):\newline
+La potencia de la señal receptora ${\ P}_{rx}$ con una propagación en el espacio libre se define como (también conocida como Formula de Friis):\newline
 
 \begin{equation}
 P_{rx\left[W\right]}={\left(\frac{{\lambda }_{[m]}}{4\pi d_{[m]}}\right)}^2P_{tx\left[W\right]}G_{tx}G_{rx}  
@@ -121,7 +121,7 @@ Por lo tanto, la pérdida por trayectoria en el espacio libre $L_0$ se define co
 
 \begin{equation}
 L_{0[dB]}=32.44+20{\mathrm{log} \left(d_{\left[km\right]}\right)\ }+20\mathrm{log}\mathrm{}(f_{[MHz]})
-\label{eqn:Lp}
+\label{eqn:L0}
 \end{equation}
 
 Tomando el modelo del decaimiento de potencia promedio con la distancia $a_{pd}$:\newline
@@ -170,7 +170,7 @@ En la \textit{Figura~\ref{fig:Desvanecimientos}} se observa que al principio, la
     \item  Pérdida por trayectoria \textit{(Path loss)}
     \item  \textit{Shadowing} (Sombreado) o desvanecimiento lento
     \item  Desvanecimiento multitrayectoria o desvanecimiento rápido.
-    \end{enumerate}
+\end{enumerate}
 
 El desvanecimiento lento puede ser causado por eventos como el \textit{shadowing}, donde una gran obstrucción, como una colina o un gran edificio, oscurece la trayectoria de la señal principal entre el transmisor y el receptor. Se considera un parámetro a gran escala.\newline
 
@@ -291,7 +291,7 @@ S_{clu}=(3\sqrt{3}/2)D^2_nd^2_u
 \label{eqn:Sclus}
 \end{equation}
 
-\[Numero\ de\ celdas\ por\ cluster,\ N_{cc}\ \textrm{ó}\ tambi\textrm{é}n\ conocido\ como\ ``factor\ de\ reuso''\ \] 
+\[Número\ de\ celdas\ por\ cluster,\ N_{cc}\ \textrm{ó}\ tambi\textrm{é}n\ conocido\ como\ ``factor\ de\ reuso''\ \] 
 
 \begin{equation}
 N_{cc}=\frac{S_{clu}}{S_{cel}}
@@ -374,7 +374,7 @@ La asignación de frecuencias de las celdas debería reducir la interferencia de
 En un simple sistema celular, las frecuencias deberían ser asignadas a las celdas de acuerdo a:\newline
 \begin{equation}
     f_{ij}=i+N_{cc}\ (j-1)
-    \label{eqn:Nfc}
+    \label{eqn:fij}
 \end{equation}
 
 \[i=1,\ \dots ,\ N_{cc}\] 
@@ -483,7 +483,7 @@ La teoría de la información de Shannon nos dice la cantidad de información qu
 
 \begin{equation}
 C=B{{\mathrm{log}}_2 \left(1+\frac{S}{N}\right)\   [bps] }
-\label{eqn:SIcc}
+\label{eqn:Shannon}
 \end{equation}
 \[B\ es\ el\ ancho\ de\ banda\ del\ canal\ en\ Hertzios.\]
 \[C\ es\ la\ capacidad\ del\ canal\ (tasa\ de\ bits\ de\ informaci\textrm{ó}n\ bit/s)\]
