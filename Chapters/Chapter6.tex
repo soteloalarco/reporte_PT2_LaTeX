@@ -4,29 +4,28 @@
 
 \label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este Captitulo se explica la implementación del modelo de sistema propuesto en el Capítulo \ref{Chapter5}
-\myworries{AQUI VA TODO LO REFERENTE A LO QUE HEMOS HECHO EN PT2}\newline
+En este Captitulo se explica la implementación del modelo de sistema propuesto en el Capítulo \ref{Chapter5} \ldots
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{Generación de una geometría estocastica usando Procesos Puntuales de Poisson (PPP)}
+\section{Generación de una geometría estocastica implementando Procesos Puntuales de Poisson (PPP)}
 
-\subsection{Validación de Procesos Puntuales de Poisson (PPP)}
+
+\subsection{Escenario de Prueba de Procesos Puntuales de Poisson (PPP)}
 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{Generación de ganancias de canal}
+\section{Generación de ganancias de canal implementando pérdidas PLE y desvanecimiento Rayleigh}
+Por lo tanto como se lee en Seccion, en la actualidad el despliegue de redes NB-IoT se ha realizado en bandas de EUTRA (Acceso de radio en LTE). 
 
 De acuerdo con el modelo de canal propuesto, el modelo CI \textit{Ecuación~\ref{eqn:CI}} \parencite{Sun2016} implementa pérdidas de acuerdo con la distancia dado un exponente de pérdida por trayectoria (PLE) y además, agrega pérdidas por el desvanecimiento rápido de Rayleigh.
 
-
-
-Cuando se habla del desvanecimiento de Rayleigh en enlaces inalambricos, se ha estudiado \parencite{} que las componentes en cuadratura y en fase de la señal recibida son variables aleatorias Gaussianas con media cero que se distribuyen de forma independiente e idéntica (iid), siendo así, que la magnitud de la señal banda base compleja sigue una distribución de Rayleigh. Por otra parte, la distribución de la potencia normalizada de una señal de banda base compleja recibida bajo el desvanecimiento unitario de Rayleigh es modelado por medio de una distribución exponencial unitaria.\newline
+Cuando se habla del desvanecimiento de Rayleigh en enlaces inalambricos, en la literatura \parencite{RayleighScienceDirect} se encuentra que las componentes en cuadratura y en fase de la señal recibida son variables aleatorias Gaussianas con media cero que se distribuyen de forma independiente e idéntica (iid), siendo así, que la magnitud de la señal banda base compleja sigue una distribución de Rayleigh. Por otra parte, la distribución de la potencia normalizada de una señal de banda base compleja recibida bajo el desvanecimiento unitario de Rayleigh es modelado por medio de una distribución exponencial unitaria.\newline
 
 Por lo tanto, cuando el desvanecimiento es Rayleigh, la magnitud (voltaje) de la señal es distribuida por Rayleigh pero su potencia es distribuida exponencialmente.\newline
 
@@ -37,8 +36,7 @@ En nuestro caso, como se trabajará en términos de potencia, se modelará este 
 \end{equation}
 $g \to ganancia\ en\ potencia\ del\ canal\ de\ desvanecimiento\ de\ Rayleigh$
 
-
-\subsection{Validación de desvanecimiento Rayleigh}
+\subsection{Escenario de Prueba del desvanecimiento tipo Rayleigh en potencia}
 
 
 %----------------------------------------------------------------------------------------
@@ -49,7 +47,7 @@ $g \to ganancia\ en\ potencia\ del\ canal\ de\ desvanecimiento\ de\ Rayleigh$
 
 De acuerdo con el modelo de sistema (sección XXX), se propuso implementar un esquema de acceso múltiple no ortogonal (NOMA), con base en \parencite{Shahini2019}, los autores desarrollaron un esquema NOMA basado en NB-IoT por medio de un agrupamiento óptimo de los usuarios y una optimización en la asignación de recursos, de acuerdo con la maximización de la tasa de transmisión total de subida de los dispositivos MTC.\newline
 
-\subsection{Algoritmo de Agrupación SIC}
+\subsection{Algoritmo de Agrupación de dispositivos uRLLC  y mMTC}
 
 Se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC descrito en \parencite{Shahini2019}, este algoritmo realiza un ordenamiento conveniente con respecto al uso de la Cancelación Sucesiva de Interferencia (SIC), es decir, se ordenan los dispositivos URLLC y mMTC de acuerdo con su ganancia de canal promedio dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo.\newline
 
@@ -171,10 +169,8 @@ El algoritmo asigna iterativamente las subportadoras una por una hasta que se cu
     \end{algorithmic}
 \end{algorithm}
 
-\subsection{Validación de Algoritmo}
 
-
-\subsection{Validación de Algoritmo}
+\subsection{Escenario de Prueba de los Algoritmos 1 y 2}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -183,7 +179,7 @@ El algoritmo asigna iterativamente las subportadoras una por una hasta que se cu
 \section{Generación de Tráfico Fuente}
 
 \subsection{Tráfico CMMPP}
-\subsection{Validación de Tráfico CMMPP}
+\subsection{Escenario de Prueba de Tráfico CMMPP}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 

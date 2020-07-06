@@ -64,7 +64,7 @@ En teoría de la probabilidad y estadística, hay varias relaciones entre las di
 
 \subsection{Procesos de Poisson}
 
-Los Procesos de Poisson son altamente utilizados para describir o modelar fenómenos en las telecomunicaciones, p. ej. la generación de llamadas telefónicas.\newline
+Los procesos de Poisson son altamente utilizados para representar o modelar fenómenos en las telecomunicaciones, p. ej. la generación de llamadas telefónicas.\newline
 
 Algunas propiedades de los procesos de Poisson son las siguientes \parencite{ PoissonMedium}:
 
@@ -87,6 +87,27 @@ Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen u
 
 La fórmula anterior nos da la probabilidad de ocurrencia de $k$ eventos en unidad de tiempo, dado que la tasa de ocurrencia promedio es $\lambda$ eventos por unidad de tiempo.\newline
 
+\subsubsection{Modelado de tiempos entre llegadas}
+
+Los procesos de Poisson tienen una subestructura notable. Aunque el número de eventos ocurridos se modela usando una distribución de Poisson discreta, el intervalo de tiempo entre eventos consecutivos se puede modelar usando una distribución exponencial, que es una distribución continua \parencite{PoissonMedium}.\newline
+
+Sean $X1, X2, X3, ... Xi$ variables aleatorias tales que:
+
+$X1$ = el intervalo de tiempo entre el inicio del proceso y el primer evento, es decir, la primera llegada,\newline
+$X2$ = el tiempo entre llegadas entre la primera y la segunda llegada,\newline
+$X3$ = el tiempo entre llegadas entre la segunda y la tercera llegada , y así sucesivamente.\newline
+
+La distribución de la variable aleatoria $Xk$ que representa el tiempo entre llegadas entre la llegada $(k-1) th$ y $(k) th$ es \parencite{PoissonMedium}:
+\begin{equation}
+    X_{k}=Exponential(\lambda)
+    \label{eqn:expon}
+\end{equation}
+La Función Densidad de Probabilidad (PDF) de la variable aleatoria $X_{k}$ es la siguiente:
+\begin{equation}
+    P_{X}(t)=\lambda e^{-\lambda t}
+    \label{eqn:pdfexpon}
+\end{equation}
+Y describe la PDF de tiempos entre llegadas en un proceso de Poisson.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
