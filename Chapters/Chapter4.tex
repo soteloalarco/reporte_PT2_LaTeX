@@ -192,7 +192,7 @@ En la \textit{Tabla~\ref{tab:tecIoT}} se pueden encontrar características de es
 \caption{Características de las tecnologías de red para IoT en la red celular}
 \label{tab:tecIoT}
 \centering
-\begin{tabular}{|p{0.6in}|p{0.6in}|p{0.4in}|p{0.6in}|p{0.4in}|p{0.5in}|p{0.8in}|p{0.4in}|} \\ 
+\begin{tabular}{|p{0.9in}|p{0.6in}|p{0.4in}|p{0.6in}|p{0.4in}|p{0.8in}|p{1.2in}|p{0.4in}|} \\ 
 \textbf{\textit{Tecnología}} & \textbf{\textit{Banda de Frecuencia}} & \textbf{\textit{Rango}} & \textbf{\textit{Tasa de transmisión}} & \textbf{\textit{Vida de la batería}} & \textbf{\textit{Topología}} & \textbf{\textit{Estandarización}} & \textbf{\textit{Grupo}} \\ 
 \textbf{NB-IoT}  & \footnotesize{ 450 MHZ -- 3.5 GHz (Espectro de 2G/3G/4G) } & \footnotesize{ 10-15 km } & \footnotesize{ 250 kbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierto } & \footnotesize{ 3GPP } \\ \hline
 \textbf{eMTC}  & \footnotesize{ 450 MHZ -- 3.5 GHz (El mismo que LTE) } & \footnotesize{ 10-15 km } & \footnotesize{ 1 Mbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierto } & \footnotesize{ 3GPP } \\
@@ -234,7 +234,7 @@ Para el enlace de subida (\textit{uplink}), como su nombre lo indica, tiene un a
 
 \begin{figure}[th]
 \centering
-\includegraphics[scale=1]{Estructura de ancho de banda y subportadoras en NB-IoT}
+\includegraphics[scale=.7]{Estructura de ancho de banda y subportadoras en NB-IoT}
 \decoRule
 \caption[Estructura de ancho de banda y subportadoras en NB-IoT.]{Estructura de ancho de banda y subportadoras en NB-IoT.}
 \label{fig:NBIoT}
@@ -262,10 +262,10 @@ Para el modo de operación independiente y de banda de guarda, el PRB de enlace 
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.7]{modooperacionNBIOT}
+    \includegraphics[scale=.6]{modooperacionNBIOT}
     \decoRule
     \caption[Modos de Operación en NB-IoT.]{Modos de Operación en NB-IoT. \parencite{Liberg2018}}
-    \label{fig:NBIoT}
+    \label{fig:NBIoT2}
 \end{figure}
     
 En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes.
@@ -288,7 +288,7 @@ Se supone un ACK de capa de aplicación DL para un evento de informe periódico 
 
 Entonces, una vez revisadas estas clasificaciones de tráfico compatibles para NB-IoT, se procede a agrupar estos tipos de tráfico con los escenarios que se consideraron en la \textit{Tabla 8} de la sección anterior, de tal manera que se establezcan las condiciones base de un ambiente NB-IoT de acuerdo a los servicios seleccionados (secXXXX).\newline
 
-La adición de la columna ``Tamaños de paquete'' para la \textit{Tabla~\ref{tab:}} se da en la \textit{Tabla~\ref{tab:}}\newline
+La adición de la columna "Tamaños de paquete" para la \textit{Tabla~\ref{tab:}} se da en la \textit{Tabla~\ref{tab:}}\newline
 
 \begin{table}
 \caption{Caracterización del tráfico de paquetes en aplicaciones seleccionadas para la simulación.}
@@ -372,9 +372,38 @@ Para esto, la distribución de terminales móviles se realiza de acuerdo con var
 
 En este proyecto no se propone simular un ambiente uniforme, establecido o determinístico por lo que se seguirá el despliegue de una geometría estocástica siguiendo un PPP.\newline
 
-% \parencite{}
-\myworries{colocar PPP}
-\subsubsection{Poisson Point Process}
+\subsubsection{\textit{Point Process}}
+Procesos puntuales (PP) \parencite{Haenggi2009}\newline
+
+Los objetos más básicos estudiados en geometría estocástica son procesos puntuales. Visualmente, un proceso puntual se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual (PP) es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
+
+Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R}^{d}$ son las siguientes:\newline
+
+\begin{itemize}
+    \item Un PP puede ser simple o no. Es simple si la multiplicidad de un punto es como máximo uno (no hay dos puntos en la misma ubicación).
+    \item Un PP puede ser estacionario o no. La estacionariedad se cumple si la ley del proceso puntual es invariante por traslación.
+    \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
+\end{itemize}
+
+
+\subsubsection{\textit{Poisson Point Process}}
+Procesos Puntuales de Poisson (PPP) \parencite{Haenggi2009}\newline
+
+Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
+
+\begin{itemize}
+    \item Para todos los subconjuntos disjuntos $A1, • • •, An$ de $E$, las variables aleatorias $\Phi(Ai)$ son independientes.
+    \item Para todos los conjuntos $A$ de $E$, las variables aleatorias $\Phi(A)$ son Poisson.
+\end{itemize}
+
+Una propiedad clave establece que condicionalmente $\Phi(A)= n$, estos $n$ puntos están ubicados independientemente (y de manera uniforme para un PPP homogéneo) en $A$.\newline
+
+\begin{itemize}
+    \item Un PPP puede ser homogéneo o no. En el caso homogéneo, la densidad de los puntos es constante en el espacio.
+    \item El PPP homogéneo es estacionario y simple. Esto puede considerarse como el proceso puntual más simple (y más natural).
+\end{itemize}
+
+Un PPP ofrece un práctico marco computacional para diferentes cantidades de red de interés. El marco para las PPP no homogéneas también está bien desarrollado, aunque es más técnico que el del caso homogéneo. Se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.\newline
 
 
 \subsection{MODELO DE CANAL}
@@ -398,7 +427,7 @@ Los modelos evaluados fueron:
 
  Para el primero, la ecuación del modelo ABG está dada por:
  \begin{equation}
-    L^{ABG}_p(f,d)_{\left[dB\right]}=10alpha {\ log}_{10}\left(\frac{d}{1m}\right)+\beta +\ 10gamma {\ log}_{10}\left(\frac{f}{1GHz}\right)+\ x^{ABG}_{\sigma .}, donde\ d\ge 1m
+    L^{ABG}_p(f,d)_{\left[dB\right]}=10 \alpha {\ log}_{10}\left(\frac{d}{1m}\right)+\beta +\ 10gamma {\ log}_{10}\left(\frac{f}{1GHz}\right)+\ x^{ABG}_{\sigma .}, donde\ d\ge 1m
     \label{eqn:ABG}
 \end{equation}
 
