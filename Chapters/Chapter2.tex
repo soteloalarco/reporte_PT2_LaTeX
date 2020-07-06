@@ -37,12 +37,33 @@ Comúnmente se utilizan las siguientes distribuciones de probabilidad en telecom
     \item Distribución Exponencial: Es ampliamente usada para describir la duración de diferentes fenómenos, principalmente asociados con el desvanecimiento de señales y las llamadas telefónicas.
     \item Distribución de Bernoulli: Es usada para describir la ocupación de canales de telecomunicaciones.
     \item Distribución binomial: Es usada para describir llamadas telefónicas.
-    \item Distribución de Poisson: Es usada para describir la generación de llamadas telefónicas.
 \end{enumerate}
 
 Las PDF y CDF son de suma importancia en el área de las telecomunicaciones ya que ayudan a caracterizar estadísticamente diferentes fenómenos.\newline
 
-\myworries{TODO: incluir procedimientos para generar variables aleatorias a partir de una distribución uniforme}
+\subsubsection{Generación de números aleatorios}
+
+La distribución uniforme (también llamada distribución rectangular) es una familia de curvas de dos parámetros que es notable porque tiene una función de distribución de probabilidad constante (PDF) entre sus dos parámetros delimitadores. La distribución uniforme se utiliza en técnicas de generación de números aleatorios, como el método de inversión \parencite{ UniformMatlab}.\newline
+
+Se puede usar la distribución uniforme estándar para generar números aleatorios para cualquier otra distribución continua mediante el método de inversión. El método de inversión se basa en el principio de que las funciones de distribución acumulativa continua (CDFs) varían uniformemente durante el intervalo abierto $(0, 1)$ . Si $u$ es un número aleatorio uniforme en (0, 1) , entonces $x = F^{–1} ( u )$ genera un número aleatorio $x$ a partir de la distribución continua con la CDF especificada $F$ \parencite{UniformMatlab}.\newline
+
+En teoría de la probabilidad y estadística, hay varias relaciones entre las distribuciones de probabilidad. Estas relaciones se pueden clasificar en los siguientes grupos \parencite{univariateDist}:
+\begin{itemize}
+    \item Una distribución es un caso especial de otra con un espacio de parámetros más amplio.
+    \item Transformaciones (función de una variable aleatoria).
+    \item Combinaciones (función de varias variables).
+    \item Relaciones de aproximación (límite).
+    \item Relaciones compuestas (útiles para la inferencia bayesiana [\textit{Bayesian inference}]).
+\end{itemize}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=0.8]{Figures/RelacionesProbabilidad}
+    \decoRule
+    \caption[relaciones entre algunas de las distribuciones de probabilidad univariadas]{Las relaciones entre algunas de las distribuciones de probabilidad univariadas se ilustran con líneas conectadas, las líneas discontinuas significan relación aproximada. [Fuente: \parencite{univariateDist}}
+    \label{fig:relacionesDistribuciones}
+\end{figure}
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -562,7 +583,7 @@ Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en 
 
 \section{REDES DE QUINTA GENERACIÓN (5G)}
 
-La NGMN define su visión de una red 5G de la siguiente manera: ``5G es un ecosistema de extremo a extremo para permitir una sociedad totalmente móvil y conectada."\newline
+La NGMN define su visión de una red 5G de la siguiente manera: "5G es un ecosistema de extremo a extremo para permitir una sociedad totalmente móvil y conectada."\newline
 
 La anteriores generaciones de comunicaciones móviles (1G,{\dots},4G) han sido transformadoras en el sentido que fueron motivadas para mejorar los tradicionales KPIs de la red, sin embargo la nueva generación de comunicaciones móviles (5G) aparte de ser transformadora viene a ser disruptiva ante las generaciones anteriores ya que propone nuevas técnicas, modelos y KPIs que habilitarán una gama amplia de servicios con alta fiabilidad, ayudando a conformar toda una red heterogénea global móvil interconectada con altos índices de rendimiento.\newline
 

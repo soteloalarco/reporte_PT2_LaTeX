@@ -20,7 +20,12 @@ En este Captitulo se explica la implementación del modelo de sistema propuesto 
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{Generación de coeficientes de canal con desvanecimiento Rayleigh}
+\section{Generación de ganancias de canal}
+
+De acuerdo con el modelo de canal propuesto, el modelo CI \textit{Ecuación~\ref{eqn:CI}} \parencite{Sun2016} implementa pérdidas de acuerdo con la distancia dado un exponente de pérdida por trayectoria (PLE) y además, agrega pérdidas por el desvanecimiento rápido de Rayleigh.
+
+
+
 Cuando se habla del desvanecimiento de Rayleigh en enlaces inalambricos, se ha estudiado \parencite{} que las componentes en cuadratura y en fase de la señal recibida son variables aleatorias Gaussianas con media cero que se distribuyen de forma independiente e idéntica (iid), siendo así, que la magnitud de la señal banda base compleja sigue una distribución de Rayleigh. Por otra parte, la distribución de la potencia normalizada de una señal de banda base compleja recibida bajo el desvanecimiento unitario de Rayleigh es modelado por medio de una distribución exponencial unitaria.\newline
 
 Por lo tanto, cuando el desvanecimiento es Rayleigh, la magnitud (voltaje) de la señal es distribuida por Rayleigh pero su potencia es distribuida exponencialmente.\newline
@@ -32,7 +37,6 @@ En nuestro caso, como se trabajará en términos de potencia, se modelará este 
 \end{equation}
 $g \to ganancia\ en\ potencia\ del\ canal\ de\ desvanecimiento\ de\ Rayleigh$
 
-De acuerdo con el modelo de canal propuesto, el modelo CI \parencite{Sun2016} implementa pérdidas de acuerdo con la distancia dado un exponente de pérdida por trayectoria (PLE) y además, agrega pérdidas por el desvanecimiento rápido de Rayleigh.
 
 \subsection{Validación de desvanecimiento Rayleigh}
 
