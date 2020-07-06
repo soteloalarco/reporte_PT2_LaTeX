@@ -192,10 +192,10 @@ En la \textit{Tabla~\ref{tab:tecIoT}} se pueden encontrar características de es
 \caption{Características de las tecnologías de red para IoT en la red celular}
 \label{tab:tecIoT}
 \centering
-\begin{tabular}{|p{0.9in}|p{0.6in}|p{0.4in}|p{0.6in}|p{0.4in}|p{0.8in}|p{1.2in}|p{0.4in}|} \\ 
+\begin{tabular}{|p{0.9in}|p{0.6in}|p{0.4in}|p{0.6in}|p{0.4in}|p{0.8in}|p{1.3in}|p{0.4in}|} \\ 
 \textbf{\textit{Tecnología}} & \textbf{\textit{Banda de Frecuencia}} & \textbf{\textit{Rango}} & \textbf{\textit{Tasa de transmisión}} & \textbf{\textit{Vida de la batería}} & \textbf{\textit{Topología}} & \textbf{\textit{Estandarización}} & \textbf{\textit{Grupo}} \\ 
-\textbf{NB-IoT}  & \footnotesize{ 450 MHZ -- 3.5 GHz (Espectro de 2G/3G/4G) } & \footnotesize{ 10-15 km } & \footnotesize{ 250 kbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierto } & \footnotesize{ 3GPP } \\ \hline
-\textbf{eMTC}  & \footnotesize{ 450 MHZ -- 3.5 GHz (El mismo que LTE) } & \footnotesize{ 10-15 km } & \footnotesize{ 1 Mbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierto } & \footnotesize{ 3GPP } \\
+\textbf{NB-IoT}  & \footnotesize{ 450 MHZ -- 3.5 GHz (Espectro de 2G/3G/4G) } & \footnotesize{ 10-15 km } & \footnotesize{ 250 kbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierta } & \footnotesize{ 3GPP } \\ \hline
+\textbf{eMTC}  & \footnotesize{ 450 MHZ -- 3.5 GHz (El mismo que LTE) } & \footnotesize{ 10-15 km } & \footnotesize{ 1 Mbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierta } & \footnotesize{ 3GPP } \\
 \end{tabular}
 
 \end{table}
@@ -248,11 +248,11 @@ Es preciso puntualizar que para lograr una mayor tasa de datos, de acuerdo con e
 
 La tecnología NB-IoT al ocupar un ancho de banda de frecuencias de 180 kHz, corresponde a un bloque de recursos en la transmisión LTE. \newline
 
-Modos de operación\parencite{Liberg2018}:
+\subsubsection{Modos de operación}
 
 Independiente (stand-alone).\newline
 
-NB-IoT puede implementarse como una portadora autónoma utilizando cualquier espectro disponible con un ancho de banda superior a 180 kHz. Esto se conoce como la implementación stand-alone. Un caso de uso de este despliegue autónomo es que un operador GSM despliegue NB-IoT en su banda GSM reajustando parte de su espectro GSM.\newline
+NB-IoT puede implementarse como una portadora autónoma utilizando cualquier espectro disponible con un ancho de banda superior a 180 kHz. Esto se conoce como la implementación stand-alone. Un caso de uso de este despliegue autónomo es que un operador GSM despliegue NB-IoT en su banda GSM reajustando parte de su espectro GSM \parencite{Liberg2018}.\newline
 
 Despliegue en banda (in-band) y en guarda de banda (guard-band) LTE.\newline
 
@@ -267,8 +267,16 @@ Para el modo de operación independiente y de banda de guarda, el PRB de enlace 
     \caption[Modos de Operación en NB-IoT.]{Modos de Operación en NB-IoT. \parencite{Liberg2018}}
     \label{fig:NBIoT2}
 \end{figure}
-    
-En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes.
+
+\subsubsection{Bandas de frecuencia}
+
+Como se muestra en la Figura~\ref{fig:5gnr}, en el futuro se espera que NB IoT sea implementada en las bandas 5G NR. Por el momento, la 3GPP ha definido un conjunto de bandas de frecuencia para las cuales se pueda usar NB-IoT en bandas LTE (EUTRA). \newline
+
+En la especificación técnica TS-36.101 de la 3GPP de su \textit{release} 13 proporciona la lista de las bandas compatibles: 1, 2, 3, 5, 8, 12, 13, 17, 18, 19, 20, 26, 28, 66, el \textit{release} 14 agregó las bandas : 11, 25, 31 y 70. Y el \textit{release} 15 agregó más bandas: 4, 14 y 71. La información recibida por los miembros de \textit{Mobile IoT}, hasta ahora, indica que se han utilizado una variedad de estas bandas en diferentes regiones\parencite{NBIoTDeploymentGSMA}.\newline
+
+P. ej. en el caso de Latino América las bandas disponibles son las: 2 (1850-1990 MHz), 3 (1710-1880 MHz), 5 (824-894MHz) y 28 (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.\newline
+
+En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes:
 
 \subsubsection{Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting}}
 \subsubsection{Informes de excepción}
@@ -392,7 +400,7 @@ Procesos Puntuales de Poisson (PPP) \parencite{Haenggi2009}\newline
 Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
 
 \begin{itemize}
-    \item Para todos los subconjuntos disjuntos $A1, • • •, An$ de $E$, las variables aleatorias $\Phi(Ai)$ son independientes.
+    \item Para todos los subconjuntos disjuntos $A1, ..., An$ de $E$, las variables aleatorias $\Phi(Ai)$ son independientes.
     \item Para todos los conjuntos $A$ de $E$, las variables aleatorias $\Phi(A)$ son Poisson.
 \end{itemize}
 
