@@ -246,6 +246,28 @@ Por lo tanto, NB-IoT puede proporcionar velocidades de datos de casi 250 kb / s 
 
 Es preciso puntualizar que para lograr una mayor tasa de datos, de acuerdo con el Teorema de Shannon-Hartley (Ecuación~\ref{eqn:Shannon}), el ancho de banda debe ser elevado o una relación S/N alta. Para el caso de NB-IoT se cuenta con un ancho de banda muy pequeño (3.75KHz), por lo cual alcanzar una buena relación S/N (en este caso, para sistemas celulares S/I) es de suma importancia.\\
 
+La tecnología NB-IoT al ocupar un ancho de banda de frecuencias de 180 kHz, corresponde a un bloque de recursos en la transmisión LTE. \newline
+
+Modos de operación\parencite{Liberg2018}:
+
+Independiente (stand-alone).\newline
+
+NB-IoT puede implementarse como una portadora autónoma utilizando cualquier espectro disponible con un ancho de banda superior a 180 kHz. Esto se conoce como la implementación stand-alone. Un caso de uso de este despliegue autónomo es que un operador GSM despliegue NB-IoT en su banda GSM reajustando parte de su espectro GSM.\newline
+
+Despliegue en banda (in-band) y en guarda de banda (guard-band) LTE.\newline
+
+NB-IoT también está diseñado para su despliegue en las redes LTE existentes, ya sea utilizando uno de los bloques de recursos físicos (PRB) de LTE o utilizando la banda de guarda LTE. El despliegue en banda de guarda hace uso del hecho de que el ancho de banda ocupado en LTE es aproximadamente el $90\%$ del ancho de banda del canal\newline
+
+Para el modo de operación independiente y de banda de guarda, el PRB de enlace descendente y ascendente debe establecerse simétricamente y para el modo en banda, el despliegue del PRB estará restringido a algunos prefijos de PRB’s de acuerdo al ancho de banda LTE, (ya sea 3, 5, 10, 15 o 20 MHz.) esto debido por la sincronización entre el UE y la celda NB-IoT \parencite{NBIoTDeploymentGSMA}.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{modooperacionNBIOT}
+    \decoRule
+    \caption[Modos de Operación en NB-IoT.]{Modos de Operación en NB-IoT. \parencite{Liberg2018}}
+    \label{fig:NBIoT}
+\end{figure}
+    
 En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes.
 
 \subsubsection{Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting}}
