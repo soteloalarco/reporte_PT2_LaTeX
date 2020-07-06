@@ -64,6 +64,31 @@ En teoría de la probabilidad y estadística, hay varias relaciones entre las di
     \label{fig:relacionesDistribuciones}
 \end{figure}
 
+\subsubsection{Procesos de Poisson}
+
+Los Procesos de Poisson son altamente utilizados para describir o modelar fenómenos en las telecomunicaciones, p. ej. la generación de llamadas telefónicas.\newline
+
+Algunas propiedades de los procesos de Poisson son las siguientes \parencite{ PoissonMedium}:
+
+Se compone de una secuencia de variables aleatorias $X1, X2, X3, ... Xk$, de modo que cada variable representa el número de ocurrencias de algún evento, durante un intervalo de tiempo.\newline
+
+Es un proceso estocástico. Cada vez que ejecuta el proceso de Poisson, producirá una secuencia de resultados aleatorios diferentes según alguna distribución de probabilidad.\newline
+
+Es un proceso discreto. Los resultados del proceso de Poisson son el número de ocurrencias de algún evento en el período de tiempo especificado, que sin duda es un número entero, es decir, un número discreto.\newline
+
+Tiene incrementos independientes. Lo que esto significa es que el número de eventos que el proceso predice que ocurrirá en cualquier intervalo dado, es independiente del número en cualquier otro intervalo disjunto. \newline
+
+Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución idéntica.\newline
+
+Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución de Poisson , que viene dada por la Función Masa de Probabilidad (PMF):
+
+\begin{equation}
+    P_{X}(k)=\frac{e^{-\lambda}*\lambda ^{k}}{k!}
+    \label{eqn:Poisson}
+\end{equation}
+
+La fórmula anterior nos da la probabilidad de ocurrencia de $k$ eventos en unidad de tiempo, dado que la tasa de ocurrencia promedio es $\lambda$ eventos por unidad de tiempo.\newline
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
