@@ -276,6 +276,10 @@ En la especificación técnica TS-36.101 de la 3GPP de su \textit{release} 13 pr
 
 P. ej. en el caso de Latino América las bandas disponibles son las: 2 (1850-1990 MHz), 3 (1710-1880 MHz), 5 (824-894MHz) y 28 (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.\newline
 
+\subsubsection{Clases de Potencia}
+
+Algunas aplicaciones de IoT son particularmente sensibles al consumo de energía. Para minimizar el impacto de la conectividad en la duración de la batería del dispositivo, para el \textit{release} 13 los UE pueden usar dos opciones de clase de potencia. Uno es el nivel de potencia del dispositivo móvil LTE tradicional de 23dBm (\textit{Power Class 3}) y uno nuevo, con menos potencia de salida, a 20dBm (\textit{Power Class 5}). El \textit{release} 14 de 3GPP agrega una clase de salida de potencia aún menor, a 14dBm (\textit{PowerClass 6}) \parencite{NBIoTDeploymentGSMA}.
+
 En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes:
 
 \subsubsection{Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting}}
@@ -392,7 +396,6 @@ Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R
     \item Un PP puede ser estacionario o no. La estacionariedad se cumple si la ley del proceso puntual es invariante por traslación.
     \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
 \end{itemize}
-
 
 \subsubsection{\textit{Poisson Point Process}}
 Procesos Puntuales de Poisson (PPP) \parencite{Haenggi2009}\newline

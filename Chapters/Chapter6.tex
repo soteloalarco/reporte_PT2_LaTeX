@@ -60,19 +60,6 @@ Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de
 
 \subsection{Algoritmo de Asignacion de Subportadoras}
 
-Este algoritmo garantiza una óptima asignación de portadoras (S), de acuerdo con la maximización de la tasa total de transmisión, para los grupos NOMA. En \parencite{Shahini2019} se plantea la metodología para la asignación, con ayuda de un diagrama de flujo se describe, Figura XXX:
-
-La fase de asignación de recursos termina hasta que todos los subcanales se asignan a los clústeres NOMA y se satisfacen los requisitos de velocidad de datos de los dispositivos mMTC y URLLC.\newline
-
-Se denota a Sca ← 0 como el conjunto de subportadoras asignadas al cth cluster, y a Cns ← C como el conjunto de clusters de dispositivos con tasas insatisfechas. \newline
-
-Para cada subportadora, el mejor grupo (c*) es el que maximiza el rendimiento total, es decir, ecuación XXXX. \newline
-
-Luego, por consecuencia, las velocidades de datos de los dispositivos mMTC y URLLC y sus poderes de transmisión se actualizan. Hay que tener en cuenta que cada dispositivo MTC realiza la técnica de llenado de agua de usuario único (SUWF) en todas las subportadoras asignadas.
-
-Durante el proceso de asignación de recursos, los clústeres con velocidades de datos satisfechas se excluyen del conjunto de Cns.
-
-El algoritmo asigna iterativamente las subportadoras una por una hasta que se cumplan todos los requisitos de velocidad de los dispositivos mMTC y URLLC. Dado que cada dispositivo MTC divide por igual su potencia de transmisión máxima entre todas las subportadoras asignados, las potencias de transmisión de los dispositivos MTC a través de las diferentes subportadoras no son óptimas utilizando el algoritmo planteado.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       EJEMPLO DE ALGORITMO EN LaTeX       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
