@@ -4,7 +4,7 @@
 
 \label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este Captitulo se explica la implementación del modelo de sistema propuesto en el Capítulo \ref{Chapter5} \ldots
+En este Capitulo se explica la implementación del modelo de sistema propuesto en el Capítulo \ref{Chapter5} \ldots
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -45,21 +45,25 @@ $g \to ganancia\ en\ potencia\ del\ canal\ de\ desvanecimiento\ de\ Rayleigh$
 
 \section{Esquema de acceso múltiple al medio no ortogonal, basado en potencia (PD-NOMA)}
 
-De acuerdo con el modelo de sistema (sección XXX), se propuso implementar un esquema de acceso múltiple no ortogonal (NOMA), con base en \parencite{Shahini2019}, los autores desarrollaron un esquema NOMA basado en NB-IoT por medio de un agrupamiento óptimo de los usuarios y una optimización en la asignación de recursos, de acuerdo con la maximización de la tasa de transmisión total de subida de los dispositivos MTC.\newline
+De acuerdo con el modelo de sistema (sección~\ref{}), se propuso implementar un esquema de acceso múltiple no ortogonal (NOMA), con base en \parencite{Shahini2019}, los autores desarrollaron un esquema NOMA basado en NB-IoT por medio de un agrupamiento óptimo de los usuarios y una optimización en la asignación de recursos, de acuerdo con la maximización de la tasa de transmisión total de subida de los dispositivos MTC.\newline
 
 \subsection{Algoritmo de Agrupación de dispositivos uRLLC  y mMTC}
 
-Se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC descrito en \parencite{Shahini2019}, este algoritmo realiza un ordenamiento conveniente con respecto al uso de la Cancelación Sucesiva de Interferencia (SIC), es decir, se ordenan los dispositivos URLLC y mMTC de acuerdo con su ganancia de canal promedio dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo.\newline
+Se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC descrito en \parencite{Shahini2019}[\textit{véase Algorithm 1}], este algoritmo realiza un ordenamiento conveniente con respecto al uso de la Cancelación Sucesiva de Interferencia (SIC), es decir, se ordenan los dispositivos URLLC y mMTC de acuerdo con su ganancia de canal promedio dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo[\textit{Véase Figura~\ref{fig:NOMAgrupoexample}}].\newline
 
 Por lo tanto, un mensaje combinado de los dispositivos mMTC y uRLLC con ruido aditivo es recibido en la BS, la BS emplea la recepción SIC de acuerdo en cómo son ordenados los dispositivos. \newline
 
 La recepción SIC decodifica primero el mensaje del dispositivo con el rango más bajo, por consiguiente los usuarios con los rangos siguientes (o más altos) le introducen interferencia y a su vez el usuario con el rango más alto no experimenta interferencia de ninguna señal.\newline
 
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=1]{Figures/EjemploNOMAclusters}
+    \decoRule
+    \caption[Ejemplo ilustrativo del ordenamiento de usuarios en los grupos NOMA]{Ejemplo ilustrativo del ordenamiento de usuarios en 3 grupos NOMA, para 4 usuarios uRLLC y 8 mMTC}
+    \label{fig:NOMAgrupoexample}
+\end{figure}
+
 Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de datos más altos, por lo tanto, su potencia de transmisión será mayor que la de los dispositivos mMTC. Es por esto que en cada grupo los dispositivos uRLLC tendrán los rangos más bajos y los dispositivos mMTC los mas altos. De hecho, el decodificador SIC en la BS comienza a decodificar con URLLC y, en consecuencia, los dispositivos mMTC no se ven afectados por la alta interferencia de los URLLC [véase Figura XXX].\newline
-
-
-\subsection{Algoritmo de Asignacion de Subportadoras}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       EJEMPLO DE ALGORITMO EN LaTeX       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -76,7 +80,7 @@ Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de
     \item $h_{u}^{s}:$ Ganancia de canal del enésimo dispositivo u uRLLC sobre la portadora s
     \item ${\hat S}$: Lista de subportadoras asignadas
     \item $S_{a}^{c}$: Lista de subportadoras asignadas al enésimo cluster
-    \item ${C_{ns}}$: Lista de cluster con tasas insatisfechas
+    \item ${C_{ns}}$: Lista de cluster aún no asignados
 \end{itemize}
 
 
@@ -119,6 +123,23 @@ Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de
 \end{algorithm}
 
 
+\subsection{Algoritmo de Asignacion de Subportadoras}
+
+Este algoritmo garantiza una óptima asignación de portadoras (S), de acuerdo con la maximización de la tasa total de transmisión, para los grupos NOMA. En \parencite{Shahini2019} se plantea la metodología para la asignación de subportadoras. \newline
+
+Cabe destacar que en \parencite{Shahini2019}, el modelo de sistema no es implementado hacia una banda de frecuencias en específico, por lo que las subportadoras S son una variable aleatoria dentro de su simulación.\newline
+
+Para cada subportadora, el mejor grupo (c*) es el que maximiza el rendimiento total, [\textit{véase Algorithm 2}]. Luego, por consecuencia, las velocidades de datos de los dispositivos mMTC y URLLC y sus potencias de transmisión se actualizan. Durante el proceso de asignación de subportadoras, los clústeres asignados se excluyen del conjunto de Cns. \newline
+
+El algoritmo asigna iterativamente las subportadoras una por una. Dado que cada dispositivo MTC divide por igual su potencia de transmisión máxima entre todas las subportadoras asignados, las potencias de transmisión de los dispositivos MTC a través de las diferentes subportadoras no son óptimas utilizando el algoritmo planteado. \newline
+
+La fase de asignación de recursos termina hasta que las 48 subportadoras se asignan a los 48 clústeres NOMA. \newline
+
+Existe la oportunidad de asignar más de una subportadora por grupo NOMA , mas sin embargo, dado que aún no ha sido especificado la asignación de múltiples subportadoras por cluster en anchos de banda de 3.75KHz para NB-IoT, no se implementó en este simulador. \newline
+
+No se satisfacen todos los requisitos de velocidad de datos de los dispositivos mMTC y URLLC pero incrementa significativamente la conectividad de usuarios en comparación con OFDMA.\newline
+
+
 \begin{algorithm}
     \caption{Algoritmo de asignación de recursos para NOMA}\label{A2}
     \hspace*{\algorithmicindent} \textbf{Entrada} $U, M, S, C , R_{m}^{th} , R_{u}^{th} , P_{m}^{max} , P_{u}^{max} , h_{m}^{s} , \ and \ h_{u}^{s} ,\forall m \in \mathcal {M} , \forall u \in \mathcal {U} , \forall s \in \mathcal {S}$  \\
@@ -132,7 +153,7 @@ Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de
         \For{\textbf{each} s in S}{
         \State Seleccionar al mejor cluster $c^{*}$ (el que maximiza el throughput):
         \State ${c^{*}} = \mathop {\arg \max }\limits _{c \in {C_{ns}}} \left ({{\sum \nolimits _{u \in \mathcal {U}} {R_{u} + \sum \nolimits _{m \in \mathcal {M}} {R_{m}} } } }\right) ;$ 
-        \State donde: Ru \textit{(Ecuación \ref{eqn:Ru})} y Rm \textit{(Ecuación \ref{eqn:Rm})}
+        \State donde: Ru \textit{(Ecuación \ref{eqn:Ru})} y Rm \textit{(Ecuación \ref{eqn:Rm})}, de acuerdo con \parencite{Shahini2019}
         \State $Asignar\ la\ subportadora\ s\ con\ c^{*} :$ 
         \State $Actualizar\ S_{a}^{c^{*}}\ \leftarrow S_{a}^{c^{*}} \cup \{ s\} , \hat S \leftarrow \hat S \cup \{ s\}$ 
         \State $Actualizar\ las\ tasas: {R_{u}} = {R_{u}} + {R_{u,s}} ,\ {R_{m}} = {R_{m}} + {R_{m,s}}$ 

@@ -49,6 +49,20 @@ De igual manera que como se realizó en \parencite{Kouzayha2018} y \parencite{Zh
 
 En la \textit{Sección } se establecieron las aplicaciones de los diferentes dominios de IoT que se utilizarán para la implementación del simulador. Todas estas aplicaciones se encuentran presentes, no exclusivamente pero sí particularmente, en escenarios urbanos y en exteriores, por lo tanto se implementará el Modelo CI (Secc. ) el cual de acuerdo a lo estudiado en \parencite{Sun2016} es el modelo que mejor estima la señal en este tipo de ambientes. Además, se agregarán perdidas por el desvanecimiento rápido, usando el modelo de desvanecimiento de Rayleigh (siguiendo una distribución exponencial con media 1 y que se distribuya de forma independiente e idéntica [i.i.d.]), este es ideal para entornos urbanos en situaciones donde hay un gran número de multi-trayectorias de la señal y reflexiones causadas por los edificios y objetos que obstruyen la línea de vista. \newline
 
+Con base en \parencite{Sun2016}, para el Modelo CI en ambientes macro-urbanos se tienen los siguientes parámetros:
+
+\begin{table}
+    \caption{Parámetros Modelo CI [Fuente: \parencite{Sun2016}]}
+    \label{tab:ModeloCI}    
+    \centering
+    \begin{tabular}{*{7}{m{2cm}}}\\ 
+    \textbf{Escenario} & \textbf{Tipo} & \textbf{Rango Frecuencias} & \textbf{\# Puntos de Datos} & \textbf{Rango de distancia\newline BS y UE} & \textbf{Modelo} & \textbf{PLE} \\ \midrule
+    \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}UMa\end{tabular}}} & \textit{LoS} & \textit{2 - 38 GHz} & \textit{1032} & \textit{60 - 930 m} & \textit{CI} & \textit{2.0} \\
+     & \textit{NLoS} & \textit{2 - 38 GHz} & \textit{1869} & \textit{61 - 1238 m} & \textit{CI} & \textit{2.9} \\ \cmidrule(l){2-7} 
+    \end{tabular}
+\end{table}
+
+
 \subsection{Incorporación de un esquema de acceso al medio no ortogonal (NOMA) usando una técnica de agrupamiento de usuarios}
 
 Se predefine que existirá un bloque de recursos (PRB) para un eNB dedicado para comunicaciones tipo maquina (MTC) utilizando el estándar NB-IoT. El recurso de radio será una banda de frecuencias de 180kHz. Esta banda se dividirá en 48 sub-bandas de 3.75kHz.\newline

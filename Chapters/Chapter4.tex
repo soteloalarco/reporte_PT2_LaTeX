@@ -436,12 +436,12 @@ Los modelos evaluados fueron:
 \item  CIF: Modelo CI con un exponente de pérdida de trayectoria ponderado en frecuencia.
 \end{enumerate}
 
+\begin{flushleft}
  Para el primero, la ecuación del modelo ABG está dada por:
  \begin{equation}
     L^{ABG}_p(f,d)_{\left[dB\right]}=10 \alpha {\ log}_{10}\left(\frac{d}{1m}\right)+\beta +\ 10gamma {\ log}_{10}\left(\frac{f}{1GHz}\right)+\ x^{ABG}_{\sigma .}, donde\ d\ge 1m
     \label{eqn:ABG}
 \end{equation}
-
 \[\alpha \to coeficiente\ que\ representa\ la\ dependencia\ de\ la\ perdida\ por\ trayectoria\ con\ la\ distancia\] 
 \[\gamma \to coeficiente\ que\ representa\ la\ dependencia\ de\ la\ perdida\ por\ trayectoria\ con\ la\ frecuencia\] 
 \[\beta \to es\ un\ valor\ de\ compensación\ para\ la\ pérdida\ por\ trayectoria\ (en\ dB's)\] 
@@ -465,7 +465,8 @@ Para el tercero, la ecuación del modelo CIF está dada por:
 \end{equation}
 \[x^{CIF}_{\sigma .}\to es\ una\ variable\ aleatoria\ gaussiana\ de\ media\ cero\ con\ una\ desviaci\textrm{ó}n\ est\textrm{á}ndar  \]
 \[ sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ multitrayectoria)\]
-\[desvanecimiento\ tipo\ Rayleigh\] 
+\[desvanecimiento\ tipo\ Rayleigh\]
+\end{flushleft}
 
 Cada uno de estos modelos han sido recientemente estudiados por organizaciones de estandarización como 3GPP y son propuestos para el uso en el diseño de sistemas inalámbricos de comunicación de 5G enfocados en escenarios \textit{UMa, UMi, InH,y SM}.\newline
 
@@ -477,8 +478,7 @@ Los modelos CI y CIF son más robustos y precisos en comparación con el modelo 
 
 De acuerdo a lo propuesto en la \textit{sección \ref{} }, el ambiente urbano que consideraremos está dirigido a un entorno en exteriores por la aplicación de los sensores a implementar. Por lo que se selecciona al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano) como el que ayudará a caracterizar las perdidas por trayectoria y desvanecimiento por el canal. 
 
-Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia en 3D entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]) . Además de esto también pide un valor d${}_{0}$ que es la distancia cercana de referencia al espacio libre, los autores proponen a d${}_{0}$ = 1 m en modelos de pérdida de trayectoria 5G ya que las distancias de cobertura serán más cortas a frecuencias más altas. 
-
+Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]). Además de esto también pide un valor d${}_{0}$ que es la distancia cercana de referencia al espacio libre, los autores proponen a d${}_{0}$ = 1 m en modelos de pérdida de trayectoria 5G ya que las distancias de cobertura serán más cortas a frecuencias más altas. 
 
 \subsection{ESQUEMA DE ACCESO MÚLTIPLE AL MEDIO}
 
