@@ -133,14 +133,27 @@ Propusieron un esquema NOMA de dominio de potencia agrupando dispositivos mMTC y
 
 Para decodificar con éxito los mensajes del mensaje recibido combinado, el eNB emplea el esquema SIC. Por lo tanto, los usuarios deben ordenarse en cada grupo de acuerdo con el método SIC.\newline
 
-La tasa de datos alcanzable de un dispositivo m (mMTC) en términos de la tasa agregada sobre las subportadoras asignadas se puede expresar como:
+\begin{itemize}
+  \item U: Lista de dispositivos uRLLC
+  \item M: Lista de dispositivoss mMTC
+  \item S: Lista de Subportadoras s
+  \item C: Lista de Grupos NOMA
+  \item $R_{m}^{th}:$ Tasa objetivo del enésimo dispositivo m mMTC 
+  \item $R_{u}^{th}:$ Tasa objetivo del enésimo dispositivo u uRLLC
+  \item $P_{m}^{max}:$ Potencia máxima del enésimo dispositivo m mMTC (i.e. 23dBm)
+  \item $P_{u}^{max}:$ Potencia máxima del enésimo dispositivo u uRLLC (i.e. 23dBm)
+  \item $h_{m}^{s}:$ Ganancia de canal del enésimo dispositivo m mMTC sobre la portadora s
+  \item $h_{u}^{s}:$ Ganancia de canal del enésimo dispositivo u uRLLC sobre la portadora s
+\end{itemize}
+
+La tasa de datos alcanzable de un dispositivo $m$ (mMTC) en términos de la tasa agregada sobre las subportadoras asignadas se puede expresar como:
 \begin{equation}
 {R_{m}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\alpha _{m}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {M}\backslash m} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}} } }}} }\right)
 \label{eqn:Rm}
 \end{equation}
 
-Del mismo modo, la Tasa de datos alcanzable de un dispositivo u (URLLC) puede determinarse mediante el teorema de Shannon-Hartley. Hay que tomar en cuenta que los rangos de URLLC siempre son mayores que los de mMTC en cada clúster NOMA. Por lo tanto, reciben interferencia de todos los miembros del clúster mMTC, así como de los miembros del clúster URLLC con rangos más altos. 
-Por lo tanto, la tasa de datos alcanzable de un dispositivo u URLLC sobre las subportadoras asignadas es:
+Del mismo modo, la Tasa de datos alcanzable de un dispositivo $u$ (URLLC) puede determinarse mediante el teorema de Shannon-Hartley. Hay que tomar en cuenta que los rangos de URLLC siempre son mayores que los de mMTC en cada clúster NOMA. Por lo tanto, reciben interferencia de todos los miembros del clúster mMTC, así como de los miembros del clúster URLLC con rangos más altos. 
+Por lo tanto, la tasa de datos alcanzable de un dispositivo $u$ URLLC sobre las subportadoras asignadas es:
 
 \begin{equation}
 {R_{u}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\beta _{u}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{u}^{s}} }\right |}^{2}}p_{u}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {U}\backslash u} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\beta _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}}} \sum \limits _{m \in \mathcal {M}} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}} } }}} }\right)
