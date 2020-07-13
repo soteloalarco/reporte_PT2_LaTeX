@@ -48,11 +48,13 @@
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{xcolor}
 \usepackage{lscape} %Para poner páginas horizontales
+\usepackage{booktabs}
+\usepackage{multirow}
 \usepackage{rotating}
 \usepackage{algorithm}
 \usepackage[T1]{fontenc} % Codificación de fuente
 \usepackage{lmodern} % Fuente compatible
-\usepackage[noend]{algpseudocode}
+\usepackage[noend]{algpseudocode}%Para incluir algoritmos
 \usepackage{amssymb}
 \usepackage{amsmath}
 \renewcommand{\spanishtablename}{Tabla}
@@ -226,7 +228,7 @@ Agradecimientos\ldots
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
-\textbf{3GPP} & \textbf{3}rd \textbf{G}eneration \textbf{P}artnership \textbf{P}roject\\
+\textbf{3GPP} & \textbf{3}rd \textbf{G}eneration \textbf{P}artnership \textbf{P}roject\\%Ejemplo de acrónimo correcto
 \textbf{4G} & Cuarta generación de Comunicaciones Móviles\\
 \textbf{5G NR} & 5G New Radio\\
 \textbf{ARIB} &	Association of Radio Industries and Businesses\\
@@ -249,6 +251,7 @@ Agradecimientos\ldots
 \textbf{eMBB} &	Enhanced Mobile Broadband\\
 \textbf{eMTC} &	Enhanced Machine Type Communications\\
 \textbf{ETSI} &	European Telecommunications Standars institute\\
+\textbf{EUTRA} & Evolved UMTS Terrestrial Radio Access\\
 \textbf{fc} & Frecuencia Portadora\\
 \textbf{GIL} & Global Interpreter Lock\\
 \textbf{HTC} & Human Type Communication\\
@@ -376,6 +379,7 @@ Agradecimientos\ldots
 \include{Chapters/Chapter6} 
 \include{Chapters/Chapter7} 
 \include{Chapters/Chapter8} 
+
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
@@ -393,8 +397,6 @@ Agradecimientos\ldots
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 \printbibliography[heading=bibintoc]
-
-%\bibliography{Referencias} Aqui intenté implementar Ieee pero no jaló
 
 %----------------------------------------------------------------------------------------
 

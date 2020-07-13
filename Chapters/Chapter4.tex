@@ -192,10 +192,10 @@ En la \textit{Tabla~\ref{tab:tecIoT}} se pueden encontrar características de es
 \caption{Características de las tecnologías de red para IoT en la red celular}
 \label{tab:tecIoT}
 \centering
-\begin{tabular}{|p{0.6in}|p{0.6in}|p{0.4in}|p{0.6in}|p{0.4in}|p{0.5in}|p{0.8in}|p{0.4in}|} \\ 
+\begin{tabular}{|p{0.9in}|p{0.6in}|p{0.4in}|p{0.6in}|p{0.4in}|p{0.8in}|p{1.3in}|p{0.4in}|} \\ 
 \textbf{\textit{Tecnología}} & \textbf{\textit{Banda de Frecuencia}} & \textbf{\textit{Rango}} & \textbf{\textit{Tasa de transmisión}} & \textbf{\textit{Vida de la batería}} & \textbf{\textit{Topología}} & \textbf{\textit{Estandarización}} & \textbf{\textit{Grupo}} \\ 
-\textbf{NB-IoT}  & \footnotesize{ 450 MHZ -- 3.5 GHz (Espectro de 2G/3G/4G) } & \footnotesize{ 10-15 km } & \footnotesize{ 250 kbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierto } & \footnotesize{ 3GPP } \\ \hline
-\textbf{eMTC}  & \footnotesize{ 450 MHZ -- 3.5 GHz (El mismo que LTE) } & \footnotesize{ 10-15 km } & \footnotesize{ 1 Mbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierto } & \footnotesize{ 3GPP } \\
+\textbf{NB-IoT}  & \footnotesize{ 450 MHZ -- 3.5 GHz (Espectro de 2G/3G/4G) } & \footnotesize{ 10-15 km } & \footnotesize{ 250 kbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierta } & \footnotesize{ 3GPP } \\ \hline
+\textbf{eMTC}  & \footnotesize{ 450 MHZ -- 3.5 GHz (El mismo que LTE) } & \footnotesize{ 10-15 km } & \footnotesize{ 1 Mbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierta } & \footnotesize{ 3GPP } \\
 \end{tabular}
 
 \end{table}
@@ -234,7 +234,7 @@ Para el enlace de subida (\textit{uplink}), como su nombre lo indica, tiene un a
 
 \begin{figure}[th]
 \centering
-\includegraphics[scale=1]{Estructura de ancho de banda y subportadoras en NB-IoT}
+\includegraphics[scale=.7]{Estructura de ancho de banda y subportadoras en NB-IoT}
 \decoRule
 \caption[Estructura de ancho de banda y subportadoras en NB-IoT.]{Estructura de ancho de banda y subportadoras en NB-IoT.}
 \label{fig:NBIoT}
@@ -244,7 +244,43 @@ El enlace de bajada (\textit{downlink}), se conserva la estructura de transmisi�
 
 Por lo tanto, NB-IoT puede proporcionar velocidades de datos de casi 250 kb / s en el enlace descendente y 20 kb / s en el enlace ascendente.\newline
 
-En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes.
+Es preciso puntualizar que para lograr una mayor tasa de datos, de acuerdo con el Teorema de Shannon-Hartley (Ecuación~\ref{eqn:Shannon}), el ancho de banda debe ser elevado o una relación S/N alta. Para el caso de NB-IoT se cuenta con un ancho de banda muy pequeño (3.75KHz), por lo cual alcanzar una buena relación S/N (en este caso, para sistemas celulares S/I) es de suma importancia.\\
+
+La tecnología NB-IoT al ocupar un ancho de banda de frecuencias de 180 kHz, corresponde a un bloque de recursos en la transmisión LTE. \newline
+
+\subsubsection{Modos de operación}
+
+Independiente (stand-alone).\newline
+
+NB-IoT puede implementarse como una portadora autónoma utilizando cualquier espectro disponible con un ancho de banda superior a 180 kHz. Esto se conoce como la implementación stand-alone. Un caso de uso de este despliegue autónomo es que un operador GSM despliegue NB-IoT en su banda GSM reajustando parte de su espectro GSM \parencite{Liberg2018}.\newline
+
+Despliegue en banda (in-band) y en guarda de banda (guard-band) LTE.\newline
+
+NB-IoT también está diseñado para su despliegue en las redes LTE existentes, ya sea utilizando uno de los bloques de recursos físicos (PRB) de LTE o utilizando la banda de guarda LTE. El despliegue en banda de guarda hace uso del hecho de que el ancho de banda ocupado en LTE es aproximadamente el $90\%$ del ancho de banda del canal\newline
+
+Para el modo de operación independiente y de banda de guarda, el PRB de enlace descendente y ascendente debe establecerse simétricamente y para el modo en banda, el despliegue del PRB estará restringido a algunos prefijos de PRB’s de acuerdo al ancho de banda LTE, (ya sea 3, 5, 10, 15 o 20 MHz.) esto debido por la sincronización entre el UE y la celda NB-IoT \parencite{NBIoTDeploymentGSMA}.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.6]{modooperacionNBIOT}
+    \decoRule
+    \caption[Modos de Operación en NB-IoT.]{Modos de Operación en NB-IoT. \parencite{Liberg2018}}
+    \label{fig:NBIoT2}
+\end{figure}
+
+\subsubsection{Bandas de frecuencia}
+
+Como se muestra en la Figura~\ref{fig:5gnr}, en el futuro se espera que NB IoT sea implementada en las bandas 5G NR. Por el momento, la 3GPP ha definido un conjunto de bandas de frecuencia para las cuales se pueda usar NB-IoT en bandas LTE (EUTRA). \newline
+
+En la especificación técnica TS-36.101 de la 3GPP de su \textit{release} 13 proporciona la lista de las bandas compatibles: 1, 2, 3, 5, 8, 12, 13, 17, 18, 19, 20, 26, 28, 66, el \textit{release} 14 agregó las bandas : 11, 25, 31 y 70. Y el \textit{release} 15 agregó más bandas: 4, 14 y 71. La información recibida por los miembros de \textit{Mobile IoT}, hasta ahora, indica que se han utilizado una variedad de estas bandas en diferentes regiones\parencite{NBIoTDeploymentGSMA}.\newline
+
+P. ej. en el caso de Latino América las bandas disponibles son las: 2 (1850-1990 MHz), 3 (1710-1880 MHz), 5 (824-894MHz) y 28 (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.\newline
+
+\subsubsection{Clases de Potencia}
+
+Algunas aplicaciones de IoT son particularmente sensibles al consumo de energía. Para minimizar el impacto de la conectividad en la duración de la batería del dispositivo, para el \textit{release} 13 los UE pueden usar dos opciones de clase de potencia. Uno es el nivel de potencia del dispositivo móvil LTE tradicional de 23dBm (\textit{Power Class 3}) y uno nuevo, con menos potencia de salida, a 20dBm (\textit{Power Class 5}). El \textit{release} 14 de 3GPP agrega una clase de salida de potencia aún menor, a 14dBm (\textit{PowerClass 6}) \parencite{NBIoTDeploymentGSMA}.
+
+En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes:
 
 \subsubsection{Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting}}
 \subsubsection{Informes de excepción}
@@ -264,7 +300,7 @@ Se supone un ACK de capa de aplicación DL para un evento de informe periódico 
 
 Entonces, una vez revisadas estas clasificaciones de tráfico compatibles para NB-IoT, se procede a agrupar estos tipos de tráfico con los escenarios que se consideraron en la \textit{Tabla 8} de la sección anterior, de tal manera que se establezcan las condiciones base de un ambiente NB-IoT de acuerdo a los servicios seleccionados (secXXXX).\newline
 
-La adición de la columna ``Tamaños de paquete'' para la \textit{Tabla~\ref{tab:}} se da en la \textit{Tabla~\ref{tab:}}\newline
+La adición de la columna "Tamaños de paquete" para la \textit{Tabla~\ref{tab:}} se da en la \textit{Tabla~\ref{tab:}}\newline
 
 \begin{table}
 \caption{Caracterización del tráfico de paquetes en aplicaciones seleccionadas para la simulación.}
@@ -348,9 +384,37 @@ Para esto, la distribución de terminales móviles se realiza de acuerdo con var
 
 En este proyecto no se propone simular un ambiente uniforme, establecido o determinístico por lo que se seguirá el despliegue de una geometría estocástica siguiendo un PPP.\newline
 
-% \parencite{}
-\myworries{colocar PPP}
-\subsubsection{Poisson Point Process}
+\subsubsection{\textit{Point Process}}
+Procesos puntuales (PP) \parencite{Haenggi2009}\newline
+
+Los objetos más básicos estudiados en geometría estocástica son procesos puntuales. Visualmente, un proceso puntual se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual (PP) es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
+
+Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R}^{d}$ son las siguientes:\newline
+
+\begin{itemize}
+    \item Un PP puede ser simple o no. Es simple si la multiplicidad de un punto es como máximo uno (no hay dos puntos en la misma ubicación).
+    \item Un PP puede ser estacionario o no. La estacionariedad se cumple si la ley del proceso puntual es invariante por traslación.
+    \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
+\end{itemize}
+
+\subsubsection{\textit{Poisson Point Process}}
+Procesos Puntuales de Poisson (PPP) \parencite{Haenggi2009}\newline
+
+Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
+
+\begin{itemize}
+    \item Para todos los subconjuntos disjuntos $A1, ..., An$ de $E$, las variables aleatorias $\Phi(Ai)$ son independientes.
+    \item Para todos los conjuntos $A$ de $E$, las variables aleatorias $\Phi(A)$ son Poisson.
+\end{itemize}
+
+Una propiedad clave establece que condicionalmente $\Phi(A)= n$, estos $n$ puntos están ubicados independientemente (y de manera uniforme para un PPP homogéneo) en $A$.\newline
+
+\begin{itemize}
+    \item Un PPP puede ser homogéneo o no. En el caso homogéneo, la densidad de los puntos es constante en el espacio.
+    \item El PPP homogéneo es estacionario y simple. Esto puede considerarse como el proceso puntual más simple (y más natural).
+\end{itemize}
+
+Un PPP ofrece un práctico marco computacional para diferentes cantidades de red de interés. El marco para las PPP no homogéneas también está bien desarrollado, aunque es más técnico que el del caso homogéneo. Se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.\newline
 
 
 \subsection{MODELO DE CANAL}
@@ -372,12 +436,12 @@ Los modelos evaluados fueron:
 \item  CIF: Modelo CI con un exponente de pérdida de trayectoria ponderado en frecuencia.
 \end{enumerate}
 
+\begin{flushleft}
  Para el primero, la ecuación del modelo ABG está dada por:
  \begin{equation}
-    L^{ABG}_p(f,d)_{\left[dB\right]}=10alpha {\ log}_{10}\left(\frac{d}{1m}\right)+\beta +\ 10gamma {\ log}_{10}\left(\frac{f}{1GHz}\right)+\ x^{ABG}_{\sigma .}, donde\ d\ge 1m
+    L^{ABG}_p(f,d)_{\left[dB\right]}=10 \alpha {\ log}_{10}\left(\frac{d}{1m}\right)+\beta +\ 10gamma {\ log}_{10}\left(\frac{f}{1GHz}\right)+\ x^{ABG}_{\sigma .}, donde\ d\ge 1m
     \label{eqn:ABG}
 \end{equation}
-
 \[\alpha \to coeficiente\ que\ representa\ la\ dependencia\ de\ la\ perdida\ por\ trayectoria\ con\ la\ distancia\] 
 \[\gamma \to coeficiente\ que\ representa\ la\ dependencia\ de\ la\ perdida\ por\ trayectoria\ con\ la\ frecuencia\] 
 \[\beta \to es\ un\ valor\ de\ compensación\ para\ la\ pérdida\ por\ trayectoria\ (en\ dB's)\] 
@@ -401,7 +465,8 @@ Para el tercero, la ecuación del modelo CIF está dada por:
 \end{equation}
 \[x^{CIF}_{\sigma .}\to es\ una\ variable\ aleatoria\ gaussiana\ de\ media\ cero\ con\ una\ desviaci\textrm{ó}n\ est\textrm{á}ndar  \]
 \[ sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ multitrayectoria)\]
-\[desvanecimiento\ tipo\ Rayleigh\] 
+\[desvanecimiento\ tipo\ Rayleigh\]
+\end{flushleft}
 
 Cada uno de estos modelos han sido recientemente estudiados por organizaciones de estandarización como 3GPP y son propuestos para el uso en el diseño de sistemas inalámbricos de comunicación de 5G enfocados en escenarios \textit{UMa, UMi, InH,y SM}.\newline
 
@@ -413,8 +478,7 @@ Los modelos CI y CIF son más robustos y precisos en comparación con el modelo 
 
 De acuerdo a lo propuesto en la \textit{sección \ref{} }, el ambiente urbano que consideraremos está dirigido a un entorno en exteriores por la aplicación de los sensores a implementar. Por lo que se selecciona al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano) como el que ayudará a caracterizar las perdidas por trayectoria y desvanecimiento por el canal. 
 
-Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia en 3D entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]) . Además de esto también pide un valor d${}_{0}$ que es la distancia cercana de referencia al espacio libre, los autores proponen a d${}_{0}$ = 1 m en modelos de pérdida de trayectoria 5G ya que las distancias de cobertura serán más cortas a frecuencias más altas. 
-
+Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]). Además de esto también pide un valor d${}_{0}$ que es la distancia cercana de referencia al espacio libre, los autores proponen a d${}_{0}$ = 1 m en modelos de pérdida de trayectoria 5G ya que las distancias de cobertura serán más cortas a frecuencias más altas. 
 
 \subsection{ESQUEMA DE ACCESO MÚLTIPLE AL MEDIO}
 
