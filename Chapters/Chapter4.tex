@@ -274,11 +274,11 @@ Como se muestra en la Figura~\ref{fig:5gnr}, en el futuro se espera que NB IoT s
 
 En la especificación técnica TS-36.101 de la 3GPP de su \textit{release} 13 proporciona la lista de las bandas compatibles: 1, 2, 3, 5, 8, 12, 13, 17, 18, 19, 20, 26, 28, 66, el \textit{release} 14 agregó las bandas : 11, 25, 31 y 70. Y el \textit{release} 15 agregó más bandas: 4, 14 y 71. La información recibida por los miembros de \textit{Mobile IoT}, hasta ahora, indica que se han utilizado una variedad de estas bandas en diferentes regiones\parencite{NBIoTDeploymentGSMA}.\newline
 
-P. ej. en el caso de Latino América las bandas disponibles son las: 2 (1850-1990 MHz), 3 (1710-1880 MHz), 5 (824-894MHz) y 28 (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.\newline
+P. ej. en el caso de Latino América las bandas disponibles son las: \textbf{2} (1850-1990 MHz), \textbf{3} (1710-1880 MHz), \textbf{5} (824-894MHz) y \textbf{28} (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.\newline
 
 \subsubsection{Clases de Potencia}
 
-Algunas aplicaciones de IoT son particularmente sensibles al consumo de energía. Para minimizar el impacto de la conectividad en la duración de la batería del dispositivo, para el \textit{release} 13 los UE pueden usar dos opciones de clase de potencia. Uno es el nivel de potencia del dispositivo móvil LTE tradicional de 23dBm (\textit{Power Class 3}) y uno nuevo, con menos potencia de salida, a 20dBm (\textit{Power Class 5}). El \textit{release} 14 de 3GPP agrega una clase de salida de potencia aún menor, a 14dBm (\textit{PowerClass 6}) \parencite{NBIoTDeploymentGSMA}.
+Algunas aplicaciones de IoT son particularmente sensibles al consumo de energía. Para minimizar el impacto de la conectividad en la duración de la batería del dispositivo, para el \textit{release} 13, se determinó que los UE podrán usar dos opciones de clase de potencia. Uno es el nivel de potencia del dispositivo móvil LTE tradicional de \textbf{23dBm} (\textit{Power Class 3}) y uno nuevo, con menos potencia de salida, de \textbf{20dBm} (\textit{Power Class 5}). El \textit{release} 14 de 3GPP agrega una nueva clase de potencia aún menor, de \textbf{14dBm} (\textit{PowerClass 6}) \parencite{NBIoTDeploymentGSMA}.
 
 En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes:
 
@@ -382,8 +382,6 @@ Muchos autores coinciden en que varias distribuciones de redes móviles siguen u
 
 Para esto, la distribución de terminales móviles se realiza de acuerdo con varios procesos de punto estacionario de Poisson independientes con intensidad \textit{$\lambda$m}. Con un PPP estacionario, la distancia entre un terminal móvil y su BS de servicio se distribuye independientemente de la ubicación exacta del terminal móvil.\newline
 
-En este proyecto no se propone simular un ambiente uniforme, establecido o determinístico por lo que se seguirá el despliegue de una geometría estocástica siguiendo un PPP.\newline
-
 \subsubsection{\textit{Point Process}}
 Procesos puntuales (PP) \parencite{Haenggi2009}\newline
 
@@ -397,7 +395,7 @@ Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R
     \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
 \end{itemize}
 
-\subsubsection{\textit{Poisson Point Process}}
+\subsubsection{\textit{Poisson Point Process}}\label{PPP_C4}
 Procesos Puntuales de Poisson (PPP) \parencite{Haenggi2009}\newline
 
 Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
@@ -416,6 +414,7 @@ Una propiedad clave establece que condicionalmente $\Phi(A)= n$, estos $n$ punto
 
 Un PPP ofrece un práctico marco computacional para diferentes cantidades de red de interés. El marco para las PPP no homogéneas también está bien desarrollado, aunque es más técnico que el del caso homogéneo. Se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.\newline
 
+En este proyecto con fines de diseño y análisis, se simularon ambos despliegues, uno uniforme y otro siguiendo una geometría estocástica, es decir, un PPP.\newline
 
 \subsection{MODELO DE CANAL}
 

@@ -14,7 +14,7 @@ En este Capítulo se explica la implementación del modelo de sistema propuesto 
 
 Generación de Puntos de Poisson en un círculo: \newline
 
-Para una generación de puntos en un círculo válida que cumpla con la definición de un HPPP [Sección \ref{}], el número total de puntos que se dibujarán en el círculo deberán ser una variable aleatoria de Poisson, además, estos puntos se deberán distribuir de acuerdo a una distribución uniforme dentro del círculo, por último, al considerar un proceso homogéneo, la densidad de los puntos será constante.\newline
+Para una generación de puntos en un círculo correcta que cumpla con la definición de un HPPP [Sección \ref{PPP_C4}], el número total de puntos que se dibujarán en el círculo deberán ser una variable aleatoria de Poisson, además, estos puntos se deberán distribuir de acuerdo a una distribución uniforme dentro del círculo, por último, al considerar un proceso homogéneo, la densidad de los puntos será constante.\newline
 
 Número total de puntos:\newline
 
@@ -28,7 +28,7 @@ Por otra parte, debido a que el área aumenta de manera cuadrática con relació
 
 \subsection{Escenario de Prueba}
 
-En este escenario se valida la generación de puntos siguiendo un HPPP.\newline
+En este escenario se validó la generación de puntos siguiendo un HPPP.\newline
 
 Para el primer caso en el número total de puntos que sigue una distribución discreta de Poisson, se comprobó la generación de la variable aleatoria Poisson en Python usando la libreria \textit{scipy}.\newline
 
@@ -38,37 +38,33 @@ Se observa que la distribución del histograma sigue a la función masa de proba
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.6]{Figures/PoissonDistribution}
+    \includegraphics[scale=.4]{Figures/PoissonDistribution}
     \decoRule
     \caption[Gráfica comparación PMF e histograma de distribución Poisson en Python]{Gráfica comparación PMF e histograma de distribución Poisson en Python}
     \label{fig:generacionPoisson}
 \end{figure}
 
-\myworries{TODO: ESTA GRÁFICA DEBE CORREGIRSE}\\
-
 También, se comprobó la generación de puntos aleatorio ubicados uniformemente en un círculo de radio $r$ en coordenadas polares $[r(\sqrt{U}), 2\pi V]$.\newline
 
 Se graficó en un círculo 2D la generación de puntos, con tasa constante $\lambda = $ y media $\lambda A$ donde $A=\pi r^{2}$ donde $r = $.
 
-\begin{figure}[th]
+Por último, se validó que todos los puntos se generen dentro del areá del circulo, para esto se graficó de igual manera la distribución espacial de los puntos en un círculo en plano 2D pero ahora con una densidad mayor, de modo que se observe que los puntos rellenan toda el área del círculo [\textit{véanse Figuras~\ref{fig:PPPCirculo1}, \ref{fig:PPPCirculo2}}].
+
+\begin{figure}
     \centering
-    \includegraphics[scale=.8]{Figures/PPPCirculo}
-    \decoRule
-    \caption[Distribución espacial de los puntos en un círculo 2D]{Distribución espacial de los puntos en un círculo 2D}
-    \label{fig:generacioPPPCirculo}
+    \begin{minipage}{.45\linewidth}
+      \includegraphics[width=\linewidth]{PPPCirculo1}
+      \caption[Distribución espacial de puntos PPP en un círculo 2D]{Distribución espacial de puntos PPP con media $\lambda A$ en un círculo 2D}
+      \label{fig:PPPCirculo1}
+    \end{minipage}
+    \hspace{.05\linewidth}
+    \begin{minipage}{.45\linewidth}
+      \includegraphics[width=\linewidth]{PPPCirculo2}
+      \caption[Distribución espacial de puntos PPP en un círculo 2D]{Distribución espacial de puntos PPP con media $\lambda A$ en un círculo 2D}
+      \label{fig:PPPCirculo2}
+    \end{minipage}
 \end{figure}
 
-También se validó que todos los puntos se generen dentro del areá del circulo, para esto se graficó de igual manera la distribución espacial de los puntos en un círculo en plano 2D pero ahora con una densidad mayor, de modo que se observe que los puntos rellenan toda el área del círculo [\textit{véase Figura~\ref{fig:}}].
-
-%\begin{figure}[th]
-%    \centering
-%    \includegraphics[scale=.6]{Figures/}
-%    \decoRule
-%    \caption[]{}
-%    \label{fig:}
-%\end{figure}
-
-\myworries{TODO: INCLUIR GRÁFICA }\\
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -76,7 +72,7 @@ También se validó que todos los puntos se generen dentro del areá del circulo
 
 \section{Generación de ganancias de canal implementando pérdidas por distancia (PLE) y desvanecimiento Rayleigh}
 
-De acuerdo con el modelo de canal propuesto, el modelo CI \textit{Ecuación~\ref{eqn:CI}} \parencite{Sun2016}, este implementa pérdidas de acuerdo con la distancia dado un exponente de pérdida por trayectoria (PLE) y además, agrega pérdidas por el desvanecimiento rápido de Rayleigh.
+De acuerdo con el modelo de canal propuesto, el modelo CI \textit{Ecuación~\ref{eqn:CI}} \parencite{Sun2016}, este implementa pérdidas de acuerdo con la distancia, dado un exponente de pérdida por trayectoria (PLE) y agrega pérdidas por el desvanecimiento rápido de Rayleigh.\newline
 
 Cuando se habla del desvanecimiento de Rayleigh en enlaces inalambricos, en la literatura \parencite{RayleighScienceDirect} se encuentra que las componentes en cuadratura y en fase de la señal recibida son variables aleatorias Gaussianas con media cero que se distribuyen de forma independiente e idéntica (iid), siendo así, que la magnitud de la señal banda base compleja sigue una distribución de Rayleigh. Por otra parte, la distribución de la potencia normalizada de una señal de banda base compleja recibida bajo el desvanecimiento unitario de Rayleigh es modelado por medio de una distribución exponencial unitaria.\newline
 
@@ -85,9 +81,9 @@ Por lo tanto, cuando el desvanecimiento es Rayleigh, la magnitud (voltaje) de la
 En nuestro caso, como se trabajará en términos de potencia, se modelará este fenómeno por medio de la generación de una variable aleatoria que siga una distribución exponencial negativa con media unitaria, es decir, para cada $x>=0$ :
 
 \begin{equation}
-    p(g>x)=e^{-x}
+    f(x)=\lambda e^{-\lambda x}
 \end{equation}
-$g \to ganancia\ en\ potencia\ del\ canal\ de\ desvanecimiento\ de\ Rayleigh$
+    $donde\ \lambda \to 1$
 
 \subsection{Escenario de Prueba del desvanecimiento tipo Rayleigh en potencia}
 
@@ -99,12 +95,18 @@ Se observa que la distribución del histograma sigue a la función densidad de p
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.6]{Figures/ExponentialDisitribution}
+    \includegraphics[scale=.7]{Figures/ExponentialDisitribution}
     \decoRule
     \caption[Gráfica comparación PDF e histograma de distribución Exponencial en Python]{Gráfica comparación PDF e histograma de distribución Exponencial en Python}
     \label{fig:generacionExpon}
 \end{figure}
-
+%\begin{figure}[th]
+%    \centering
+%    \includegraphics[scale=.6]{Figures/}
+%    \decoRule
+%    \caption[]{}
+%    \label{fig:}
+%\end{figure}
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
@@ -142,8 +144,10 @@ Definición de variables de los algoritmos 1 y 2:\newline
     \item C: Lista de Grupos NOMA
     \item $R_{m}^{th}:$ Tasa objetivo del enésimo dispositivo m mMTC 
     \item $R_{u}^{th}:$ Tasa objetivo del enésimo dispositivo u uRLLC
-    \item $P_{m}^{max}:$ Potencia máxima del enésimo dispositivo m mMTC (i.e. 23dBm)
+    \item $P_{m}^{max}:$ Potencia máxima del enésimo dispositivo m mMTC 
     \item $P_{u}^{max}:$ Potencia máxima del enésimo dispositivo u uRLLC (i.e. 23dBm)
+    \item $P_{m}^{s}:$ Potencia del enésimo dispositivo m mMTC 
+    \item $P_{u}^{s}:$ Potencia del enésimo dispositivo u uRLLC 
     \item $h_{m}^{s}:$ Ganancia de canal del enésimo dispositivo m mMTC sobre la portadora s
     \item $h_{u}^{s}:$ Ganancia de canal del enésimo dispositivo u uRLLC sobre la portadora s
     \item ${\hat S}$: Lista de subportadoras asignadas
@@ -284,4 +288,3 @@ No se satisfacen todos los requisitos de velocidad de datos de los dispositivos 
 %----------------------------------------------------------------------------------------
 
 \section{Optimización de tiempos de simulación}
-
