@@ -5,9 +5,9 @@
 
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este capítulo se realiza el análisis de las diversas aplicaciones de dispositivos IoT y su implementación en redes de comunicaciones móviles 5G. Se comienza con una breve descripción de estas tecnologías, y después se profundiza en el caso de uso mMTC donde se mencionan los escenarios más comunes de implementación, su clasificación y sus características, además se revisa el estándar actual (NB-IoT\footnote{ Muchos\ de\ los\ modelos\ aqu\textrm{í}\ propuestos\ est\textrm{á}n\ basados\ en\ trabajos\ de\ la\ 3GPP,\ como\ se\ revis\textrm{ó}\ en\ el Capítulo \ref{Chapter2},\ la\ 3GPP,\ es\ una\ organizaci\textrm{ó}n\ que\ est\textrm{á}\ respaldada\ por\ organismos\ alrededor\ de\ todo\ el\ mundo,\ adem\textrm{á}s\ de\ que\ se\ trata\ del\ grupo\ que\ estandariza\ tecnolog\textrm{í}as\ como\ LTE-M\ y\ NB-IoT,\ de\ manera\ que\ es\ una\ indudable\ referencia\ en\ su\ ahora\ inmersi\textrm{ó}n\ en\ la\ estandarizaci\textrm{ó}n\ de\ 5G.}) que cumple con los requisitos para la implementación de mMTC. Finalmente también se revisan los KPIs propuestos para este tipo de escenarios.\newline
+En este capítulo se realiza el análisis de las diversas aplicaciones de dispositivos IoT y su implementación en redes de comunicaciones móviles 5G. Se comienza con una breve descripción de estas tecnologías, y después se profundiza en el caso de uso mMTC donde se mencionan los escenarios más comunes de implementación, su clasificación y sus características, además se revisa el estándar actual (NB-IoT\footnote{ Muchos\ de\ los\ modelos\ aqu\textrm{í}\ propuestos\ est\textrm{á}n\ basados\ en\ trabajos\ de\ la\ 3GPP,\ como\ se\ revis\textrm{ó}\ en\ el Capítulo \ref{Chapter2},\ la\ 3GPP,\ es\ una\ organizaci\textrm{ó}n\ que\ est\textrm{á}\ respaldada\ por\ organismos\ alrededor\ de\ todo\ el\ mundo,\ adem\textrm{á}s\ de\ que\ se\ trata\ del\ grupo\ que\ estandariza\ tecnolog\textrm{í}as\ como\ LTE-M\ y\ NB-IoT,\ de\ manera\ que\ es\ una\ indudable\ referencia\ en\ su\ ahora\ inmersi\textrm{ó}n\ en\ la\ estandarizaci\textrm{ó}n\ de\ 5G.}) que cumple con los requisitos para la implementación de mMTC. Finalmente se revisan los KPIs propuestos para este tipo de escenarios.\newline
 
-Por último, se detallan cuáles son los modelos y técnicas que se usan para caracterizar el modelo de despliegue, canal y de tráfico de dispositivos IoT en redes 5G y además se presenta la actual propuesta de técnica de acceso múltiple al medio no ortogonal (NOMA) y su enfoque hacia un entorno masivo de dispositivos (con el uso de \textit{clusterización}).
+Por último, se presentan cuáles son los modelos que se usan para caracterizar el despliegue, la condición del canal y tráfico de dispositivos IoT en redes 5G y además, se presenta la actual propuesta de técnica de acceso múltiple al medio no ortogonal (NOMA) para redes 5G/IoT usando agrupamientos \textit{(clustering)}, enfocada a escenarios masivos de dispositivos tipo máquina (mMTC).
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -17,9 +17,9 @@ Por último, se detallan cuáles son los modelos y técnicas que se usan para ca
 
 Aunque gran parte de la comunicación IoT se ha implementado hasta el momento, no se ha considerado para una conectividad masiva y una mejor eficiencia energética. \newline
 
-IoT en los sistemas 5G tendrán un importante papel en esta generación futura ya que abrirán una puerta para una nueva arquitectura inalámbrica y servicios inteligentes. La reciente red celular LTE (4G) no será lo suficientemente eficiente para satisfacer las demandas de conectividad de múltiples dispositivos y velocidad de datos, calidad de servicio (QoS) de baja latencia y baja interferencia. Para abordar estos desafíos, 5G es la tecnología más prometedora \parencite{Chetri2020}. \newline
+El Internet de las cosas (IoT) en los sistemas 5G tendrán un importante papel en esta generación ya que abrirán una puerta para una nueva arquitectura inalámbrica y servicios inteligentes. La reciente red celular LTE (4G) no será lo suficientemente eficiente para satisfacer las demandas de conectividad de múltiples dispositivos, velocidad de datos, calidad de servicio (QoS) de baja latencia y eficiencia energética. Para abordar estos desafíos, 5G es la tecnología más prometedora \parencite{Chetri2020}. \newline
 
-Por lo tanto, la comunicación masiva de tipo máquina (mMTC), será uno de los principales habilitadores clave para el despliegue de redes 5G-IoT.
+Por lo tanto, el caso de uso referente a la comunicación masiva de tipo máquina (mMTC), será uno de los principales habilitadores clave para el despliegue de redes 5G-IoT.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -274,11 +274,11 @@ Como se muestra en la Figura~\ref{fig:5gnr}, en el futuro se espera que NB IoT s
 
 En la especificación técnica TS-36.101 de la 3GPP de su \textit{release} 13 proporciona la lista de las bandas compatibles: 1, 2, 3, 5, 8, 12, 13, 17, 18, 19, 20, 26, 28, 66, el \textit{release} 14 agregó las bandas : 11, 25, 31 y 70. Y el \textit{release} 15 agregó más bandas: 4, 14 y 71. La información recibida por los miembros de \textit{Mobile IoT}, hasta ahora, indica que se han utilizado una variedad de estas bandas en diferentes regiones\parencite{NBIoTDeploymentGSMA}.\newline
 
-P. ej. en el caso de Latino América las bandas disponibles son las: 2 (1850-1990 MHz), 3 (1710-1880 MHz), 5 (824-894MHz) y 28 (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.\newline
+P. ej. en el caso de Latino América las bandas disponibles son las: \textbf{2} (1850-1990 MHz), \textbf{3} (1710-1880 MHz), \textbf{5} (824-894MHz) y \textbf{28} (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.\newline
 
 \subsubsection{Clases de Potencia}
 
-Algunas aplicaciones de IoT son particularmente sensibles al consumo de energía. Para minimizar el impacto de la conectividad en la duración de la batería del dispositivo, para el \textit{release} 13 los UE pueden usar dos opciones de clase de potencia. Uno es el nivel de potencia del dispositivo móvil LTE tradicional de 23dBm (\textit{Power Class 3}) y uno nuevo, con menos potencia de salida, a 20dBm (\textit{Power Class 5}). El \textit{release} 14 de 3GPP agrega una clase de salida de potencia aún menor, a 14dBm (\textit{PowerClass 6}) \parencite{NBIoTDeploymentGSMA}.
+Algunas aplicaciones de IoT son particularmente sensibles al consumo de energía. Para minimizar el impacto de la conectividad en la duración de la batería del dispositivo, para el \textit{release} 13, se determinó que los UE podrán usar dos opciones de clase de potencia. Uno es el nivel de potencia del dispositivo móvil LTE tradicional de \textbf{23dBm} (\textit{Power Class 3}) y uno nuevo, con menos potencia de salida, de \textbf{20dBm} (\textit{Power Class 5}). El \textit{release} 14 de 3GPP agrega una nueva clase de potencia aún menor, de \textbf{14dBm} (\textit{PowerClass 6}) \parencite{NBIoTDeploymentGSMA}.
 
 En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes:
 
@@ -382,8 +382,6 @@ Muchos autores coinciden en que varias distribuciones de redes móviles siguen u
 
 Para esto, la distribución de terminales móviles se realiza de acuerdo con varios procesos de punto estacionario de Poisson independientes con intensidad \textit{$\lambda$m}. Con un PPP estacionario, la distancia entre un terminal móvil y su BS de servicio se distribuye independientemente de la ubicación exacta del terminal móvil.\newline
 
-En este proyecto no se propone simular un ambiente uniforme, establecido o determinístico por lo que se seguirá el despliegue de una geometría estocástica siguiendo un PPP.\newline
-
 \subsubsection{\textit{Point Process}}
 Procesos puntuales (PP) \parencite{Haenggi2009}\newline
 
@@ -397,7 +395,7 @@ Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R
     \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
 \end{itemize}
 
-\subsubsection{\textit{Poisson Point Process}}
+\subsubsection{\textit{Poisson Point Process}}\label{PPP_C4}
 Procesos Puntuales de Poisson (PPP) \parencite{Haenggi2009}\newline
 
 Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
@@ -410,12 +408,13 @@ Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un pro
 Una propiedad clave establece que condicionalmente $\Phi(A)= n$, estos $n$ puntos están ubicados independientemente (y de manera uniforme para un PPP homogéneo) en $A$.\newline
 
 \begin{itemize}
-    \item Un PPP puede ser homogéneo o no. En el caso homogéneo, la densidad de los puntos es constante en el espacio.
+    \item Un PPP puede ser homogéneo o no. En el caso homogéneo, la densidad de los puntos es constante en el espacio (también conocidos como HPPP).
     \item El PPP homogéneo es estacionario y simple. Esto puede considerarse como el proceso puntual más simple (y más natural).
 \end{itemize}
 
 Un PPP ofrece un práctico marco computacional para diferentes cantidades de red de interés. El marco para las PPP no homogéneas también está bien desarrollado, aunque es más técnico que el del caso homogéneo. Se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.\newline
 
+En este proyecto con fines de diseño y análisis, se simularon ambos despliegues, uno uniforme y otro siguiendo una geometría estocástica, es decir, un PPP.\newline
 
 \subsection{MODELO DE CANAL}
 

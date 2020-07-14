@@ -43,7 +43,7 @@ Comúnmente se utilizan las siguientes distribuciones de probabilidad en telecom
 
 La distribución uniforme (también llamada distribución rectangular) es una familia de curvas de dos parámetros que es notable porque tiene una función de distribución de probabilidad constante (PDF) entre sus dos parámetros delimitadores. La distribución uniforme se utiliza en técnicas de generación de números aleatorios, como el método de inversión \parencite{ UniformMatlab}.\newline
 
-Se puede usar la distribución uniforme estándar para generar números aleatorios para cualquier otra distribución continua mediante el método de inversión. El método de inversión se basa en el principio de que las funciones de distribución acumulativa continua (CDFs) varían uniformemente durante el intervalo abierto $(0, 1)$ . Si $u$ es un número aleatorio uniforme en (0, 1) , entonces $x = F^{–1} ( u )$ genera un número aleatorio $x$ a partir de la distribución continua con la CDF especificada $F$ \parencite{UniformMatlab}.\newline
+Se puede usar la distribución uniforme estándar para generar números aleatorios para cualquier otra distribución continua mediante el método de inversión. El método de inversión se basa en el principio de que las funciones de distribución acumulativa continua (CDFs) varían uniformemente durante el intervalo abierto $(0, 1)$ . Si $u$ es un número aleatorio uniforme en (0, 1) , entonces $x = F^{ -1} ( u )$ genera un número aleatorio $x$ a partir de la distribución continua con la CDF especificada $F$ \parencite{UniformMatlab}.\newline
 
 En teoría de la probabilidad y estadística, hay varias relaciones entre las distribuciones de probabilidad. Estas relaciones se pueden clasificar en los siguientes grupos \parencite{univariateDist}:
 \begin{itemize}
@@ -68,35 +68,32 @@ Los procesos de Poisson son altamente utilizados para representar o modelar fen�
 
 Algunas propiedades de los procesos de Poisson son las siguientes \parencite{ PoissonMedium}:
 
-Se compone de una secuencia de variables aleatorias $X1, X2, X3, ... Xk$, de modo que cada variable representa el número de ocurrencias de algún evento, durante un intervalo de tiempo.\newline
-
-Es un proceso estocástico. Cada vez que ejecuta el proceso de Poisson, producirá una secuencia de resultados aleatorios diferentes según alguna distribución de probabilidad.\newline
-
-Es un proceso discreto. Los resultados del proceso de Poisson son el número de ocurrencias de algún evento en el período de tiempo especificado, que sin duda es un número entero, es decir, un número discreto.\newline
-
-Tiene incrementos independientes. Lo que esto significa es que el número de eventos que el proceso predice que ocurrirá en cualquier intervalo dado, es independiente del número en cualquier otro intervalo disjunto. \newline
-
-Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución idéntica.\newline
-
-Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución de Poisson , que viene dada por la Función Masa de Probabilidad (PMF):
+\begin{itemize}
+    \item Se compone de una secuencia de variables aleatorias $X1, X2, X3, ... Xk$, de modo que cada variable representa el número de ocurrencias de algún evento, durante un intervalo de tiempo.
+    \item Es un proceso estocástico. Cada vez que ejecuta el proceso de Poisson, producirá una secuencia de resultados aleatorios diferentes según alguna distribución de probabilidad.
+    \item Es un proceso discreto. Los resultados del proceso de Poisson son el número de ocurrencias de algún evento en el período de tiempo especificado, que sin duda es un número entero, es decir, un número discreto.
+    \item Tiene incrementos independientes. Lo que esto significa es que el número de eventos que el proceso predice que ocurrirá en cualquier intervalo dado, es independiente del número en cualquier otro intervalo disjunto.
+    \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución idéntica.
+    \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución de Poisson , que viene dada por la Función Masa de Probabilidad (PMF):
+\end{itemize}
 
 \begin{equation}
     P_{X}(k)=\frac{e^{-\lambda}*\lambda ^{k}}{k!}
     \label{eqn:Poisson}
 \end{equation}
 
-La fórmula anterior nos da la probabilidad de ocurrencia de $k$ eventos en unidad de tiempo, dado que la tasa de ocurrencia promedio es $\lambda$ eventos por unidad de tiempo.\newline
+La fórmula anterior nos da la probabilidad de ocurrencia de $k$ eventos en unidad de tiempo, dado que la tasa de ocurrencia promedio es $\lambda$ eventos por unidad de tiempo.
 
 \subsubsection{Modelado de tiempos entre llegadas}
 
 Los procesos de Poisson tienen una subestructura notable. Aunque el número de eventos ocurridos se modela usando una distribución de Poisson discreta, el intervalo de tiempo entre eventos consecutivos se puede modelar usando una distribución exponencial, que es una distribución continua \parencite{PoissonMedium}.\newline
 
 Sean $X1, X2, X3, ... Xi$ variables aleatorias tales que:
-
-$X1$ = el intervalo de tiempo entre el inicio del proceso y el primer evento, es decir, la primera llegada,\newline
-$X2$ = el tiempo entre llegadas entre la primera y la segunda llegada,\newline
-$X3$ = el tiempo entre llegadas entre la segunda y la tercera llegada , y así sucesivamente.\newline
-
+\begin{itemize}
+    \item $X1$ = el intervalo de tiempo entre el inicio del proceso y el primer evento, es decir, la primera llegada,
+    \item $X2$ = el tiempo entre llegadas entre la primera y la segunda llegada,
+    \item $X3$ = el tiempo entre llegadas entre la segunda y la tercera llegada , y así sucesivamente.
+\end{itemize}
 La distribución de la variable aleatoria $Xk$ que representa el tiempo entre llegadas entre la llegada $(k-1) th$ y $(k) th$ es \parencite{PoissonMedium}:
 \begin{equation}
     X_{k}=Exponential(\lambda)
@@ -115,17 +112,19 @@ Y describe la PDF de tiempos entre llegadas en un proceso de Poisson.
 
 \section{MODELADO DEL CANAL CELULAR}
 
-Los modelos de propagación por radio se clasifican en modelos a gran escala y a pequeña escala. Los efectos a gran escala generalmente ocurren en el orden de cientos a miles de metros de distancia. Los efectos a pequeña escala se localizan y ocurren temporalmente (en el orden de unos pocos segundos) o espacialmente (en el orden de unos pocos metros). Los parámetros del canal generalmente se dividen en Pérdida por trayectoria (PL), parámetros de gran escala (LSP, como sombreado, dispersión de retardo, dispersión angular, etc.) y parámetros de pequeña escala (como demora, ángulo de llegada y salida, etc.), que reflejan conjuntamente las características de desvanecimiento del canal. El procedimiento de generación de los coeficientes del canal se puede apreciar en la \textit{Figura~\ref{fig:Procedimiento de generacion de coeficientes de canal} }. La pérdida de ruta generalmente se expresa en una o dos fórmulas y un conjunto de valores numéricos de parámetros, que reflejan las relaciones con el entorno de transmisión, la distancia y la frecuencia, etc. \newline
+Los modelos de propagación por radio se clasifican en modelos a gran escala y a pequeña escala. Los efectos a gran escala generalmente ocurren en el orden de cientos a miles de metros de distancia. Los efectos a pequeña escala se localizan y ocurren temporalmente (en el orden de unos pocos segundos) o espacialmente (en el orden de unos pocos metros). Los parámetros del canal generalmente se dividen en Pérdida por trayectoria (PL), parámetros de gran escala (LSP, como sombreado, dispersión de retardo, dispersión angular, etc.) y parámetros de pequeña escala (como demora, ángulo de llegada y salida, etc.), que reflejan conjuntamente las características de desvanecimiento del canal. El procedimiento de generación de los coeficientes del canal se puede apreciar en la \textit{Figura~\ref{fig:Procedimiento de generacion de coeficientes de canal} }. La pérdida por trayectoria generalmente se expresa en una o dos fórmulas y un conjunto de valores numéricos de parámetros, que reflejan las relaciones con el entorno de transmisión, la distancia y la frecuencia, etc. \newline
 
 \begin{figure}[th]
 \centering
 \includegraphics[scale=0.8]{Figures/Procedimiento de generación de coeficientes de canal}
 \decoRule
-\caption[Procedimiento de generación de coeficientes de canal]{Procedimiento de generación de coeficientes de canal, [Fuente: 3GPP TR36.873]}
+\caption[Procedimiento de generación de coeficientes de canal]{Procedimiento de generación de coeficientes de canal, [Fuente: 3GPP TR-36.873]}
 \label{fig:Procedimiento de generacion de coeficientes de canal}
 \end{figure}
 
-El rendimiento a nivel de enlace es un fenómeno de pequeña escala el cual lidia con cambios instantáneos en el canal a través de áreas e instantes de tiempo pequeños donde se considera la potencia recibida como constante, por otra parte, en las simulaciones a nivel de sistema para determinar el rendimiento en general del sistema para un gran número de usuarios esparcidos en una área geográfica es necesario incorporar parámetros de larga escala como el comportamiento estadístico de la interferencia, así como los niveles de señal experimentados por cada usuario a través de largas distancias, ignorando las características transitorias del canal (las de pequeña escala) \parencite{Tranter2003}. En una simulación a nivel de sistema, principalmente se busca la probabilidad de que un usuario en particular alcance un servicio aceptable en el sistema, para esto es necesario contemplar los efectos de los múltiples usuarios para cada enlace individual entre un móvil y la estación base. Por lo tanto en las simulaciones a nivel de sistema se suelen omitir los parámetros a pequeña escala.\newline
+El rendimiento a nivel de enlace es un fenómeno de pequeña escala el cual lidia con cambios instantáneos en el canal a través de áreas e instantes de tiempo pequeños donde se considera la potencia recibida como constante, por otra parte, en las simulaciones a nivel de sistema para determinar el rendimiento en general del sistema para un gran número de usuarios esparcidos en una área geográfica es necesario incorporar parámetros de larga escala como el comportamiento estadístico de la interferencia, así como los niveles de señal experimentados por cada usuario a través de largas distancias, ignorando las características transitorias del canal (las de pequeña escala) \parencite{Tranter2003}.\newline
+
+En una simulación a nivel de sistema, principalmente se busca la probabilidad de que un usuario en particular alcance un servicio aceptable en el sistema, para esto es necesario contemplar los efectos de los múltiples usuarios para cada enlace individual entre un móvil y la estación base. Por lo tanto en las simulaciones a nivel de sistema se suelen omitir los parámetros a pequeña escala.\newline
 
 \subsection{Relaciones Generales de Propagación}
 
@@ -136,29 +135,27 @@ L_{p[dB]}=P_{tx[dBm]}+G_{tx[dBi]}-P_{rx\left[dBm\right]}+G_{rx\left[dBi\right]}
 \label{eqn:Lp}
 \end{equation}
 
-Donde:\newline
-\[P_{tx}\to Potencia\ de\ la\ antena\ transmisora\ \] 
+Donde:
+\[P_{tx}\to Potencia\ transmitida\ \] 
 \[G_{tx}\to Ganancia\ de\ la\ antena\ transmisora\ \] 
-\[P_{rx}\to Potencia\ de\ la\ antena\ receptora\ \ \] 
+\[P_{rx}\to Potencia\ recibida\ \] 
 \[G_{rx}\to Ganancia\ de\ la\ antena\ receptora\ \ \] 
 
-En muchas aplicaciones la ganancia de la antena es referida al dipolo de media longitud de onda:\newline
-
+En muchas aplicaciones la ganancia de la antena es referida al dipolo de media longitud de onda:
 \begin{equation}
 G_{[dBi]} = G_{[dBd]}+{2.15} 
 \label{eqn:Gain}
 \end{equation}
 
 La Potencia Isotrópica Radiada Efectiva (EIRP) se define como:
-
 \begin{equation}
 P_{EIRP[dBm]}=P_{tx\left[dBm\right]}{\ +\ G}_{tx[dBi]}
 \label{eqn:EIRP}
 \end{equation}
 
-\subsection{Pérdida por trayectoria en el Espacio Libre (FSPL, \textit{Free Space Path Loss})}
+\subsection{Pérdida por trayectoria en el Espacio Libre ($FSPL$, \textit{Free Space Path Loss})}
 
-El receptor puede recibir una señal atenuada directa (también llamada señal de línea de vista (LoS)) del transmisor. El FSPL se utiliza para predecir la pérdida de trayectoria cuando hay un LoS claro y sin obstrucciones entre el transmisor y el receptor. Se basa en la ley de distancia al cuadrado inverso que establece que la potencia recibida (PRX) decae por un factor de cuadrado de la distancia (d) desde el transmisor.\newline
+El receptor puede recibir una señal atenuada directa (también llamada señal de línea de vista (LoS)) del transmisor. El $FSPL$ se utiliza para predecir la pérdida de trayectoria cuando hay un LoS claro y sin obstrucciones entre el transmisor y el receptor. Se basa en la ley de distancia al cuadrado inverso que establece que la potencia recibida ($P_{rx}$) decae por un factor de cuadrado de la distancia (d) desde el transmisor.\newline
 
 Se considera a la propagación en el espacio libre como la mínima atenuación que una señal puede sufrir en el medio.\newline
 
@@ -168,36 +165,30 @@ La potencia de la señal receptora ${\ P}_{rx}$ con una propagación en el espac
 P_{rx\left[W\right]}={\left(\frac{{\lambda }_{[m]}}{4\pi d_{[m]}}\right)}^2P_{tx\left[W\right]}G_{tx}G_{rx}  
 \label{eqn:Friis}
 \end{equation}
-
-ó\newline
-
+ó
 \begin{equation}
 P_{rx\left[dBW\right]}=-32.44+P_{tx\left[dBW\right]}+G_{tx\left[dBi\right]}+G_{rx\left[dBi\right]}-20{\mathrm{log} \left(d_{\left[km\right]}\right)\ }-20{\mathrm{log} \left(f_{\left[MHz\right]}\right)\ }
 \label{eqn:Friss_dB}
 \end{equation}
 
-Donde:\newline
+Donde:
 \[d\to Distancia\ entre\ Rx\ y\ Tx\ \] 
 \[f\to Frecuencia\ de\ operaci\textrm{ó}n\ \] 
 \[\lambda \to Longitud\ de\ onda,\ \ \ \ \ \ \ \ \lambda =\frac{c}{f}\ \] 
 \[c\to Velocidad\ de\ la\ luz\ (\mathrm{299\ 792\ 458\ m/s})\] 
 
-Por lo tanto, la pérdida por trayectoria en el espacio libre $L_0$ se define como:\newline
-
+Por lo tanto, la pérdida por trayectoria en el espacio libre $L_0$ se define como:
 \begin{equation}
 L_{0[dB]}=32.44+20{\mathrm{log} \left(d_{\left[km\right]}\right)\ }+20\mathrm{log}\mathrm{}(f_{[MHz]})
 \label{eqn:L0}
 \end{equation}
-
-Tomando el modelo del decaimiento de potencia promedio con la distancia $a_{pd}$:\newline
+Tomando el modelo del decaimiento de potencia promedio con la distancia $a_{pd}$:
 \begin{equation}
 L_{p[dB]}=L_{ref}+10a_{pd}{\mathrm{log} \left(d_{\left[km\right]}\right)\ }
 \label{eqn:Lp_ref}
 \end{equation}
-
 \[a_{pd}=2,\ \ \ para\ una\ propagacion\ en\ el\ espacio\ libre\ \] 
-
-El \textit{apd (también conocido como PLE)} es un valor que va de 2 a 4 frecuentemente. El valor mínimo (i.e. 2) proviene de la perdida FSPL y el máximo (i.e. 4) por la pérdida del modelo \textit{Flat Earth} (modelo de tierra plana). En algunos modelos se llega a incluir valores de PLE más altos que los aquí definidos.\newline
+El \textit{apd (también conocido como PLE)} es un valor que va de 2 a 4 frecuentemente. El valor mínimo (i.e. 2) proviene de la perdida FSPL y el máximo (i.e. 4) por la pérdida del modelo \textit{Flat Earth} (modelo de tierra plana). En algunos modelos se llega a incluir valores de PLE más altos que los aquí definidos.
 
 \subsection{Caracterización del canal de radio}
 
@@ -212,8 +203,8 @@ Usualmente en ambientes urbanos no hay línea de vista (LoS) entre la estación 
 \end{figure}
 
 Sin embargo estas señales sufren de desvanecimiento con caídas de potencia. Este desvanecimiento depende de la posición y el ambiente del cual se propague la señal.\newline
-Características de desvanecimiento:\newline
 
+Características de desvanecimiento:
 \begin{itemize}
     \item Desvanecimiento lento:
     Depende esencialmente de la distancia, sigue una distribución Log-normal
@@ -225,16 +216,15 @@ Características de desvanecimiento:\newline
 \centering
 \includegraphics[scale=.8]{Figures/Ejemplo de niveles de señal con desvanecimiento lento y desvanecimiento rápido}
 \decoRule
-\caption[Ejemplo de niveles de señal con desvanecimiento lento y desvanecimiento rápido]{Ejemplo de niveles de señal con desvanecimiento lento y desvanecimiento rápido, [Fuente: V. Mathuranathan, 2016]}
+\caption[Ejemplo de niveles de señal con pérdidas por trayectoria, desvanecimiento lento y desvanecimiento rápido]{Ejemplo de niveles de señal con pérdidas por trayectoria, desvanecimiento lento y desvanecimiento rápido, [Fuente: V. Mathuranathan, 2016]}
 \label{fig:Desvanecimientos}
 \end{figure}
 
-En la \textit{Figura~\ref{fig:Desvanecimientos}} se observa que al principio, la señal parece muy aleatoria. Mirando más de cerca podemos dividirlo en tres componentes principales como se muestra en la mitad derecha de la \textit{Figura~\ref{fig:Desvanecimientos}} \parencite{Mathuranathan2016}.\newline
-
+En la \textit{Figura~\ref{fig:Desvanecimientos}} se observa que al principio, la señal parece muy aleatoria. Mirando más de cerca podemos observar tres componentes principales que forman a la señal, como se muestra en la mitad derecha \parencite{Mathuranathan2016}.
 \begin{enumerate}
     \item  Pérdida por trayectoria \textit{(Path loss)}
     \item  \textit{Shadowing} (Sombreado) o desvanecimiento lento
-    \item  Desvanecimiento multitrayectoria o desvanecimiento rápido.
+    \item  \textit{Multipath} multitrayectoria o desvanecimiento rápido.
 \end{enumerate}
 
 El desvanecimiento lento puede ser causado por eventos como el \textit{shadowing}, donde una gran obstrucción, como una colina o un gran edificio, oscurece la trayectoria de la señal principal entre el transmisor y el receptor. Se considera un parámetro a gran escala.\newline
@@ -242,10 +232,11 @@ El desvanecimiento lento puede ser causado por eventos como el \textit{shadowing
 El desvanecimiento rápido ocurre cuando la amplitud y el cambio de fase impuestos por el canal varían considerablemente durante el período de uso. Una señal que viaja en un entorno puede verse reflejada por varios objetos en el camino. Esto da lugar a varias señales reflejadas. Las señales reflejadas llegan al receptor en diferentes instantes de tiempo y con diferentes intensidades que conducen a la propagación multitrayectoria. Se considera un parámetro a pequeña escala.\newline
 
 Los márgenes de desvanecimiento deben tomarse en cuenta para caracterizar la variación de las señales alrededor de un valor promedio, esto depende de:\newline
-•	Características del ambiente (LoS)\newline
-•	QoS\newline
 
-Para \textit{narrowband} (banda estrecha, donde prevalece el desvanecimiento plano en lugar de un desvanecimiento selectivo de frecuencia) el desvanecimiento se caracteriza de la siguiente manera:
+•	Características del ambiente (LoS o NLoS)\newline
+•	Calidad de servicio (QoS)\newline
+
+Para un \textit{narrowband} (banda estrecha, donde prevalece el desvanecimiento plano en lugar de un desvanecimiento selectivo de frecuencia) el desvanecimiento se caracteriza de la siguiente manera:
 \begin{itemize}
     \item Desvanecimiento rápido:
     \begin{itemize}
@@ -264,14 +255,15 @@ Para \textit{narrowband} (banda estrecha, donde prevalece el desvanecimiento pla
 
 Los modelos de estimación de señal pueden ser divididos en dos categorías:
 \begin{enumerate}
-    \item Teóricos:Son una aproximación a la realidad, no toman en cuenta todos los factores de la propagación pero permiten cambios fáciles de los parámetros. 
+    \item Teóricos: Son una aproximación a la realidad, no toman en cuenta todos los factores de la propagación pero permiten cambios fáciles de los parámetros. 
     \begin{itemize}
         \item Ray Tracing
         \item Modelo Ikegami [1984]
         \item Modelo Walfish-Bertoni [1988]
     \end{itemize}
     \item Empíricos: Están basados en la observación de mediciones, conduciendo al mejor ajuste de ecuaciones. Tienen la ventaja de tomar en cuenta todos los factores que influyen en la propagación.\newline
-    Para ambientes exteriores hay dos modelos básicos:\newline
+    
+    Para ambientes exteriores hay dos modelos fundamentales:
     \begin{itemize}
         \item COST 231 Okumura-Hata
         \begin{itemize}
@@ -298,6 +290,7 @@ Los modelos de estimación de señal pueden ser divididos en dos categorías:
 
 Los sistemas celulares brindan una determinada cobertura para un servicio, dividiendo el área geográfica en segmentos llamados celdas donde el espectro de frecuencia también es dividido en canales y estos son agrupados para repartirse entre las celdas. Estos sistemas logran una alta capacidad gracias al reúso del canal de comunicación permitiendo a las estaciones base compartir los canales, sin embargo, este reúso da como resultado una interferencia co-canal generada solamente entre usuarios que comparten el mismo canal, lo cual limita el rendimiento y capacidad de un sistema celular dado que los efectos de esta interferencia son altamente dependientes con los aspectos del sistema \parencite{Tranter2003} como lo son el tipo de acceso múltiple del sistema, el número de usuarios compartiendo el canal, el canal de propagación, la perdida por trayectoria, el desvanecimiento, entre otros.\newline
 
+Los sistemas celulares son caracterizados por \parencite{Correia2018}:
 \begin{itemize}
     \item Ser limitados por la interferencia (capacidad).
     \item Servir a una alta densidad de usuarios.
@@ -312,108 +305,90 @@ Los sistemas celulares brindan una determinada cobertura para un servicio, divid
 
 Una buena planeación celular es de crucial importancia para lograr un buen rendimiento del sistema y la provisión de una buena Calidad de servicio (QoS).\newline
 
-La planeación celular consiste en:\newline
+La planeación celular consiste en:
 \begin{itemize}
     \item Colocación de BSs y establecimiento de coberturas
     \item Optima administración de recursos de radio.
     \item Minimización de interferencia.
 \end{itemize}
-
-La planeación celular se desempeña de acuerdo a:\newline
+La planeación celular se desempeña de acuerdo a:
 \begin{itemize}
     \item Morfología del área de servicio y modelos de propagación.
     \item Perfiles de usuario y modelos de tráfico.
 \end{itemize}
-Considerando:\newline
-
+Considerando:
 \[R\to Radio\ de\ cobertura\ de\ la\ celda\] 
 \[D_r\to Distancia\ de\ reuso\ de\ celda\ co\_canal\] 
 \[d_u\to Distancia\ unitaria\ entre\ los\ centros\ de\ dos\ celdas\ adjacentes\] 
 \[d_u=\sqrt{3}R\] 
 \[Llegando\ a\ una\ distancia\ de\ reuso\ normalizada\ D_n\] 
-
 \begin{equation}
 D_n=i^2+ij+j^2, donde: i!=0, j!=0
 \label{eqn:DistReuso}
 \end{equation}
-
 \begin{equation}
 =>\ D_r=D_nd_u
 \label{eqn:Dn}
 \end{equation}
-
 \[\textrm{á}rea\ de\ una\ celda\ S_{cel}\] 
-
 \begin{equation}
 S_{cel}=(3\sqrt{3}/2)R^2
 \label{eqn:S}
 \end{equation}
-
 \[\textrm{á}rea\ de\ un\ cluster\ S_{clu}\] 
-
 \begin{equation}
 S_{clu}=(3\sqrt{3}/2)D^2_nd^2_u
 \label{eqn:Sclus}
 \end{equation}
-
 \[Número\ de\ celdas\ por\ cluster,\ N_{cc}\ \textrm{ó}\ tambi\textrm{é}n\ conocido\ como\ ``factor\ de\ reuso''\ \] 
-
 \begin{equation}
 N_{cc}=\frac{S_{clu}}{S_{cel}}
 \label{eqn:N}
 \end{equation}
 
-$Siendo\ valores\ posibles\ para\ N_{cc}\ ,\ \ \ \ 1,\ 3,\ 4,\ 7,\ 9,\ 12,\ 13,\ .\ .\ .\ $\textit{[Véase Figura~\ref{fig:clusterizacion} y Figura~\ref{fig:celdascocanal}]}\newline
+$Siendo\ valores\ posibles\ para\ N_{cc}\ ,\ \ \ \ 1,\ 3,\ 4,\ 7,\ 9,\ 12,\ 13,\ .\ .\ .\ $\textit{[Véase Figura~\ref{fig:clusterizacion} y Figura~\ref{fig:celdascocanal}]}.\newline
 
-Para implementar el reúso, se deben asignar un conjunto de canales disponibles para un grupo de celdas, el clúster y repetir ese conjunto a través de toda el área de servicio.\newline
+Para implementar el reúso, se deben asignar un conjunto de canales disponibles para un grupo de celdas, el clúster y repetir ese conjunto a través de toda el área de servicio.
 
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.5]{Figures/Clusterización de celdas con un factor de reúso de 3 celdas}
+    \decoRule
+    \caption[Clusterización de celdas con un factor de reúso de 3 celdas]{Clusterización de celdas con un factor de reúso de 3 celdas, [Fuente: Tranter 2003]}
+    \label{fig:clusterizacion}
+\end{figure}
 \begin{equation}
 N_{ch/c}=\frac{N_{ch/s}}{N_{cc}} 
 \label{eqn:Nch}
 \end{equation}
-
 \[N_{ch/c}\to Numero\ de\ canales\ por\ celda\] 
 \[N_{ch/s}\to \ Numero\ de\ canales\ en\ el\ sistema\] 
 \[N_{cc}\to Numero\ de\ celdas\ por\ cluster\ \] 
-
-La relación de reutilización co-canal,$\ r_{cc}\ $es usada para caracterizar clústeres\newline
+La relación de reutilización co-canal,$\ r_{cc}\ $es usada para caracterizar clústeres\
 \begin{equation}
 r_{cc}=\frac{D_r}{R}=\sqrt{3N_{cc}}
 \label{eqn:}
 \end{equation}
-
-Un valor grande de $r_{cc}$ corresponde a:\newline
+Un valor grande de $r_{cc}$ corresponde a:
 \begin{enumerate}
 \item  Una baja interferencia co-canal
 \item  Baja capacidad del sistema
 \end{enumerate}
-
-El clúster es escogido lo más pequeño posible tomando los umbrales de interferencia en consideración \parencite{Correia2018}.\newline
+El clúster es escogido lo más pequeño posible tomando los umbrales de interferencia en consideración \parencite{Correia2018}.
 \[GSM,\ {N}_{cc}=4\] 
 \[UMTS,\ {N}_{cc}=1\] 
 \[LTE,\ {N}_{cc}=3\] 
-
 \begin{figure}[th]
 \centering
-\includegraphics[scale=.4]{Figures/Clusterización de celdas con un factor de reúso de 3 celdas}
-\decoRule
-\caption[Clusterización de celdas con un factor de reúso de 3 celdas]{Clusterización de celdas con un factor de reúso de 3 celdas, [Fuente: Tranter 2003]}
-\label{fig:clusterizacion}
-\end{figure}
-
-\begin{figure}[th]
-\centering
-\includegraphics[scale=.5]{Figures/Localización de celdas co-canal con distintos factores de reuso}
+\includegraphics[scale=.6]{Figures/Localización de celdas co-canal con distintos factores de reuso}
 \decoRule
 \caption[Localización de celdas co-canal con distintos factores de reúso]{Localización de celdas co-canal con distintos factores de reúso, [Fuente: Tranter 2003]}
 \label{fig:celdascocanal}
 \end{figure}
-
 Diferentes tamaños de celda son usadas para distribuciones no uniformes de tráfico \parencite{TurjmanSmallCells}.\newline
-
 \begin{figure}[th]
 \centering
-\includegraphics[scale=.3]{Figures/Sistema celular con celdas de tamaño no uniforme}
+\includegraphics[scale=.5]{Figures/Sistema celular con celdas de tamaño no uniforme}
 \decoRule
 \caption[Sistema celular con celdas de tamaño no uniforme]{Sistema celular con celdas de tamaño no uniforme, [Fuente: Yacoub 1993]}
 \label{fig:nouniformcells}
@@ -421,7 +396,7 @@ Diferentes tamaños de celda son usadas para distribuciones no uniformes de trá
 
 El uso de diferentes tamaños de celdas:\newline
 •	Conduce a un incremento de interferencia, debido a la poca uniformidad en la estructura celular.\newline
-•	Requiere cuidado adicional en el despliegue de BSs\newline
+•	Requiere cuidado adicional en el despliegue de BSs
 
 \subsection{Planeación de frecuencia}
 La decisión de bandas de frecuencia para ser usadas en los diversos sistemas de comunicaciones es decidida por la ITU. La asignación de canales en una banda dada para un operador es decidido a nivel nacional por un cuerpo regulatorio, IFT en México. El hecho de que el espectro es muy escaso incita a un eficiente uso de frecuencias.\newline
@@ -473,6 +448,7 @@ Donde:
 \[N\to Potencia\ del\ ruido\] 
 
 Los sistemas de comunicaciones móviles se caracterizan por ser sistemas limitados por interferencia, donde I domina sobre N, por lo tanto la participación del ruido N puede ser ignorada \parencite{Correia2018}.\newline
+
 Quedando entonces como la relación portadora a interferencia:\newline
 \begin{equation}
 \frac{S}{I+N}\ \ \cong \ \ \frac{S}{I}\ \ \to \ \ SIR
