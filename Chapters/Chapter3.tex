@@ -1,90 +1,30 @@
 % Chapter 3
-
-\chapter{Estado del Arte} % Main chapter title
-
+\chapter{Estado del Arte}
 \label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este Capítulo se encuentra el estudio de los trabajos ya realizados que están relacionados con nuestra propuesta de proyecto terminal o marcan un precedente a esta, con la finalidad de presentar antecedentes, y dejar ver discrepancias y similitudes con estos.\newline
+En este Capítulo se encuentra el estudio de los trabajos anteriormente realizados que están relacionados con nuestro proyecto terminal, esto con la finalidad de presentar antecedentes, y dejar ver discrepancias y similitudes con el nuestro.\newline
 
-La complejidad que puede representar el realizar un análisis acertado, de una red móvil, ha resultado en la necesidad de realizar simulaciones de estas. En "Análisis de rendimiento en sistemas celulares 4G mediante algoritmos de asignación de recursos (canal, sub-portadoras)" \parencite{Celis2016}, encontramos un proyecto terminal realizado por alumnos de la UPIITA, en el cual se realizó la simulación, bajo el paradigma de eventos discretos, de un sistema celular 4G, enfocando su investigación en distintos esquemas de reúso de frecuencias y calendarizadores para obtener resultados sobre qué combinación de estos y bajo qué condiciones permitían al sistema tener un mayor desempeño. En este proyecto la simulación se llevó a cabo utilizando Matlab, el paradigma de programación fue el de eventos discretos por lo que presenta un buen precedente a nuestro proyecto en la UPIITA y es también un ejemplo de cómo el trabajo de dimensionar los sistemas de comunicación móviles es una necesitad recurrente en cada generación. \newline
+El trabajo de dimensionar los sistemas de comunicación móviles es una necesitad recurrente en cada generación, En \parencite{Celis2016}, se encuentra un proyecto terminal realizado por alumnos de la UPIITA, en el cual se realizó una simulación, bajo el paradigma de eventos discretos, de un sistema celular 4G, con un enfoque en distintos esquemas de reúso de frecuencias y calendarizadores para obtener resultados sobre qué combinación de estos y bajo qué condiciones permitían al sistema tener un mayor desempeño. En este proyecto la simulación se llevó a cabo utilizando Matlab, el paradigma de programación fue el de eventos discretos por lo que presenta un buen precedente a nuestro proyecto.\newline
 
-Se estudiaron de manera puntual diferentes modelos de sistema que sirvieron de apoyo para fundamentar las bases del proyecto, a continuación se detallan los aspectos más importantes de cada uno:
+Por otra parte, el reciente crecimiento de los casos de uso de IoT en una amplia gama de aplicaciones industriales, de servicios públicos y ambientales ha exigido la necesidad de la caracterización del tráfico tipo máquina (MTC). Reconociendo la importancia de este tráfico, la 3GPP ha propuesto dos modelos de tráfico, que modelan el tráfico agregado generado por una gran cantidad de dispositivos. El primero modela el tráfico generado aleatorio, mientras que el segundo modela el tráfico síncrono con el tiempo. Dado que los modelos solo se centran en el tráfico agregado, no son apropiados para el análisis práctico porque no son lo suficientemente precisos como para representar un tráfico M2M real y los modelos no permiten la manipulación máquina por máquina lo que hace difícil para integrar el tráfico en redes celulares.\newline
 
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
+En \parencite{Gupta2018}, los autores consideraron modelar el tráfico de dispositivos IoT conectados a través de tecnologías LPWAN. Debido a las diversas aplicaciones de IoT, no es trivial tener un solo modelo de tráfico para representarlos a todos, el tráfico puede clasificarse ampliamente como periódico, desencadenado por eventos o una combinación de ambos. Evaluaron el rendimiento de LoRaWAN, en presencia de un híbrido de ambos tipos de tráfico, donde el evento se propaga espacialmente a lo largo del tiempo. Utilizaron el modelo CMMPP para representar dicho tráfico característico de dispositivos IoT independientes activados por un evento. Ya que en una implementación práctica de dispositivos IoT basados en sensores, estos generalmente se implementan densamente para garantizar una medición suficiente y confiable. De este modo, cuando ocurre un evento, exhiben correlación espacial y temporal en su velocidad de tráfico debido a los fenómenos naturales de la métrica que miden. \newline
 
-\section{\textit{'Joint Downlink/Uplink RF Wake-Up Solution for IoT Over Cellular Networks'}}
+De igual manera pero ahora con un enfoque en sistemas celulares LTE, en \parencite{Smiljkovic2014} los autores analizaron el tráfico M2M con velocidad de datos variable bajo el supuesto de que la red LTE tiene recursos limitados. Los resultados muestran las características del tráfico M2M de una manera más realista, identificando las diferencias del tráfico estándar en la red celular. Revelan que el tráfico cuenta con la propiedad de auto similitud solo para una gran cantidad de MTC. Además, los resultados dan una idea de los parámetros de diseño que deben considerarse para LTE a fin de admitir el tráfico M2M.\newline
 
-En \parencite{Kouzayha2018} los autores presentan un modelo de sistema para redes celulares IoT, cuya principal premisa es la implementación de una solución que llamaron \textit{WAKE-UP. }Este sistema despierta por señales de radio frecuencia a los dispositivos IoT, para los que se modeló un estado de sueño profundo.\newline
+Estos trabajos son una gran aportación ya que demostraron que se puede usar un modelo de tráfico CMMPP para evaluar el impacto en la tecnología de radio IoT, configurando adecuadamente el modelo para representar casos de uso del mundo real. La integración del tráfico M2M en las redes celulares existentes será parte inevitable de la evolución de las redes. En nuestro proyecto se planea evaluar este modelo CMMPP, pero enfocado en sistemas celulares 5G donde se esté dando servicio a usuarios NB-IoT de distintas aplicaciones, además, consideramos un esquema de acceso al medio para la compartición eficiente de los recursos.\newline
 
-Esta señal de despertador de RF garantiza la alta capacidad de respuesta del dispositivo cuando se le solicita comunicación y reduce la actividad de escucha inactiva, que consume una parte notable de la energía de la batería. Estos esquemas de activación bajo demanda son particularmente adecuados para aplicaciones de IoT con bajo ciclo de trabajo (por ejemplo, detección de incendios, vigilancia de fallas de máquinas y, en general, todos los escenarios controlados por eventos). \newline
+Ahora bien, del lado de los esquemas de acceso no ortogonales (NOMA) en redes de quinta generación, y más en concreto de NOMA bajo estándares de 5G/IoT, se ha trabajado arduamente ya que el tema de maximizar la conectividad de los sistemas en escenarios masivos de usuarios esperados en sistemas 5G/IoT son una gran discusión de interés en la actualidad. Dentro de la literatura científica se encuentra toda una gama de propuestas de diferentes modelos de sistema relacionados a NOMA.\newline
 
-El modelo propuesto en \parencite{Kouzayha2018} sigue un mecanismo similar al \textit{Power Saving Mode} (PSM) definido por la 3GPP (y usado en NB-IoT), coinciden en que los nodos IoT entrarán en un estado de sueño profundo cuando no tengan datos que transmitir, mas sin embargo en el PSM se hace uso de temporizadores para activar al nodo IoT, en contraste con la señal RF de despertador que se plantea aquí.\newline
+En \parencite{Zhang2017}, los autores proponen un sistema usando geometría estocástica (PPP) para modelar un ambiente inalámbrico denso que admita NOMA tanto en el enlace de subida como en el enlace de bajada; el modelado es analítico y validado por simulación. \newline
 
-Este modelo utiliza una geometría estocástica para distribuir en el plano tanto a las estaciones base como a los dispositivos siguiendo un PPP independiente con una densidad espacial distinta tanto para las estaciones base como para los dispositivos, esto lo podemos ver gráficamente en la \textit{Figura~\ref{fig:distribuBS}}:
-
-\begin{figure}[th]
-\centering
-\includegraphics[scale=.8]{Figures/Distribución de estaciones base (triángulos) y dispositivos (puntos)}
-\decoRule
-\caption[Distribución de estaciones base y dispositivos]{Distribución de estaciones base (triángulos) y dispositivos (puntos)}
-\label{fig:distribuBS}
-\end{figure}
-
-La principal característica del modelo es la capacidad de los dispositivos de internarse en un estado, propuesto en el modelo, llamado estado de sueño profundo (\textit{deep sleep state) }el cual permitiría tener un ahorro de energía en comparación con el modo de ahorro de energía (\textit{Power Saving Mode, PSM) }propuesto por la 3GPP. \newline
-
-De este estado de sueño profundo\textit{ }a diferencia de tener similitudes con el PSM no se sale de manera periódica cuando se termina un temporizador, sino que la única forma de salir de él es a través de una señal de \textit{wake-up} transmitida desde la estación base que le brinda servicio al nodo que se encuentra en el estado de sueño profundo, siempre y cuando esta señal cuente con la potencia suficiente para activar la circuitería del dispositivo. \newline
-
-Esto trae a escena nuevas consideraciones a tener, debido a que si bien no existe interferencia intercelular en el modelo de \parencite{Kouzayha2018}, el reusó de canal tiene un valor de 1 y las estaciones bases adyacentes utilizan los mismos recursos para intentar despertar a sus propios dispositivos, de manera de que falsos despertares pueden ocurrir entre los dispositivos. Esto se puede apreciar en la Figura~\ref{fig:despertar}.\newline
-
-\begin{figure}[th]
-\centering
-\includegraphics[scale=1]{Figures/Demostración de un despertar falso y uno correcto}
-\decoRule
-\caption[Demostración de un despertar falso y uno correcto]{Demostración de un despertar falso y uno correcto}
-\label{fig:despertar}
-\end{figure}
-
-El artículo propone entonces la implementación de un bloque en la circuitería de los nodos IoT que se encargue de realizar 3 operaciones como se puede apreciar en la Figura~\ref{fig:circuiteria}, el emparejamiento de la red quien reduciría la perdida de transmisión desde la antena e incrementar el voltaje proporcionado al rectificador, el rectificador se encarga de convertir la señal RF en voltaje DC mientras que el detector de ID se encarga de comparar el ID del dispositivo con el de la señal RF.\newline
-
-\begin{figure}[th]
-\centering
-\includegraphics[scale=1]{Figures/Implementación de wake-up RF en la circuitería IoT}
-\decoRule
-\caption[Implementación de \textit{wake-up} RF en la circuitería IoT]{Implementación de \textit{wake-up} RF en la circuitería IoT}
-\label{fig:circuiteria}
-\end{figure}
-
-Finalmente se presentan resultados de las probabilidades de falsos y correctos despertares además del ahorro en el consumo de energía reportado en comparación con la opción de PSM.
-
-
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{\textit{'Downlink and uplink non-orthogonal multiple access in a dense wireless network'}}
-
-En \parencite{Zhang2017}, los autores proponen un sistema usando geometría estocástica para modelar un ambiente inalámbrico denso, que admita NOMA tanto en el enlace de subida como en el enlace de bajada; el modelado es analítico y validado por simulación.\newline
-
-Los aspectos generales del sistema considerados en \parencite{Zhang2017} son:
-\begin{itemize}
-\item  Ambiente denso de múltiples celdas con factor de reuso de 1 con geometría estocástica usando \textit{Poisson Point Process} (PPP) para modelar el despliegue de las BS y UE en un plano Euclidiano 2D.
-\end{itemize}
-
-\textbf{Sistema \textit{downlink}}\newline
-
-Los autores consideran un error de propagación SIC durante el proceso de decodificación por parte del UE. Se hace uso de dos esquemas de emparejamiento de usuario: aleatorio y selectivo.\newline
-
+En la implementación de NOMA proponen dos esquemas de emparejamiento de usuario: uno aleatorio y otro selectivo:
 \begin{enumerate}
 \item  Cuando el agrupamiento es aleatorio, los UE son seleccionados aleatoriamente.
 \item  Cuando el agrupamiento es selectivo, el primer UE deberá tener una relación señal-interferencia más ruido (SINR) por encima del umbral T1 y el segundo UE tiene un SINR por debajo del umbral T2, T2 $\mathrm{\le}$ T1.
 \end{enumerate}
 
-En ambos esquemas de emparejamiento, el UE con una mejor ganancia de canal normalizada se denota como UE1 y el UE con una peor ganancia de canal normalizada se denota como UE2.\newline
-
-Se optó por una estrategia de asignación de potencia fija, donde la potencia de enlace de bajada asignada a un UE está predefinida y permanece sin cambios.\newline
-
+Consideraron un error de propagación SIC durante el proceso de decodificación por parte del UE. Además, optaron por una estrategia de asignación de potencia fija, donde la potencia de enlace de bajada asignada a un UE está predefinida y permanece sin cambios.\newline
 
 \begin{figure}
 \centering
@@ -101,19 +41,17 @@ Se optó por una estrategia de asignación de potencia fija, donde la potencia d
 \end{minipage}
 \end{figure}
 
-Las ganancias implementan el desvanecimiento de Rayleigh entre BS0 y UEi. La ganancia de desvanecimiento Rayleigh entre BS y UE sigue una distribución exponencial con media 1 y se distribuye de forma independiente e idéntica (i.i.d.)\newline
-Para todos los UE, ${ri}$ se distribuye de forma independiente e idéntica (i.i.d.) con una función de densidad de probabilidad (pdf) dada.\newline
-En el enlace Descendente,se agregan perdidas por trayectoria con un exponente de pérdida y se calcula la interferencia entre celdas cumulativa de todas las bases adyacentes.\newline
-En el enlace Ascendente, la interferencia inter-celdas proviene de todos los otros UEs que comparten la misma sub-banda. \textit{[Véanse Figuras~\ref{fig:img1}, \ref{fig:img2}]}
+Las ganancias implementan el desvanecimiento de Rayleigh entre la $BS_0$ y $UE_i$. La ganancia en potencia de desvanecimiento Rayleigh entre BS y UE sigue una distribución exponencial con media 1 y se distribuye de forma independiente e idéntica (i.i.d.)\newline
 
+En el enlace descendente (DL), se agregaron perdidas por trayectoria con un exponente de pérdida y se calcula la interferencia entre celdas cumulativa de todas las bases adyacentes. En el enlace ascendente (UL), la interferencia inter-celdas proviene de todos los otros UEs que comparten la misma sub-banda. \textit{[Véanse Figuras~\ref{fig:img1}, \ref{fig:img2}]}\newline
 
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
+Como se puede observar, este trabajo se enfocó en NOMA pero para sistemas 5G en general, sin embargo no consideraron la actuación de dispositivos IoT los cuales al tener diferentes calidades de servicio, impactaría en la toma de decisiones con respecto a NOMA, más en concreto en el emparejamiento de usuarios.\newline
 
-\section{\textit{'NOMA Aided Narrowband IoT for Machine Type Communications With User Clustering'}}
+Por el contrario, un grupo de autores de la Universidad Británica de Columbia\parencite{Mostafa2019} han trabajado en emplear NOMA para mejorar la densidad de conexión en los sistemas NB-IoT. En su propuesta cada subportadora puede dar servicio máximo a dos dispositivos con diversos requisitos de QoS. \newline
 
-Los autores en \parencite{Shahini2019} desarrollaron un esquema NOMA en el dominio de potencia con agrupación de usuarios en un sistema NB-IoT. Resolvieron un problema de optimización para maximizar el rendimiento total de la red al optimizar la asignación de recursos de los dispositivos MTC y la agrupación de NOMA al tiempo que satisface los requisitos de potencia de transmisión y QoS.  Además, diseñaron un algoritmo heurístico eficiente para resolver el problema de optimización propuesto mediante la optimización conjunta de la agrupación NOMA y la asignación de recursos de dispositivos MTC.\newline
+Formularon problemas de asignación de potencia de transmisión y subportadora conjunta para los modos singletone y multitone.  Además, propusieron algoritmos heurísticos con baja complejidad y dieron como resultado un rendimiento cercano a las soluciones óptimas y subóptimas en ambos casos. Los resultados de la simulación mostraron que el uso de NOMA aumentó la densidad de conexión hasta en un 87\% en comparación con OMA en el modo singletone y en el modo multitono, la densidad de conexión también se incrementó hasta en un 24\%.\newline
+
+Los autores en \parencite{Shahini2019} desarrollaron un esquema NOMA en el dominio de potencia con agrupación de usuarios en un sistema NB-IoT. Resolvieron un problema de optimización para maximizar el rendimiento total de la red al optimizar la asignación de recursos de los dispositivos MTC y la agrupación de NOMA al tiempo que satisface los requisitos de potencia de transmisión y QoS. Además, diseñaron un algoritmo heurístico eficiente para resolver el problema de optimización propuesto mediante la optimización conjunta de la agrupación NOMA y la asignación de recursos de dispositivos MTC.\newline
 
 En su modelo de sistema consideraron un escenario de una única celda (solo un eNB), que admite dispositivos MTC basado en el estándar NB-IoT. Asumieron que no hay interferencia entre células de otras células vecinas. \newline
 
@@ -125,52 +63,6 @@ En su modelo de sistema consideraron un escenario de una única celda (solo un e
 \label{fig:NOMA_NBIOT}
 \end{figure}
 
-Los dispositivos activos de URLLC y mMTC comparten un PRB para la transmisión de datos de enlace ascendente en un intervalo de tiempo de transmisión (TTI). Se supone que el ancho de banda disponible de un PRB se divide en un conjunto de frecuencias de subcanal S y el ancho de banda de cada subcanal es W . De hecho, el ancho de banda del sistema se puede dividir por igual en 48 o 12 subportadoras en los sistemas NB-IoT.\newline
+Propusieron un esquema NOMA de dominio de potencia agrupando (de entre 1 a 4) dispositivos mMTC y URLLC en una red NB-IoT como se muestra en la Figura~\ref{fig:NOMA_NBIOT} . Según el esquema NOMA, los dispositivos mMTC y URLLC comparten cada subportadora (subcanal) y transmiten datos de manera no ortogonal, es decir, más de un usuario puede compartir el mismo subcanal. Por lo tanto, los dispositivos se dividen en diferentes grupos, llamados grupos NOMA. Para decodificar con éxito los mensajes del mensaje recibido combinado, el eNB emplea el esquema SIC. Por lo tanto, los usuarios deben ordenarse en cada grupo de acuerdo con el método SIC.\newline
 
-En particular, el espacio de subportadora de 3.75 kHz puede ser soportado para transmisiones de enlace ascendente [9] . Por lo tanto, en este artículo, consideraron un PRB con 48 subportadoras de 3.75 kHz para las transmisiones de datos de enlace ascendente. Tenga en cuenta que, a diferencia del FDMA de una sola portadora (SC-FDMA) que se usa actualmente para las transmisiones de enlace ascendente en NB-IoT, este modelo de sistema puede admitir más dispositivos conectados al asignar múltiples dispositivos a cada subportadora. Por lo tanto, los dispositivos MTC se deben clasificar en diferentes grupos para compartir los mismos recursos espectrales asignados a su grupo.\newline
-
-Propusieron un esquema NOMA de dominio de potencia agrupando dispositivos mMTC y URLLC en una red NB-IoT como se muestra en la Figura~\ref{fig:NOMA_NBIOT} . Según el esquema NOMA, los dispositivos mMTC y URLLC comparten cada subportadora (subcanal) y transmiten datos de manera no ortogonal, es decir, más de un usuario puede compartir el mismo subcanal. Por lo tanto, los dispositivos se dividen en diferentes grupos, llamados grupos NOMA.\newline
-
-Para decodificar con éxito los mensajes del mensaje recibido combinado, el eNB emplea el esquema SIC. Por lo tanto, los usuarios deben ordenarse en cada grupo de acuerdo con el método SIC.\newline
-
-\begin{itemize}
-  \item U: Lista de dispositivos uRLLC
-  \item M: Lista de dispositivoss mMTC
-  \item S: Lista de Subportadoras s
-  \item C: Lista de Grupos NOMA
-  \item $R_{m}^{th}:$ Tasa objetivo del enésimo dispositivo m mMTC 
-  \item $R_{u}^{th}:$ Tasa objetivo del enésimo dispositivo u uRLLC
-  \item $P_{m}^{max}:$ Potencia máxima del enésimo dispositivo m mMTC (i.e. 23dBm)
-  \item $P_{u}^{max}:$ Potencia máxima del enésimo dispositivo u uRLLC (i.e. 23dBm)
-  \item $h_{m}^{s}:$ Ganancia de canal del enésimo dispositivo m mMTC sobre la portadora s
-  \item $h_{u}^{s}:$ Ganancia de canal del enésimo dispositivo u uRLLC sobre la portadora s
-\end{itemize}
-
-La tasa de datos alcanzable de un dispositivo $m$ (mMTC) en términos de la tasa agregada sobre las subportadoras asignadas se puede expresar como:
-\begin{equation}
-{R_{m}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\alpha _{m}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {M}\backslash m} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}} } }}} }\right)
-\label{eqn:Rm}
-\end{equation}
-
-Del mismo modo, la Tasa de datos alcanzable de un dispositivo $u$ (URLLC) puede determinarse mediante el teorema de Shannon-Hartley. Hay que tomar en cuenta que los rangos de URLLC siempre son mayores que los de mMTC en cada clúster NOMA. Por lo tanto, reciben interferencia de todos los miembros del clúster mMTC, así como de los miembros del clúster URLLC con rangos más altos. 
-Por lo tanto, la tasa de datos alcanzable de un dispositivo $u$ URLLC sobre las subportadoras asignadas es:
-
-\begin{equation}
-{R_{u}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\beta _{u}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{u}^{s}} }\right |}^{2}}p_{u}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {U}\backslash u} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\beta _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}}} \sum \limits _{m \in \mathcal {M}} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}} } }}} }\right)
-\label{eqn:Ru}
-\end{equation}
-
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{\textit{'Connectivity Maximization for Narrowband IoT Systems with NOMA'}}
-
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{\textit{'Connection Density Maximization of Narrowband IoT Systems with NOMA'}}
-
-
-\myworries{TODO: ACTUALIZAR estado del arte de acuerdo a los articulos nuevos que tomamos en consideración}\newline
+Como vemos, se ha investigado bastante acerca del desempeño de los esquemas NOMA para IoT, sin embargo nuestra propuesta resulta diferente ya que además de considerar un escenario celular bajo un esquema PD-NOMA, se propone implementar un despliegue de UEs usando PPP , porque sirven como modelo de referencia para redes masivas y de interferencia limitada, un modelo de canal más realista y con pérdidas por desvanecimiento rápido, y por último, un modelo de trafico CMMPP que como se ha revisado en \parencite{Gupta2018} son los modelos más realistas para el tráfico MTC.
