@@ -465,19 +465,18 @@ La estimación de la relación portadora a interferencia co-canal ${S}/{I_{cc}}$
 \item  Todas las BSs tienen antenas omnidireccionales
 \item  El decaimiento de la potencia promedio ($a_{pd}$) con la distancia es de la forma:
 \end{enumerate}
-
 \begin{equation}
 P_r=P_0{(d/d_0)}^{-a_{pd}} 
 \label{eqn:P_r}
 \end{equation}
 
-En un sistema celular en general, la interferencia co-canal es calculada tomando la interferencia de todas las celdas $N_{Icc}$\newline
+En un sistema celular en general, la interferencia co-canal es calculada tomando la interferencia de todas las celdas $N_{Icc}$.
 \begin{equation}
 \frac{S}{I_{cc}}\ =\ \ \frac{S}{\sum^{N_{Icc}}_{k=1}{I_k}} 
 \label{eqn:Icc}
 \end{equation}
 
-Usualmente la interferencia puede ser estimada por tomar únicamente el primer anillo de interferencia \parencite{Correia2018}.\newline
+Usualmente la interferencia puede ser estimada por tomar únicamente el primer anillo de interferencia \parencite{Correia2018}.
 \begin{equation}
 \frac{S}{I_{cc}}\ =\ \ \frac{S}{\sum^6_{k=1}{I_k}} 
 \label{eqn:I}
@@ -489,11 +488,11 @@ Para el caso de transmisión de bajada \textit{downlink} para un usuario en los 
     \label{eqn:SIcc}
 \end{equation}
 
-Donde:\\
-$R$ : radio de cobertura de la celda\\
-$D_{r}:$ distancia de reuso de celda co-canal\\
+Donde:
+\[R\ :\ radio\ de\ cobertura\ de\ la\ celda\] 
+\[D_{r}\ :\ distancia\ de\ reuso\ de\ celda\ co-canal\] 
 
-La interferencia puede disminuir \parencite{Correia2018}:
+En términos generales, la interferencia puede disminuir \parencite{Correia2018}:
 \begin{itemize}
     \item implementando celdas sectorizadas.
     \item \textit{downtilting} el lóbulo principal de la antena de la BS.
@@ -503,7 +502,7 @@ La interferencia puede disminuir \parencite{Correia2018}:
     \item implementando \textit{frequency hopping }
 \end{itemize}
 
-En resumen, la planeación de una red celular de radio es ejecutada de la siguiente manera:\newline
+En resumen, la planeación de una red celular de radio es ejecutada de la siguiente manera \parencite{Correia2018}:
 \begin{enumerate}
     \item El mínimo valor para la relación portadora a interferencia impone el tamaño del clúster.
     \item Se estima el tráfico en una celda determinada.
@@ -512,12 +511,9 @@ En resumen, la planeación de una red celular de radio es ejecutada de la siguie
     \item Se establece el plan de frecuencias y la estructura del despliegue de celdas.
     \item Cuando se propone una estructura de celdas no uniforme, los canales deberán ser distribuidos de acuerdo a las necesidades de capacidad, y a los valores topes permitidos de interferencias co- canal y canal-adyacente.
 \end{enumerate}\
-
-
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
-
 \section{CAPACIDAD EN SISTEMAS DE COMUNICACIONES}
 
 La teoría de la información de Shannon nos dice la cantidad de información que un canal puede transportar. En otras palabras, especifica la capacidad del canal. La capacidad de un sistema de comunicación es la velocidad de datos máxima en bits por segundo que se puede transferir de manera confiable del transmisor al receptor. En el sentido estricto de la teoría de la información, este es un límite superior insuperable que, en la práctica, solo se puede abordar. En un único enlace Tx-Rx de ancho de banda de unidad sujeto a AWGN, la capacidad en bits por uso de canal (es decir, bps / Hz) viene dada por la fórmula de \emph{Shannon-Hartley}:\newline
@@ -526,11 +522,20 @@ La teoría de la información de Shannon nos dice la cantidad de información qu
 C=B{{\mathrm{log}}_2 \left(1+\frac{S}{N}\right)\   [bps] }
 \label{eqn:Shannon}
 \end{equation}
-\[B\ es\ el\ ancho\ de\ banda\ del\ canal\ en\ Hertzios.\]
-\[C\ es\ la\ capacidad\ del\ canal\ (tasa\ de\ bits\ de\ informaci\textrm{ó}n\ bit/s)\]
-\[S\ es\ la\ potencia\ de\ la\ se\textrm{\~{n}}al\ \textrm{ú}til\ (W,\ mW,\ etc.)\]
-\[N\ es\ la\ potencia\ del\ ruido\ presente\ en\ el\ canal,\left(W,\ mW,\ etc.\right),\ \ que\ trata\ de\ enmascarar\ a\ la\ se\textrm{\~{n}}al\ \textrm{ú}til.\] 
-
+Donde:
+\[B:\ es\ el\ ancho\ de\ banda\ del\ canal\ en\ Hertzios.\]
+\[C:\ es\ la\ capacidad\ del\ canal\ (tasa\ de\ bits\ de\ informaci\textrm{ó}n\ bit/s)\]
+\[S:\ es\ la\ potencia\ de\ la\ se\textrm{\~{n}}al\ \textrm{ú}til\ (W,\ mW,\ etc.)\]
+\[N:\ es\ la\ potencia\ del\ ruido\ presente\ en\ el\ canal,\left(W,\ mW,\ etc.\right),\ \ que\ trata\ de\ enmascarar\ a\ la\ se\textrm{\~{n}}al\ \textrm{ú}til.\] 
+También descrita como:
+\begin{equation}
+    C =Blog_2(1 + \frac {P_{tx} H}{N_0B})
+    \label{eqn:Shannon}
+\end{equation}
+Donde:
+\[P_{tx}:\ es\ la\ potencia\ de\ transmisión\ promedio\]
+\[H:\ es\ la\ ganancia\ de\ potencia\ del\ canal\]
+\[N_0:\ es\ la\ densidad\ de\ potencia\ del\ ruido (~-173 dBm/Hz)\]
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -571,17 +576,17 @@ Los enfoques OMA no tienen la capacidad de combatir la interferencia entre célu
 Existen 4 técnicas básicas de acceso múltiple:
 
 \begin{enumerate}
-\item  frecuencia: asignación de una portadora - FDMA (Acceso múltiple por división de frecuencia)
-\item  tiempo: asignación de un intervalo de tiempo - TDMA (Acceso múltiple por división de tiempo)
-\item  código: asignación de un código - CDMA (Acceso múltiple por división de código)
-\item   frecuencia ortogonal: asignación de un conjunto de sub-portadoras - OFDMA (Acceso múltiple por división de frecuencia ortogonal).
+\item  Frecuencia: asignación de una portadora - FDMA (Acceso múltiple por división de frecuencia)
+\item  Tiempo: asignación de un intervalo de tiempo - TDMA (Acceso múltiple por división de tiempo)
+\item  Código: asignación de un código - CDMA (Acceso múltiple por división de código)
+\item  Frecuencia Ortogonal: asignación de un conjunto de sub-portadoras - OFDMA (Acceso múltiple por división de frecuencia ortogonal).
 \end{enumerate}
 
- En muchos sistemas prácticos, se utiliza una mezcla o combinación de estas técnicas básicas \parencite{Correia2018}.\newline
+ En muchos sistemas prácticos, se utiliza una mezcla o combinación de estas técnicas básicas \parencite{Correia2018}.
 
-\subsection{Generaciones anteriores de sistemas de comunicaciones móviles}
+\subsection{Generaciones anteriores de los sistemas de comunicaciones móviles}
 
-La generación 1G fue la primera generación de tecnología celular inalámbrica. 1G se introdujo en la década de 1980. Las señales de radio utilizadas por la red 1G fueron analógicas y proporcionaba comunicación solo por voz, alcanzaba una velocidad de 2.4 Kbps. La técnica de acceso múltiple utilizada en 1G es el acceso múltiple por división de frecuencia (FDMA) \parencite{Nair2018}. Esta generación utiliza el método de conmutación de circuitos para la transmisión de datos. \newline
+La generación 1G fue la primera generación de tecnología celular inalámbrica. 1G se introdujo en la década de 1980. Las señales de radio utilizadas por la red 1G fueron analógicas y proporcionaba comunicación solo por voz, alcanzaba una velocidad de 2.4 Kbps. La técnica de acceso múltiple utilizada en 1G es el acceso múltiple por división de frecuencia (FDMA) [véase Figura~\ref{fig:MAs}]\parencite{Nair2018}. Esta generación utiliza el método de conmutación de circuitos para la transmisión de datos. \newline
 
 Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en el estándar GSM en Finlandia 1991 \parencite{Nair2018}. 2G utilizó el método de conmutación de paquetes para la transmisión de datos y habilitó el cifrado digital de la conversación por teléfono, además proporcionaron servicios multimedia como SMS (Servicios de mensajes cortos) MMS (Servicios de mensajes multimedia) y las velocidades de descarga y carga fueron de hasta 236 Kbps. Se utilizó el acceso múltiple por división de tiempo (TDMA), como el número de usuarios aumentó con el tiempo, TDMA se volvió obsoleto por causar una velocidad más baja para cada usuario.\newline
 
@@ -623,14 +628,11 @@ La \textit{Figura~\ref{fig:5g}} muestra las ocho familias de casos de uso por la
 
 En términos generales, ITU-R ha concluido tres casos de uso para abordar la gran variedad de requisitos y características \parencite{5gMobileComms}:
 
-
 \begin{enumerate}
     \item \textbf{Banda ancha móvil mejorada} \textbf{(eMBB)}: la banda ancha móvil aborda casos de uso centrados en el hombre para acceder a contenido multimedia, servicios y datos. La demanda de banda ancha móvil seguirá aumentando, lo que dará lugar a una banda ancha móvil mejorada. El escenario mejorado de uso de banda ancha móvil vendrá con nuevas áreas de aplicación y requisitos, además de las aplicaciones de banda ancha móvil existentes para un mejor rendimiento y una experiencia de usuario cada vez más perfecta.
     \item \textbf{Comunicaciones ultra fiables y de baja latencia (URLLC)}: este caso de uso tiene requisitos estrictos para capacidades tales como rendimiento, latencia y disponibilidad. Algunos ejemplos incluyen el control inalámbrico de la fabricación industrial o los procesos de producción, cirugía médica remota, automatización de la distribución en una red inteligente, seguridad en el transporte, manejo autónomo de automóviles, etc.
     \item \textbf{Comunicaciones masivas de tipo máquina (mMTC)}: este caso de uso se caracteriza por un gran número de dispositivos conectados que transmiten un volumen relativamente bajo de datos no sensibles al retardo. Los dispositivos deben ser de bajo costo y tener una batería de larga duración.
 \end{enumerate}
-
-
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -666,9 +668,10 @@ Para caracterizar el tráfico se deben definir previamente los siguientes concep
 \end{enumerate}
 
 Suponiendo un sistema que es capaz de atender todas las peticiones de servicio y al que arriban $\lambda$ peticiones/segundo. Esto implica que en un intervalo T segundos se recibirían $\lambda$$\cdot$T peticiones de servicio. Si la duración promedio de estos servicios es $\mu$ segundos, entonces el volumen de tráfico ofrecido (y en este caso también cursado) es $\lambda$$\cdot$$\mu$$\cdot$T y la intensidad de tráfico ofrecido se reduce a:
-\begin{center}
-$a=\lambda\cdot\mu$
-\end{center}
+\begin{equation}
+    a=\lambda\cdot\mu
+    \label{eqn:a}
+\end{equation}
 
 Para un sistema que atiende todas las peticiones el tráfico cursado y el ofrecido son iguales, sin embargo, cuando se analizan sistemas que no cumplan esta característica, a se vuelve un valor hipotético (la intensidad de tráfico cursado, si todas las peticiones se atendieran), sin embargo, seguirá describiendo la intensidad del tráfico que se ofrece. Es importante mencionar que el desempeño de un sistema (en términos de algún parámetro de calidad de servicio) no va a depender del valor de $\lambda$ o de $\mu$ por sí solos, sino del producto de ellos. Por ejemplo, un sistema se puede saturar tanto por una alta tasa de arribos como por una gran duración del tiempo de servicio.\newline
 
@@ -707,7 +710,7 @@ Una técnica que simplifica significativamente el cálculo de las probabilidades
 
  Otra consideración de suma importancia en el sistema de colas es tomar en cuenta que tan grande es la cantidad de posibles fuentes de tráfico en comparación con la cantidad de recursos; cuando la cantidad de fuentes es muy grande se puede aproximar con infinito y los análisis se simplifican considerablemente.\newline
 
- También es importante mencionar que hay sistemas en los que las peticiones pueden experimentar bloqueo o retardo. Además de las consideraciones previas: la distribución del TEA y del TDS, la cantidad de recursos y el tamaño de la cola de espera son parámetros que influyen en el desempeño de un sistema.\newline
+ También es importante mencionar que hay sistemas en los que las peticiones pueden experimentar bloqueo o retardo. Además de las consideraciones previas: la distribución del TEA y del TDS, la cantidad de recursos y el tamaño de la cola de espera son parámetros que influyen en el desempeño de un sistema.
 
  \subsection{Notación Kendall}
 
@@ -716,10 +719,10 @@ $c1/ c2/ s/ K$
 
  Donde:
 \begin{enumerate}
-\item  \textbf{c1} representa la distribución del TEA y pueden asignársele las letras M (arribos Markovianos, es decir distribución exponencial negativa) o G (General, es decir cualquier otra distribución).
-\item  \textbf{c2} es la distribución del TDS y puede ser M (exponencial negativa), D (Determinístico, es decir el TDS es constante) o G (general).
-\item  \textbf{s} es el número de servidores.
-\item  \textbf{K} es la longitud de la cola de espera.
+    \item  \textbf{c1} representa la distribución del TEA y pueden asignársele las letras M (arribos Markovianos, es decir distribución exponencial negativa) o G (General, es decir cualquier otra distribución).
+    \item  \textbf{c2} es la distribución del TDS y puede ser M (exponencial negativa), D (Determinístico, es decir el TDS es constante) o G (general).
+    \item  \textbf{s} es el número de servidores.
+    \item  \textbf{K} es la longitud de la cola de espera.
 \end{enumerate}
 
  Se refiere como $\lambda$ a la tasa de arribos generada por todas las fuentes de tráfico y se denotó anteriormente $\mu$ a la duración promedio de un servicio. El inverso de dicho tiempo se considera la tasa a la que finaliza un servicio en curso. En caso de que existan j servicios en curso la tasa a la que finalizan las llamadas es j/$\mu$. Esta fórmula concuerda con el hecho de que a medida que hay más servicios en curso, menos tiempo se tiene que esperar a que alguno de ellas finalice, es decir, la tasa de finalización se incrementa.
@@ -735,30 +738,9 @@ De todas las probabilidades de estado, Ps tiene particular importancia, ya que r
     \label{eqn:Ps}
 \end{equation} 
 
-La Ecuación 2.29 fue desarrollada originalmente por el danés A. K. Erlang, por lo que es comúnmente conocida como fórmula de \textbf{Erlang-B}.\newline
+La Ecuación~\ref{eqn:Ps} fue desarrollada originalmente por el danés A. K. Erlang, por lo que es comúnmente conocida como fórmula de \textbf{Erlang-B}.\newline
 
-Notese que en la Ecuación 2.28 el producto $\lambda$*$\mu$ se puede sustituir por a, el tráfico ofrecido, y con esto se corrobora que la calidad del servicio (en este caso la probabilidad de bloqueo) no depende de $\lambda$ o de $\mu$ por si solos, sino de su producto.\newline
-
-
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{SIMULACIONES ORIENTADAS A EVENTOS DISCRETOS}
-
-
-Una simulación es casi siempre la imitación de algún proceso o sistema que toma o podría tomar lugar en el mundo real, implementada utilizando un paradigma de programación y ejecutada por computadoras. Para realizarse esta, debe tenerse en cuenta un previo estudio del sistema real o de algún modelo o modelos existentes, junto con un análisis detallado de las variables presentes, además es necesario hacer distintas suposiciones al estar el estándar aún en desarrollo. Todo esto para permitir una simulación que simplifique el sistema, pero aun siendo capaz de generar resultados que puedan ayudar a su caracterización y a ser dimensionado. \newline
-
-En \parencite{Banks2005} se describe a un sistema discreto como: \textit{``[{\dots}] aquel en el cual las variables de estado cambian únicamente en un número discreto de instantes en el tiempo''.} Por lo que la simulación de eventos discretos es la implementación en hardware de un sistema en el que sus variables de estado cambian de tal forma con el arribo de eventos, los cuales se tratan de ocurrencias que se presentan de forma instantánea y cuentan con un nacimiento y una muerte.\newline
-
-En cuanto a un evento o proceso estocástico, tenemos la siguiente definición \parencite{Correia2018}:
-
-\textit{
-Definición: Un proceso estocástico es una colección de variables aleatorias $X_{t}:t\in T$ parametrizada por un conjunto T, llamado espacio parametral, en donde las variables toman valores en un conjunto S llamado espacio de estados.}\\
-\textit{
-En los casos más sencillos se toma como espacio perimetral al conjunto discreto\\}
-\textit{
-T = [0, 1, 2,...] y estos números se interpretan como tiempos. En este caso se dice que el proceso es a tiempo discreto, y en general este tipo de procesos se denotara  por [Xn: n = 0, 1,. . .]} 
+Notese que en la Ecuación~\ref{eqn:Pb} el producto $\lambda \mu$ se puede sustituir por a, el tráfico ofrecido, y con esto se corrobora que la calidad del servicio (en este caso la probabilidad de bloqueo) no depende de $\lambda$ o de $\mu$ por si solos, sino de su producto.\newline
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -782,9 +764,24 @@ El escenario para la simulación a nivel de sistema generalmente consiste en una
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{LENGUAJES DE PROGRAMACIÓN PARA SIMULACIONES ORIENTADAS A EVENTOS DISCRETOS (DES)}
+\section{SIMULACIONES ORIENTADAS A EVENTOS DISCRETOS}
 
-Considerando solo los lenguajes de código abierto, tenemos a \textit{JAVA (DESMO-J y Ptolomeo I), Python (Simpy) y C++ (SystemC y PowerDEVS)} como los lenguajes más conocidos y de entre estos sobresalen \textit{Simpy }(P\textit{ython}) y \textit{SystemC }(\textit{C++) }como los que han tenido más soporte y actualización (2018), lo cual será un factor importante al elegir el lenguaje.\newline
+
+Una simulación es casi siempre la imitación de algún proceso o sistema que toma o podría tomar lugar en el mundo real, implementada utilizando un paradigma de programación y ejecutada por computadoras. Para realizarse esta, debe tenerse en cuenta un previo estudio del sistema real o de algún modelo o modelos existentes, junto con un análisis detallado de las variables presentes, además es necesario hacer distintas suposiciones al estar el estándar aún en desarrollo. Todo esto para permitir una simulación que simplifique el sistema, pero aun siendo capaz de generar resultados que puedan ayudar a su caracterización y a ser dimensionado. \newline
+
+En \parencite{Banks2005} se describe a un sistema discreto como: \textit{``[{\dots}] aquel en el cual las variables de estado cambian únicamente en un número discreto de instantes en el tiempo''.} Por lo que la simulación de eventos discretos es la implementación en hardware de un sistema en el que sus variables de estado cambian de tal forma con el arribo de eventos, los cuales se tratan de ocurrencias que se presentan de forma instantánea y cuentan con un nacimiento y una muerte.\newline
+
+En cuanto a un evento o proceso estocástico, tenemos la siguiente definición \parencite{Correia2018}:\newline
+
+\textit{Definición: Un proceso estocástico es una colección de variables aleatorias $X_{t}:t\in T$ parametrizada por un conjunto T, llamado espacio parametral, en donde las variables toman valores en un conjunto S llamado espacio de estados.}\newline
+
+\textit{En los casos más sencillos se toma como espacio perimetral al conjunto discreto}\newline
+
+\textit{T = [0, 1, 2,...] y estos números se interpretan como tiempos. En este caso se dice que el proceso es a tiempo discreto, y en general este tipo de procesos se denotara  por [Xn: n = 0, 1,. . .]} 
+
+\subsection{Lenguajes de Programación para simulaciones orientadas a eventos discretos(DES)}
+
+Considerando solamente los lenguajes que sean de código abierto, tenemos a \textit{JAVA (DESMO-J y Ptolomeo I), Python (Simpy) y C++ (SystemC y PowerDEVS)} como los lenguajes más conocidos y de entre estos sobresalen \textit{Simpy }(P\textit{ython}) y \textit{SystemC }(\textit{C++) }como los que han tenido más soporte y actualización (2018), lo cual será un factor importante al elegir el lenguaje.\newline
 
 Simpy es una librería basada en procesos, se pueden definir diferentes entornos, todos los procesos interactúan mediante eventos con el mismo entorno y entre ellos. Durante su estancia, los procesos crean eventos y producen nuevos eventos para esperar a que se activen. Cuando un proceso produce un evento, el proceso se suspende, SimPy reanuda el proceso, cuando ocurre el evento. Varios procesos pueden esperar el mismo evento, SimPy los reanuda en el mismo orden en que dieron lugar a ese evento \parencite{Simpy}. Además proporciona varios tipos de recursos compartidos para modelar puntos de congestión de capacidad limitada (p. ej. servidores).\newline
 
@@ -792,22 +789,38 @@ La documentación de SimPy contiene tutoriales, guías detalladas y una gran can
 
 Python es un lenguaje de programación dinámico de alto nivel, interpretado y de propósito general que se enfoca en la legibilidad del código. La sintaxis en Python ayuda a los programadores a codificar en menos pasos en comparación con Java o C ++ \parencite{PythonVentajas}. Python es ampliamente utilizado en organizaciones más grandes debido a sus múltiples paradigmas de programación. Usualmente involucran programación funcional imperativa y orientada a objetos. \newline
 
+\subsection{Python}
+
 Ventajas o beneficios de Python \parencite{PythonVentajas}:
 \begin{enumerate}
-\item  Amplias librerías de soporte
 \item  Característica de integración
 \item  Productividad mejorada del programador
+\item  Amplias bibliotecas de soporte:
 \end{enumerate}
 
-Limitaciones o desventajas de Python:
+Scipy es una biblioteca de Python utilizada para la informática científica y la informática técnica. \newline
+
+NumPy es una biblioteca de Python utilizada para la informática científica que, aparte de sus usos científicos, puede utilizarse como un contenedor multidimensional para datos genéricos.\newline
+
+Matplotlib es una biblioteca para la generación de gráficos a partir de datos contenidos en listas o arrays en el lenguaje de programación Python y su extensión matemática NumPy. Proporciona una API, pylab, diseñada para recordar a la de MATLAB.\newline
+
+Desventajas o Limitaciones de Python:
 \begin{enumerate}
 \item  Lenguaje interpretado: se ralentiza en velocidad: Python se ejecuta con la ayuda de un intérprete en lugar del compilador, lo que hace que se ralentice porque la compilación y la ejecución ayudan a que funcione normalmente.
 \end{enumerate}
 
-El mecanismo que degrada el desempeño de CPython es la ejecución de bytecode por varios hilos a la vez, conocido como \textit{Global Interpreter Lock} o GIL, es un mecanismo utilizado en intérpretes de lenguaje de computadora para sincronizar la ejecución de subprocesos para que solo un subproceso nativo pueda ejecutarse a la vez. Un intérprete que usa GIL siempre permite que se ejecute exactamente un subproceso a la vez, incluso si se ejecuta en un procesador multinúcleo.\newline
-Afortunadamente existen métodos para evitar este comportamientto del interpretador, haciendo que se usen todos los nucleos del PC con ayuda de la librería \textit{multiprocessing} \parencite{Multiprocessing}.
+El mecanismo que degrada el desempeño de CPython es la ejecución de bytecode por varios hilos a la vez, conocido como \textit{Global Interpreter Lock} o GIL, es un mecanismo utilizado en intérpretes de lenguaje de computadora para sincronizar la ejecución de subprocesos para que solo un subproceso nativo pueda ejecutarse a la vez. Un intérprete que usa GIL siempre permite que se ejecute exactamente un subproceso a la vez, incluso si se ejecuta en un procesador multinúcleo.
 
-
+\subsection{Multiprocesamiento}
+Afortunadamente, existen métodos para evitar este comportamientto del interpretador, haciendo que se usen todos los nucleos del PC con ayuda de la librería \textit{multiprocessing} \parencite{Multiprocessing}.\newline
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.4]{Figures/Multiprocesamiento}
+    \decoRule
+    \caption[Concurrencia Vs Paralelismo]{Concurrencia  Vs Paralelismo}
+    \label{fig:multiprocessing}
+\end{figure}
+El módulo de multiprocessing permite al programador aprovechar al máximo múltiples procesadores en paralelo. Se ejecuta tanto en Unix como en Windows, no confundir con concurrencia (esta hace uso de múltiples hilos) [véase Figura~\ref{fig:multiprocessing}].
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
