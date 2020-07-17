@@ -1,11 +1,8 @@
 % Chapter 4
-
 \chapter{Análisis} % Main chapter title
-
-
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este capítulo se realiza el análisis de las diversas aplicaciones de dispositivos IoT y su implementación en redes de comunicaciones móviles 5G. Se comienza con una breve descripción de estas tecnologías, y después se profundiza en el caso de uso mMTC donde se mencionan los escenarios más comunes de implementación, su clasificación y sus características, además se revisa el estándar actual (NB-IoT\footnote{ Muchos\ de\ los\ modelos\ aqu\textrm{í}\ propuestos\ est\textrm{á}n\ basados\ en\ trabajos\ de\ la\ 3GPP,\ como\ se\ revis\textrm{ó}\ en\ el Capítulo \ref{Chapter2},\ la\ 3GPP,\ es\ una\ organizaci\textrm{ó}n\ que\ est\textrm{á}\ respaldada\ por\ organismos\ alrededor\ de\ todo\ el\ mundo,\ adem\textrm{á}s\ de\ que\ se\ trata\ del\ grupo\ que\ estandariza\ tecnolog\textrm{í}as\ como\ LTE-M\ y\ NB-IoT,\ de\ manera\ que\ es\ una\ indudable\ referencia\ en\ su\ ahora\ inmersi\textrm{ó}n\ en\ la\ estandarizaci\textrm{ó}n\ de\ 5G.}) que cumple con los requisitos para la implementación de mMTC. Finalmente se revisan los KPIs propuestos para este tipo de escenarios.\newline
+En este capítulo se realiza el análisis de las diversas aplicaciones de dispositivos IoT y su implementación en redes de comunicaciones móviles 5G. Se comienza con una breve descripción de estas tecnologías, y después se profundiza en el caso de uso mMTC donde se mencionan los escenarios más comunes de implementación, su clasificación y sus características, además se revisa el estándar actual (NB-IoT\footnote{ Muchos\ de\ los\ modelos\ aqu\textrm{í}\ propuestos\ est\textrm{á}n\ basados\ en\ trabajos\ de\ la\ 3GPP,\ como\ se\ revis\textrm{ó}\ en\ el Capítulo II,\ la\ 3GPP,\ es\ una\ organizaci\textrm{ó}n\ que\ est\textrm{á}\ respaldada\ por\ organismos\ alrededor\ de\ todo\ el\ mundo,\ adem\textrm{á}s\ de\ que\ se\ trata\ del\ grupo\ que\ estandariza\ tecnolog\textrm{í}as\ como\ LTE-M\ y\ NB-IoT,\ de\ manera\ que\ es\ una\ indudable\ referencia\ en\ su\ ahora\ inmersi\textrm{ó}n\ en\ la\ estandarizaci\textrm{ó}n\ de\ 5G.}) que cumple con los requisitos para la implementación de mMTC. Finalmente se revisan los KPIs propuestos para este tipo de escenarios.\newline
 
 Por último, se presentan cuáles son los modelos que se usan para caracterizar el despliegue, la condición del canal y tráfico de dispositivos IoT en redes 5G y además, se presenta la actual propuesta de técnica de acceso múltiple al medio no ortogonal (NOMA) para redes 5G/IoT usando agrupamientos \textit{(clustering)}, enfocada a escenarios masivos de dispositivos tipo máquina (mMTC).
 
@@ -366,53 +363,11 @@ Los modelos que se incluyen en el simulador son los siguientes:
 
 \subsection{MODELO DE DESPLIEGUE DE BSs Y UEs}
 
-La teoría del diseño celular da una forma simplificada de un diseño idealizado para redes móviles, esta se desarrolló en la literatura desde el comienzo del concepto celular [1975 aprox.], sin embargo este despliegue uniforme que propone la teoría celular, es poco realista ya que nunca se tiene una instalación regular, esto debido a que la densidad del tráfico varia espacial y temporalmente. En el despliegue de BS, frecuentemente en ubicaciones donde se concentraba mayor cantidad de tráfico lo que se realiza es instalar otra BS y por lo tanto esto rompe con esta uniformidad.\newline
-
 En el modelado de posicionamiento de las estaciones base y los nodos IoT existen diferentes estrategias de despliegue (como se puede ver en la \textit{Figura~\ref{fig:BSs}}) y es de mucha importancia dependiendo los objetivos de la simulación, es decir, para un alcance comercial resulta importante simular el despliegue determinístico de los actores de la red de acuerdo al escenario donde se vaya a montar una determinada red, por otro lado para un alcance con fines de análisis en el diseño y dimensionamiento de estas redes resulta más adecuado un despliegue aleatorio. \newline
-
-\begin{figure}[th]
-\centering
-\includegraphics[scale=1]{Diferentes estrategias de despliegue para BSs}
-\decoRule
-\caption[Diferentes estrategias de despliegue para BSs]{Diferentes estrategias de despliegue para BSs}
-\label{fig:BSs}
-\end{figure}
 
 Muchos autores coinciden en que varias distribuciones de redes móviles siguen un proceso estocástico \parencite{Kouzayha2018}\parencite{Zhang2017}. La geometría estocástica es una rama de la probabilidad con muchas aplicaciones que permiten el estudio de fenómenos aleatorios en el plano o en dimensiones superiores \parencite{Haenggi2009}. Está intrínsecamente relacionada con la teoría de los procesos puntuales. Inicialmente su desarrollo fue estimulado por aplicaciones en biología, astronomía y ciencias de los materiales. Hoy en día, también se utiliza en análisis de imágenes y en el contexto de redes de comunicación. Recientemente se ha utilizado con éxito para modelar la distribución espacial de células pequeñas como las femtoceldas \parencite{TurjmanSmallCells}. \newline
 
 Para esto, la distribución de terminales móviles se realiza de acuerdo con varios procesos de punto estacionario de Poisson independientes con intensidad \textit{$\lambda$m}. Con un PPP estacionario, la distancia entre un terminal móvil y su BS de servicio se distribuye independientemente de la ubicación exacta del terminal móvil.\newline
-
-\subsubsection{\textit{Point Process}}
-Procesos puntuales (PP) \parencite{Haenggi2009}\newline
-
-Los objetos más básicos estudiados en geometría estocástica son procesos puntuales. Visualmente, un proceso puntual se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual (PP) es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
-
-Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R}^{d}$ son las siguientes:\newline
-
-\begin{itemize}
-    \item Un PP puede ser simple o no. Es simple si la multiplicidad de un punto es como máximo uno (no hay dos puntos en la misma ubicación).
-    \item Un PP puede ser estacionario o no. La estacionariedad se cumple si la ley del proceso puntual es invariante por traslación.
-    \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
-\end{itemize}
-
-\subsubsection{\textit{Poisson Point Process}}\label{PPP_C4}
-Procesos Puntuales de Poisson (PPP) \parencite{Haenggi2009}\newline
-
-Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
-
-\begin{itemize}
-    \item Para todos los subconjuntos disjuntos $A1, ..., An$ de $E$, las variables aleatorias $\Phi(Ai)$ son independientes.
-    \item Para todos los conjuntos $A$ de $E$, las variables aleatorias $\Phi(A)$ son Poisson.
-\end{itemize}
-
-Una propiedad clave establece que condicionalmente $\Phi(A)= n$, estos $n$ puntos están ubicados independientemente (y de manera uniforme para un PPP homogéneo) en $A$.\newline
-
-\begin{itemize}
-    \item Un PPP puede ser homogéneo o no. En el caso homogéneo, la densidad de los puntos es constante en el espacio (también conocidos como HPPP).
-    \item El PPP homogéneo es estacionario y simple. Esto puede considerarse como el proceso puntual más simple (y más natural).
-\end{itemize}
-
-Un PPP ofrece un práctico marco computacional para diferentes cantidades de red de interés. El marco para las PPP no homogéneas también está bien desarrollado, aunque es más técnico que el del caso homogéneo. Se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.\newline
 
 En este proyecto con fines de diseño y análisis, se simularon ambos despliegues, uno uniforme y otro siguiendo una geometría estocástica, es decir, un PPP.\newline
 
@@ -482,44 +437,6 @@ Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: 
 \subsection{ESQUEMA DE ACCESO MÚLTIPLE AL MEDIO}
 
 \subsubsection{Acceso Múltiple No Ortogonal (NOMA)}
-
-El acceso múltiple no ortogonal (NOMA) se ha convertido en un principio importante para el diseño de técnicas de acceso por radio para las redes inalámbricas de quinta generación (5G) \parencite{DIng2017}. NOMA se puede clasificar en dos categorías, el dominio de código NOMA (CD-NOMA) y el dominio de potencia NOMA (PD-NOMA). CD-NOMA utiliza diferentes códigos en el mismo recurso para lograr una ganancia de multiplexación, mientras que PD-NOMA asigna a los usuarios niveles de potencia distintos para maximizar el rendimiento. En comparación con el acceso múltiple ortogonal (OMA) que se ha aplicado ampliamente en los sistemas de comunicación inalámbrica existentes, NOMA posee el potencial de mejorar aún más la eficiencia espectral del sistema y la capacidad de conectividad.\newline
-
-Como se mencionaba, PD-NOMA utiliza el dominio de la potencia para el acceso múltiple donde diferentes usuarios son servidos con diferentes niveles de potencia, como las señales de los diferentes usuarios se sobreponen, los receptores aprovechan la cancelación sucesiva de interferencia (SIC) para distinguir a cada una. Como varios usuarios son admitidos en la misma ranura de tiempo, frecuencia o código, la interferencia co-canal será fuerte en los sistemas NOMA \parencite{Ding2016}, por lo que no es realista el asegurar a todos los usuarios del sistema que utilicen NOMA conjuntamente, por esta razón, una alternativa es utilizar un esquema hibrido donde NOMA sea combinado con el esquema convencional ortogonal OMA. El rendimiento de este esquema hibrido es muy dependiente de como los usuarios son agrupados \parencite{Ding2016}. El agrupamiento de usuarios seleccionara a los usuarios con los que se les asignará el mismo bloque de recursos ortogonales.\newline
-
-\begin{figure}[th]
-\centering
-\includegraphics[scale=1]{Figures/Cancelación Sucesiva de Interferencia (SIC)}
-\decoRule
-\caption[Cancelación Sucesiva de Interferencia (SIC)]{Cancelación Sucesiva de Interferencia (SIC), [Fuente: R. Kizilirmak 2017]}
-\label{fig:SIC}
-\end{figure}
-
-En la \textit{Figura~\ref{fig:SIC}}, las dos señales de información indicadas con diferentes colores se superponen en el transmisor. La señal recibida en el receptor SIC incluye todas estas tres señales. La primera señal que SIC decodifica es la más fuerte, mientras que la otra es tratada como ruido. La primera señal decodificada se resta de la señal recibida y si la decodificación es perfecta, la forma de onda con la otra señal se obtiene con precisión. SIC itera el proceso hasta que encuentra la señal deseada \parencite{Kizilirmak2016}.\newline
-
-\begin{figure}[th]
-\centering
-\includegraphics[scale=1]{Figures/Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora}
-\decoRule
-\caption[Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora.]{Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora, [Fuente: Ding 2017]}
-\label{fig:NOMADL}
-\end{figure}
-
-Como se muestra en la \textit{Figura~\ref{fig:NOMADL}}, la idea clave del NOMA en el dominio de potencia es asignar más potencia al usuario con condiciones de canal más pobres. El usuario 1 decodifica su propio mensaje directamente tratando el mensaje del usuario 2 como ruido y por otro lado, el usuario 2 realiza SIC, es decir, primero decodifica el mensaje del usuario 1 y luego elimina este mensaje de su observación antes de decodificar su propio mensaje.
-
-Suponga que el usuario 1 es un dispositivo IoT que requiere solo una baja velocidad de datos, y el usuario 2 es un usuario que exige una alta velocidad de datos. Cuando se utiliza OFDMA, que es un ejemplo típico de OMA, cada usuario se asigna a la sub-portadora. En este ejemplo, la eficiencia espectral de OMA es pobre ya que el dispositivo IoT tiene más ancho de banda de lo que realmente necesita, mientras que al usuario de banda ancha no se le asigna suficiente ancho de banda. Por otro lado, el uso de NOMA fomenta el intercambio de espectro, es decir, el usuario de banda ancha también puede tener acceso a la sub-portadora ocupada por el dispositivo IoT, en la F\textit{igura 24} se puede observar gráficamente la asignación del espectro en los dos esquemas.
-
-\begin{figure}[th]
-\centering
-\includegraphics[scale=1]{Figures/Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios}
-\decoRule
-\caption[Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios.]{Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios, [Fuente: R. Kizilirmak 2017]}
-\label{fig:OFDMANOMA}
-\end{figure}
-
-Dada la madurez técnica de OFDMA, es muy probable que este tipo de OMA se incorpore a las redes 5G \parencite{DIng2017} y la forma en que múltiples sub-portadoras OFDMA se pueden combinar de manera eficiente con NOMA ha recibido mucha atención.
-
-Acerca del uso de arreglos múltiples de antenas, estos aún no han sido estudiados para poder alcanzar un rendimiento óptimo del sistema, el ordenamiento de usuarios en escenarios de MIMO-NOMA es una tarea difícil \parencite{DIng2017}. En el caso de SISO, los canales de los usuarios son escalados, por lo que es sencillo ordenar a los usuarios de acuerdo con las condiciones de su canal. Sin embargo, cuando los nodos están equipados con antenas múltiples, los canales de los usuarios están en forma de vectores o matrices, lo que significa que ordenar a los usuarios de acuerdo con las condiciones de sus canales como en el caso SISO se vuelve difícil. 
 
 Como resultado, el uso de NOMA soporta eficientemente la conectividad masiva y cumple con los diversos requisitos de QoS de los usuarios. El diseño de NOMA en transmisiones de subida (\textit{uplink}) ha sido propuesto en \parencite{Al-Imari2014} y el diseño óptimo de NOMA en transmisiones de bajada (\textit{downlink}) ha sido propuesto en \parencite{Zhu2019}.
 

@@ -11,100 +11,311 @@ Además, se repasó la teoría del concepto celular, es decir, la geometría cel
 Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunicaciones, los organismos más importantes de estandarización de redes móviles y algunos conceptos de las simulaciones a nivel de sistema orientados a eventos discretos en conjunto con los lenguajes de programación más utilizados.\newline
 
 
+
 %----------------------------------------------------------------------------------------
-%	SECTION 1
+%	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{DISTRIBUCIONES ESTADÍSTICAS EN TELECOMUNICACIONES}
+\section{MODELADO DEL DESPLIEGUE CELULAR}
 
-El uso de modelos estadísticos es importante para describir \parencite{Correia2018}:
+La teoría del diseño celular da una forma simplificada de un diseño idealizado para redes móviles, esta se desarrolló en la literatura desde el comienzo del concepto celular [1975 aprox.], sin embargo este despliegue uniforme que propone la teoría celular, es poco realista ya que nunca se tiene una instalación regular, esto debido a que la densidad del tráfico varia espacial y temporalmente. En el despliegue de BS, frecuentemente en ubicaciones donde se concentraba mayor cantidad de tráfico lo que se realiza es instalar otra BS y por lo tanto esto rompe con esta uniformidad.\newline
+
+En el modelado de posicionamiento de las estaciones base y los usuarios existen diferentes estrategias de despliegue (como se puede ver en la \textit{Figura~\ref{fig:BSs}}):
+
+\begin{figure}[th]
+\centering
+\includegraphics[scale=1]{Diferentes estrategias de despliegue para BSs}
+\decoRule
+\caption[Diferentes estrategias de despliegue para BSs]{Diferentes estrategias de despliegue para BSs}
+\label{fig:BSs}
+\end{figure}
+
+\subsection{Procesos puntuales (PP)}
+\textit{Point Process} \parencite{Haenggi2009}\newline
+
+En primer lugar, los objetos más básicos estudiados en geometría estocástica son procesos puntuales. Visualmente, un proceso puntual se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual (PP) es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
+
+Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R}^{d}$ son las siguientes:\newline
+
 \begin{itemize}
-    \item Llamadas telefónicas y conexiones de datos
-    \item Influencia del usuario en el rendimiento de la red
-    \item Propagación no guiada en ambientes aleatorios
-    \item Movilidad del usuario
+    \item Un PP puede ser simple o no. Es simple si la multiplicidad de un punto es como máximo uno (no hay dos puntos en la misma ubicación).
+    \item Un PP puede ser estacionario o no. La estacionariedad se cumple si la ley del proceso puntual es invariante por traslación.
+    \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
 \end{itemize}
 
-Comúnmente se utilizan las siguientes distribuciones de probabilidad en telecomunicaciones \parencite{Correia2018}:
+\subsection{Procesos Puntuales de Poisson (PPP)}\label{PPP_C4}
+\textit{Poisson Point Process} \parencite{Haenggi2009}\newline
 
-\begin{enumerate}
-    \item Distribución Uniforme: Es usada para describir la fase de una señal. También, se ha utilizado para simular el despliegue de BSs \parencite{TurjmanSmallCells}.
-    \item Distribución Normal (Gaussiana): Es usada para describir fluctuaciones alrededor de un valor medio, p.ej. \textit{shadowing}. Esta distribución no puede ser usada para describir entidades que no pueden ser negativas.
-    \item Distribución Log-Normal: Es usada para describir entidades como la potencia de una señal, amplitudes, principalmente el desvanecimiento lento.
-    \item Distribución Rayleigh: Es usada para describir el desvanecimiento rápido-intenso.
-    \item Distribución Susuki: Describe conjuntamente el desvanecimiento lento y rápido.
-    \item Distribución Rice: Es usada para describir el desvanecimiento rápido - no-intenso.
-    \item Distribución Exponencial: Es ampliamente usada para describir la duración de diferentes fenómenos, principalmente asociados con el desvanecimiento de señales y las llamadas telefónicas.
-    \item Distribución de Bernoulli: Es usada para describir la ocupación de canales de telecomunicaciones.
-    \item Distribución binomial: Es usada para describir llamadas telefónicas.
-\end{enumerate}
+Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
 
-\subsection{Generación de números aleatorios}
-
-La distribución uniforme (también llamada distribución rectangular) es una familia de curvas de dos parámetros que es notable porque tiene una función de distribución de probabilidad constante (PDF) entre sus dos parámetros delimitadores. La distribución uniforme se utiliza en técnicas de generación de números aleatorios, como el método de inversión \parencite{ UniformMatlab}.\newline
-
-Se puede usar la distribución uniforme estándar para generar números aleatorios para cualquier otra distribución continua mediante el método de inversión. El método de inversión se basa en el principio de que las funciones de distribución acumulativa continua (CDFs) varían uniformemente durante el intervalo abierto $(0, 1)$ . Si $u$ es un número aleatorio uniforme en (0, 1) , entonces $x = F^{ -1} ( u )$ genera un número aleatorio $x$ a partir de la distribución continua con la CDF especificada $F$ \parencite{UniformMatlab}.\newline
-
-En teoría de la probabilidad y estadística, hay varias relaciones entre las distribuciones de probabilidad. Estas relaciones se pueden clasificar en los siguientes grupos \parencite{univariateDist}:
 \begin{itemize}
-    \item Una distribución es un caso especial de otra con un espacio de parámetros más amplio.
-    \item Transformaciones (función de una variable aleatoria).
-    \item Combinaciones (función de varias variables).
-    \item Relaciones de aproximación (límite).
-    \item Relaciones compuestas (útiles para la inferencia bayesiana [\textit{Bayesian inference}]).
+    \item Para todos los subconjuntos disjuntos $A1, ..., An$ de $E$, las variables aleatorias $\Phi(Ai)$ son independientes.
+    \item Para todos los conjuntos $A$ de $E$, las variables aleatorias $\Phi(A)$ son Poisson.
 \end{itemize}
+
+Una propiedad clave establece que condicionalmente $\Phi(A)= n$, estos $n$ puntos están ubicados independientemente (y de manera uniforme para un PPP homogéneo) en $A$.\newline
+
+\begin{itemize}
+    \item Un PPP puede ser homogéneo o no. En el caso homogéneo, la densidad de los puntos es constante en el espacio (también conocidos como HPPP).
+    \item El PPP homogéneo es estacionario y simple. Esto puede considerarse como el proceso puntual más simple (y más natural).
+\end{itemize}
+
+Un PPP ofrece un práctico marco computacional para diferentes cantidades de red de interés. El marco para las PPP no homogéneas también está bien desarrollado, aunque es más técnico que el del caso homogéneo. Se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.\newline
+
+%	SUB-SECTION 
+%----------------------------------------------------------------------------------------
+
+\subsection{Geometría Clásica Celular}
+
+Ahora bien, para un esquema hexágonal se tiene que recurrir a la teoria clasica celular donde se busca que los sistemas celulares brinden una determinada cobertura para un servicio, dividiendo el área geográfica en segmentos llamados celdas donde el espectro de frecuencia también es dividido en canales y estos son agrupados para repartirse entre las celdas. Estos sistemas logran una alta capacidad gracias al reúso del canal de comunicación permitiendo a las estaciones base compartir los canales, sin embargo, este reúso da como resultado una interferencia co-canal generada solamente entre usuarios que comparten el mismo canal, lo cual limita el rendimiento y capacidad de un sistema celular dado que los efectos de esta interferencia son altamente dependientes con los aspectos del sistema \parencite{Tranter2003} como lo son el tipo de acceso múltiple del sistema, el número de usuarios compartiendo el canal, el canal de propagación, la perdida por trayectoria, el desvanecimiento, entre otros.\newline
+
+Los sistemas celulares son caracterizados por \parencite{Correia2018}:
+\begin{itemize}
+    \item Ser limitados por la interferencia (capacidad).
+    \item Servir a una alta densidad de usuarios.
+    \item Considerar la disponibilidad del espectro solo como un factor limitante.
+    \item Reúso de frecuencias.
+    \item Uso de Estaciones Base de baja potencia.
+    \item Tener celdas de distintas coberturas.
+    \item Permitir \textit{handover}.
+\end{itemize}
+
+\subsection{Planeación Celular}
+
+Una buena planeación celular es de crucial importancia para lograr un buen rendimiento del sistema y la provisión de una buena Calidad de servicio (QoS).\newline
+
+La planeación celular consiste en:
+\begin{itemize}
+    \item Colocación de BSs y establecimiento de coberturas
+    \item Optima administración de recursos de radio.
+    \item Minimización de interferencia.
+\end{itemize}
+La planeación celular se desempeña de acuerdo a:
+\begin{itemize}
+    \item Morfología del área de servicio y modelos de propagación.
+    \item Perfiles de usuario y modelos de tráfico.
+\end{itemize}
+Considerando:
+\[R\to Radio\ de\ cobertura\ de\ la\ celda\] 
+\[D_r\to Distancia\ de\ reuso\ de\ celda\ co\_canal\] 
+\[d_u\to Distancia\ unitaria\ entre\ los\ centros\ de\ dos\ celdas\ adjacentes\] 
+\[d_u=\sqrt{3}R\] 
+\[Llegando\ a\ una\ distancia\ de\ reuso\ normalizada\ D_n\] 
+\begin{equation}
+D_n=i^2+ij+j^2, donde: i!=0, j!=0
+\label{eqn:DistReuso}
+\end{equation}
+\begin{equation}
+=>\ D_r=D_nd_u
+\label{eqn:Dn}
+\end{equation}
+\[\textrm{á}rea\ de\ una\ celda\ S_{cel}\] 
+\begin{equation}
+S_{cel}=(3\sqrt{3}/2)R^2
+\label{eqn:S}
+\end{equation}
+\[\textrm{á}rea\ de\ un\ cluster\ S_{clu}\] 
+\begin{equation}
+S_{clu}=(3\sqrt{3}/2)D^2_nd^2_u
+\label{eqn:Sclus}
+\end{equation}
+\[Número\ de\ celdas\ por\ cluster,\ N_{cc}\ \textrm{ó}\ tambi\textrm{é}n\ conocido\ como\ ``factor\ de\ reuso''\ \] 
+\begin{equation}
+N_{cc}=\frac{S_{clu}}{S_{cel}}
+\label{eqn:N}
+\end{equation}
+
+$Siendo\ valores\ posibles\ para\ N_{cc}\ ,\ \ \ \ 1,\ 3,\ 4,\ 7,\ 9,\ 12,\ 13,\ .\ .\ .\ $\textit{[Véase Figura~\ref{fig:clusterizacion} y Figura~\ref{fig:celdascocanal}]}.\newline
+
+Para implementar el reúso, se deben asignar un conjunto de canales disponibles para un grupo de celdas, el clúster y repetir ese conjunto a través de toda el área de servicio.
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=0.63]{Figures/RelacionesProbabilidad}
+    \includegraphics[scale=.5]{Figures/Clusterización de celdas con un factor de reúso de 3 celdas}
     \decoRule
-    \caption[Relaciones entre algunas de las distribuciones de probabilidad univariadas]{Las relaciones entre algunas de las distribuciones de probabilidad univariadas se ilustran con líneas conectadas, las líneas discontinuas significan relación aproximada. [Fuente: \parencite{univariateDist}}
-    \label{fig:relacionesDistribuciones}
+    \caption[Clusterización de celdas con un factor de reúso de 3 celdas]{Clusterización de celdas con un factor de reúso de 3 celdas, [Fuente: Tranter 2003]}
+    \label{fig:clusterizacion}
+\end{figure}
+\begin{equation}
+N_{ch/c}=\frac{N_{ch/s}}{N_{cc}} 
+\label{eqn:Nch}
+\end{equation}
+\[N_{ch/c}\to Numero\ de\ canales\ por\ celda\] 
+\[N_{ch/s}\to \ Numero\ de\ canales\ en\ el\ sistema\] 
+\[N_{cc}\to Numero\ de\ celdas\ por\ cluster\ \] 
+La relación de reutilización co-canal,$\ r_{cc}\ $es usada para caracterizar clústeres\
+\begin{equation}
+r_{cc}=\frac{D_r}{R}=\sqrt{3N_{cc}}
+\label{eqn:}
+\end{equation}
+Un valor grande de $r_{cc}$ corresponde a:
+\begin{enumerate}
+\item  Una baja interferencia co-canal
+\item  Baja capacidad del sistema
+\end{enumerate}
+El clúster es escogido lo más pequeño posible tomando los umbrales de interferencia en consideración \parencite{Correia2018}.
+\[GSM,\ {N}_{cc}=4\] 
+\[UMTS,\ {N}_{cc}=1\] 
+\[LTE,\ {N}_{cc}=3\] 
+\begin{figure}[th]
+\centering
+\includegraphics[scale=.6]{Figures/Localización de celdas co-canal con distintos factores de reuso}
+\decoRule
+\caption[Localización de celdas co-canal con distintos factores de reúso]{Localización de celdas co-canal con distintos factores de reúso, [Fuente: Tranter 2003]}
+\label{fig:celdascocanal}
+\end{figure}
+Diferentes tamaños de celda son usadas para distribuciones no uniformes de tráfico \parencite{TurjmanSmallCells}.\newline
+\begin{figure}[th]
+\centering
+\includegraphics[scale=.5]{Figures/Sistema celular con celdas de tamaño no uniforme}
+\decoRule
+\caption[Sistema celular con celdas de tamaño no uniforme]{Sistema celular con celdas de tamaño no uniforme, [Fuente: Yacoub 1993]}
+\label{fig:nouniformcells}
 \end{figure}
 
-\subsection{Procesos de Poisson}
+El uso de diferentes tamaños de celdas:\newline
+•	Conduce a un incremento de interferencia, debido a la poca uniformidad en la estructura celular.\newline
+•	Requiere cuidado adicional en el despliegue de BSs
 
-Los procesos de Poisson son altamente utilizados para representar o modelar fenómenos en las telecomunicaciones, p. ej. la generación de llamadas telefónicas.\newline
+\subsection{Planeación de frecuencia}
+La decisión de bandas de frecuencia para ser usadas en los diversos sistemas de comunicaciones es decidida por la ITU. La asignación de canales en una banda dada para un operador es decidido a nivel nacional por un cuerpo regulatorio, IFT en México. El hecho de que el espectro es muy escaso incita a un eficiente uso de frecuencias.\newline
 
-Algunas propiedades de los procesos de Poisson son las siguientes \parencite{ PoissonMedium}:
+El número de frecuencias (portadoras, canales de radio) por celda $N_{fc}$ depende del clúster, $N_{cc}$, y del número de frecuencias en el sistema $N_{fs}$
+\begin{equation}
+    N_{fc}={N_{fs}}/{N_{cc}}
+    \label{eqn:Nfc}
+\end{equation}
 
+Debido a la limitación en el número de frecuencias, debe haber una compensación entre la interferencia $N_{cc}\ $y la capacidad$\ N_{ch/c}\ $en el sistema.\newline
+
+La asignación de frecuencias de las celdas debería reducir la interferencia de celda-adyacente maximizando la separación de las frecuencias en una celda.\newline
+
+En un simple sistema celular, las frecuencias deberían ser asignadas a las celdas de acuerdo a:\newline
+\begin{equation}
+    f_{ij}=i+N_{cc}\ (j-1)
+    \label{eqn:fij}
+\end{equation}
+
+\[i=1,\ \dots ,\ N_{cc}\] 
+\[j=1,\ \dots ,\ N_{fc}\] 
+
+Cuando $N_{sc}$ sectores por celdas son implementados, cada sector deberá contener su propio grupo de frecuencias:\newline
+\begin{equation}
+    f_{ijk}=i+N_{cc}\ \left(k-1\right)+N_{cc}\ N_{sc}\ (j-1)
+    \label{eqn:fijk}
+\end{equation}
+
+\[i=1,\ \dots ,\ N_{cc}\] 
+\[j=1,\ \dots ,\ N_{fc}\] 
+\[k=1,\ \dots ,\ N_{sc}\] \\
+
+
+%	SUB-SECTION 
+%----------------------------------------------------------------------------------------
+
+\subsection{Interferencia en los sistemas de comunicaciones}
+
+En general el receptor recibe:\newline
+\begin{equation}
+\mathrm{SNIR=}\frac{S}{I+N}
+\label{eqn:SNIR}
+\end{equation}
+
+Donde:
+\[S\to Potencia\ de\ portadora\ de\ la\ se\textrm{\~{n}}al\ deseada\] 
+\[I\to Potencia\ de\ las\ portadoras\ de\ las\ se\textrm{\~{n}}alees\ interferentes\] 
+\[N\to Potencia\ del\ ruido\] 
+
+Los sistemas de comunicaciones móviles se caracterizan por ser sistemas limitados por interferencia, donde I domina sobre N, por lo tanto la participación del ruido N puede ser ignorada \parencite{Correia2018}.\newline
+
+Quedando entonces como la relación portadora a interferencia:\newline
+\begin{equation}
+\frac{S}{I+N}\ \ \cong \ \ \frac{S}{I}\ \ \to \ \ SIR
+\label{eqn:SIR}
+\end{equation}
+
+La interferencia co-canal $I_{cc}$ es un problema aceptado en los sistemas de comunicaciones móviles. \newline
+
+La estimación de la relación portadora a interferencia co-canal ${S}/{I_{cc}}$es calculada de acuerdo  a las siguientes asunciones:
+
+\begin{enumerate}
+\item  Todas las celdas son del mismo tamaño
+\item  La potencia radiada por todas las BSs son iguales
+\item  Todas las BSs tienen antenas omnidireccionales
+\item  El decaimiento de la potencia promedio ($a_{pd}$) con la distancia es de la forma:
+\end{enumerate}
+\begin{equation}
+P_r=P_0{(d/d_0)}^{-a_{pd}} 
+\label{eqn:P_r}
+\end{equation}
+
+En un sistema celular en general, la interferencia co-canal es calculada tomando la interferencia de todas las celdas $N_{Icc}$.
+\begin{equation}
+\frac{S}{I_{cc}}\ =\ \ \frac{S}{\sum^{N_{Icc}}_{k=1}{I_k}} 
+\label{eqn:Icc}
+\end{equation}
+
+Usualmente la interferencia puede ser estimada por tomar únicamente el primer anillo de interferencia \parencite{Correia2018}.
+\begin{equation}
+\frac{S}{I_{cc}}\ =\ \ \frac{S}{\sum^6_{k=1}{I_k}} 
+\label{eqn:I}
+\end{equation}
+
+Para el caso de transmisión de bajada \textit{downlink} para un usuario en los límites de la celda, el cálculo de la interferencia co-canal se puede aproximar a:\newline
+\begin{equation}
+    \frac{S}{I_{cc}}=\frac{R^{-a_{pd}}}{ 2(D_{r}-R)^{-a_{pd}}+2(D_{r})^{-a_{pd}} + 2(D_{r}+R)^{-a_{pd}}}\\
+    \label{eqn:SIcc}
+\end{equation}
+
+Donde:
+\[R\ :\ radio\ de\ cobertura\ de\ la\ celda\] 
+\[D_{r}\ :\ distancia\ de\ reuso\ de\ celda\ co-canal\] 
+
+En términos generales, la interferencia puede disminuir \parencite{Correia2018}:
 \begin{itemize}
-    \item Se compone de una secuencia de variables aleatorias $X1, X2, X3, ... Xk$, de modo que cada variable representa el número de ocurrencias de algún evento, durante un intervalo de tiempo.
-    \item Es un proceso estocástico. Cada vez que ejecuta el proceso de Poisson, producirá una secuencia de resultados aleatorios diferentes según alguna distribución de probabilidad.
-    \item Es un proceso discreto. Los resultados del proceso de Poisson son el número de ocurrencias de algún evento en el período de tiempo especificado, que sin duda es un número entero, es decir, un número discreto.
-    \item Tiene incrementos independientes. Lo que esto significa es que el número de eventos que el proceso predice que ocurrirá en cualquier intervalo dado, es independiente del número en cualquier otro intervalo disjunto.
-    \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución idéntica.
-    \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución de Poisson , que viene dada por la Función Masa de Probabilidad (PMF):
+    \item implementando celdas sectorizadas.
+    \item \textit{downtilting} el lóbulo principal de la antena de la BS.
+    \item bajando la altura de la BS
+    \item optimizando la localización de la BS
+    \item implementando control de potencia
+    \item implementando \textit{frequency hopping }
 \end{itemize}
 
+En resumen, la planeación de una red celular de radio es ejecutada de la siguiente manera \parencite{Correia2018}:
+\begin{enumerate}
+    \item El mínimo valor para la relación portadora a interferencia impone el tamaño del clúster.
+    \item Se estima el tráfico en una celda determinada.
+    \item Se calcula el número de canales para una calidad de servicio determinada.
+    \item En caso de que el número de canales disponibles no sea suficiente, el tráfico se reducirá, es decir, la cobertura se reducirá.
+    \item Se establece el plan de frecuencias y la estructura del despliegue de celdas.
+    \item Cuando se propone una estructura de celdas no uniforme, los canales deberán ser distribuidos de acuerdo a las necesidades de capacidad, y a los valores topes permitidos de interferencias co- canal y canal-adyacente.
+\end{enumerate}\
+
+%	SUB-SECTION 
+%----------------------------------------------------------------------------------------
+\subsection{Capacidad en los sistemas de comunicaciones}
+
+La teoría de la información de Shannon nos dice la cantidad de información que un canal puede transportar. En otras palabras, especifica la capacidad del canal. La capacidad de un sistema de comunicación es la velocidad de datos máxima en bits por segundo que se puede transferir de manera confiable del transmisor al receptor. En el sentido estricto de la teoría de la información, este es un límite superior insuperable que, en la práctica, solo se puede abordar. En un único enlace Tx-Rx de ancho de banda de unidad sujeto a AWGN, la capacidad en bits por uso de canal (es decir, bps / Hz) viene dada por la fórmula de \emph{Shannon-Hartley}:\newline
+
 \begin{equation}
-    P_{X}(k)=\frac{e^{-\lambda}*\lambda ^{k}}{k!}
-    \label{eqn:Poisson}
+C=B{{\mathrm{log}}_2 \left(1+\frac{S}{N}\right)\   [bps] }
+\label{eqn:Shannon}
 \end{equation}
-
-La fórmula anterior nos da la probabilidad de ocurrencia de $k$ eventos en unidad de tiempo, dado que la tasa de ocurrencia promedio es $\lambda$ eventos por unidad de tiempo.
-
-\subsubsection{Modelado de tiempos entre llegadas}
-
-Los procesos de Poisson tienen una subestructura notable. Aunque el número de eventos ocurridos se modela usando una distribución de Poisson discreta, el intervalo de tiempo entre eventos consecutivos se puede modelar usando una distribución exponencial, que es una distribución continua \parencite{PoissonMedium}.\newline
-
-Sean $X1, X2, X3, ... Xi$ variables aleatorias tales que:
-\begin{itemize}
-    \item $X1$ = el intervalo de tiempo entre el inicio del proceso y el primer evento, es decir, la primera llegada,
-    \item $X2$ = el tiempo entre llegadas entre la primera y la segunda llegada,
-    \item $X3$ = el tiempo entre llegadas entre la segunda y la tercera llegada , y así sucesivamente.
-\end{itemize}
-La distribución de la variable aleatoria $Xk$ que representa el tiempo entre llegadas entre la llegada $(k-1) th$ y $(k) th$ es \parencite{PoissonMedium}:
+Donde:
+\[B:\ es\ el\ ancho\ de\ banda\ del\ canal\ en\ Hertzios.\]
+\[C:\ es\ la\ capacidad\ del\ canal\ (tasa\ de\ bits\ de\ informaci\textrm{ó}n\ bit/s)\]
+\[S:\ es\ la\ potencia\ de\ la\ se\textrm{\~{n}}al\ \textrm{ú}til\ (W,\ mW,\ etc.)\]
+\[N:\ es\ la\ potencia\ del\ ruido\ presente\ en\ el\ canal,\left(W,\ mW,\ etc.\right),\ \ que\ trata\ de\ enmascarar\ a\ la\ se\textrm{\~{n}}al\ \textrm{ú}til.\] 
+También descrita como:
 \begin{equation}
-    X_{k}=Exponential(\lambda)
-    \label{eqn:expon}
+    C =Blog_2(1 + \frac {P_{tx} H}{N_0B})
+    \label{eqn:Shannon}
 \end{equation}
-La Función Densidad de Probabilidad (PDF) de la variable aleatoria $X_{k}$ es la siguiente:
-\begin{equation}
-    P_{X}(t)=\lambda e^{-\lambda t}
-    \label{eqn:pdfexpon}
-\end{equation}
-Y describe la PDF de tiempos entre llegadas en un proceso de Poisson.
+Donde:
+\[P_{tx}:\ es\ la\ potencia\ de\ transmisión\ promedio\]
+\[H:\ es\ la\ ganancia\ de\ potencia\ del\ canal\]
+\[N_0:\ es\ la\ densidad\ de\ potencia\ del\ ruido (~-173 dBm/Hz)\]
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -282,267 +493,66 @@ Los modelos de estimación de señal pueden ser divididos en dos categorías:
     \end{itemize}
 \end{enumerate}
 
+
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{GEOMETRÍA CLÁSICA CELULAR}
+\section{ESQUEMAS DE ACCESO MÚLTIPLE AL MEDIO}
+Las técnicas de acceso múltiple (MA) generalmente se pueden dividir en enfoques ortogonales y no ortogonales \parencite{Tse2004}. En MA ortogonal (OMA), los recursos de radio se dividen ortogonalmente entre dispositivos, donde las señales de diferentes dispositivos no se superponen entre sí. Las instancias de OMA son acceso múltiple por división de tiempo (TDMA), acceso múltiple por división de frecuencia (FDMA), acceso múltiple por división de frecuencia ortogonal (OFDMA), y FDMA de portadora única (SC-FDMA).\newline
 
-Los sistemas celulares brindan una determinada cobertura para un servicio, dividiendo el área geográfica en segmentos llamados celdas donde el espectro de frecuencia también es dividido en canales y estos son agrupados para repartirse entre las celdas. Estos sistemas logran una alta capacidad gracias al reúso del canal de comunicación permitiendo a las estaciones base compartir los canales, sin embargo, este reúso da como resultado una interferencia co-canal generada solamente entre usuarios que comparten el mismo canal, lo cual limita el rendimiento y capacidad de un sistema celular dado que los efectos de esta interferencia son altamente dependientes con los aspectos del sistema \parencite{Tranter2003} como lo son el tipo de acceso múltiple del sistema, el número de usuarios compartiendo el canal, el canal de propagación, la perdida por trayectoria, el desvanecimiento, entre otros.\newline
+Los enfoques OMA no tienen la capacidad de combatir la interferencia entre células \parencite{Shirvanimoghaddam2017}; por lo tanto, se requieren técnicas cuidadosas de planificación celular y gestión de interferencia para resolver este problema. \newline
 
-Los sistemas celulares son caracterizados por \parencite{Correia2018}:
-\begin{itemize}
-    \item Ser limitados por la interferencia (capacidad).
-    \item Servir a una alta densidad de usuarios.
-    \item Considerar la disponibilidad del espectro solo como un factor limitante.
-    \item Reúso de frecuencias.
-    \item Uso de Estaciones Base de baja potencia.
-    \item Tener celdas de distintas coberturas.
-    \item Permitir \textit{handover}.
-\end{itemize}
+Existen 4 técnicas básicas de acceso múltiple (OMA):
 
-\subsection{Planeación Celular}
-
-Una buena planeación celular es de crucial importancia para lograr un buen rendimiento del sistema y la provisión de una buena Calidad de servicio (QoS).\newline
-
-La planeación celular consiste en:
-\begin{itemize}
-    \item Colocación de BSs y establecimiento de coberturas
-    \item Optima administración de recursos de radio.
-    \item Minimización de interferencia.
-\end{itemize}
-La planeación celular se desempeña de acuerdo a:
-\begin{itemize}
-    \item Morfología del área de servicio y modelos de propagación.
-    \item Perfiles de usuario y modelos de tráfico.
-\end{itemize}
-Considerando:
-\[R\to Radio\ de\ cobertura\ de\ la\ celda\] 
-\[D_r\to Distancia\ de\ reuso\ de\ celda\ co\_canal\] 
-\[d_u\to Distancia\ unitaria\ entre\ los\ centros\ de\ dos\ celdas\ adjacentes\] 
-\[d_u=\sqrt{3}R\] 
-\[Llegando\ a\ una\ distancia\ de\ reuso\ normalizada\ D_n\] 
-\begin{equation}
-D_n=i^2+ij+j^2, donde: i!=0, j!=0
-\label{eqn:DistReuso}
-\end{equation}
-\begin{equation}
-=>\ D_r=D_nd_u
-\label{eqn:Dn}
-\end{equation}
-\[\textrm{á}rea\ de\ una\ celda\ S_{cel}\] 
-\begin{equation}
-S_{cel}=(3\sqrt{3}/2)R^2
-\label{eqn:S}
-\end{equation}
-\[\textrm{á}rea\ de\ un\ cluster\ S_{clu}\] 
-\begin{equation}
-S_{clu}=(3\sqrt{3}/2)D^2_nd^2_u
-\label{eqn:Sclus}
-\end{equation}
-\[Número\ de\ celdas\ por\ cluster,\ N_{cc}\ \textrm{ó}\ tambi\textrm{é}n\ conocido\ como\ ``factor\ de\ reuso''\ \] 
-\begin{equation}
-N_{cc}=\frac{S_{clu}}{S_{cel}}
-\label{eqn:N}
-\end{equation}
-
-$Siendo\ valores\ posibles\ para\ N_{cc}\ ,\ \ \ \ 1,\ 3,\ 4,\ 7,\ 9,\ 12,\ 13,\ .\ .\ .\ $\textit{[Véase Figura~\ref{fig:clusterizacion} y Figura~\ref{fig:celdascocanal}]}.\newline
-
-Para implementar el reúso, se deben asignar un conjunto de canales disponibles para un grupo de celdas, el clúster y repetir ese conjunto a través de toda el área de servicio.
-
-\begin{figure}[th]
-    \centering
-    \includegraphics[scale=.5]{Figures/Clusterización de celdas con un factor de reúso de 3 celdas}
-    \decoRule
-    \caption[Clusterización de celdas con un factor de reúso de 3 celdas]{Clusterización de celdas con un factor de reúso de 3 celdas, [Fuente: Tranter 2003]}
-    \label{fig:clusterizacion}
-\end{figure}
-\begin{equation}
-N_{ch/c}=\frac{N_{ch/s}}{N_{cc}} 
-\label{eqn:Nch}
-\end{equation}
-\[N_{ch/c}\to Numero\ de\ canales\ por\ celda\] 
-\[N_{ch/s}\to \ Numero\ de\ canales\ en\ el\ sistema\] 
-\[N_{cc}\to Numero\ de\ celdas\ por\ cluster\ \] 
-La relación de reutilización co-canal,$\ r_{cc}\ $es usada para caracterizar clústeres\
-\begin{equation}
-r_{cc}=\frac{D_r}{R}=\sqrt{3N_{cc}}
-\label{eqn:}
-\end{equation}
-Un valor grande de $r_{cc}$ corresponde a:
 \begin{enumerate}
-\item  Una baja interferencia co-canal
-\item  Baja capacidad del sistema
+\item  Frecuencia: asignación de una portadora - FDMA (Acceso múltiple por división de frecuencia)
+\item  Tiempo: asignación de un intervalo de tiempo - TDMA (Acceso múltiple por división de tiempo)
+\item  Código: asignación de un código - CDMA (Acceso múltiple por división de código)
+\item  Frecuencia Ortogonal: asignación de un conjunto de sub-portadoras - OFDMA (Acceso múltiple por división de frecuencia ortogonal).
 \end{enumerate}
-El clúster es escogido lo más pequeño posible tomando los umbrales de interferencia en consideración \parencite{Correia2018}.
-\[GSM,\ {N}_{cc}=4\] 
-\[UMTS,\ {N}_{cc}=1\] 
-\[LTE,\ {N}_{cc}=3\] 
+
+En muchos sistemas prácticos, se utiliza una mezcla o combinación de estas técnicas básicas \parencite{Correia2018}. Y también, de acuerdo a cada generación de comunicaciones móviles, el esquema de acceso al medio suele cambiar [véase Figura~\ref{fig:MAs}].\newline
+
+Igualmente, el acceso múltiple no ortogonal (NOMA) se ha convertido en un principio importante para el diseño de técnicas de acceso por radio para las redes inalámbricas de quinta generación (5G) \parencite{DIng2017}. NOMA se puede clasificar en dos categorías, el dominio de código NOMA (CD-NOMA) y el dominio de potencia NOMA (PD-NOMA). CD-NOMA utiliza diferentes códigos en el mismo recurso para lograr una ganancia de multiplexación, mientras que PD-NOMA asigna a los usuarios niveles de potencia distintos para maximizar el rendimiento. En comparación con el acceso múltiple ortogonal (OMA) que se ha aplicado ampliamente en los sistemas de comunicación inalámbrica existentes, NOMA posee el potencial de mejorar aún más la eficiencia espectral del sistema y la capacidad de conectividad.\newline
+
+Como se mencionaba, PD-NOMA utiliza el dominio de la potencia para el acceso múltiple donde diferentes usuarios son servidos con diferentes niveles de potencia, como las señales de los diferentes usuarios se sobreponen, los receptores aprovechan la cancelación sucesiva de interferencia (SIC) para distinguir a cada una. Como varios usuarios son admitidos en la misma ranura de tiempo, frecuencia o código, la interferencia co-canal será fuerte en los sistemas NOMA \parencite{Ding2016}, por lo que no es realista el asegurar a todos los usuarios del sistema que utilicen NOMA conjuntamente, por esta razón, una alternativa es utilizar un esquema hibrido donde NOMA sea combinado con el esquema convencional ortogonal OMA. El rendimiento de este esquema hibrido es muy dependiente de como los usuarios son agrupados \parencite{Ding2016}. El agrupamiento de usuarios seleccionara a los usuarios con los que se les asignará el mismo bloque de recursos ortogonales.\newline
+
 \begin{figure}[th]
 \centering
-\includegraphics[scale=.6]{Figures/Localización de celdas co-canal con distintos factores de reuso}
+\includegraphics[scale=1]{Figures/Cancelación Sucesiva de Interferencia (SIC)}
 \decoRule
-\caption[Localización de celdas co-canal con distintos factores de reúso]{Localización de celdas co-canal con distintos factores de reúso, [Fuente: Tranter 2003]}
-\label{fig:celdascocanal}
+\caption[Cancelación Sucesiva de Interferencia (SIC)]{Cancelación Sucesiva de Interferencia (SIC), [Fuente: R. Kizilirmak 2017]}
+\label{fig:SIC}
 \end{figure}
-Diferentes tamaños de celda son usadas para distribuciones no uniformes de tráfico \parencite{TurjmanSmallCells}.\newline
+
+En la \textit{Figura~\ref{fig:SIC}}, las dos señales de información indicadas con diferentes colores se superponen en el transmisor. La señal recibida en el receptor SIC incluye todas estas tres señales. La primera señal que SIC decodifica es la más fuerte, mientras que la otra es tratada como ruido. La primera señal decodificada se resta de la señal recibida y si la decodificación es perfecta, la forma de onda con la otra señal se obtiene con precisión. SIC itera el proceso hasta que encuentra la señal deseada \parencite{Kizilirmak2016}.\newline
+
 \begin{figure}[th]
 \centering
-\includegraphics[scale=.5]{Figures/Sistema celular con celdas de tamaño no uniforme}
+\includegraphics[scale=1]{Figures/Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora}
 \decoRule
-\caption[Sistema celular con celdas de tamaño no uniforme]{Sistema celular con celdas de tamaño no uniforme, [Fuente: Yacoub 1993]}
-\label{fig:nouniformcells}
+\caption[Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora.]{Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora, [Fuente: Ding 2017]}
+\label{fig:NOMADL}
 \end{figure}
 
-El uso de diferentes tamaños de celdas:\newline
-•	Conduce a un incremento de interferencia, debido a la poca uniformidad en la estructura celular.\newline
-•	Requiere cuidado adicional en el despliegue de BSs
+Como se muestra en la \textit{Figura~\ref{fig:NOMADL}}, la idea clave del NOMA en el dominio de potencia es asignar más potencia al usuario con condiciones de canal más pobres. El usuario 1 decodifica su propio mensaje directamente tratando el mensaje del usuario 2 como ruido y por otro lado, el usuario 2 realiza SIC, es decir, primero decodifica el mensaje del usuario 1 y luego elimina este mensaje de su observación antes de decodificar su propio mensaje.
 
-\subsection{Planeación de frecuencia}
-La decisión de bandas de frecuencia para ser usadas en los diversos sistemas de comunicaciones es decidida por la ITU. La asignación de canales en una banda dada para un operador es decidido a nivel nacional por un cuerpo regulatorio, IFT en México. El hecho de que el espectro es muy escaso incita a un eficiente uso de frecuencias.\newline
+Suponga que el usuario 1 es un dispositivo IoT que requiere solo una baja velocidad de datos, y el usuario 2 es un usuario que exige una alta velocidad de datos. Cuando se utiliza OFDMA, que es un ejemplo típico de OMA, cada usuario se asigna a la sub-portadora. En este ejemplo, la eficiencia espectral de OMA es pobre ya que el dispositivo IoT tiene más ancho de banda de lo que realmente necesita, mientras que al usuario de banda ancha no se le asigna suficiente ancho de banda. Por otro lado, el uso de NOMA fomenta el intercambio de espectro, es decir, el usuario de banda ancha también puede tener acceso a la sub-portadora ocupada por el dispositivo IoT, en la F\textit{igura 24} se puede observar gráficamente la asignación del espectro en los dos esquemas.
 
-El número de frecuencias (portadoras, canales de radio) por celda $N_{fc}$ depende del clúster, $N_{cc}$, y del número de frecuencias en el sistema $N_{fs}$
-\begin{equation}
-    N_{fc}={N_{fs}}/{N_{cc}}
-    \label{eqn:Nfc}
-\end{equation}
+\begin{figure}[th]
+\centering
+\includegraphics[scale=1]{Figures/Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios}
+\decoRule
+\caption[Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios.]{Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios, [Fuente: R. Kizilirmak 2017]}
+\label{fig:OFDMANOMA}
+\end{figure}
 
-Debido a la limitación en el número de frecuencias, debe haber una compensación entre la interferencia $N_{cc}\ $y la capacidad$\ N_{ch/c}\ $en el sistema.\newline
+Dada la madurez técnica de OFDMA, es muy probable que este tipo de OMA se incorpore a las redes 5G \parencite{DIng2017} y la forma en que múltiples sub-portadoras OFDMA se pueden combinar de manera eficiente con NOMA ha recibido mucha atención.
 
-La asignación de frecuencias de las celdas debería reducir la interferencia de celda-adyacente maximizando la separación de las frecuencias en una celda.\newline
+Acerca del uso de arreglos múltiples de antenas (MIMO) para NOMA, han sido tema de mucho interés que han estado estudiandose para poder alcanzar un rendimiento óptimo del sistema, el ordenamiento de usuarios en escenarios de MIMO-NOMA es una tarea difícil \parencite{DIng2017}. En el caso de SISO, los canales de los usuarios son escalados, por lo que es sencillo ordenar a los usuarios de acuerdo con las condiciones de su canal. Sin embargo, cuando los nodos están equipados con antenas múltiples, los canales de los usuarios están en forma de vectores o matrices, lo que significa que ordenar a los usuarios de acuerdo con las condiciones de sus canales como en el caso SISO se vuelve difícil. 
 
-En un simple sistema celular, las frecuencias deberían ser asignadas a las celdas de acuerdo a:\newline
-\begin{equation}
-    f_{ij}=i+N_{cc}\ (j-1)
-    \label{eqn:fij}
-\end{equation}
-
-\[i=1,\ \dots ,\ N_{cc}\] 
-\[j=1,\ \dots ,\ N_{fc}\] 
-
-Cuando $N_{sc}$ sectores por celdas son implementados, cada sector deberá contener su propio grupo de frecuencias:\newline
-\begin{equation}
-    f_{ijk}=i+N_{cc}\ \left(k-1\right)+N_{cc}\ N_{sc}\ (j-1)
-    \label{eqn:fijk}
-\end{equation}
-
-\[i=1,\ \dots ,\ N_{cc}\] 
-\[j=1,\ \dots ,\ N_{fc}\] 
-\[k=1,\ \dots ,\ N_{sc}\] \\
-
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{INTERFERENCIA EN SISTEMAS CELULARES}
-
-En general el receptor recibe:\newline
-\begin{equation}
-\mathrm{SNIR=}\frac{S}{I+N}
-\label{eqn:SNIR}
-\end{equation}
-
-Donde:
-\[S\to Potencia\ de\ portadora\ de\ la\ se\textrm{\~{n}}al\ deseada\] 
-\[I\to Potencia\ de\ las\ portadoras\ de\ las\ se\textrm{\~{n}}alees\ interferentes\] 
-\[N\to Potencia\ del\ ruido\] 
-
-Los sistemas de comunicaciones móviles se caracterizan por ser sistemas limitados por interferencia, donde I domina sobre N, por lo tanto la participación del ruido N puede ser ignorada \parencite{Correia2018}.\newline
-
-Quedando entonces como la relación portadora a interferencia:\newline
-\begin{equation}
-\frac{S}{I+N}\ \ \cong \ \ \frac{S}{I}\ \ \to \ \ SIR
-\label{eqn:SIR}
-\end{equation}
-
-La interferencia co-canal $I_{cc}$ es un problema aceptado en los sistemas de comunicaciones móviles. \newline
-
-La estimación de la relación portadora a interferencia co-canal ${S}/{I_{cc}}$es calculada de acuerdo  a las siguientes asunciones:
-
-\begin{enumerate}
-\item  Todas las celdas son del mismo tamaño
-\item  La potencia radiada por todas las BSs son iguales
-\item  Todas las BSs tienen antenas omnidireccionales
-\item  El decaimiento de la potencia promedio ($a_{pd}$) con la distancia es de la forma:
-\end{enumerate}
-\begin{equation}
-P_r=P_0{(d/d_0)}^{-a_{pd}} 
-\label{eqn:P_r}
-\end{equation}
-
-En un sistema celular en general, la interferencia co-canal es calculada tomando la interferencia de todas las celdas $N_{Icc}$.
-\begin{equation}
-\frac{S}{I_{cc}}\ =\ \ \frac{S}{\sum^{N_{Icc}}_{k=1}{I_k}} 
-\label{eqn:Icc}
-\end{equation}
-
-Usualmente la interferencia puede ser estimada por tomar únicamente el primer anillo de interferencia \parencite{Correia2018}.
-\begin{equation}
-\frac{S}{I_{cc}}\ =\ \ \frac{S}{\sum^6_{k=1}{I_k}} 
-\label{eqn:I}
-\end{equation}
-
-Para el caso de transmisión de bajada \textit{downlink} para un usuario en los límites de la celda, el cálculo de la interferencia co-canal se puede aproximar a:\newline
-\begin{equation}
-    \frac{S}{I_{cc}}=\frac{R^{-a_{pd}}}{ 2(D_{r}-R)^{-a_{pd}}+2(D_{r})^{-a_{pd}} + 2(D_{r}+R)^{-a_{pd}}}\\
-    \label{eqn:SIcc}
-\end{equation}
-
-Donde:
-\[R\ :\ radio\ de\ cobertura\ de\ la\ celda\] 
-\[D_{r}\ :\ distancia\ de\ reuso\ de\ celda\ co-canal\] 
-
-En términos generales, la interferencia puede disminuir \parencite{Correia2018}:
-\begin{itemize}
-    \item implementando celdas sectorizadas.
-    \item \textit{downtilting} el lóbulo principal de la antena de la BS.
-    \item bajando la altura de la BS
-    \item optimizando la localización de la BS
-    \item implementando control de potencia
-    \item implementando \textit{frequency hopping }
-\end{itemize}
-
-En resumen, la planeación de una red celular de radio es ejecutada de la siguiente manera \parencite{Correia2018}:
-\begin{enumerate}
-    \item El mínimo valor para la relación portadora a interferencia impone el tamaño del clúster.
-    \item Se estima el tráfico en una celda determinada.
-    \item Se calcula el número de canales para una calidad de servicio determinada.
-    \item En caso de que el número de canales disponibles no sea suficiente, el tráfico se reducirá, es decir, la cobertura se reducirá.
-    \item Se establece el plan de frecuencias y la estructura del despliegue de celdas.
-    \item Cuando se propone una estructura de celdas no uniforme, los canales deberán ser distribuidos de acuerdo a las necesidades de capacidad, y a los valores topes permitidos de interferencias co- canal y canal-adyacente.
-\end{enumerate}\
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-\section{CAPACIDAD EN SISTEMAS DE COMUNICACIONES}
-
-La teoría de la información de Shannon nos dice la cantidad de información que un canal puede transportar. En otras palabras, especifica la capacidad del canal. La capacidad de un sistema de comunicación es la velocidad de datos máxima en bits por segundo que se puede transferir de manera confiable del transmisor al receptor. En el sentido estricto de la teoría de la información, este es un límite superior insuperable que, en la práctica, solo se puede abordar. En un único enlace Tx-Rx de ancho de banda de unidad sujeto a AWGN, la capacidad en bits por uso de canal (es decir, bps / Hz) viene dada por la fórmula de \emph{Shannon-Hartley}:\newline
-
-\begin{equation}
-C=B{{\mathrm{log}}_2 \left(1+\frac{S}{N}\right)\   [bps] }
-\label{eqn:Shannon}
-\end{equation}
-Donde:
-\[B:\ es\ el\ ancho\ de\ banda\ del\ canal\ en\ Hertzios.\]
-\[C:\ es\ la\ capacidad\ del\ canal\ (tasa\ de\ bits\ de\ informaci\textrm{ó}n\ bit/s)\]
-\[S:\ es\ la\ potencia\ de\ la\ se\textrm{\~{n}}al\ \textrm{ú}til\ (W,\ mW,\ etc.)\]
-\[N:\ es\ la\ potencia\ del\ ruido\ presente\ en\ el\ canal,\left(W,\ mW,\ etc.\right),\ \ que\ trata\ de\ enmascarar\ a\ la\ se\textrm{\~{n}}al\ \textrm{ú}til.\] 
-También descrita como:
-\begin{equation}
-    C =Blog_2(1 + \frac {P_{tx} H}{N_0B})
-    \label{eqn:Shannon}
-\end{equation}
-Donde:
-\[P_{tx}:\ es\ la\ potencia\ de\ transmisión\ promedio\]
-\[H:\ es\ la\ ganancia\ de\ potencia\ del\ canal\]
-\[N_0:\ es\ la\ densidad\ de\ potencia\ del\ ruido (~-173 dBm/Hz)\]
-
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{INTERFAZ DE RADIO}
-
+\subsection{Interfaz de Radio}
 Los canales de transmisión dirigidos desde la BS a MT son referidos como canal \textit{downlink} y los dirigidos desde el MT a la BS como canales \textit{uplink}, estos canales juntos se identifican como canales ``dúplex'. La transmisión bidireccional de la información en sistemas dúplex puede dividirse en \parencite{Correia2018}:
 
 \begin{enumerate}
@@ -568,23 +578,11 @@ TDD se caracteriza por:
 
 El uso de una técnica de división dúplex puede depender de la técnica de acceso múltiple utilizada para el sistema.
 
-\subsection{Esquemas de Acceso Múltiple al Medio}
-Las técnicas de acceso múltiple (MA) generalmente se pueden dividir en enfoques ortogonales y no ortogonales \parencite{Tse2004}. En MA ortogonal (OMA), los recursos de radio se dividen ortogonalmente entre dispositivos, donde las señales de diferentes dispositivos no se superponen entre sí. Las instancias de OMA son acceso múltiple por división de tiempo (TDMA), acceso múltiple por división de frecuencia (FDMA), acceso múltiple por división de frecuencia ortogonal (OFDMA), y FDMA de portadora única (SC-FDMA).\newline
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
 
-Los enfoques OMA no tienen la capacidad de combatir la interferencia entre células \parencite{Shirvanimoghaddam2017}; por lo tanto, se requieren técnicas cuidadosas de planificación celular y gestión de interferencia para resolver este problema. \newline
-
-Existen 4 técnicas básicas de acceso múltiple:
-
-\begin{enumerate}
-\item  Frecuencia: asignación de una portadora - FDMA (Acceso múltiple por división de frecuencia)
-\item  Tiempo: asignación de un intervalo de tiempo - TDMA (Acceso múltiple por división de tiempo)
-\item  Código: asignación de un código - CDMA (Acceso múltiple por división de código)
-\item  Frecuencia Ortogonal: asignación de un conjunto de sub-portadoras - OFDMA (Acceso múltiple por división de frecuencia ortogonal).
-\end{enumerate}
-
- En muchos sistemas prácticos, se utiliza una mezcla o combinación de estas técnicas básicas \parencite{Correia2018}.
-
-\subsection{Generaciones anteriores de los sistemas de comunicaciones móviles}
+\section{GENERACIONES PASADAS DE LOS SISTEMAS DE COMUNICACIÓN MÓVIL}
 
 La generación 1G fue la primera generación de tecnología celular inalámbrica. 1G se introdujo en la década de 1980. Las señales de radio utilizadas por la red 1G fueron analógicas y proporcionaba comunicación solo por voz, alcanzaba una velocidad de 2.4 Kbps. La técnica de acceso múltiple utilizada en 1G es el acceso múltiple por división de frecuencia (FDMA) [véase Figura~\ref{fig:MAs}]\parencite{Nair2018}. Esta generación utiliza el método de conmutación de circuitos para la transmisión de datos. \newline
 
@@ -606,7 +604,7 @@ Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en 
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{REDES DE QUINTA GENERACIÓN (5G)}
+\section{SISTEMAS DE COMUNICACIONES MÓVILES DE QUINTA GENERACIÓN (5G)}
 
 La NGMN define su visión de una red 5G de la siguiente manera: "5G es un ecosistema de extremo a extremo para permitir una sociedad totalmente móvil y conectada."\newline
 
@@ -650,7 +648,7 @@ Para habilitar esta tecnología se requiere el soporte para conexiones masivas, 
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{TELETRÁFICO}
+\section{MODELADO DEL TRÁFICO EN TELECOMUNICACIONES}
 
 Conceptos básicos:
 \begin{enumerate}
