@@ -434,7 +434,9 @@ Los modelos CI y CIF son más robustos y precisos en comparación con el modelo 
 
 De acuerdo a lo propuesto en la \textit{sección \ref{} }, el ambiente urbano que consideraremos está dirigido a un entorno en exteriores por la aplicación de los sensores a implementar. Por lo que se selecciona al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano) como el que ayudará a caracterizar las perdidas por trayectoria y desvanecimiento por el canal. 
 
-Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]). Además de esto también pide un valor d${}_{0}$ que es la distancia cercana de referencia al espacio libre, los autores proponen a d${}_{0}$ = 1 m en modelos de pérdida de trayectoria 5G ya que las distancias de cobertura serán más cortas a frecuencias más altas. 
+Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]). Además de esto también pide un valor d${}_{0}$ que es la distancia cercana de referencia al espacio libre.\newline
+
+Por último lo autores proponen a $d_{0} = 1 m$ en los modelos de pérdida por trayectoria para sistemas 5G ya que se espera que las distancias de cobertura serán más cortas a frecuencias más altas. Además, lo que se espera son futuras celdas pequeñas, es probable que las BS se monten más cerca de las obstrucciones. La estandarización a una distancia de referencia de 1 m simplifica las comparaciones de mediciones y modelos y proporciona una definición estándar para el PLE, al tiempo que permite la intuición y el cálculo rápido de la pérdida de trayectoria.
 
 \subsection{ESQUEMA DE ACCESO MÚLTIPLE AL MEDIO}
 
