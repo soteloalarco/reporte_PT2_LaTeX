@@ -223,7 +223,11 @@ La \textit{Figura~\ref{fig:5gqos}} muestra las distintas tecnologías con las qu
 \label{fig:5gqos}
 \end{figure}
 
-\subsection{Análisis del estándar NB-IoT} \label{NBIoT}
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{ANÁLISIS DEL ESTÁNDAR NB-IoT} \label{NBIoT}
 
 En particular, el estándar NB-IoT fue especificado en el reporte TR 45.820 (\textit{release} 13) de la 3GPP \parencite{3GPP2019}. Los parámetros fundamentales son:\newline
 
@@ -245,7 +249,7 @@ Es preciso puntualizar que para lograr una mayor tasa de datos, de acuerdo con e
 
 La tecnología NB-IoT al ocupar un ancho de banda de frecuencias de 180 kHz, corresponde a un bloque de recursos en la transmisión LTE. \newline
 
-\subsubsection{Modos de operación}
+\subsection{Modos de operación}
 
 Independiente (stand-alone).\newline
 
@@ -265,7 +269,7 @@ Para el modo de operación independiente y de banda de guarda, el PRB de enlace 
     \label{fig:NBIoT2}
 \end{figure}
 
-\subsubsection{Bandas de frecuencia}
+\subsection{Bandas de frecuencia}
 
 Como se muestra en la Figura~\ref{fig:5gnr}, en el futuro se espera que NB IoT sea implementada en las bandas 5G NR. Por el momento, la 3GPP ha definido un conjunto de bandas de frecuencia para las cuales se pueda usar NB-IoT en bandas LTE (EUTRA). \newline
 
@@ -273,21 +277,42 @@ En la especificación técnica TS-36.101 de la 3GPP de su \textit{release} 13 pr
 
 P. ej. en el caso de Latino América las bandas disponibles son las: \textbf{2} (1850-1990 MHz), \textbf{3} (1710-1880 MHz), \textbf{5} (824-894MHz) y \textbf{28} (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.\newline
 
-\subsubsection{Clases de Potencia}
+\subsection{Clases de Potencia}
 
 Algunas aplicaciones de IoT son particularmente sensibles al consumo de energía. Para minimizar el impacto de la conectividad en la duración de la batería del dispositivo, para el \textit{release} 13, se determinó que los UE podrán usar dos opciones de clase de potencia. Uno es el nivel de potencia del dispositivo móvil LTE tradicional de \textbf{23dBm} (\textit{Power Class 3}) y uno nuevo, con menos potencia de salida, de \textbf{20dBm} (\textit{Power Class 5}). El \textit{release} 14 de 3GPP agrega una nueva clase de potencia aún menor, de \textbf{14dBm} (\textit{PowerClass 6}) \parencite{NBIoTDeploymentGSMA}.
 
-En esta especificación también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes:
+\subsection{Indicadores clave de rendimiento (KPIs)}
 
-\subsubsection{Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting}}
+Hay muchas formas de medir el rendimiento de una red, por medio de sus características se pueden definir los indicadores clave de rendimiento para la evaluación integral, precisa y eficiente de las tecnologías de red 5G.\newline
+
+Con la profundización de la investigación de la tecnología 5G, se puede prever que habrá nuevos indicadores de evaluación. El diseño de estos indicadores directamente medibles, por un lado, necesita combinar las características de los nuevos servicios, y por otro lado, debe aprender completamente de la experiencia de los KPI clásicos de generaciones anteriores como lo son: el \textit{throughput, }dada una\textit{ }probabilidad de salida y la latencia. La densidad de conexión, la densidad de volumen de tráfico y el consumo de energía son nuevos KPI introducidos por las redes 5G/IoT \parencite{WirelessSim}.\newline
+
+Para cumplir con el conjunto de requisitos de mMTC, NB-IoT debe admitir principalmente cuatro indicadores clave de rendimiento (KPI).\newline
+
+\begin{enumerate}
+\item  Vida útil de la batería del dispositivo más allá de 10 años, suponiendo una capacidad de energía almacenada de 5 Wh.
+\item  Densidad de conexión masiva de hasta 1M dispositivos por km cuadrado en un entorno urbano.
+\item  Latencia de como máximo 10 s.
+\item  Una tasa máxima alcanzable de hasta 200kbps (subida).
+\end{enumerate}
+
+El análisis fundamental del simulador contemplará como métricas de desempeño a la compensación entre la tasa máxima alcanzable y la densidad de usuarios atendidos en términos de una calidad de servicio QoS. Esta QoS dependerá de los cuatro principales KPIs para mIoT.\newline
+
+Por lo tanto, de acuerdo a las métricas que serán consideradas, los KPIs a considerar son: la tasa máxima alcanzable y la densidad de usuarios, sin embargo durante las investigaciones que hemos realizado en la literatura científica no hemos encontrado ningún artículo que proponga un modelo de sistema que alcance el KPI de soportar hasta 1 millón de dispositivos. Por lo que para esta métrica se buscará un diseño de sistema tal que a un determinado tope de usuarios se logre una óptima tasa UL, es decir, el dimensionamiento de la red.
+
+\subsection{Características del tráfico de paquetes}
+
+De acuerdo con la especificación de los Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting} también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes:
+
 \subsubsection{Informes de excepción}
+
 Se espera que muchas aplicaciones de tipo sensor monitoreen una condición física y activen un informe de excepción cuando se detecte un evento. Estos eventos serán, en general, raros y ocurrirán cada pocos días, meses o incluso años. Ejemplos de tales aplicaciones incluyen detectores de alarma de humo, notificaciones de fallas de energía de medidores inteligentes, notificaciones de manipulación, etc.\newline
 
 Para el análisis de latencia, se supone que los informes de excepción MAR tienen una carga útil de la aplicación de enlace ascendente de 20 bytes. Se requiere que dichos informes se entreguen casi en tiempo real, con un objetivo de latencia de 10 segundos.\newline
 
 Para cada informe de enlace ascendente generado (es decir, el 100\% de los informes de excepción de enlace ascendente), también se supone que la aplicación enviará un ACK de aplicación de enlace descendente. El tamaño del tamaño ACK de la capa de aplicación es cero. El tamaño total del paquete (por encima del equivalente de la capa SNDCP) es la sobrecarga debida COAP / DTLS / UDP / IP.\newline
 
-\subsubsection{Informes periódicos}
+\subsubsection{Informes periódicos}\label{Informesperiodicos}
 
 Se espera que los informes periódicos de enlace ascendente sean comunes para aplicaciones de IoT celular como informes de medición de servicios inteligentes (gas / agua / electricidad), agricultura inteligente, entorno inteligente, etc. El modelo de tráfico de informes de enlace ascendente periódico MAR se utiliza en simulaciones a nivel de sistema para análisis de capacidad.\newline
 
@@ -314,30 +339,7 @@ La adición de la columna "Tamaños de paquete" para la \textit{Tabla~\ref{tab:}
 \end{tabular}
 \end{table}
 
-
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{INDICADORES CLAVE DE RENDIMIENTO (KPIs)}
-
-Hay muchas formas de medir el rendimiento de una red, por medio de sus características se pueden definir los indicadores clave de rendimiento para la evaluación integral, precisa y eficiente de las tecnologías de red 5G.\newline
-
-Con la profundización de la investigación de la tecnología 5G, se puede prever que habrá nuevos indicadores de evaluación. El diseño de estos indicadores directamente medibles, por un lado, necesita combinar las características de los nuevos servicios, y por otro lado, debe aprender completamente de la experiencia de los KPI clásicos de generaciones anteriores como lo son: el \textit{throughput, }dada una\textit{ }probabilidad de salida y la latencia. La densidad de conexión, la densidad de volumen de tráfico y el consumo de energía son nuevos KPI introducidos por las redes 5G/IoT \parencite{WirelessSim}.\newline
-
-Para cumplir con el conjunto de requisitos de mMTC, NB-IoT debe admitir principalmente cuatro indicadores clave de rendimiento (KPI).\newline
-
-\begin{enumerate}
-\item  Vida útil de la batería del dispositivo más allá de 10 años, suponiendo una capacidad de energía almacenada de 5 Wh.
-\item  Densidad de conexión masiva de hasta 1M dispositivos por km cuadrado en un entorno urbano.
-\item  Latencia de como máximo 10 s.
-\item  Una tasa máxima alcanzable de hasta 200kbps (subida).
-\end{enumerate}
-
-El análisis fundamental del simulador contemplará como métricas de desempeño a la compensación entre la tasa máxima alcanzable y la densidad de usuarios atendidos en términos de una calidad de servicio QoS. Esta QoS dependerá de los cuatro principales KPIs para mIoT.\newline
-
-Por lo tanto, de acuerdo a las métricas que serán consideradas, los KPIs a considerar son: la tasa máxima alcanzable y la densidad de usuarios, sin embargo durante las investigaciones que hemos realizado en la literatura científica no hemos encontrado ningún artículo que proponga un modelo de sistema que alcance el KPI de soportar hasta 1 millón de dispositivos. Por lo que para esta métrica se buscará un diseño de sistema tal que a un determinado tope de usuarios se logre una óptima tasa UL, es decir, el dimensionamiento de la red.
-
+\break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
@@ -438,14 +440,35 @@ Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: 
 
 \subsubsection{Acceso Múltiple No Ortogonal (NOMA)}
 
-Como resultado, el uso de NOMA soporta eficientemente la conectividad masiva y cumple con los diversos requisitos de QoS de los usuarios. El diseño de NOMA en transmisiones de subida (\textit{uplink}) ha sido propuesto en \parencite{Al-Imari2014} y el diseño óptimo de NOMA en transmisiones de bajada (\textit{downlink}) ha sido propuesto en \parencite{Zhu2019}.
+Se estudióo en la Sección~\ref{}, que el uso de NOMA soporta eficientemente la conectividad masiva y cumple con los diversos requisitos de QoS de los usuarios. El diseño de NOMA en transmisiones de subida (\textit{uplink}) ha sido propuesto en \parencite{Al-Imari2014} y el diseño óptimo de NOMA en transmisiones de bajada (\textit{downlink}) ha sido propuesto en \parencite{Zhu2019}.
 
 Por una parte, en \parencite{Zhang2017} se implementó NOMA emparejando selectivamente dos usuarios, es decir, se escogía a un usuario con una condición de canal muy buena (cerca de la BS) y otro con una condición de canal muy pobre (en el borde de la celda). Por otro lado en \parencite{Shahini2019}, se implementó NOMA usando la técnica de agrupamiento de usuarios, para esto, considerando un entorno donde conviven dispositivos mMTC y URLLC (mayores requisitos de velocidad de datos en comparación con los dispositivos mMTC), de igual manera se agrupan a un grupo de usuarios (p.ej., 2, 3 o 4 usuarios) de diferente tipo (mMTC y URLLC), se ordenan convenientemente para implementar SIC.
 
 Entonces, como vemos hay dos maneras de implementar NOMA. Las dos son propuestas que han sido estudiadas para para cubrir los requerimientos de mMTC ya que NB-IoT no es capaz de proveer conectividad a una cantidad masiva de dispositivos IoT como se espera en el futuro.
 
-Por lo tanto, en el simulador se propone implementar NOMA usando la técnica de agrupamiento de usuarios, en nuestro caso como consideraremos dos tipos de clase de sensores NB-IoT clase I y clase II (con mayores requisitos de velocidad de datos en comparación con clase I). La relación de la distribución de dispositivos clase 1 con los de clase 2 será de 3 a 1. Con el fin de que por lo menos se un dispositivo de clase II se agrupe con tres de clase I.
+En nuestro simulador se implementará la metodologia en \parencite{Shahini2019}, donde los dispositivos activos de URLLC y mMTC comparten un PRB para la transmisión de datos de enlace ascendente en un intervalo de tiempo de transmisión (TTI). Se supone que el ancho de banda disponible de un PRB se divide en un conjunto de frecuencias de subcanal S y el ancho de banda de cada subcanal es W . De hecho, el ancho de banda del sistema se puede dividir por igual en 48 o 12 subportadoras en los sistemas NB-IoT.\newline
 
+En particular, el espacio de subportadora de 3.75 kHz puede ser soportado para transmisiones de enlace ascendente [9] . Por lo tanto, en este artículo, consideraron un PRB con 48 subportadoras de 3.75 kHz para las transmisiones de datos de enlace ascendente. Tenga en cuenta que, a diferencia del FDMA de una sola portadora (SC-FDMA) que se usa actualmente para las transmisiones de enlace ascendente en NB-IoT, este modelo de sistema puede admitir más dispositivos conectados al asignar múltiples dispositivos a cada subportadora. Por lo tanto, los dispositivos MTC se deben clasificar en diferentes grupos para compartir los mismos recursos espectrales asignados a su grupo.\newline
+
+Por lo tanto, en el simulador se propone implementar NOMA usando la técnica de agrupamiento de usuarios, en nuestro caso como consideraremos dos tipos de clase de sensores NB-IoT (mMTC) clase I y NB-IoT (uRLLC) clase II (con mayores requisitos de velocidad de datos en comparación con clase I). La relación de la distribución de dispositivos clase 1 con los de clase 2 será de 3 a 1. Con el fin de que por lo menos se un dispositivo de clase II se agrupe con tres de clase I. Todo esto con base en las consideraciones del modelo de sistema en \parencite{Shahini2019}.
+
+La tasa de datos alcanzable de un dispositivo $m$ (mMTC) en términos de la tasa agregada sobre las subportadoras asignadas se puede expresar como \parencite{Shahini2019}:
+\begin{equation}
+{R_{m}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\alpha _{m}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {M}\backslash m} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}} } }}} }\right)
+\label{eqn:Rm}
+\end{equation}
+
+Del mismo modo, la Tasa de datos alcanzable de un dispositivo $u$ (URLLC) puede determinarse mediante el teorema de Shannon-Hartley. Hay que tomar en cuenta que los rangos de URLLC siempre son mayores que los de mMTC en cada clúster NOMA. Por lo tanto, reciben interferencia de todos los miembros del clúster mMTC, así como de los miembros del clúster URLLC con rangos más altos. 
+Por lo tanto, la tasa de datos alcanzable de un dispositivo $u$ URLLC sobre las subportadoras asignadas es \parencite{Shahini2019}:
+
+\begin{equation}
+{R_{u}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\beta _{u}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{u}^{s}} }\right |}^{2}}p_{u}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {U}\backslash u} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\beta _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}}} \sum \limits _{m \in \mathcal {M}} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}} } }}} }\right)
+\label{eqn:Ru}
+\end{equation}
+
+
+
+\break
 \subsection{MODELOS DE TRÁFICO}
 
 Los modelos de tráfico en comunicaciones móviles buscan acercarse, lo más posible a cómo transmiten datos o realizan peticiones de acceso los dispositivos que intentan modelar. Estos modelos de tráfico pueden clasificarse en modelos de tráfico\textbf{ }agregado y modelos de tráfico fuente \parencite{Laner2013}, el tráfico agregado simula un flujo de tráfico que se agrupa para recibir un tratamiento común, mientras que en los modelos de tráfico fuente es justamente cada una de las fuentes generadoras del tráfico la que se simula y frecuentemente se hace acompañada de una cadena de Markov que intenta representar los distintos estados del dispositivo fuente y la probabilidad de transición entre ellos.\newline

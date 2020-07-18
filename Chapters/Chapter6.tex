@@ -10,7 +10,7 @@ En este Capítulo se explica la implementación del modelo de sistema propuesto 
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{Generación de una geometría estocastica}
+\section{Generación de una geometría estocastica}\label{generarGeoEstocastica}
 
 Generación de Puntos de Poisson en un círculo: \newline
 
@@ -28,21 +28,9 @@ Por otra parte, debido a que el área aumenta de manera cuadrática con relació
 
 \subsection{Escenario de Prueba}
 
-En este escenario se validó la generación de puntos siguiendo un HPPP.\newline
+En este escenario se validó la generación de una geometría estocastica siguiendo un HPPP.\newline
 
-Para el primer caso en el número total de puntos que sigue una distribución discreta de Poisson, se comprobó la generación de la variable aleatoria Poisson en Python usando la libreria \textit{scipy}.\newline
-
-Para esto, se realizaron $1000$ generaciones de numeros siguiendo una distribución de Poisson con tasa $\lambda = 1000$, se obtuvo el histograma de todos los números generados y se comparó con su función de masa de probabilidad (PMF).\newline
-
-Se observa que la distribución del histograma sigue a la función masa de probabilidad de Poisson [\textit{véase Figura~\ref{fig:generacionPoisson}}], por lo que se valida la generación de números Poisson en Python.\newline
-
-\begin{figure}[th]
-    \centering
-    \includegraphics[scale=.4]{Figures/PoissonDistribution}
-    \decoRule
-    \caption[Gráfica comparación PMF e histograma de distribución Poisson en Python]{Gráfica comparación PMF e histograma de distribución Poisson en Python}
-    \label{fig:generacionPoisson}
-\end{figure}
+En primer lugar, el número total de puntos debe seguir una distribución discreta de Poisson, esta se comprobó con la generación de la variable aleatoria Poisson en Python usando la libreria \textit{scipy} [Véase Apéndice~\ref{AppendixA}].\newline
 
 También, se comprobó la generación de puntos aleatorio ubicados uniformemente en un círculo de radio $r$ en coordenadas polares $[r(\sqrt{U}), 2\pi V]$.\newline
 
@@ -65,7 +53,7 @@ Por último, se validó que todos los puntos se generen dentro del areá del cir
     \end{minipage}
 \end{figure}
 
-
+\break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
@@ -74,32 +62,19 @@ Por último, se validó que todos los puntos se generen dentro del areá del cir
 
 De acuerdo con el modelo de canal propuesto, el modelo CI \textit{Ecuación~\ref{eqn:CI}} \parencite{Sun2016}, este implementa pérdidas de acuerdo con la distancia, dado un exponente de pérdida por trayectoria (PLE) y agrega pérdidas por el desvanecimiento rápido de Rayleigh.\newline
 
-Cuando se habla del desvanecimiento de Rayleigh en enlaces inalambricos, en la literatura \parencite{RayleighScienceDirect} se encuentra que las componentes en cuadratura y en fase de la señal recibida son variables aleatorias Gaussianas con media cero que se distribuyen de forma independiente e idéntica (iid), siendo así, que la magnitud de la señal banda base compleja sigue una distribución de Rayleigh. Por otra parte, la distribución de la potencia normalizada de una señal de banda base compleja recibida bajo el desvanecimiento unitario de Rayleigh es modelado por medio de una distribución exponencial unitaria.\newline
+En primera instancia
 
-Por lo tanto, cuando el desvanecimiento es Rayleigh, la magnitud (voltaje) de la señal es distribuida por Rayleigh pero su potencia es distribuida exponencialmente.\newline
 
-En nuestro caso, como se trabajará en términos de potencia, se modelará este fenómeno por medio de la generación de una variable aleatoria que siga una distribución exponencial negativa con media unitaria, es decir, para cada $x>=0$ :
 
-\begin{equation}
-    f(x)=\lambda e^{-\lambda x}
-\end{equation}
-    $donde\ \lambda \to 1$
+Después, cuando el desvanecimiento es Rayleigh, la magnitud (voltaje) de la señal es distribuida por Rayleigh pero su potencia es distribuida exponencialmente [Sección~\ref{DesvRayleigC2}].\newline
+
+En nuestro caso, como las ganancias se modelarán de acuerdo a la Ecuación~\ref{eqn:Shannon2}, es decir en términos de la ganancia , se modelará este fenómeno por medio de la generación de una variable aleatoria que siga una distribución Rayleigh con desviación estándar unitaria, es decir, para cada $x>=0$ 
+
+
 
 \subsection{Escenario de Prueba del desvanecimiento tipo Rayleigh en potencia}
 
-Entonces, dado que en la generación de las ganancias Rayleigh se implementa la distribución continua Exponencial con media unitaria, se comprobó la generación de esta variable aleatoria en Python usando la libreria \textit{random}.\newline
 
-Se realizaron $100000$ generaciones de numeros siguiendo una distribución Exponencial negativa con media $1$, se obtuvo el histograma de todos los números generados y se comparó con su función de densidad de probabilidad (PDF).\newline
-
-Se observa que la distribución del histograma sigue a la función densidad de probabilidad Exponencial [\textit{véase Figura~\ref{fig:generacionExpon}}], por lo que se valida la generación de números Exponenciales en Python.\newline
-
-\begin{figure}[th]
-    \centering
-    \includegraphics[scale=.7]{Figures/ExponentialDisitribution}
-    \decoRule
-    \caption[Gráfica comparación PDF e histograma de distribución Exponencial en Python]{Gráfica comparación PDF e histograma de distribución Exponencial en Python}
-    \label{fig:generacionExpon}
-\end{figure}
 %\begin{figure}[th]
 %    \centering
 %    \includegraphics[scale=.6]{Figures/}
@@ -107,6 +82,8 @@ Se observa que la distribución del histograma sigue a la función densidad de p
 %    \caption[]{}
 %    \label{fig:}
 %\end{figure}
+
+\break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
@@ -134,19 +111,6 @@ Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de
 \end{figure}
 
 
-La tasa de datos alcanzable de un dispositivo $m$ (mMTC) en términos de la tasa agregada sobre las subportadoras asignadas se puede expresar como \parencite{Shahini2019}:
-\begin{equation}
-{R_{m}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\alpha _{m}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {M}\backslash m} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}} } }}} }\right)
-\label{eqn:Rm}
-\end{equation}
-
-Del mismo modo, la Tasa de datos alcanzable de un dispositivo $u$ (URLLC) puede determinarse mediante el teorema de Shannon-Hartley. Hay que tomar en cuenta que los rangos de URLLC siempre son mayores que los de mMTC en cada clúster NOMA. Por lo tanto, reciben interferencia de todos los miembros del clúster mMTC, así como de los miembros del clúster URLLC con rangos más altos. 
-Por lo tanto, la tasa de datos alcanzable de un dispositivo $u$ URLLC sobre las subportadoras asignadas es \parencite{Shahini2019}:
-
-\begin{equation}
-{R_{u}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\beta _{u}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{u}^{s}} }\right |}^{2}}p_{u}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {U}\backslash u} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\beta _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}}} \sum \limits _{m \in \mathcal {M}} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}} } }}} }\right)
-\label{eqn:Ru}
-\end{equation}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       EJEMPLO DE ALGORITMO EN LaTeX       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -266,10 +230,38 @@ No se satisfacen todos los requisitos de velocidad de datos de los dispositivos 
 \end{algorithm}
 
 
+
+\begin{algorithm}
+    \caption{Modo Operacion \textit{Multitone}}\label{euclid}
+    \hspace*{\algorithmicindent} \textbf{Entrada} NumeroDispositivos\\
+    \hspace*{\algorithmicindent} \textbf{Output} NumeroGrupos
+    \begin{algorithmic}[1]
+    \Procedure{Ejemplo de procedimiento \textit{Multitone} con kmax=4}{}
+    \If {$kmax ==4$} 
+        \If {$NumeroDispositivos <= 48$} 
+        \Return NumeroDispositivos
+        \EndIf
+        \If {$NumeroDispositivos > 48\ and\ NumeroDispositivos <=96$} 
+        \Return NumeroDispositivos/2
+        \EndIf
+        \If {$NumeroDispositivos > 96\ and\ NumeroDispositivos <= 144 $} 
+        \Return NumeroDispositivos/3
+        \EndIf
+        \If {$NumeroDispositivos > 144\ and\ NumeroDispositivos < 192$} 
+        \Return NumeroDispositivos/4
+        \EndIf
+        \If {$NumeroDispositivos >= 192$} 
+        \Return 48
+        \EndIf
+    \EndIf
+    \EndProcedure
+    \end{algorithmic}
+    \end{algorithm}
+
 \subsection{Escenario de Prueba de los Algoritmos 1 y 2}
 
 
-
+\break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------

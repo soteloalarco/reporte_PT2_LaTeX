@@ -4,12 +4,11 @@
 
 \label{Chapter2} 
 
-El objetivo de este capítulo fue revisar los fundamentos de la teoría de los sistemas de comunicaciones móviles, comenzando desde las distribuciones de probabilidad utilizadas para caracterizar los fenómenos más importantes en este ámbito, después se ahondó en las pérdidas en un sistema celular por medio de los modelos de canal más comunes y con su caracterización en parámetros a larga y pequeña escala, p.ej., la pérdida por trayectoria y el desvanecimiento de las señales de radio.\newline
+El objetivo de este capítulo fue revisar los fundamentos de la teoría de los sistemas de comunicaciones móviles, comenzando con los diferentes modelos de despliegue para BS y UE, se estudió las características de una geometría estocástica y se repasó la teoría del concepto celular, es decir, la geometría celular clásica que sirve para la eficiencia en la planificación de los recursos y por lo tanto el problema más importante en estos sistemas: los efectos de la interferencia.\newline
 
-Además, se repasó la teoría del concepto celular, es decir, la geometría celular clásica que sirve para la eficiencia en la planificación de los recursos y por lo tanto el problema más importante en estos sistemas: los efectos de la interferencia. \newline
+Después se ahondó en las pérdidas en un sistema celular por medio de los modelos de canal más comunes y con su caracterización en parámetros a larga y pequeña escala, p.ej., la pérdida por trayectoria y el desvanecimiento de las señales de radio. Además, se revisaron los diferentes esquemas de acceso al medio en comunicaciones móviles.\newline
 
 Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunicaciones, los organismos más importantes de estandarización de redes móviles y algunos conceptos de las simulaciones a nivel de sistema orientados a eventos discretos en conjunto con los lenguajes de programación más utilizados.\newline
-
 
 
 %----------------------------------------------------------------------------------------
@@ -33,7 +32,9 @@ En el modelado de posicionamiento de las estaciones base y los usuarios existen 
 \subsection{Procesos puntuales (PP)}
 \textit{Point Process} \parencite{Haenggi2009}\newline
 
-En primer lugar, los objetos más básicos estudiados en geometría estocástica son procesos puntuales. Visualmente, un proceso puntual se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual (PP) es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
+En primer lugar, para un despliegue aleatorio, la base son los procesos puntuales ya que son los objetos elementales estudiados en la teoría de geometría estocástica.\newline
+
+Visualmente, un proceso puntual se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual (PP) es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
 
 Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R}^{d}$ son las siguientes:\newline
 
@@ -43,10 +44,36 @@ Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R
     \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
 \end{itemize}
 
+Antes de entrar a la teoría de los PPP, es necesario definir un Proceso de Poisson.
+
+\subsection{Procesos de Poisson}
+
+Los procesos de Poisson son altamente utilizados para representar o modelar fenómenos en las telecomunicaciones, p. ej. la generación de llamadas telefónicas.\newline
+
+Algunas propiedades de los procesos de Poisson son las siguientes \parencite{ PoissonMedium}:
+
+\begin{itemize}
+    \item Se compone de una secuencia de variables aleatorias $X1, X2, X3, ... Xk$, de modo que cada variable representa el número de ocurrencias de algún evento, durante un intervalo de tiempo.
+    \item Es un proceso estocástico. Cada vez que ejecuta el proceso de Poisson, producirá una secuencia de resultados aleatorios diferentes según alguna distribución de probabilidad.
+    \item Es un proceso discreto. Los resultados del proceso de Poisson son el número de ocurrencias de algún evento en el período de tiempo especificado, que sin duda es un número entero, es decir, un número discreto.
+    \item Tiene incrementos independientes. Lo que esto significa es que el número de eventos que el proceso predice que ocurrirá en cualquier intervalo dado, es independiente del número en cualquier otro intervalo disjunto.
+    \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución idéntica.
+    \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución de Poisson , que viene dada por la Función Masa de Probabilidad (PMF):
+\end{itemize}
+
+\begin{equation}
+    P_{X}(k)=\frac{e^{-\lambda}*\lambda ^{k}}{k!}
+    \label{eqn:Poisson}
+\end{equation}
+
+La fórmula anterior nos da la probabilidad de ocurrencia de $k$ eventos en unidad de tiempo, dado que la tasa de ocurrencia promedio es $\lambda$ eventos por unidad de tiempo.\newline
+
+Los procesos de Poisson tienen una subestructura notable. Aunque el número de eventos ocurridos se modela usando una distribución de Poisson discreta, el intervalo de tiempo entre eventos consecutivos se puede modelar usando una distribución exponencial, que en contra, es una distribución continua \parencite{PoissonMedium}.\newline
+
 \subsection{Procesos Puntuales de Poisson (PPP)}\label{PPP_C4}
 \textit{Poisson Point Process} \parencite{Haenggi2009}\newline
 
-Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
+Ahora bien, sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
 
 \begin{itemize}
     \item Para todos los subconjuntos disjuntos $A1, ..., An$ de $E$, las variables aleatorias $\Phi(Ai)$ son independientes.
@@ -67,7 +94,7 @@ Un PPP ofrece un práctico marco computacional para diferentes cantidades de red
 
 \subsection{Geometría Clásica Celular}
 
-Ahora bien, para un esquema hexágonal se tiene que recurrir a la teoria clasica celular donde se busca que los sistemas celulares brinden una determinada cobertura para un servicio, dividiendo el área geográfica en segmentos llamados celdas donde el espectro de frecuencia también es dividido en canales y estos son agrupados para repartirse entre las celdas. Estos sistemas logran una alta capacidad gracias al reúso del canal de comunicación permitiendo a las estaciones base compartir los canales, sin embargo, este reúso da como resultado una interferencia co-canal generada solamente entre usuarios que comparten el mismo canal, lo cual limita el rendimiento y capacidad de un sistema celular dado que los efectos de esta interferencia son altamente dependientes con los aspectos del sistema \parencite{Tranter2003} como lo son el tipo de acceso múltiple del sistema, el número de usuarios compartiendo el canal, el canal de propagación, la perdida por trayectoria, el desvanecimiento, entre otros.\newline
+Ahora bien, para un despliegue determinístico, se suele optar por un esquema hexágonal el cual recurre a la teoria clasica celular donde se busca que los sistemas celulares brinden una determinada cobertura para un servicio, dividiendo el área geográfica en segmentos llamados celdas donde el espectro de frecuencia también es dividido en canales y estos son agrupados para repartirse entre las celdas. Estos sistemas logran una alta capacidad gracias al reúso del canal de comunicación permitiendo a las estaciones base compartir los canales, sin embargo, este reúso da como resultado una interferencia co-canal generada solamente entre usuarios que comparten el mismo canal, lo cual limita el rendimiento y capacidad de un sistema celular dado que los efectos de esta interferencia son altamente dependientes con los aspectos del sistema \parencite{Tranter2003} como lo son el tipo de acceso múltiple del sistema, el número de usuarios compartiendo el canal, el canal de propagación, la perdida por trayectoria, el desvanecimiento, entre otros.\newline
 
 Los sistemas celulares son caracterizados por \parencite{Correia2018}:
 \begin{itemize}
@@ -309,14 +336,14 @@ Donde:
 También descrita como:
 \begin{equation}
     C =Blog_2(1 + \frac {P_{tx} H}{N_0B})
-    \label{eqn:Shannon}
+    \label{eqn:Shannon2}
 \end{equation}
 Donde:
 \[P_{tx}:\ es\ la\ potencia\ de\ transmisión\ promedio\]
 \[H:\ es\ la\ ganancia\ de\ potencia\ del\ canal\]
 \[N_0:\ es\ la\ densidad\ de\ potencia\ del\ ruido (~-173 dBm/Hz)\]
 
-
+\break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
@@ -442,6 +469,22 @@ El desvanecimiento lento puede ser causado por eventos como el \textit{shadowing
 
 El desvanecimiento rápido ocurre cuando la amplitud y el cambio de fase impuestos por el canal varían considerablemente durante el período de uso. Una señal que viaja en un entorno puede verse reflejada por varios objetos en el camino. Esto da lugar a varias señales reflejadas. Las señales reflejadas llegan al receptor en diferentes instantes de tiempo y con diferentes intensidades que conducen a la propagación multitrayectoria. Se considera un parámetro a pequeña escala.\newline
 
+Cuando se habla del desvanecimiento de Rayleigh en enlaces inalambricos, en la literatura \parencite{RayleighScienceDirect} se encuentra que las componentes en cuadratura y en fase de la señal recibida son variables aleatorias Gaussianas con media cero que se distribuyen de forma independiente e idéntica (iid), siendo así, que la magnitud de la señal banda base compleja sigue una distribución de Rayleigh [Ecuación~\ref{eqn:Rayleigheqn}]. Por otra parte, la distribución de la potencia normalizada de una señal de banda base compleja recibida bajo el desvanecimiento unitario de Rayleigh es modelado por medio de una distribución exponencial unitaria [Ecuación~\ref{eqn:Exponeqn}]. \label{DesvRayleigC2} \newline 
+
+\begin{equation}
+    P_{X}(x) = {x\over\sigma_{i}^{2}}\exp\left(-{x^{2}\over 2\sigma_{i}^{2}}\right),\ x\geq 0
+    \label{eqn:Rayleigheqn}
+\end{equation}
+Donde:
+\[\sigma\to Desviación\ estándar\] 
+
+\begin{equation}
+    f(x)=\lambda e^{-\lambda x}
+    \label{eqn:Exponeqn}
+\end{equation}
+Donde:
+\[\lambda\to 1\] 
+
 Los márgenes de desvanecimiento deben tomarse en cuenta para caracterizar la variación de las señales alrededor de un valor promedio, esto depende de:\newline
 
 •	Características del ambiente (LoS o NLoS)\newline
@@ -493,13 +536,15 @@ Los modelos de estimación de señal pueden ser divididos en dos categorías:
     \end{itemize}
 \end{enumerate}
 
-
+\break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
 \section{ESQUEMAS DE ACCESO MÚLTIPLE AL MEDIO}
 Las técnicas de acceso múltiple (MA) generalmente se pueden dividir en enfoques ortogonales y no ortogonales \parencite{Tse2004}. En MA ortogonal (OMA), los recursos de radio se dividen ortogonalmente entre dispositivos, donde las señales de diferentes dispositivos no se superponen entre sí. Las instancias de OMA son acceso múltiple por división de tiempo (TDMA), acceso múltiple por división de frecuencia (FDMA), acceso múltiple por división de frecuencia ortogonal (OFDMA), y FDMA de portadora única (SC-FDMA).\newline
+
+\subsection{OMA}
 
 Los enfoques OMA no tienen la capacidad de combatir la interferencia entre células \parencite{Shirvanimoghaddam2017}; por lo tanto, se requieren técnicas cuidadosas de planificación celular y gestión de interferencia para resolver este problema. \newline
 
@@ -513,6 +558,8 @@ Existen 4 técnicas básicas de acceso múltiple (OMA):
 \end{enumerate}
 
 En muchos sistemas prácticos, se utiliza una mezcla o combinación de estas técnicas básicas \parencite{Correia2018}. Y también, de acuerdo a cada generación de comunicaciones móviles, el esquema de acceso al medio suele cambiar [véase Figura~\ref{fig:MAs}].\newline
+
+\subsection{NOMA}
 
 Igualmente, el acceso múltiple no ortogonal (NOMA) se ha convertido en un principio importante para el diseño de técnicas de acceso por radio para las redes inalámbricas de quinta generación (5G) \parencite{DIng2017}. NOMA se puede clasificar en dos categorías, el dominio de código NOMA (CD-NOMA) y el dominio de potencia NOMA (PD-NOMA). CD-NOMA utiliza diferentes códigos en el mismo recurso para lograr una ganancia de multiplexación, mientras que PD-NOMA asigna a los usuarios niveles de potencia distintos para maximizar el rendimiento. En comparación con el acceso múltiple ortogonal (OMA) que se ha aplicado ampliamente en los sistemas de comunicación inalámbrica existentes, NOMA posee el potencial de mejorar aún más la eficiencia espectral del sistema y la capacidad de conectividad.\newline
 
@@ -643,7 +690,7 @@ El internet de las cosas (IoT) es una emergente y prometedora tecnología que ha
 
 Para habilitar esta tecnología se requiere el soporte para conexiones masivas, es decir, admitir la gran cantidad de sensores en una sola celda. Debido a que la mayoría de estos sensores deben operar durante varios años, la eficiencia energética en las transmisiones inalámbricas es un requisito importante. Además, se debe reducir el costo de implementación de tales sensores \parencite{IoT5GWire}.
 
-
+\break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
@@ -673,7 +720,28 @@ Suponiendo un sistema que es capaz de atender todas las peticiones de servicio y
 
 Para un sistema que atiende todas las peticiones el tráfico cursado y el ofrecido son iguales, sin embargo, cuando se analizan sistemas que no cumplan esta característica, a se vuelve un valor hipotético (la intensidad de tráfico cursado, si todas las peticiones se atendieran), sin embargo, seguirá describiendo la intensidad del tráfico que se ofrece. Es importante mencionar que el desempeño de un sistema (en términos de algún parámetro de calidad de servicio) no va a depender del valor de $\lambda$ o de $\mu$ por sí solos, sino del producto de ellos. Por ejemplo, un sistema se puede saturar tanto por una alta tasa de arribos como por una gran duración del tiempo de servicio.\newline
 
+\subsection{Modelado de tiempos entre llegadas}
+
+Sean $X1, X2, X3, ... Xi$ variables aleatorias tales que:
+\begin{itemize}
+    \item $X1$ = el intervalo de tiempo entre el inicio del proceso y el primer evento, es decir, la primera llegada,
+    \item $X2$ = el tiempo entre llegadas entre la primera y la segunda llegada,
+    \item $X3$ = el tiempo entre llegadas entre la segunda y la tercera llegada , y así sucesivamente.
+\end{itemize}
+La distribución de la variable aleatoria $Xk$ que representa el tiempo entre llegadas entre la llegada $(k-1) th$ y $(k) th$ es \parencite{PoissonMedium}:
+\begin{equation}
+    X_{k}=Exponential(\lambda)
+    \label{eqn:expon}
+\end{equation}
+La Función Densidad de Probabilidad (PDF) de la variable aleatoria $X_{k}$ es la siguiente:
+\begin{equation}
+    P_{X}(t)=\lambda e^{-\lambda t}
+    \label{eqn:pdfexpon}
+\end{equation}
+Y describe la PDF de tiempos entre llegadas en un proceso de Poisson.\newline
+
 Hasta este punto el tráfico sólo se ha caracterizado en término de dos valores promedio: la tasa de arribos ($\lambda$) y la duración promedio de los servicios ($\mu$). Estos parámetros representan información parcial de dos variables aleatorias, el tiempo entre arribos (TEA) y el tiempo duración de servicio (TDS). Estos tiempos por su carácter aleatorio en muchos análisis se modelan como variables aleatorias. El tipo de comportamiento aleatorio en las tasas se establece al de una distribución exponencial negativa \parencite{Carter1990}. La tasa de arribos corresponde una distribución como sigue:
+
 \begin{equation}
 f(y)=\lambda e^{-\lambda y}\cdot u(y)
 \label{eqn:lambda}

@@ -10,7 +10,7 @@ El objetivo de este capítulo fue revisar las distribuciones de probabilidad mas
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{DISTRIBUCIONES DE PROBABILIDAD}
+\section{DISTRIBUCIONES MÁS IMPORTANTES EN TELECOMUNICACIONES}
 
 El uso de modelos estadísticos es importante para describir \parencite{Correia2018}:
 \begin{itemize}
@@ -53,54 +53,72 @@ En teoría de la probabilidad y estadística, hay varias relaciones entre las di
     \centering
     \includegraphics[scale=0.63]{Figures/RelacionesProbabilidad}
     \decoRule
-    \caption[Relaciones entre algunas de las distribuciones de probabilidad univariadas]{Las relaciones entre algunas de las distribuciones de probabilidad univariadas se ilustran con líneas conectadas, las líneas discontinuas significan relación aproximada. [Fuente: \parencite{univariateDist}}
+    \caption[Relaciones entre algunas de las distribuciones de probabilidad univariadas]{Las relaciones entre algunas de las distribuciones de probabilidad univariadas se ilustran con líneas conectadas, las líneas discontinuas significan relación aproximada. [Fuente: \parencite{univariateDist}]}
     \label{fig:relacionesDistribuciones}
 \end{figure}
 
-\subsection{Procesos de Poisson}
+\break
 
-Los procesos de Poisson son altamente utilizados para representar o modelar fenómenos en las telecomunicaciones, p. ej. la generación de llamadas telefónicas.\newline
+\section{IMPLEMENTACIÓN DE DISTRIBUCIONES UTILIZADAS EN EL SIMULADOR}
 
-Algunas propiedades de los procesos de Poisson son las siguientes \parencite{ PoissonMedium}:
+\subsection{Generación de variable aleatoria tipo \textit{Poisson}}
+Como se revisó en la sección~\ref{generarGeoEstocastica}, uno de los requisitos para generar una geometría estocástica es que el número de puntos en el plano sea Poisson, es por esto que en esta sección se comprobó la generación de la variable aleatoria Poisson en Python usando la libreria \textit{scipy}.\newline
 
-\begin{itemize}
-    \item Se compone de una secuencia de variables aleatorias $X1, X2, X3, ... Xk$, de modo que cada variable representa el número de ocurrencias de algún evento, durante un intervalo de tiempo.
-    \item Es un proceso estocástico. Cada vez que ejecuta el proceso de Poisson, producirá una secuencia de resultados aleatorios diferentes según alguna distribución de probabilidad.
-    \item Es un proceso discreto. Los resultados del proceso de Poisson son el número de ocurrencias de algún evento en el período de tiempo especificado, que sin duda es un número entero, es decir, un número discreto.
-    \item Tiene incrementos independientes. Lo que esto significa es que el número de eventos que el proceso predice que ocurrirá en cualquier intervalo dado, es independiente del número en cualquier otro intervalo disjunto.
-    \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución idéntica.
-    \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución de Poisson , que viene dada por la Función Masa de Probabilidad (PMF):
-\end{itemize}
+Para esto, se realizaron $10000$ generaciones de numeros siguiendo una distribución de Poisson con tasa $\lambda = 20$, se obtuvo el histograma de todos los números generados y se comparó con su función de masa de probabilidad (PMF).\newline
 
-\begin{equation}
-    P_{X}(k)=\frac{e^{-\lambda}*\lambda ^{k}}{k!}
-    \label{eqn:Poisson}
-\end{equation}
+Se observa que la distribución del histograma sigue a la función masa de probabilidad de Poisson [\textit{véase Figura~\ref{fig:generacionPoisson}}], por lo que se valida la generación de números Poisson en Python.\newline
 
-La fórmula anterior nos da la probabilidad de ocurrencia de $k$ eventos en unidad de tiempo, dado que la tasa de ocurrencia promedio es $\lambda$ eventos por unidad de tiempo.
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.5]{Figures/PoissonDistribution}
+    \decoRule
+    \caption[Gráfica comparación PMF e histograma de distribución Poisson en Python]{Gráfica comparación PMF e histograma de distribución Poisson en Python}
+    \label{fig:generacionPoisson}
+\end{figure}
+\break
 
-\subsubsection{Modelado de tiempos entre llegadas}
+\subsection{Generación de variables aleatorias tipo \textit{Exponencial} y \textit{Rayleigh}}
 
-Los procesos de Poisson tienen una subestructura notable. Aunque el número de eventos ocurridos se modela usando una distribución de Poisson discreta, el intervalo de tiempo entre eventos consecutivos se puede modelar usando una distribución exponencial, que es una distribución continua \parencite{PoissonMedium}.\newline
+Como se revisó en la sección~\ref{}, cuando el desvanecimiento es de tipo Rayleigh, la magnitud o amplitud de la señal es Rayleigh y la potencia es exponencial. En esta sección, se comprobó la generación de estas variables aleatorias en Python usando la libreria \textit{random}.\newline
 
-Sean $X1, X2, X3, ... Xi$ variables aleatorias tales que:
-\begin{itemize}
-    \item $X1$ = el intervalo de tiempo entre el inicio del proceso y el primer evento, es decir, la primera llegada,
-    \item $X2$ = el tiempo entre llegadas entre la primera y la segunda llegada,
-    \item $X3$ = el tiempo entre llegadas entre la segunda y la tercera llegada , y así sucesivamente.
-\end{itemize}
-La distribución de la variable aleatoria $Xk$ que representa el tiempo entre llegadas entre la llegada $(k-1) th$ y $(k) th$ es \parencite{PoissonMedium}:
-\begin{equation}
-    X_{k}=Exponential(\lambda)
-    \label{eqn:expon}
-\end{equation}
-La Función Densidad de Probabilidad (PDF) de la variable aleatoria $X_{k}$ es la siguiente:
-\begin{equation}
-    P_{X}(t)=\lambda e^{-\lambda t}
-    \label{eqn:pdfexpon}
-\end{equation}
-Y describe la PDF de tiempos entre llegadas en un proceso de Poisson.
+Se realizaron $10000$ generaciones de numeros siguiendo una distribución Exponencial negativa con media $\mu =1$, se obtuvo el histograma de todos los números generados y se comparó con su función de densidad de probabilidad (PDF).\newline
 
-\section{IMPLEMENTACIÓN DE DISTRIBUCIONES ESTADÍSTICAS EN TELECOMUNICACIONES}
+De la misma manera con la otra distribución, se realizaron $10000$ generaciones de numeros siguiendo una distribución Rayleigh con desviación estándar $\sigma = 1$, se obtuvo el histograma de todos los números generados y se comparó con su función de densidad de probabilidad (PDF).\newline
 
+Se observa que la distribuciones de los histogramas siguen a su respectiva función densidad de probabilidad (PDF) [\textit{véanse Figuras~\ref{fig:generacionExpon} y \ref{fig:generacionRay} }], por lo que se valida la generación de números Exponenciales y Rayleigh en Python.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/ExponentialDisitribution.png}
+    \decoRule
+    \caption[Gráfica comparación PDF e histograma de distribución Exponencial en Python]{Gráfica comparación PDF e histograma de distribución Exponencial en Python}
+    \label{fig:generacionExpon}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/RayleighDistribution.png}
+    \decoRule
+    \caption[Gráfica comparación PDF e histograma de distribución Rayleigh en Python]{Gráfica comparación PDF e histograma de distribución Rayleigh en Python}
+    \label{fig:generacionRay}
+\end{figure}
+\break
+
+\subsection{Generación de variable aleatoria tipo \textit{Pareto}}
+
+Como se revisó en la sección~\ref{Informesperiodicos}, la longitud de paquetes en la transmisión periodica siguió una distribución de Pareto con parámetro alfa = 2.5 y tamaño mínimo de carga útil de la aplicación = 20 bytes con un corte a 200 bytes.\newline
+
+Se comprobó la generación de esta variable aleatoria en Python usando la libreria \textit{scipy}.\newline
+
+Se realizaron $100000$ generaciones de numeros siguiendo una distribución areto con parámetro alfa  $\alpha =2.5$ acotada entre 20 y 200, se obtuvo el histograma de todos los números generados y se comparó con su función de densidad de probabilidad (PDF).\newline
+
+Se observa que la distribución del histograma sigue a la función densidad de probabilidad Pareto [\textit{véase Figura~\ref{fig:generacionPareto}}], por lo que se valida la generación de números Pareto en Python.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/ParetoDIstribution}
+    \decoRule
+    \caption[Gráfica comparación PDF e histograma de distribución Pareto en Python]{Gráfica comparación PDF e histograma de distribución Pareto en Python}
+    \label{fig:generacionPareto}
+\end{figure}
 
