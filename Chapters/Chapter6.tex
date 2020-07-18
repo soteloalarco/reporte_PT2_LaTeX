@@ -580,7 +580,27 @@ En las siguientes secciones se aborda con más detalle la implementación de los
 
 \section{Generador de tráfico IoT}
 
+    El Generador de tráfico IoT distribuye dispositivos IoT en una célula circular siguiendo un PPP, para después generar tráfico de estos dispositivos con los modelos CMMPP y Periódico. La rutina principal del programa sigue el paradigma \textit{time-driven}, puesto que realiza avances constantes en el tiempo. La salida del programa se da en forma de archivos .csv, de los cuales los dos más importantes son el archivo de dispositivos y el archivo de eventos. El archivo de dispositivos contiene información referente a cada uno de los dispositivos generados mientras que el archivo de eventos contiene la información del nacimientos de cada paquete.\newline
+
+    La forma en que python se generaron y manipularon archivos .csv en python 3.6 fue con la librería $pandas$, la cual permite mapear listas a archivos .csv y viceversa. \newline
+
+    Aunado a la funcionalidad principal del programa, se programó una interfaz de usuario para interactuar con el sistema e ingresar lo parámetros de la simulación. La interfaz de usuario se realizó con la librería $tkinter$. Esta interfaz se presenta con mayor detalle en la siguiente sección. \newline
+
+
 \subsection{Interfaz de Usuario}
+
+    La \textit{imagen~\ref{fig:GUITrafico}} es una captura de pantalla de la interfaz de usuario del Generador de Tráfico IoT. En el primer bloque arriba a la izquierda se encuentran parámetros referentes a la distribución de usuarios, como son el radio del área circular en la que se distribuirán y su modelo de distribución. Los siguientes 7 bloques sirven para introducir los parámetros de generación de tráfico para los 7 distintos servicios contemplados. Finalmente se debe indicar hasta abajo: el tiempo de corte de la simulación y el diferencial de tiempo entre ciclos antes de poder iniciar la rutina. El botón de cargar datos abajo a la derecha permite leer los parámetros de un archivo y desplegarlos en las casillas correspondientes, lo que permite guardar una configuración inicial y acelerar la introducción de valores. \newline
+
+    
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.6]{Figures/GUI.png}
+    \decoRule
+    \caption[Interfaz de Usuario, Generador de Tráfico IoT]{Interfaz de Usuario, Generador de Tráfico IoT}
+    \label{fig:GUITrafico}
+\end{figure}
+
+Al terminar la rutina se generarán en la misma carpeta del programa 4 archivos .csv de los cuales 2 son utilizados en el \textbf{Simulador de eventos discretos}. Estos archivos son descritos con más detalle en la siguiente sección. \newline
 
 \subsection{Archivos de Salida}
 
@@ -597,9 +617,9 @@ En las siguientes secciones se aborda con más detalle la implementación de los
 
 \subsection{Definición de eventos}
 
-\subsection{Interfaz de usuario del simulador de tráfico fuente}
-
 \subsection{Descripción de los \textit{logs} de salida}
+
+\subsection{Resultados a la salida del simulador}
 
 \hfill
 
