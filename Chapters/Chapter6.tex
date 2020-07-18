@@ -604,6 +604,26 @@ Al terminar la rutina se generarán en la misma carpeta del programa 4 archivos 
 
 \subsection{Archivos de Salida}
 
+Los principales archivos que resultan de ejecutar cada rutina del Generador de Tráfico son el archivo de dispositivos y el archivo de eventos. En la \textit{imagen~\ref{fig:archivodispositivos}} se puede ver un ejemplo del primer archivo, en él se guarda: a qué tipo de dispositivo corresponde cada servicio y su posición en el plano. Estos datos son después utilizados en el Simulador de eventos discretos para instanciar nodos del tipo especificado en esa posición y poder adjudicarles sus nacimientos de paquetes. La \textit{imagen~\ref{fig:archivoeventos}} muestra un ejemplo de archivo de eventos, en el cual encontramos los nacimientos de paquetes a lo largo del tiempo de simulación. Desde tál archivo se podrá conocer el dispositivo que originó el paquete, su tamaño y si este surgió apartir de una alarma, todos estos datos importantes para que el simulador pueda procesar los eventos.  \newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/disparchivo.png}
+    \decoRule
+    \caption[Archivo de dispositivos]{Archivo de dispositivos}
+    \label{fig:archivodispositivos}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/eventosarchivo.png}
+    \decoRule
+    \caption[Archivo de eventos]{Archivo de eventos}
+    \label{fig:archivoeventos}
+\end{figure}
+
+Los últimos dos archivos resultados de cada rutina de este programa son el de configuración y el de alarmas. Pero estos no son utilizados por el Simulador de eventos, sino para generar gráficas de la distribución de usuarios y los modelos de tráfico y de distribución de alarmas.\newline
+
 \hfill
 
 \break
