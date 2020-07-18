@@ -478,7 +478,7 @@ El escenario de pruebas para el algoritmo de generación de tráfico considera l
         \textbf{Tipo:} Monitoreo de contaminación del aire\\ \textbf{Cantidad de dispositivos:} 500 \\ \textbf{Modelo de tráfico:} Periódico \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.001111  $paquetes/seg$. \\ \hline
         \textbf{Tipo:} Control dinámico de semáforos\\ \textbf{Cantidad de dispositivos:} 1000 \\ \textbf{Modelo de tráfico:} Periódico \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \hline
         \textbf{Tipo:} Otros dispositivos mMTC\\ \textbf{Cantidad de dispositivos:} 3000 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.033333 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 500 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Decaying exponential} \\ \textbf{$\alpha$:} 0.007  \\ \hline
-        \textbf{Tipo:} Dispositivos URLLC \\ \textbf{Cantidad de dispositivos:} 1000 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.033333 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 500 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Decaying exponential} \\ \textbf{$\alpha$:} 0.007  \\ \hline
+        
     \end{tabular}
 \end{table}
 
@@ -487,6 +487,7 @@ El escenario de pruebas para el algoritmo de generación de tráfico considera l
     \label{tab:paramPruebaTrafico2}
     \centering
     \begin{tabular}{|m{16cm}|p{20cm}|} \\ 
+        \textbf{Tipo:} Dispositivos URLLC \\ \textbf{Cantidad de dispositivos:} 1000 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.033333 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 500 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Decaying exponential} \\ \textbf{$\alpha$:} 0.007  \\ \hline
         \textbf{Tiempo límite de simulación:} 3600 $segundos$ \\ \textbf{$\Delta T$:} 1 $segundo$ \\ \textbf{Radio de la célula:} 200 $metros$ \\ \hline
     \end{tabular}
 \end{table}
@@ -511,13 +512,7 @@ La \textit{imagen~\ref{fig:histoeventos}} muestra el histograma de nacimientos a
     \label{fig:histoeventos1}
 \end{figure}
 
-La \textit{imagen~\ref{fig:histoeventos1}} contiene a la izquierda el histograma de 
-nacimiento de paquetes junto con el nacimiento de las alarmas para los dispositivos 
-del tipo Otros dispositivos mMTC. Las gráficas a la derecha por otra parte son más 
-fáciles de interpretar y se trata de la distribuciones 
-que sigue el tiempo entre nacimiento de paquetes y de alarmas, las cuales podemos ver 
-siguen una distribución exponencial a la tasas establecidas como parámetros en la 
-\textit{tabla~\ref{tab:paramPruebaTrafico}}, justo como se esperaba.\newline
+La \textit{imagen~\ref{fig:histoeventos1}} contiene a la izquierda el histograma de  nacimiento de paquetes junto con el nacimiento de las alarmas para los dispositivos  del tipo Otros dispositivos mMTC. Las gráficas a la derecha por otra parte son más fáciles de interpretar y se trata de la distribuciones que sigue el tiempo entre nacimiento de paquetes y de alarmas, las cuales podemos ver  siguen una distribución exponencial a la tasas establecidas como parámetros en la  \textit{tabla~\ref{tab:paramPruebaTrafico}}, justo como se esperaba.\newline
 
 \begin{figure}[th]
     \centering
@@ -527,11 +522,27 @@ siguen una distribución exponencial a la tasas establecidas como parámetros en
     \label{fig:histoeventos2}
 \end{figure}
 
-La \textit{imagen~\ref{fig:histoeventos2}} es muy parecida a la \textit{imagen~\ref{fig:histoeventos1}}  
-puesto que presenta las mismas gráficas, los histogramas a la izquierda y las distribuciones al derecha. 
-Pero en esta ocasión el servicio que observamos es el control de semáforos. Este servició genera 
-tráfico con el modelo periódico, razón por la cual el tiempo entre nacimiento de paquetes 
-es constante y no sigue una distribución exponencial.
+La \textit{imagen~\ref{fig:histoeventos2}} es muy parecida a la \textit{imagen~\ref{fig:histoeventos1}} puesto que presenta las mismas gráficas, los histogramas a la izquierda y las distribuciones al derecha.  Pero en esta ocasión el servicio que observamos es el control de semáforos. Este servició genera  tráfico con el modelo periódico, razón por la cual el tiempo entre nacimiento de paquetes  es constante y no sigue una distribución exponencial.\newline
+
+Finalmente en las \textit{imagenes \ref{fig:propagacion1} y \ref{fig:propagacion2}} se ven los mapas de calor producidos por una alarma que se transmite siguiendo el modelo \textit{Raised-cosine window} y \textit{Decaying exponential} respectivamente. Se puede notar cómo la propagación de la alarma siguiendo el modelo \textit{Raised-cosine window} tiene lugar de manera uniforme por dentro del círculo de radio dth  y con origen en su lugar de su nacimiento, para después desvanecerse y terminar abrúptamente para radios mayores al ancho de la ventana . Por otro lado la alarma que sigue el modelo de propagación exponencial se desvanece desde el origen y su efecto decae según crezca la distancia (de manera exponencial), pero no se detiene abrúptamente.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=1]{Figures/UEs_de_tipo_Control_de_iluminacion_activados_por_una_alarma.png}
+    \decoRule
+    \caption[Propagación de alarma en dispositivos de control de iluminación]{Propagación de alarma en dispositivos de control de iluminación}
+    \label{fig:propagacion1}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=1]{Figures/UEs_de_tipo_Otros_dispositivos_mMTC_activados_por_una_alarma.png}
+    \decoRule
+    \caption[Propagación de alarma en otros dispositivos mMTC]{Propagación de alarma en otros dispositivos mMTC}
+    \label{fig:propagacion2}
+\end{figure}
+
+Los resultados que presentan estas imágenes muestran que el algoritmo de generación de tráfico fuente está efectivamente generando arribos siguiendo los parámetros y modelos seleccionados, de manera que de aquí se procedió a su implementación en el programa \textbf{Generador de tráfico IoT} que se trata en la siguiente sección. \newline
 
 \hfill
 
@@ -542,12 +553,41 @@ es constante y no sigue una distribución exponencial.
 %----------------------------------------------------------------------------------------
 
 \section{Interconexión de los 4 módulos del Simulador}
-%Incluir lo de NPRACHH, NPUCSH y NORA
 
+Los 4 módulos del sistema, cuya implementación se ha discutido en la primera parte de este capítulo son: el despliegue de los dispositivos, el modelo del canal, el esquema de acceso múltiple al medio y los modelos de tráfico IoT. La forma en la que se llevo acabo la interconexión de estos módulos se encuentra descrita en el diagrama de la \textit{imagen~\ref{fig:interconexion4}}. \newline
+
+El simulador se encuentra entonces dividido en 2 programas, el \textbf{Generador de Tráfico IoT} y el \textbf{Simulador de eventos discretos}. La razón por la que se implemento esta arquitectura tiene que ver con los paradigmas que ambos programas siguen, ya que mientras el Generador de tráfico IoT tiene una rutina que realiza avances constantes en el tiempo, el Simulador de eventos discretos avanza en el tiempo apartir de los eventos evaluados. \newline
+
+Ambos sistemas fueron programados en Python 3.6 y fueron implementados de manera modular. Es decir el programa Generador de Tráfico IoT es una herramienta funcional y modificable por sí sola para generar tráfico de tipo máquina con los modelos CMMPP y Periódico y con usuarios distribuidos a partir de un PPP. Los resultados de este programa podrían entonces ser utilizados en algúno otro, realizando los ajustes de interfaz necesarios. De la misma manera el Simulador de Eventos discretos que contiene el modelo del canal y el esquema de acceso múltiple al medio, podría procesar tráfico y usuarios generados y distribuidos en un programa distinto al presentado en este proyecto. Esta modularidad es posible en gran parte grácias a que la interfaz existente entre ambos programas es el uso de archivos .csv, los cuales son fáciles de generar y modificar.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/interconexion4modulos.png}
+    \decoRule
+    \caption[Interconexión de los 4 módulos en un simulador]{Interconexión de los 4 módulos en un simulador}
+    \label{fig:interconexion4}
+\end{figure}
+
+En las siguientes secciones se aborda con más detalle la implementación de los dos programas que integran el simulador. \newline
 
 \hfill
 
 \break
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
+\section{Generador de tráfico IoT}
+
+\subsection{Interfaz de Usuario}
+
+\subsection{Archivos de Salida}
+
+\hfill
+
+\break
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
