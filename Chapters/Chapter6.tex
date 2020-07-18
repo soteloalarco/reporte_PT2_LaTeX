@@ -385,8 +385,48 @@ El siguiente proceso que propicia un cambio de estado, es el cálculo de la matr
 
 El modelo que describe la \textit{ecuación~\ref{eqn:dn1}} se trata del \textit{decaying exponential} y está pensado para simular alarmas cuyo efecto en los dispositivos se espera siga un comportamiento exponencial. Los tipos de dispositivos que utilicen este modelo deberán especificar la constante $\alpha$ que caracteriza al modelo. Por otra parte la \textit{ecuación~\ref{eqn:dn2}} se trata de una \textit{raised-cosine window}, esta función es útil para modelar alarmas que se transmiten fuertemente por cierta distancia pero que después se detienen abrúptamente. Los tipos de dispositivos que utilicen este segundo modelo deberán especificar las constantes $d_{th}$ y $W$, donde $W$ es el ancho de la ventana y $d_{th}$ es la distancia de corte. En ambas ecuaciones $d_n$ es la distancia del dispositivo al origen de la alarma.\newline
 
+Expuesto esto, los parámetros necesarios para la generación de tráfico con el modelo CMMPP, los cuales variarán según se decida para cada tipo de dispositivo, se encuentran en la \textit{tabla~\ref{tab:ParametrosTraficoCMMPP}}.\newline
+
+\begin{table}
+    \caption{Parámetros necesarios para generar tráfico CMMPP}
+    \label{tab:ParametrosTraficoCMMPP}
+    \centering
+    \begin{tabular}{|m{6cm}|p{10cm}|} \\ 
+    \textbf{Parámetro} & \textbf{Descripción} \\ 
+    \textit{Tasa de nacimiento de paquetes $\lambda_{normal}$}  & \footnotesize{ Media de nacimiento de paquetes por segundo en cada dispositivo } \\ \hline 
+    \textit{Tasa de nacimiento de alarmas $\lambda_{alarma}$}  & \footnotesize{ Media de nacimiento de alarmas } \\ \hline 
+    \textit{Velocidad de propagación de alarmas}  & \footnotesize{ Velocidad a la que se propaga una alarma desde su posición de origen hacia todas direcciones. } \\ \hline 
+    \textit{Modelo de propagación espacial de las alarmas} & \footnotesize{ Ya sea \textit{decaying exponential} o \textit{raised-cosine window}. } \\ \hline 
+    \textit{Constante 1 propagación espacial} & \footnotesize{ Si el modelo de propagación corresponde a \textit{decaying exponential}:
+    se trata de la constante $\alpha$, factor de decaimiento.
+    Si el modelo de propagación corresponde a \textit{raised-cosine window}:
+    se trata de la constante $W$, ancho de la ventana. } \\ \hline 
+    \textit{Constante 1 propagación espacial} & \footnotesize{ Si el modelo de propagación corresponde a \textit{decaying exponential}:
+    esta constante no se utiliza.
+    Si el modelo de propagación corresponde a \textit{raised-cosine window}:
+    se trata de la constante $d_{th}$, distancia de corte. } \\ \hline 
+    \end{tabular}
+\end{table}
+
+    Con lo que respecta al tamaño de los paquetes, aquellos generados a partir del estado de alarma son de 20 $bytes$ y los generados en el estado normal siguen una distribución de Pareto con $\alpha$ = 2.5, tamaño mínimo de 20 $bytes$ y máximo de $200$ bytes.\newline
 
 \subsection{Tráfico Periódico}
+
+La generación del tráfico periódico no requiere mas que de un parámetro, la frecuencia de nacimiento de paquetes $F_{nacimiento}$, que es inversa al periodo de nacimiento de estos mismos $T_{nacimiento}$. En la implementación además, el tiempo del primer nacimiento de cada dispositivo que siga este modelo se calcula siguiendo una distribución uniforme que genera un valor entre 0 y el periodo de nacimiento y a partir de ahí se genera un nuevo nacimiento una vez transcurrido un periodo $T_{nacimiento}$. De esta manera, la transmisión de paquetes desde distintos dispositivos del mismo tipo se encuentra distribuida uniformemente a lo largo de un periodo.\newline
+
+La \textit{tabla~\ref{tab:ParametrosTraficoPeriodico}} muestra el parámetro necesario para generar tráfico con el modelo periódico.\newline
+
+\begin{table}
+    \caption{Parámetros necesarios para generar tráfico Periódico}
+    \label{tab:ParametrosTraficoPeriodico}
+    \centering
+    \begin{tabular}{|m{6cm}|p{10cm}|} \\ 
+    \textbf{Parámetro} & \textbf{Descripción} \\ 
+    \textit{Frecuencia de nacimiento de paquetes $F_{nacimiento}$}  & \footnotesize{ Cantidad de paquetes que genera un dispositivo por segundo, inversa al periodo entre dos nacimientos $T_{nacimiento}$. } \\ \hline 
+ 
+    \end{tabular}
+\end{table}
+
 \subsection{Escenario de Prueba de Tráfico CMMPP}
 
 
