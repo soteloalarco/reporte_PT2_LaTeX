@@ -356,8 +356,37 @@ Como se observa, no se logran satisfacer todos los requisitos de velocidad de da
 %----------------------------------------------------------------------------------------
 
 \section{Generación de Tráfico Fuente}
+La generación de tráfico fuente requirió de un paradigma distinto al de eventos discretos, pues como se deja ver en el diagrama de la \textit{figura~\ref{fig:CMMPP_Algoritmo}}, un avance periódico en el tiempo es necesario para calcular las matrices de cambio de estado en los dispositivos y generar así el tráfico CMMPP, de esta manera el algoritmo de generación de tráfico fuente sigue un paradigma de simulación normalmente llamado \textit{time driven}. Adicional a este algoritmo se anexó la lógica para generar tráfico periódico en los dispositivos que así lo requirieran, teniendo así dos posibles modelos. Tal algoritmo corresponde al \textit{algoritmo \ref{A2}}. \newline
 
+El programa Generador de Tráfico IoT se trata de la interconexión entre el algoritmo de distribución de usuarios, tratado en [6.1] y el de generación de tráfico fuente tratado en esta sección. A este programa se agrega una interfaz gráfica para facilitar la introducción de los parámetros que se consideran para generar el tráfico IoT y  se  describe más a detalle en la sección [6.6]. \newline
+
+En las siguientes dos secciones se muestran los parámetros que fueron implementados para caracterizar el tráfico generado por los modelos CMMPP y Periódico. \newline
 \subsection{Tráfico CMMPP}
+La generación de tráfico CMMPP, sigue el diseño mostrado en la \textit{figura~\ref{fig:CMMPPpropuesta}} , para el cual cada dispositivo puede estar en estado de alarma o estado normal en un instante dado. El estado normal representa la operación habitual del dispositivo y a esta la caracteriza una tasa de arribos $ \lambda_{normal}$ que representa la cantidad promedio de paquetes por segundo que un dispositivo genera al estar en este estado. El estado de alarma por otra parte representa la detección de un evento o estado de interés especial para el dispositivo. Esta detección genera un único paquete de tamaño fijo detrás del cual el dispositivo volvería a su estado de operación habitual.\newline
+
+El cambio de estado de normal  al estado de alarma requiere primeramente de un proceso en la simulación que se encargue de generar alarmas para cada tipo de dispositivo, este proceso se caracteriza por una tasa de arribo de alarmas $ \lambda_{alarma}$. Esta tasa representa la cantidad promedio de alarmas por segundo que ocurrirán en el área de la célula, además de este parámetro se necesita especificar la velocidad a la que las alarmas se transmiten desde su lugar de origen.\newline
+
+El siguiente proceso que propicia un cambio de estado, es el cálculo de la matriz de cambio de estado $P_n\left[k\right]$ que se lleva a cabo en cada dispositivo. La ecuación \ref{eqn:Pn} utiliza la información de cuándo y donde se produjeron eventos de alarma, además de su velocidad de propagación para determinar el momento en el que la alarma llega al dispositivo. Adicionalmente es necesario un modelo que caracterice la propagación espacial. Los modelos implementados fueron los propuestos en [A] :\newline
+
+\begin{equation}
+\delta_n = e^{-\alpha.d_{n}}
+\label{eqn:dn1}
+\end{equation}
+
+\begin{equation}
+    \delta_n =
+    \begin{cases}
+        1  & \text{si $d_n < d_{th}$} \\
+        \frac{1}{2}(1-sin\frac{\pi(d_n-W)}{2(W-d_{th})}) & \text{si $d_{th}< d_n < 2W-d_{th}$}\\
+        0  & \text{si $d_n > 2W-d_{th}$}
+    \end{cases}
+    \label{eqn:dn2}
+\end{equation}
+
+El modelo que describe la \textit{ecuación~\ref{eqn:dn1}} se trata del \textit{decaying exponential} y está pensado para simular alarmas cuyo efecto en los dispositivos se espera siga un comportamiento exponencial. Los tipos de dispositivos que utilicen este modelo deberán especificar la constante $\alpha$ que caracteriza al modelo. Por otra parte la \textit{ecuación~\ref{eqn:dn2}} se trata de una \textit{raised-cosine window}, esta función es útil para modelar alarmas que se transmiten fuertemente por cierta distancia pero que después se detienen abrúptamente. Los tipos de dispositivos que utilicen este segundo modelo deberán especificar las constantes $d_{th}$ y $W$, donde $W$ es el ancho de la ventana y $d_{th}$ es la distancia de corte. En ambas ecuaciones $d_n$ es la distancia del dispositivo al origen de la alarma.\newline
+
+
+\subsection{Tráfico Periódico}
 \subsection{Escenario de Prueba de Tráfico CMMPP}
 
 
