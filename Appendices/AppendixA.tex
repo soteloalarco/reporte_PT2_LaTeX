@@ -108,7 +108,9 @@ Se observa que la distribuciones de los histogramas siguen a su respectiva funci
 
 Como se revisó en la sección~\ref{Informesperiodicos}, la longitud de paquetes en la transmisión periodica siguió una distribución de Pareto con parámetro alfa = 2.5 y tamaño mínimo de carga útil de la aplicación = 20 bytes con un corte a 200 bytes.\newline
 
-Se comprobó la generación de esta variable aleatoria en Python usando la libreria \textit{scipy}.\newline
+La distribución de Pareto a veces se conoce como el Principio de Pareto o la regla '80 –20 ', en este caso la regla establece que el 80\% de los tamaños de paquete que se formarán, los producirán solo el 20\% de los dispositivos del sistema y viceversa.\newline
+
+La distribución de Pareto se puede replicar en Python usando el módulo Scipy.stats o NumPy. El módulo Scipy.stats abarca varias distribuciones de probabilidad y una biblioteca cada vez mayor de funciones estadísticas. Se comprobó la generación de esta variable aleatoria en Python usando la libreria \textit{scipy}.\newline
 
 Se realizaron $100000$ generaciones de numeros siguiendo una distribución areto con parámetro alfa  $\alpha =2.5$ acotada entre 20 y 200, se obtuvo el histograma de todos los números generados y se comparó con su función de densidad de probabilidad (PDF).\newline
 

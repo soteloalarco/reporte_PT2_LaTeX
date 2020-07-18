@@ -281,6 +281,13 @@ P. ej. en el caso de Latino América las bandas disponibles son las: \textbf{2} 
 
 Algunas aplicaciones de IoT son particularmente sensibles al consumo de energía. Para minimizar el impacto de la conectividad en la duración de la batería del dispositivo, para el \textit{release} 13, se determinó que los UE podrán usar dos opciones de clase de potencia. Uno es el nivel de potencia del dispositivo móvil LTE tradicional de \textbf{23dBm} (\textit{Power Class 3}) y uno nuevo, con menos potencia de salida, de \textbf{20dBm} (\textit{Power Class 5}). El \textit{release} 14 de 3GPP agrega una nueva clase de potencia aún menor, de \textbf{14dBm} (\textit{PowerClass 6}) \parencite{NBIoTDeploymentGSMA}.
 
+\subsection{Modos de transmisión en enlace ascendente (UL) }
+Existen dos modos de transmisión para el estándar NB-IoT, en el modo \textit{singletone} solo se puede asignar una subportadora a cada dispositivo NB-IoT. Y en el modo \textit{multitone} la agregación de subportadoras es posible, esto con el fin de alcanzar una mayor tasa de transmisión \parencite{RohdeNB}.\newline
+
+Solo se admite el modo de \textit{singletone}, cuando el PRB se divide en 48 subportadoras donde el ancho de banda de la subportadora es de 3.75 kHz. En \parencite{Shahini2019} se ha trabajado el uso \textit{multitone} en anchos de banda de subportadoras es de 3.75 kHz.\newline
+
+Se admiten los modos de \textit{singletone} y \textit{multitone}, cuando el PRB se divide en 12 subportadoras donde el ancho de banda de la subportadora es de 15 kHz. En \parencite{Mostafa2019} se estudió más a fondo el uso de \textit{singletone} y \textit{multitone} en transmisiones UL. Una de las reglas que incorporaron es que en \textit{multitone}, para cada dispositivo IoT únicamente se le pueden asignar 0, 1, 3, 6 o 12 subportadoras.
+
 \subsection{Indicadores clave de rendimiento (KPIs)}
 
 Hay muchas formas de medir el rendimiento de una red, por medio de sus características se pueden definir los indicadores clave de rendimiento para la evaluación integral, precisa y eficiente de las tecnologías de red 5G.\newline
