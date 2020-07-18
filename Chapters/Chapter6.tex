@@ -493,6 +493,45 @@ El escenario de pruebas para el algoritmo de generación de tráfico considera l
 
 Los resultados de la simulación se presentan en las siguientes gráficas las cuales muestran los histogramas de arribos para algunos servicios junto con de las distribuciones que estos siguen, además de algunos mapas de calor que muestran el comportamiento de la propagación espacial de las alarmas. \newline
 
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.4]{Figures/histoeventos.png}
+    \decoRule
+    \caption[Histograma de nacimientos de paquetes]{Histograma de nacimiento de paquetes}
+    \label{fig:histoeventos}
+\end{figure}
+
+La \textit{imagen~\ref{fig:histoeventos}} muestra el histograma de nacimientos a lo largo de toda la simulación, el ancho de las barras es el mismo que $\Delta T$. En este histograma se contempla el tráfico generado por los 7 distintos servicios, de manera que es difícil extraer mucha información. A eso ayudan más las \textit{imagenes \ref{fig:histoeventos1} y \ref{fig:histoeventos2}}, las cuales se concentran en el tráfico de un sólo servicio, es decir de todos los dispositivos de un mismo tipo.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.4]{Figures/Otros_dispositivos_mMTC.png}
+    \decoRule
+    \caption[Otros dispositivos mMTC, Histograma de nacimientos y sus distribuciones]{Otros dispositivos mMTC, Histograma de nacimientos y sus distribuciones}
+    \label{fig:histoeventos1}
+\end{figure}
+
+La \textit{imagen~\ref{fig:histoeventos1}} contiene a la izquierda el histograma de 
+nacimiento de paquetes junto con el nacimiento de las alarmas para los dispositivos 
+del tipo Otros dispositivos mMTC. Las gráficas a la derecha por otra parte son más 
+fáciles de interpretar y se trata de la distribuciones 
+que sigue el tiempo entre nacimiento de paquetes y de alarmas, las cuales podemos ver 
+siguen una distribución exponencial a la tasas establecidas como parámetros en la 
+\textit{tabla~\ref{tab:paramPruebaTrafico}}, justo como se esperaba.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.4]{Figures/Semaforos_inteligentes.png}
+    \decoRule
+    \caption[Semáforos inteligentes, Histograma de nacimientos y sus distribuciones]{Semáforos inteligentes, Histograma de nacimientos y sus distribuciones}
+    \label{fig:histoeventos2}
+\end{figure}
+
+La \textit{imagen~\ref{fig:histoeventos2}} es muy parecida a la \textit{imagen~\ref{fig:histoeventos1}}  
+puesto que presenta las mismas gráficas, los histogramas a la izquierda y las distribuciones al derecha. 
+Pero en esta ocasión el servicio que observamos es el control de semáforos. Este servició genera 
+tráfico con el modelo periódico, razón por la cual el tiempo entre nacimiento de paquetes 
+es constante y no sigue una distribución exponencial.
 
 \hfill
 
