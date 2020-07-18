@@ -427,7 +427,71 @@ La \textit{tabla~\ref{tab:ParametrosTraficoPeriodico}} muestra el parámetro nec
     \end{tabular}
 \end{table}
 
-\subsection{Escenario de Prueba de Tráfico CMMPP}
+\subsection{Algoritmo de generación de tráfico fuente}
+
+El programa de generación de tráfico fuente, implementa la generación de tráfico CMMPP y periódico según lo requiera cada tipo de dispositivo. El tráfico en cada tipo de dispositivo está caracterizado por los parámetros de entrada descritos en las \textit{tablas \ref{tab:ParametrosTraficoCMMPP} y \ref{tab:ParametrosTraficoPeriodico}}. Esta caracterización es compartida entre todos los dispositivos del mismo tipo, pero será diferente con dispositivos de otros tipos, según se seleccionen los parámetros.\newline
+
+El \textit{algoritmo~\ref{generacionTrafico}} describe el proceso seguido por el programa de generación de tráfico.
+
+\begin{algorithm}
+    \caption{Generación de tráfico fuente}
+    \label{generacionTrafico}
+    \hspace*{\algorithmicindent} \textbf{Entrada} NumeroDispositivos\\
+    \hspace*{\algorithmicindent} \textbf{Output} NumeroGrupos
+    \begin{algorithmic}[1]
+    \Procedure{Ejemplo de procedimiento \textit{Multitone} con kmax=4}{}
+    \If {$kmax ==4$} 
+        \If {$NumeroDispositivos <= 48$} 
+        \Return NumeroDispositivos
+        \EndIf
+        \If {$NumeroDispositivos > 48\ and\ NumeroDispositivos <=96$} 
+        \Return NumeroDispositivos/2
+        \EndIf
+        \If {$NumeroDispositivos > 96\ and\ NumeroDispositivos <= 144 $} 
+        \Return NumeroDispositivos/3
+        \EndIf
+        \If {$NumeroDispositivos > 144\ and\ NumeroDispositivos < 192$} 
+        \Return NumeroDispositivos/4
+        \EndIf
+        \If {$NumeroDispositivos >= 192$} 
+        \Return 48
+        \EndIf
+    \EndIf
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+El \textit{algoritmo~\ref{generacionTrafico}} se programó en python 3.6 para realizar el escenario de pruebas y hacer inmediata su reutilización en el programa Generador de tráfico IoT. Los parámetros utilizados en el escenario de pruebas y sus resultados se encuentran en la siguiente sección.\newline
+
+\subsection{Escenario de Prueba para la Generación de Tráfico}
+
+El escenario de pruebas para el algoritmo de generación de tráfico considera los parámetros presentados en las \textit{tablas~\ref{tab:paramPruebaTrafico} y \ref{tab:paramPruebaTrafico}}.  En la primera tabla se encuentran los parámetros que caracterizan el tráfico de los 7 distintos servicios seleccionados en la sección de diseño. Estos parámetros fueron determinados a partir de la \textit{tabla~\ref{tab:AppsSimulacion}}. Los demás parámetros necesarios para la simulación se encuentran en la segunda tabla, y corresponden al Tiempo de corte de la simulación y al diferencial $\Delta T$. Este diferencial corresponde al avance de tiempo que tiene la simulación en cada ciclo. Los valores se seleccionaron como $3600$ y $1$ segundos respectivamente, debido a que las tasas de nacimiento de paquete y de alarma se encuentran a lo mas en el orden unas cuantas por minuto, de manera que no hay necesidad en tener una definición mayor a 1 segundo. Algunas tasas de nacimiento de paquetes y alarmas se encuentran en el orden de unas cuantas por hora como es el caso de los dispositivos de detección de terremotos, razón por la cual se decidió realizar la simulación a lo largo de 3600 segundos.\newline
+
+\begin{table}
+    \caption{Parámetros para el escenario de pruebas de tráfico}
+    \label{tab:paramPruebaTrafico}
+    \centering
+    \begin{tabular}{|m{16cm}|p{20cm}|} \\ 
+        \textbf{Tipo:} Control de Iluminación\\ \textbf{Cantidad de dispositivos:} 1000 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.000556  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.002778 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 500 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Raised-cosine window} \\ \textbf{$W$:} 200 \\ \textbf{$d_{th}$:} 100 \\ \hline
+        \textbf{Tipo:} Monitoreo del consumo de agua y electricidad \\ \textbf{Cantidad de dispositivos:} 500 \\ \textbf{Modelo de tráfico:} Periódico \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.001667  $paquetes/seg$. \\ \hline
+        \textbf{Tipo:} Detección de terremotos\\ \textbf{Cantidad de dispositivos:} 500 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.000278  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.002778 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 3000 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Decaying exponential} \\ \textbf{$\alpha$:} 0.4 \\ \hline
+        \textbf{Tipo:} Monitoreo de contaminación del aire\\ \textbf{Cantidad de dispositivos:} 500 \\ \textbf{Modelo de tráfico:} Periódico \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.001111  $paquetes/seg$. \\ \hline
+        \textbf{Tipo:} Control dinámico de semáforos\\ \textbf{Cantidad de dispositivos:} 1000 \\ \textbf{Modelo de tráfico:} Periódico \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \hline
+        \textbf{Tipo:} Otros dispositivos mMTC\\ \textbf{Cantidad de dispositivos:} 3000 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.033333 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 500 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Decaying exponential} \\ \textbf{$\alpha$:} 0.007  \\ \hline
+        \textbf{Tipo:} Dispositivos URLLC \\ \textbf{Cantidad de dispositivos:} 1000 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.033333 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 500 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Decaying exponential} \\ \textbf{$\alpha$:} 0.007  \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \caption{Parámetros para el escenario de pruebas de tráfico}
+    \label{tab:paramPruebaTrafico2}
+    \centering
+    \begin{tabular}{|m{16cm}|p{20cm}|} \\ 
+        \textbf{Tiempo límite de simulación:} 3600 $segundos$ \\ \textbf{$\Delta T$:} 1 $segundo$ \\ \textbf{Radio de la célula:} 200 $metros$ \\ \hline
+    \end{tabular}
+\end{table}
+
+Los resultados de la simulación se presentan en las siguientes gráficas las cuales muestran los histogramas de arribos para algunos servicios junto con de las distribuciones que estos siguen, además de algunos mapas de calor que muestran el comportamiento de la propagación espacial de las alarmas. \newline
 
 
 \hfill
