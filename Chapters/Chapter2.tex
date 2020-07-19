@@ -94,13 +94,13 @@ Los PPP no homogéneos se pueden usar para modelar distribuciones de usuarios qu
 
 \subsection{Geometría Clásica Celular}
 
-Ahora bien, para un despliegue determinístico, se suele optar por un esquema hexágonal el cual recurre a la teoria clasica celular donde se busca que los sistemas celulares brinden una determinada cobertura para un servicio, dividiendo el área geográfica en segmentos llamados celdas donde el espectro de frecuencia también es dividido en canales y estos son agrupados para repartirse entre las celdas. Estos sistemas logran una alta capacidad gracias al reúso del canal de comunicación permitiendo a las estaciones base compartir los canales, sin embargo, este reúso da como resultado una interferencia co-canal generada solamente entre usuarios que comparten el mismo canal, lo cual limita el rendimiento y capacidad de un sistema celular dado que los efectos de esta interferencia son altamente dependientes con los aspectos del sistema \parencite{Tranter2003} como lo son el tipo de acceso múltiple del sistema, el número de usuarios compartiendo el canal, el canal de propagación, la perdida por trayectoria, el desvanecimiento, entre otros.\newline
+Ahora bien, para un despliegue determinístico, se suele optar por un esquema hexágonal el cual recurre a la teoria clasica celular donde se busca que los sistemas celulares brinden determinada cobertura para un servicio. Para tal despliegue se divide el área geográfica en segmentos llamados celdas. El espectro de frecuencia también es dividido en canales y estos últimos son agrupados para repartirse entre las celdas. Estos sistemas logran una alta capacidad gracias al reúso del canal de comunicación permitiendo a las estaciones base compartir los recursos, sin embargo, este reúso resulta en una interferencia co-canal generada  entre usuarios que comparten el mismo canal. Esta interferenica limita el rendimiento y la capacidad de un sistema celular \parencite{Tranter2003}. \newline
 
 Los sistemas celulares son caracterizados por \parencite{Correia2018}:
 \begin{itemize}
     \item Ser limitados por la interferencia (capacidad).
     \item Servir a una alta densidad de usuarios.
-    \item Considerar la disponibilidad del espectro solo como un factor limitante.
+    \item Considerar la disponibilidad del espectro sólo como un factor limitante.
     \item Reúso de frecuencias.
     \item Uso de Estaciones Base de baja potencia.
     \item Tener celdas de distintas coberturas.
@@ -109,18 +109,18 @@ Los sistemas celulares son caracterizados por \parencite{Correia2018}:
 
 \subsection{Planeación Celular}
 
-Una buena planeación celular es de crucial importancia para lograr un buen rendimiento del sistema y la provisión de una buena Calidad de servicio (QoS).\newline
+Una buena planeación celular es de crucial importancia para lograr un buen rendimiento en el sistema y una buena Calidad de servicio (QoS).\newline
 
 La planeación celular consiste en:
 \begin{itemize}
-    \item Colocación de BSs y establecimiento de coberturas
-    \item Optima administración de recursos de radio.
-    \item Minimización de interferencia.
+    \item La colocación de BSs y establecimiento de coberturas
+    \item Una óptima administración de recursos de radio.
+    \item La minimización de interferencia.
 \end{itemize}
 La planeación celular se desempeña de acuerdo a:
 \begin{itemize}
-    \item Morfología del área de servicio y modelos de propagación.
-    \item Perfiles de usuario y modelos de tráfico.
+    \item La morfología del área de servicio y los modelos de propagación.
+    \item Los perfiles de usuario y modelos de tráfico.
 \end{itemize}
 Considerando:
 \[R\to Radio\ de\ cobertura\ de\ la\ celda\] 
@@ -163,6 +163,7 @@ Para implementar el reúso, se deben asignar un conjunto de canales disponibles 
     \caption[Clusterización de celdas con un factor de reúso de 3 celdas]{Clusterización de celdas con un factor de reúso de 3 celdas, [Fuente: Tranter 2003]}
     \label{fig:clusterizacion}
 \end{figure}
+
 \begin{equation}
 N_{ch/c}=\frac{N_{ch/s}}{N_{cc}} 
 \label{eqn:Nch}
@@ -191,7 +192,7 @@ El clúster es escogido lo más pequeño posible, tomando los umbrales de interf
 \caption[Localización de celdas co-canal con distintos factores de reúso]{Localización de celdas co-canal con distintos factores de reúso, [Fuente: Tranter 2003]}
 \label{fig:celdascocanal}
 \end{figure}
-Diferentes tamaños de celda son usadas para distribuciones no uniformes de tráfico \parencite{TurjmanSmallCells}.\newline
+Diferentes tamaños de celda son usados para distribuciones no uniformes de tráfico \parencite{TurjmanSmallCells}.\newline
 \begin{figure}[th]
 \centering
 \includegraphics[scale=.5]{Figures/Sistema celular con celdas de tamaño no uniforme}
@@ -201,13 +202,13 @@ Diferentes tamaños de celda son usadas para distribuciones no uniformes de trá
 \end{figure}
 
 El uso de diferentes tamaños de celdas:\newline
-•	Conduce a un incremento de interferencia, debido a la poca uniformidad en la estructura celular.\newline
+•	Conduce a un incremento de la interferencia, debido a la poca uniformidad en la estructura celular.\newline
 •	Requiere cuidado adicional en el despliegue de BSs
 
 \subsection{Planeación de frecuencia}
-La decisión de bandas de frecuencia para ser usadas en los diversos sistemas de comunicaciones es decidida por la ITU. La asignación de canales en una banda dada para un operador es decidido a nivel nacional por un cuerpo regulatorio, IFT en México. El hecho de que el espectro es muy escaso incita a un eficiente uso de frecuencias.\newline
+La decisión de qué bandas de frecuencia son usadas en los diversos sistemas de comunicaciones es tomada por la ITU. La asignación de canales en una banda dada para un operador es decidido a nivel nacional por un cuerpo regulatorio, IFT en México. El hecho de que el espectro sea muy escaso incita a un eficiente uso de sus frecuencias.\newline
 
-El número de frecuencias (portadoras, canales de radio) por celda $N_{fc}$ depende del clúster, $N_{cc}$, y del número de frecuencias en el sistema $N_{fs}$
+El número de frecuencias (portadoras, canales de radio) por celda $N_{fc}$ depende del clúster, $N_{cc}$, y del bloque de recursos asignado al sistema $N_{fs}$, de manera que:
 \begin{equation}
     N_{fc}={N_{fs}}/{N_{cc}}
     \label{eqn:Nfc}
@@ -215,9 +216,9 @@ El número de frecuencias (portadoras, canales de radio) por celda $N_{fc}$ depe
 
 Debido a la limitación en el número de frecuencias, debe haber una compensación entre la interferencia $N_{cc}\ $y la capacidad$\ N_{ch/c}\ $en el sistema.\newline
 
-La asignación de frecuencias de las celdas debería reducir la interferencia de celda-adyacente maximizando la separación de las frecuencias en una celda.\newline
+La asignación de frecuencias en las celdas debería reducir la interferencia de celda-adyacente maximizando la separación de las frecuencias en una celda.\newline
 
-En un simple sistema celular, las frecuencias deberían ser asignadas a las celdas de acuerdo a:\newline
+En un sistema celular simple, las frecuencias deberían ser asignadas a las celdas de acuerdo a:\newline
 \begin{equation}
     f_{ij}=i+N_{cc}\ (j-1)
     \label{eqn:fij}
@@ -253,7 +254,7 @@ Donde:
 \[I\to Potencia\ de\ las\ portadoras\ de\ las\ se\textrm{\~{n}}alees\ interferentes\] 
 \[N\to Potencia\ del\ ruido\] 
 
-Los sistemas de comunicaciones móviles se caracterizan por ser sistemas limitados por interferencia, donde I domina sobre N, por lo tanto la participación del ruido N puede ser ignorada \parencite{Correia2018}.\newline
+Los sistemas de comunicaciones móviles se caracterizan por ser sistemas limitados por interferencia, donde $I$ domina sobre $N$, por lo tanto la participación del ruido $N$ puede ser ignorada \parencite{Correia2018}.\newline
 
 Quedando entonces como la relación portadora a interferencia:\newline
 \begin{equation}
@@ -263,11 +264,11 @@ Quedando entonces como la relación portadora a interferencia:\newline
 
 La interferencia co-canal $I_{cc}$ es un problema aceptado en los sistemas de comunicaciones móviles. \newline
 
-La estimación de la relación portadora a interferencia co-canal ${S}/{I_{cc}}$es calculada de acuerdo  a las siguientes asunciones:
+La estimación de la relación portadora a interferencia co-canal ${S}/{I_{cc}}$ es calculada de acuerdo  a las siguientes asunciones:
 
 \begin{enumerate}
 \item  Todas las celdas son del mismo tamaño
-\item  La potencia radiada por todas las BSs son iguales
+\item  Las potencias radiadas por todas las BSs son iguales
 \item  Todas las BSs tienen antenas omnidireccionales
 \item  El decaimiento de la potencia promedio ($a_{pd}$) con la distancia es de la forma:
 \end{enumerate}
@@ -282,13 +283,13 @@ En un sistema celular en general, la interferencia co-canal es calculada tomando
 \label{eqn:Icc}
 \end{equation}
 
-Usualmente la interferencia puede ser estimada por tomar únicamente el primer anillo de interferencia \parencite{Correia2018}.
+Usualmente la interferencia puede ser estimada tomando únicamente el primer anillo de interferencia \parencite{Correia2018}.
 \begin{equation}
 \frac{S}{I_{cc}}\ =\ \ \frac{S}{\sum^6_{k=1}{I_k}} 
 \label{eqn:I}
 \end{equation}
 
-Para el caso de transmisión de bajada \textit{downlink} para un usuario en los límites de la celda, el cálculo de la interferencia co-canal se puede aproximar a:\newline
+En el caso de transmisión de bajada (\textit{downlink}), para un usuario en los límites de la celda, el cálculo de la interferencia co-canal se puede aproximar a:\newline
 \begin{equation}
     \frac{S}{I_{cc}}=\frac{R^{-a_{pd}}}{ 2(D_{r}-R)^{-a_{pd}}+2(D_{r})^{-a_{pd}} + 2(D_{r}+R)^{-a_{pd}}}\\
     \label{eqn:SIcc}
@@ -301,14 +302,14 @@ Donde:
 En términos generales, la interferencia puede disminuir \parencite{Correia2018}:
 \begin{itemize}
     \item implementando celdas sectorizadas.
-    \item \textit{downtilting} el lóbulo principal de la antena de la BS.
-    \item bajando la altura de la BS
+    \item haciendo \textit{downtilting} del lóbulo principal de la antena de la BS.
+    \item reduciendo la altura de la BS
     \item optimizando la localización de la BS
     \item implementando control de potencia
     \item implementando \textit{frequency hopping }
 \end{itemize}
 
-En resumen, la planeación de una red celular de radio es ejecutada de la siguiente manera \parencite{Correia2018}:
+En resumen, la planeación de una red celular es ejecutada de la siguiente manera \parencite{Correia2018}:
 \begin{enumerate}
     \item El mínimo valor para la relación portadora a interferencia impone el tamaño del clúster.
     \item Se estima el tráfico en una celda determinada.
@@ -321,7 +322,7 @@ En resumen, la planeación de una red celular de radio es ejecutada de la siguie
 %----------------------------------------------------------------------------------------
 \subsection{Capacidad en los sistemas de comunicaciones}
 
-La teoría de la información de Shannon nos dice la cantidad de información que un canal puede transportar. En otras palabras, especifica la capacidad del canal. La capacidad de un sistema de comunicación es la velocidad de datos máxima en bits por segundo que se puede transferir de manera confiable del transmisor al receptor. En el sentido estricto de la teoría de la información, este es un límite superior insuperable que, en la práctica, solo se puede abordar. En un único enlace Tx-Rx de ancho de banda de unidad sujeto a AWGN, la capacidad en bits por uso de canal (es decir, bps / Hz) viene dada por la fórmula de \emph{Shannon-Hartley}:\newline
+La teoría de la información de Shannon nos dice la cantidad de información que un canal puede transportar. En otras palabras, especifica la capacidad del canal. La capacidad de un sistema de comunicación es la velocidad de datos máxima en bits por segundo que se puede transferir de manera confiable del transmisor al receptor. En el sentido estricto de la teoría de la información, este es un límite superior infranqueable. En un único enlace Tx-Rx de ancho de banda de unidad sujeto a AWGN, la capacidad en bits por uso de canal (es decir, bps / Hz) viene dada por la fórmula de \emph{Shannon-Hartley}:\newline
 
 \begin{equation}
 C=B{{\mathrm{log}}_2 \left(1+\frac{S}{N}\right)\   [bps] }
@@ -357,7 +358,7 @@ Los modelos de propagación por radio se clasifican en modelos a gran escala y a
 \label{fig:Procedimiento de generacion de coeficientes de canal}
 \end{figure}
 
-El rendimiento a nivel de enlace es un fenómeno de pequeña escala el cual lidia con cambios instantáneos en el canal a través de áreas e instantes de tiempo pequeños donde se considera la potencia recibida como constante, por otra parte, en las simulaciones a nivel de sistema para determinar el rendimiento en general del sistema para un gran número de usuarios esparcidos en una área geográfica es necesario incorporar parámetros de larga escala como el comportamiento estadístico de la interferencia, así como los niveles de señal experimentados por cada usuario a través de largas distancias, ignorando las características transitorias del canal (las de pequeña escala) \parencite{Tranter2003}.\newline
+El rendimiento a nivel de enlace es un fenómeno de pequeña escala el cual lidia con cambios instantáneos en el canal a través de áreas e instantes de tiempo pequeños. A lo largo de estos cambios se considera la potencia recibida como constante, por otra parte, en las simulaciones a nivel de sistema para determinar el rendimiento en general del sistema para un gran número de usuarios esparcidos en un área geográfica es necesario incorporar parámetros de larga escala como el comportamiento estadístico de la interferencia, así como los niveles de señal experimentados por cada usuario a través de largas distancias, ignorando las características transitorias del canal (las de pequeña escala) \parencite{Tranter2003}.\newline
 
 En una simulación a nivel de sistema, principalmente se busca la probabilidad de que un usuario en particular alcance un servicio aceptable en el sistema, para esto es necesario contemplar los efectos de los múltiples usuarios para cada enlace individual entre un móvil y la estación base. Por lo tanto en las simulaciones a nivel de sistema se suelen omitir los parámetros a pequeña escala.
 
@@ -388,9 +389,9 @@ P_{EIRP[dBm]}=P_{tx\left[dBm\right]}{\ +\ G}_{tx[dBi]}
 \label{eqn:EIRP}
 \end{equation}
 
-\subsection{Pérdida por trayectoria en el Espacio Libre ($FSPL$, \textit{Free Space Path Loss})}
+\subsection{Pérdida por trayectoria en el Espacio Libre (FSPL, \textit{Free Space Path Loss})}
 
-El receptor puede recibir una señal atenuada directa (también llamada señal de línea de vista (LoS)) del transmisor. El $FSPL$ se utiliza para predecir la pérdida de trayectoria cuando hay un LoS claro y sin obstrucciones entre el transmisor y el receptor. Se basa en la ley de distancia al cuadrado inverso que establece que la potencia recibida ($P_{rx}$) decae por un factor de cuadrado de la distancia (d) desde el transmisor.\newline
+El receptor puede recibir una señal atenuada directa (también llamada señal de línea de vista (LoS)) del transmisor. El FSPL se utiliza para predecir la pérdida de trayectoria cuando hay LoS clara y sin obstrucciones entre el transmisor y el receptor. Se basa en la ley de distancia al cuadrado inverso que establece que la potencia recibida ($P_{rx}$) decae por un factor de cuadrado de la distancia ($d$) desde el transmisor.\newline
 
 Se considera a la propagación en el espacio libre como la mínima atenuación que una señal puede sufrir en el medio.\newline
 
@@ -423,11 +424,11 @@ L_{p[dB]}=L_{ref}+10a_{pd}{\mathrm{log} \left(d_{\left[km\right]}\right)\ }
 \label{eqn:Lp_ref}
 \end{equation}
 \[a_{pd}=2,\ \ \ para\ una\ propagacion\ en\ el\ espacio\ libre\ \] 
-El \textit{apd (también conocido como PLE)} es un valor que va de 2 a 4 frecuentemente. El valor mínimo (i.e. 2) proviene de la perdida FSPL y el máximo (i.e. 4) por la pérdida del modelo \textit{Flat Earth} (modelo de tierra plana). En algunos modelos se llega a incluir valores de PLE más altos que los aquí definidos.
+El $a_{pd}$ (también conocido como PLE) es un valor que va de 2 a 4 frecuentemente. El valor mínimo (i.e. 2) proviene de la perdida FSPL y el máximo (i.e. 4) de la pérdida del modelo \textit{Flat Earth} (modelo de tierra plana). En algunos modelos se llega a incluir valores de PLE más altos que los aquí definidos.
 
 \subsection{Caracterización del canal de radio}
 
-Usualmente en ambientes urbanos no hay línea de vista (LoS) entre la estación base (BS) y la terminal móvil (MT\footnote{MT y UE son términos análogos.}) \textit{[véase Figura~\ref{fig:Propagacion}]} por lo que la transmisión es realizada por reflexión, difracción y dispersión de las señales.\newline
+Usualmente en ambientes urbanos no hay LoS entre la estación base (BS) y la terminal móvil (MT\footnote{MT y UE son términos análogos.}) \textit{[véase Figura~\ref{fig:Propagacion}]} por lo que la transmisión es realizada por reflexión, difracción y dispersión de las señales.\newline
 
 \begin{figure}[th]
 \centering
@@ -437,7 +438,7 @@ Usualmente en ambientes urbanos no hay línea de vista (LoS) entre la estación 
 \label{fig:Propagacion}
 \end{figure}
 
-Sin embargo estas señales sufren de desvanecimiento con caídas de potencia. Este desvanecimiento depende de la posición y el ambiente del cual se propague la señal.\newline
+Sin embargo estas señales sufren de desvanecimiento con caídas de potencia. Este desvanecimiento depende de la posición y del ambiente en el cual se propague la señal.\newline
 
 Características de desvanecimiento:
 \begin{itemize}
@@ -458,15 +459,15 @@ Características de desvanecimiento:
 En la \textit{Figura~\ref{fig:Desvanecimientos}} se observa que al principio, la señal parece muy aleatoria. Mirando más de cerca podemos observar tres componentes principales que forman a la señal, como se muestra en la mitad derecha \parencite{Mathuranathan2016}.
 \begin{enumerate}
     \item  Pérdida por trayectoria \textit{(Path loss)}
-    \item  \textit{Shadowing} (Sombreado) o desvanecimiento lento
-    \item  \textit{Multipath} multitrayectoria o desvanecimiento rápido.
+    \item  Sombreado (\textit{Shadowing}) o desvanecimiento lento
+    \item  Multitrayectoria (\textit{Multipath}) o desvanecimiento rápido.
 \end{enumerate}
 
 El desvanecimiento lento puede ser causado por eventos como el \textit{shadowing}, donde una gran obstrucción, como una colina o un gran edificio, oscurece la trayectoria de la señal principal entre el transmisor y el receptor. Se considera un parámetro a gran escala.\newline
 
 El desvanecimiento rápido ocurre cuando la amplitud y el cambio de fase impuestos por el canal varían considerablemente durante el período de uso. Una señal que viaja en un entorno puede verse reflejada por varios objetos en el camino. Esto da lugar a varias señales reflejadas. Las señales reflejadas llegan al receptor en diferentes instantes de tiempo y con diferentes intensidades que conducen a la propagación multitrayectoria. Se considera un parámetro a pequeña escala.\newline
 
-Cuando se habla del desvanecimiento de Rayleigh en enlaces inalambricos, en la literatura \parencite{RayleighScienceDirect} se encuentra que las componentes en cuadratura y en fase de la señal recibida son variables aleatorias Gaussianas con media cero que se distribuyen de forma independiente e idéntica (iid), siendo así, que la magnitud de la señal banda base compleja sigue una distribución de Rayleigh [Ecuación~\ref{eqn:Rayleigheqn}]. Por otra parte, la distribución de la potencia normalizada de una señal de banda base compleja recibida bajo el desvanecimiento unitario de Rayleigh es modelado por medio de una distribución exponencial unitaria [Ecuación~\ref{eqn:Exponeqn}]. \label{DesvRayleigC2} \newline 
+Cuando se habla del desvanecimiento de Rayleigh en enlaces inalambricos en la literatura \parencite{RayleighScienceDirect}, se encuentra que las componentes en cuadratura y en fase de la señal recibida son variables aleatorias Gaussianas con media cero que se distribuyen de forma independiente e idéntica (iid), siendo así, que la magnitud de la señal banda base compleja sigue una distribución de Rayleigh [Ecuación~\ref{eqn:Rayleigheqn}]. Por otra parte, la distribución de la potencia normalizada de una señal de banda base compleja recibida bajo el desvanecimiento unitario de Rayleigh es modelada por medio de una distribución exponencial unitaria [Ecuación~\ref{eqn:Exponeqn}]. \label{DesvRayleigC2} \newline 
 
 \begin{equation}
     P_{X}(x) = {x\over\sigma_{i}^{2}}\exp\left(-{x^{2}\over 2\sigma_{i}^{2}}\right),\ x\geq 0
@@ -485,9 +486,9 @@ Donde:
 Los márgenes de desvanecimiento deben tomarse en cuenta para caracterizar la variación de las señales alrededor de un valor promedio, esto depende de:\newline
 
 •	Características del ambiente (LoS o NLoS)\newline
-•	Calidad de servicio (QoS)\newline
+•	Calidad de servicio (QoS, \textit{Quality of Service})\newline
 
-Para un \textit{narrowband} (banda estrecha, donde prevalece el desvanecimiento plano en lugar de un desvanecimiento selectivo de frecuencia) el desvanecimiento se caracteriza de la siguiente manera:
+Para una \textit{narrowband} (banda estrecha, donde prevalece el desvanecimiento plano en lugar de un desvanecimiento selectivo de frecuencia) el desvanecimiento se caracteriza de la siguiente manera:
 \begin{itemize}
     \item Desvanecimiento rápido:
     \begin{itemize}
@@ -539,7 +540,7 @@ Los modelos de estimación de señal pueden ser divididos en dos categorías:
 %----------------------------------------------------------------------------------------
 
 \section{ESQUEMAS DE ACCESO MÚLTIPLE AL MEDIO}
-Las técnicas de acceso múltiple (MA) generalmente se pueden dividir en enfoques ortogonales y no ortogonales \parencite{Tse2004}. En MA ortogonal (OMA), los recursos de radio se dividen ortogonalmente entre dispositivos, donde las señales de diferentes dispositivos no se superponen entre sí. Las instancias de OMA son acceso múltiple por división de tiempo (TDMA), acceso múltiple por división de frecuencia (FDMA), acceso múltiple por división de frecuencia ortogonal (OFDMA), y FDMA de portadora única (SC-FDMA).
+Las técnicas de acceso múltiple (MA) generalmente se pueden dividir en enfoques ortogonales y no ortogonales \parencite{Tse2004}. En MA ortogonal (OMA), los recursos de radio se dividen ortogonalmente entre dispositivos, donde las señales de diferentes dispositivos no se superponen entre sí. Las distintas instancias de OMA son: acceso múltiple por división de tiempo (TDMA), acceso múltiple por división de frecuencia (FDMA), acceso múltiple por división de frecuencia ortogonal (OFDMA), y FDMA de portadora única (SC-FDMA).
 
 \subsection{OMA}
 
