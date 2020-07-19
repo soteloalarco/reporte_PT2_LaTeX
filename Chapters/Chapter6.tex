@@ -356,10 +356,193 @@ Como se observa, no se logran satisfacer todos los requisitos de velocidad de da
 %----------------------------------------------------------------------------------------
 
 \section{Generación de Tráfico Fuente}
+La generación de tráfico fuente requirió de un paradigma distinto al de eventos discretos, pues como se deja ver en el diagrama de la \textit{figura~\ref{fig:CMMPP_Algoritmo}}, un avance periódico en el tiempo es necesario para calcular las matrices de cambio de estado en los dispositivos y generar así el tráfico CMMPP, de esta manera el algoritmo de generación de tráfico fuente sigue un paradigma de simulación normalmente llamado \textit{time driven}. Adicional a este algoritmo se anexó la lógica para generar tráfico periódico en los dispositivos que así lo requirieran, teniendo así dos posibles modelos. Tal algoritmo corresponde al \textit{algoritmo \ref{A2}}. \newline
 
+El programa Generador de Tráfico IoT se trata de la interconexión entre el algoritmo de distribución de usuarios, tratado en [6.1] y el de generación de tráfico fuente tratado en esta sección. A este programa se agrega una interfaz gráfica para facilitar la introducción de los parámetros que se consideran para generar el tráfico IoT y  se  describe más a detalle en la sección [6.6]. \newline
+
+En las siguientes dos secciones se muestran los parámetros que fueron implementados para caracterizar el tráfico generado por los modelos CMMPP y Periódico. \newline
 \subsection{Tráfico CMMPP}
-\subsection{Escenario de Prueba de Tráfico CMMPP}
+La generación de tráfico CMMPP, sigue el diseño mostrado en la \textit{figura~\ref{fig:CMMPPpropuesta}} , para el cual cada dispositivo puede estar en estado de alarma o estado normal en un instante dado. El estado normal representa la operación habitual del dispositivo y a esta la caracteriza una tasa de arribos $ \lambda_{normal}$ que representa la cantidad promedio de paquetes por segundo que un dispositivo genera al estar en este estado. El estado de alarma por otra parte representa la detección de un evento o estado de interés especial para el dispositivo. Esta detección genera un único paquete de tamaño fijo detrás del cual el dispositivo volvería a su estado de operación habitual.\newline
 
+El cambio de estado de normal  al estado de alarma requiere primeramente de un proceso en la simulación que se encargue de generar alarmas para cada tipo de dispositivo, este proceso se caracteriza por una tasa de arribo de alarmas $ \lambda_{alarma}$. Esta tasa representa la cantidad promedio de alarmas por segundo que ocurrirán en el área de la célula, además de este parámetro se necesita especificar la velocidad a la que las alarmas se transmiten desde su lugar de origen.\newline
+
+El siguiente proceso que propicia un cambio de estado, es el cálculo de la matriz de cambio de estado $P_n\left[k\right]$ que se lleva a cabo en cada dispositivo. La ecuación \ref{eqn:Pn} utiliza la información de cuándo y donde se produjeron eventos de alarma, además de su velocidad de propagación para determinar el momento en el que la alarma llega al dispositivo. Adicionalmente es necesario un modelo que caracterice la propagación espacial. Los modelos implementados fueron los propuestos en [A] :\newline
+
+\begin{equation}
+\delta_n = e^{-\alpha.d_{n}}
+\label{eqn:dn1}
+\end{equation}
+
+\begin{equation}
+    \delta_n =
+    \begin{cases}
+        1  & \text{si $d_n < d_{th}$} \\
+        \frac{1}{2}(1-sin\frac{\pi(d_n-W)}{2(W-d_{th})}) & \text{si $d_{th}< d_n < 2W-d_{th}$}\\
+        0  & \text{si $d_n > 2W-d_{th}$}
+    \end{cases}
+    \label{eqn:dn2}
+\end{equation}
+
+El modelo que describe la \textit{ecuación~\ref{eqn:dn1}} se trata del \textit{decaying exponential} y está pensado para simular alarmas cuyo efecto en los dispositivos se espera siga un comportamiento exponencial. Los tipos de dispositivos que utilicen este modelo deberán especificar la constante $\alpha$ que caracteriza al modelo. Por otra parte la \textit{ecuación~\ref{eqn:dn2}} se trata de una \textit{raised-cosine window}, esta función es útil para modelar alarmas que se transmiten fuertemente por cierta distancia pero que después se detienen abrúptamente. Los tipos de dispositivos que utilicen este segundo modelo deberán especificar las constantes $d_{th}$ y $W$, donde $W$ es el ancho de la ventana y $d_{th}$ es la distancia de corte. En ambas ecuaciones $d_n$ es la distancia del dispositivo al origen de la alarma.\newline
+
+Expuesto esto, los parámetros necesarios para la generación de tráfico con el modelo CMMPP, los cuales variarán según se decida para cada tipo de dispositivo, se encuentran en la \textit{tabla~\ref{tab:ParametrosTraficoCMMPP}}.\newline
+
+\begin{table}
+    \caption{Parámetros necesarios para generar tráfico CMMPP}
+    \label{tab:ParametrosTraficoCMMPP}
+    \centering
+    \begin{tabular}{|m{6cm}|p{10cm}|} \\ 
+    \textbf{Parámetro} & \textbf{Descripción} \\ 
+    \textit{Tasa de nacimiento de paquetes $\lambda_{normal}$}  & \footnotesize{ Media de nacimiento de paquetes por segundo en cada dispositivo } \\ \hline 
+    \textit{Tasa de nacimiento de alarmas $\lambda_{alarma}$}  & \footnotesize{ Media de nacimiento de alarmas } \\ \hline 
+    \textit{Velocidad de propagación de alarmas}  & \footnotesize{ Velocidad a la que se propaga una alarma desde su posición de origen hacia todas direcciones. } \\ \hline 
+    \textit{Modelo de propagación espacial de las alarmas} & \footnotesize{ Ya sea \textit{decaying exponential} o \textit{raised-cosine window}. } \\ \hline 
+    \textit{Constante 1 propagación espacial} & \footnotesize{ Si el modelo de propagación corresponde a \textit{decaying exponential}:
+    se trata de la constante $\alpha$, factor de decaimiento.
+    Si el modelo de propagación corresponde a \textit{raised-cosine window}:
+    se trata de la constante $W$, ancho de la ventana. } \\ \hline 
+    \textit{Constante 1 propagación espacial} & \footnotesize{ Si el modelo de propagación corresponde a \textit{decaying exponential}:
+    esta constante no se utiliza.
+    Si el modelo de propagación corresponde a \textit{raised-cosine window}:
+    se trata de la constante $d_{th}$, distancia de corte. } \\ \hline 
+    \end{tabular}
+\end{table}
+
+    Con lo que respecta al tamaño de los paquetes, aquellos generados a partir del estado de alarma son de 20 $bytes$ y los generados en el estado normal siguen una distribución de Pareto con $\alpha$ = 2.5, tamaño mínimo de 20 $bytes$ y máximo de $200$ bytes.\newline
+
+\subsection{Tráfico Periódico}
+
+La generación del tráfico periódico no requiere mas que de un parámetro, la frecuencia de nacimiento de paquetes $F_{nacimiento}$, que es inversa al periodo de nacimiento de estos mismos $T_{nacimiento}$. En la implementación además, el tiempo del primer nacimiento de cada dispositivo que siga este modelo se calcula siguiendo una distribución uniforme que genera un valor entre 0 y el periodo de nacimiento y a partir de ahí se genera un nuevo nacimiento una vez transcurrido un periodo $T_{nacimiento}$. De esta manera, la transmisión de paquetes desde distintos dispositivos del mismo tipo se encuentra distribuida uniformemente a lo largo de un periodo.\newline
+
+La \textit{tabla~\ref{tab:ParametrosTraficoPeriodico}} muestra el parámetro necesario para generar tráfico con el modelo periódico.\newline
+
+\begin{table}
+    \caption{Parámetros necesarios para generar tráfico Periódico}
+    \label{tab:ParametrosTraficoPeriodico}
+    \centering
+    \begin{tabular}{|m{6cm}|p{10cm}|} \\ 
+    \textbf{Parámetro} & \textbf{Descripción} \\ 
+    \textit{Frecuencia de nacimiento de paquetes $F_{nacimiento}$}  & \footnotesize{ Cantidad de paquetes que genera un dispositivo por segundo, inversa al periodo entre dos nacimientos $T_{nacimiento}$. } \\ \hline 
+ 
+    \end{tabular}
+\end{table}
+
+\subsection{Algoritmo de generación de tráfico fuente}
+
+El programa de generación de tráfico fuente, implementa la generación de tráfico CMMPP y periódico según lo requiera cada tipo de dispositivo. El tráfico en cada tipo de dispositivo está caracterizado por los parámetros de entrada descritos en las \textit{tablas \ref{tab:ParametrosTraficoCMMPP} y \ref{tab:ParametrosTraficoPeriodico}}. Esta caracterización es compartida entre todos los dispositivos del mismo tipo, pero será diferente con dispositivos de otros tipos, según se seleccionen los parámetros.\newline
+
+El \textit{algoritmo~\ref{generacionTrafico}} describe el proceso seguido por el programa de generación de tráfico.
+
+\begin{algorithm}
+    \caption{Generación de tráfico fuente}
+    \label{generacionTrafico}
+    \hspace*{\algorithmicindent} \textbf{Entrada} NumeroDispositivos\\
+    \hspace*{\algorithmicindent} \textbf{Output} NumeroGrupos
+    \begin{algorithmic}[1]
+    \Procedure{Ejemplo de procedimiento \textit{Multitone} con kmax=4}{}
+    \If {$kmax ==4$} 
+        \If {$NumeroDispositivos <= 48$} 
+        \Return NumeroDispositivos
+        \EndIf
+        \If {$NumeroDispositivos > 48\ and\ NumeroDispositivos <=96$} 
+        \Return NumeroDispositivos/2
+        \EndIf
+        \If {$NumeroDispositivos > 96\ and\ NumeroDispositivos <= 144 $} 
+        \Return NumeroDispositivos/3
+        \EndIf
+        \If {$NumeroDispositivos > 144\ and\ NumeroDispositivos < 192$} 
+        \Return NumeroDispositivos/4
+        \EndIf
+        \If {$NumeroDispositivos >= 192$} 
+        \Return 48
+        \EndIf
+    \EndIf
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+El \textit{algoritmo~\ref{generacionTrafico}} se programó en python 3.6 para realizar el escenario de pruebas y hacer inmediata su reutilización en el programa Generador de tráfico IoT. Los parámetros utilizados en el escenario de pruebas y sus resultados se encuentran en la siguiente sección.\newline
+
+\subsection{Escenario de Prueba para la Generación de Tráfico}
+
+El escenario de pruebas para el algoritmo de generación de tráfico considera los parámetros presentados en las \textit{tablas~\ref{tab:paramPruebaTrafico} y \ref{tab:paramPruebaTrafico}}.  En la primera tabla se encuentran los parámetros que caracterizan el tráfico de los 7 distintos servicios seleccionados en la sección de diseño. Estos parámetros fueron determinados a partir de la \textit{tabla~\ref{tab:AppsSimulacion}}. Los demás parámetros necesarios para la simulación se encuentran en la segunda tabla, y corresponden al Tiempo de corte de la simulación y al diferencial $\Delta T$. Este diferencial corresponde al avance de tiempo que tiene la simulación en cada ciclo. Los valores se seleccionaron como $3600$ y $1$ segundos respectivamente, debido a que las tasas de nacimiento de paquete y de alarma se encuentran a lo mas en el orden unas cuantas por minuto, de manera que no hay necesidad en tener una definición mayor a 1 segundo. Algunas tasas de nacimiento de paquetes y alarmas se encuentran en el orden de unas cuantas por hora como es el caso de los dispositivos de detección de terremotos, razón por la cual se decidió realizar la simulación a lo largo de 3600 segundos.\newline
+
+\begin{table}
+    \caption{Parámetros para el escenario de pruebas de tráfico}
+    \label{tab:paramPruebaTrafico}
+    \centering
+    \begin{tabular}{|m{16cm}|p{20cm}|} \\ 
+        \textbf{Tipo:} Control de Iluminación\\ \textbf{Cantidad de dispositivos:} 1000 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.000556  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.002778 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 500 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Raised-cosine window} \\ \textbf{$W$:} 200 \\ \textbf{$d_{th}$:} 100 \\ \hline
+        \textbf{Tipo:} Monitoreo del consumo de agua y electricidad \\ \textbf{Cantidad de dispositivos:} 500 \\ \textbf{Modelo de tráfico:} Periódico \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.001667  $paquetes/seg$. \\ \hline
+        \textbf{Tipo:} Detección de terremotos\\ \textbf{Cantidad de dispositivos:} 500 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.000278  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.002778 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 3000 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Decaying exponential} \\ \textbf{$\alpha$:} 0.4 \\ \hline
+        \textbf{Tipo:} Monitoreo de contaminación del aire\\ \textbf{Cantidad de dispositivos:} 500 \\ \textbf{Modelo de tráfico:} Periódico \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.001111  $paquetes/seg$. \\ \hline
+        \textbf{Tipo:} Control dinámico de semáforos\\ \textbf{Cantidad de dispositivos:} 1000 \\ \textbf{Modelo de tráfico:} Periódico \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \hline
+        \textbf{Tipo:} Otros dispositivos mMTC\\ \textbf{Cantidad de dispositivos:} 3000 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.033333 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 500 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Decaying exponential} \\ \textbf{$\alpha$:} 0.007  \\ \hline
+        
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \caption{Parámetros para el escenario de pruebas de tráfico}
+    \label{tab:paramPruebaTrafico2}
+    \centering
+    \begin{tabular}{|m{16cm}|p{20cm}|} \\ 
+        \textbf{Tipo:} Dispositivos URLLC \\ \textbf{Cantidad de dispositivos:} 1000 \\ \textbf{Modelo de tráfico:} CMMPP \\ \textbf{Tasa/Frecuencia de nacimiento de paquetes:} 0.016667  $paquetes/seg$. \\ \textbf{Tasa de nacimiento de alarmas:} 0.033333 $alarmas/seg$. \\ \textbf{Velocidad de alarma:} 500 $metros/seg$. \\ \textbf{Modelo de propagación espacial:} \textit{Decaying exponential} \\ \textbf{$\alpha$:} 0.007  \\ \hline
+        \textbf{Tiempo límite de simulación:} 3600 $segundos$ \\ \textbf{$\Delta T$:} 1 $segundo$ \\ \textbf{Radio de la célula:} 200 $metros$ \\ \hline
+    \end{tabular}
+\end{table}
+
+Los resultados de la simulación se presentan en las siguientes gráficas las cuales muestran los histogramas de arribos para algunos servicios junto con de las distribuciones que estos siguen, además de algunos mapas de calor que muestran el comportamiento de la propagación espacial de las alarmas. \newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.4]{Figures/histoeventos.png}
+    \decoRule
+    \caption[Histograma de nacimientos de paquetes]{Histograma de nacimiento de paquetes}
+    \label{fig:histoeventos}
+\end{figure}
+
+La \textit{imagen~\ref{fig:histoeventos}} muestra el histograma de nacimientos a lo largo de toda la simulación, el ancho de las barras es el mismo que $\Delta T$. En este histograma se contempla el tráfico generado por los 7 distintos servicios, de manera que es difícil extraer mucha información. A eso ayudan más las \textit{imagenes \ref{fig:histoeventos1} y \ref{fig:histoeventos2}}, las cuales se concentran en el tráfico de un sólo servicio, es decir de todos los dispositivos de un mismo tipo.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.4]{Figures/Otros_dispositivos_mMTC.png}
+    \decoRule
+    \caption[Otros dispositivos mMTC, Histograma de nacimientos y sus distribuciones]{Otros dispositivos mMTC, Histograma de nacimientos y sus distribuciones}
+    \label{fig:histoeventos1}
+\end{figure}
+
+La \textit{imagen~\ref{fig:histoeventos1}} contiene a la izquierda el histograma de  nacimiento de paquetes junto con el nacimiento de las alarmas para los dispositivos  del tipo Otros dispositivos mMTC. Las gráficas a la derecha por otra parte son más fáciles de interpretar y se trata de la distribuciones que sigue el tiempo entre nacimiento de paquetes y de alarmas, las cuales podemos ver  siguen una distribución exponencial a la tasas establecidas como parámetros en la  \textit{tabla~\ref{tab:paramPruebaTrafico}}, justo como se esperaba.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.4]{Figures/Semaforos_inteligentes.png}
+    \decoRule
+    \caption[Semáforos inteligentes, Histograma de nacimientos y sus distribuciones]{Semáforos inteligentes, Histograma de nacimientos y sus distribuciones}
+    \label{fig:histoeventos2}
+\end{figure}
+
+La \textit{imagen~\ref{fig:histoeventos2}} es muy parecida a la \textit{imagen~\ref{fig:histoeventos1}} puesto que presenta las mismas gráficas, los histogramas a la izquierda y las distribuciones al derecha.  Pero en esta ocasión el servicio que observamos es el control de semáforos. Este servició genera  tráfico con el modelo periódico, razón por la cual el tiempo entre nacimiento de paquetes  es constante y no sigue una distribución exponencial.\newline
+
+Finalmente en las \textit{imagenes \ref{fig:propagacion1} y \ref{fig:propagacion2}} se ven los mapas de calor producidos por una alarma que se transmite siguiendo el modelo \textit{Raised-cosine window} y \textit{Decaying exponential} respectivamente. Se puede notar cómo la propagación de la alarma siguiendo el modelo \textit{Raised-cosine window} tiene lugar de manera uniforme por dentro del círculo de radio dth  y con origen en su lugar de su nacimiento, para después desvanecerse y terminar abrúptamente para radios mayores al ancho de la ventana . Por otro lado la alarma que sigue el modelo de propagación exponencial se desvanece desde el origen y su efecto decae según crezca la distancia (de manera exponencial), pero no se detiene abrúptamente.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=1]{Figures/UEs_de_tipo_Control_de_iluminacion_activados_por_una_alarma.png}
+    \decoRule
+    \caption[Propagación de alarma en dispositivos de control de iluminación]{Propagación de alarma en dispositivos de control de iluminación}
+    \label{fig:propagacion1}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=1]{Figures/UEs_de_tipo_Otros_dispositivos_mMTC_activados_por_una_alarma.png}
+    \decoRule
+    \caption[Propagación de alarma en otros dispositivos mMTC]{Propagación de alarma en otros dispositivos mMTC}
+    \label{fig:propagacion2}
+\end{figure}
+
+Los resultados que presentan estas imágenes muestran que el algoritmo de generación de tráfico fuente está efectivamente generando arribos siguiendo los parámetros y modelos seleccionados, de manera que de aquí se procedió a su implementación en el programa \textbf{Generador de tráfico IoT} que se trata en la siguiente sección. \newline
 
 \hfill
 
@@ -370,8 +553,22 @@ Como se observa, no se logran satisfacer todos los requisitos de velocidad de da
 %----------------------------------------------------------------------------------------
 
 \section{Interconexión de los 4 módulos del Simulador}
-%Incluir lo de NPRACHH, NPUCSH y NORA
 
+Los 4 módulos del sistema, cuya implementación se ha discutido en la primera parte de este capítulo son: el despliegue de los dispositivos, el modelo del canal, el esquema de acceso múltiple al medio y los modelos de tráfico IoT. La forma en la que se llevo acabo la interconexión de estos módulos se encuentra descrita en el diagrama de la \textit{imagen~\ref{fig:interconexion4}}. \newline
+
+El simulador se encuentra entonces dividido en 2 programas, el \textbf{Generador de Tráfico IoT} y el \textbf{Simulador de eventos discretos}. La razón por la que se implemento esta arquitectura tiene que ver con los paradigmas que ambos programas siguen, ya que mientras el Generador de tráfico IoT tiene una rutina que realiza avances constantes en el tiempo, el Simulador de eventos discretos avanza en el tiempo apartir de los eventos evaluados. \newline
+
+Ambos sistemas fueron programados en Python 3.6 y fueron implementados de manera modular. Es decir el programa Generador de Tráfico IoT es una herramienta funcional y modificable por sí sola para generar tráfico de tipo máquina con los modelos CMMPP y Periódico y con usuarios distribuidos a partir de un PPP. Los resultados de este programa podrían entonces ser utilizados en algúno otro, realizando los ajustes de interfaz necesarios. De la misma manera el Simulador de Eventos discretos que contiene el modelo del canal y el esquema de acceso múltiple al medio, podría procesar tráfico y usuarios generados y distribuidos en un programa distinto al presentado en este proyecto. Esta modularidad es posible en gran parte grácias a que la interfaz existente entre ambos programas es el uso de archivos .csv, los cuales son fáciles de generar y modificar.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/interconexion4modulos.png}
+    \decoRule
+    \caption[Interconexión de los 4 módulos en un simulador]{Interconexión de los 4 módulos en un simulador}
+    \label{fig:interconexion4}
+\end{figure}
+
+En las siguientes secciones se aborda con más detalle la implementación de los dos programas que integran el simulador. \newline
 
 \hfill
 
@@ -381,13 +578,120 @@ Como se observa, no se logran satisfacer todos los requisitos de velocidad de da
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
+\section{Generador de tráfico IoT}
+
+    El Generador de tráfico IoT distribuye dispositivos IoT en una célula circular siguiendo un PPP, para después generar tráfico de estos dispositivos con los modelos CMMPP y Periódico. La rutina principal del programa sigue el paradigma \textit{time-driven}, puesto que realiza avances constantes en el tiempo. La salida del programa se da en forma de archivos .csv, de los cuales los dos más importantes son el archivo de dispositivos y el archivo de eventos. El archivo de dispositivos contiene información referente a cada uno de los dispositivos generados mientras que el archivo de eventos contiene la información del nacimientos de cada paquete.\newline
+
+    La forma en que python se generaron y manipularon archivos .csv en python 3.6 fue con la librería $pandas$, la cual permite mapear listas a archivos .csv y viceversa. \newline
+
+    Aunado a la funcionalidad principal del programa, se programó una interfaz de usuario para interactuar con el sistema e ingresar lo parámetros de la simulación. La interfaz de usuario se realizó con la librería $tkinter$. Esta interfaz se presenta con mayor detalle en la siguiente sección. \newline
+
+
+\subsection{Interfaz de Usuario}
+
+    La \textit{imagen~\ref{fig:GUITrafico}} es una captura de pantalla de la interfaz de usuario del Generador de Tráfico IoT. En el primer bloque arriba a la izquierda se encuentran parámetros referentes a la distribución de usuarios, como son el radio del área circular en la que se distribuirán y su modelo de distribución. Los siguientes 7 bloques sirven para introducir los parámetros de generación de tráfico para los 7 distintos servicios contemplados. Finalmente se debe indicar hasta abajo: el tiempo de corte de la simulación y el diferencial de tiempo entre ciclos antes de poder iniciar la rutina. El botón de cargar datos abajo a la derecha permite leer los parámetros de un archivo y desplegarlos en las casillas correspondientes, lo que permite guardar una configuración inicial y acelerar la introducción de valores. \newline
+
+    
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.6]{Figures/GUI.png}
+    \decoRule
+    \caption[Interfaz de Usuario, Generador de Tráfico IoT]{Interfaz de Usuario, Generador de Tráfico IoT}
+    \label{fig:GUITrafico}
+\end{figure}
+
+Al terminar la rutina se generarán en la misma carpeta del programa 4 archivos .csv de los cuales 2 son utilizados en el \textbf{Simulador de eventos discretos}. Estos archivos son descritos con más detalle en la siguiente sección. \newline
+
+\subsection{Archivos de Salida}
+
+Los principales archivos que resultan de ejecutar cada rutina del Generador de Tráfico son el archivo de dispositivos y el archivo de eventos. En la \textit{imagen~\ref{fig:archivodispositivos}} se puede ver un ejemplo del primer archivo, en él se guarda: a qué tipo de dispositivo corresponde cada servicio y su posición en el plano. Estos datos son después utilizados en el Simulador de eventos discretos para instanciar nodos del tipo especificado en esa posición y poder adjudicarles sus nacimientos de paquetes. La \textit{imagen~\ref{fig:archivoeventos}} muestra un ejemplo de archivo de eventos, en el cual encontramos los nacimientos de paquetes a lo largo del tiempo de simulación. Desde tál archivo se podrá conocer el dispositivo que originó el paquete, su tamaño y si este surgió apartir de una alarma, todos estos datos importantes para que el simulador pueda procesar los eventos.  \newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/disparchivo.png}
+    \decoRule
+    \caption[Archivo de dispositivos]{Archivo de dispositivos}
+    \label{fig:archivodispositivos}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/eventosarchivo.png}
+    \decoRule
+    \caption[Archivo de eventos]{Archivo de eventos}
+    \label{fig:archivoeventos}
+\end{figure}
+
+Los últimos dos archivos resultados de cada rutina de este programa son el de configuración y el de alarmas. Pero estos no son utilizados por el Simulador de eventos, sino para generar gráficas de la distribución de usuarios y los modelos de tráfico y de distribución de alarmas.\newline
+
+\hfill
+
+\break
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+
 \section{Simulador de Eventos Discretos}
+
+El Simulador de eventos discretos se trata del otro programa además del Generador de tráfico IoT que conforma al \textbf{Simulador de modelos de tráfico para nodos IoT en una red de 5G}. Fue también programado en python 3.6 y sigue el paradigma de eventos discretos. La Inicialización del simulador se hace a travez de un archivo de configuración .json que permite modificar varios parámetros de la simulación sin necesidad de alterar el código.\newline
+
+La funcionalidad básica del programa se puede observar en el diagrama de la \textit{imagen~\ref{fig:flowdes}}. En el diagrama se puede ver que cuando se toma el siguiente evento en la cola, este es procesado y es aquí donde la mayor parte de la lógica del simulador recide. En la siguiente sección se describen los distintos eventos y cómo son procesados.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/flowdes.png}
+    \decoRule
+    \caption[Simulación de eventos discretos]{Simulación de eventos discretos}
+    \label{fig:flowdes}
+\end{figure}
+
+Para realizar la funcionalidad de eventos discretos en python se utilizó la librería $heapq$, la cual permite la utilización de \textit{heaps}, que son arboles binarios, para los cuales cada nodo padre tiene un valor menor o igual a cualquiera de sus hijos. De tal manera es posible mantener una lista que sigua esta estructura con el calendario de eventos (el arbol se ordena teniendo en cuenta el tiempo en el que ocurre el evento) y utilizar las funciones $heappush$ y $heappop$ para agregar nuevos eventos y removerlos del arbol respectivamente. Esta estructura asegura que el primer evento de la lista sea siempre el siguiente a ser evaluado y la librería representa una manera fácil de interactuar con la lista.\newline
+
+A la salida del simulador, se tiene un archivo .csv con un historial de \textit{logs} correspondiente a los eventos que fueron procesados además de otro archivo con el resultado de las probabilidades de bloqueo por falta de cluster, el porcentaje de paquetes que fueron transmitidos a la tasa deseada y el \textit{throughput} del sistema. Los eventos que tienen lugar y son procesados por el sistema se presentan en la siguiente sección. \newline 
 
 \subsection{Definición de eventos}
 
-\subsection{Interfaz de usuario del simulador de tráfico fuente}
+El primero de los posibles eventos que el simulador procesa es el nacimiento de un nuevo paquete. Este evento tiene una correspondencia entera con el archivo de eventos (\textit{imagen~\ref{fig:archivoeventos}}) puesto que cada linea en ese archivo resulta en un evento de nacimiento en este Simulador. La \textit{imagen~\ref{fig:flownacimiento}} muestra la manera en que se procesa el evento, de ella se puede ver que si el dispositivo está disponible para transmitir se calendizará un proceso noma en el que posiblemente se le asignará un conjunto de recursos y comenzará a transmistir su paquete.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/flownacimiento.png}
+    \decoRule
+    \caption[Procesamiento del evento: nacimiento de paquete]{Procesamiento del evento: nacimiento de paquete}
+    \label{fig:flownacimiento}
+\end{figure}
+
+El siguiente posible evento es el de proceso noma. La \textit{imagen~\ref{fig:flownoma}} muestra cómo se procesa en el simulador y se puede observar que se realiza el algoritmo noma (\textit{algoritmo~\ref{A2}}) con los dispositivos que están haciendo uso del canal y aquellos que quieren transmitir. Los dispositivos que tengan la suerte de contar con un cluster (un conjunto de recursos) comenzará a transmitir y creará o actualizará su evento de fin de transmisión, tenindo en cuenta su nueva tasa de transmisión. Aquellos dispositivos que no consigan recursos cancelarán sus eventos de final de transmisión, y sus paquetes serán considerados en la estadística de bloqueos por falta de recursos. \newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=1]{Figures/flownoma.png}
+    \decoRule
+    \caption[Procesamiento del evento: proceso noma]{Procesamiento del evento: proceso noma}
+    \label{fig:flownoma}
+\end{figure}
+
+El último evento se trata del fin de transmisión, en este evento un dispositivo termina de transmitir todo su paquete y un nuevo proceso noma es calendarizado para redistribuir los recursos. El dispositivo que recien termina de transmitir vuelve al estado \textit{idle} si no tiene paquetes en la cola, de lo contrario transmite el siguiente. Es aquí también cuando se calcula la tasa efectiva a la que se transmitió el paquete haciendo la resta entre el momento en que se comenzó a transmitir y el tiempo actual de la simulación. Esta tasa efectiva es considerada al calcular el porcentaje de paquetes que fueron transmitidos a las tasas requeridas.\newline
+
+La condición de paro del simuador es que se llegue al tiempo límite de la simulación o que se terminen los eventos en la cola. Cuando pase cualquiera de esas dos cosas la simulación termina y un archivo .csv con \textit{logs} de los eventos es generado utilizando la librería $pandas$. Este archivo es descrito en la siguiente sección. \newline
 
 \subsection{Descripción de los \textit{logs} de salida}
+
+La \textit{imagen~\ref{fig:logsdes}} muestra una porción del archivo de \textit{logs} resultante del Simulador de eventos discretos. En él se puede ver cúando y donde ocurrieron los eventos. Por ejemplo en el instante de tiempo 0 hubo el nacimiento de 5 paquetes provenientes de distintos dispositivos, cada uno de estos nacimientos propició que los dispoitivos contendieran por recursos del canal, razón por la cual todos enviaron un preámbulo. Un instante de tiempo después se realiza el proceso noma con estos 5 dispositivos (no había más dispoitivos utilizando el canal) y aquellos dispoitivos que consiguieron recursos comienzan a transmitir. En el evento nuevo cluster cáda dispositivo que consiguió recursos imprime a qué cluster pertenece y a qué tasa transmite. Finalmente el último evento que se ve en la imagen muestrá cuantos dispositivos están transmitiendo a una tasa menor de la que requieren. \newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=0.8]{Figures/logsdes.png}
+    \decoRule
+    \caption[\textit{logs} resultantes de una rutina]{\textit{logs} resultantes de una rutina}
+    \label{fig:logsdes}
+\end{figure}
+
+Con este archivo es posible ver cómo reaccionó el sistema en momentos específicos de la simulación. Con ayuda del archivo de eventos se puede analizar el comportamiento del sistema en distintas situaciones, como cuando ocurre una alarma y de pronto hay muchos nacimientos de paquetes o para ver cúanto tiempo después de estas el sistema se estabiliza por ejemplo. \newline
+
+\subsection{Resultados a la salida del simulador}
 
 \hfill
 
