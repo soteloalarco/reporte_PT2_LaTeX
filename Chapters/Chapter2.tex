@@ -4,11 +4,11 @@
 
 \label{Chapter2} 
 
-El objetivo de este capítulo fue revisar los fundamentos de la teoría de los sistemas de comunicaciones móviles, comenzando con los diferentes modelos de despliegue para BS y UE, se estudió las características de una geometría estocástica y se repasó la teoría del concepto celular, es decir, la geometría celular clásica que sirve para la eficiencia en la planificación de los recursos y por lo tanto el problema más importante en estos sistemas: los efectos de la interferencia.\newline
+El objetivo de este capítulo fue revisar los fundamentos teóricos de los sistemas de comunicaciones móviles. Se comenzó con los diferentes modelos de despliegue para estaciones base (BSs, \textit{base stations}) y dispositivos,estos últimos comunmente conocidos como equipos de usuario (UEs, \textit{user equipments}). Se estudiaron las características de una geometría estocástica y se repasó la teoría del concepto celular, la cual aborda los efectos de la interferencia en estos sistemas.\newline
 
-Después se ahondó en las pérdidas en un sistema celular por medio de los modelos de canal más comunes y con su caracterización en parámetros a larga y pequeña escala, p.ej., la pérdida por trayectoria y el desvanecimiento de las señales de radio. Además, se revisaron los diferentes esquemas de acceso al medio en comunicaciones móviles.\newline
+Después se ahondó en las pérdidas producidas en un sistema celular por medio de los modelos de canal más comunes, caracterizados por los parámetros a larga y pequeña escala, p.ej., la pérdida por trayectoria y el desvanecimiento de las señales de radio. Además, se revisaron los diferentes esquemas de acceso al medio en comunicaciones móviles.\newline
 
-Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunicaciones, los organismos más importantes de estandarización de redes móviles y algunos conceptos de las simulaciones a nivel de sistema orientados a eventos discretos en conjunto con los lenguajes de programación más utilizados.\newline
+Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunicaciones, los organismos más importantes de estandarización de redes móviles y algunos conceptos de las simulaciones a nivel de sistema y el paradigma de eventos discretos, junto con los lenguajes de programación más utilizados para programarlas.\newline
 
 
 %----------------------------------------------------------------------------------------
@@ -17,9 +17,9 @@ Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunica
 
 \section{MODELADO DEL DESPLIEGUE CELULAR}
 
-La teoría del diseño celular da una forma simplificada de un diseño idealizado para redes móviles, esta se desarrolló en la literatura desde el comienzo del concepto celular [1975 aprox.], sin embargo este despliegue uniforme que propone la teoría celular, es poco realista ya que nunca se tiene una instalación regular, esto debido a que la densidad del tráfico varia espacial y temporalmente. En el despliegue de BS, frecuentemente en ubicaciones donde se concentraba mayor cantidad de tráfico lo que se realiza es instalar otra BS y por lo tanto esto rompe con esta uniformidad.\newline
+La teoría del diseño celular ofrece la forma simplificada de un diseño para redes móviles. Esta teoría se desarrolló en la literatura desde el comienzo del concepto celular [1975 aprox.], sin embargo el despliegue uniforme que propone la teoría celular es idealizado, ya que en la realidad nunca se tenían despliegues de este tipo. Frecuentemente, en ubicaciones donde se producía mayor cantidad de tráfico, se instalaba otra BS y por lo tanto se rompía con la uniformidad.\newline
 
-En el modelado de posicionamiento de las estaciones base y los usuarios existen diferentes estrategias de despliegue (como se puede ver en la \textit{Figura~\ref{fig:BSs}}):
+El modelo considera diferentes estrategías de despliegué de BSs (como se puede ver en la \textit{Figura~\ref{fig:BSs}}):
 
 \begin{figure}[th]
 \centering
@@ -29,10 +29,10 @@ En el modelado de posicionamiento de las estaciones base y los usuarios existen 
 \label{fig:BSs}
 \end{figure}
 
-\subsection{Procesos puntuales (PP)}
-\textit{Point Process} \parencite{Haenggi2009}\newline
+\subsection{Procesos puntuales}
+\textit{Point Process (PPs)} \parencite{Haenggi2009}\newline
 
-En primer lugar, para un despliegue aleatorio, la base son los procesos puntuales ya que son los objetos elementales estudiados en la teoría de geometría estocástica.\newline
+En primer lugar, para realizar un despliegue aleatorio, se recurre a los PPs ya que son los objetos elementales estudiados en la teoría de geometría estocástica.\newline
 
 Visualmente, un proceso puntual se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual (PP) es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
 
