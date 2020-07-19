@@ -29,12 +29,12 @@ El modelo considera diferentes estrategías de despliegué de BSs (como se puede
 \label{fig:BSs}
 \end{figure}
 
-\subsection{Procesos puntuales}
-\textit{Point Process (PPs)} \parencite{Haenggi2009}\newline
+\subsection{Procesos puntuales (PPs)}
+\textit{Point Process} \parencite{Haenggi2009}\newline
 
 En primer lugar, para realizar un despliegue aleatorio, se recurre a los PPs ya que son los objetos elementales estudiados en la teoría de geometría estocástica.\newline
 
-Visualmente, un proceso puntual se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual (PP) es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
+Visualmente, un PP se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
 
 Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R}^{d}$ son las siguientes:\newline
 
@@ -44,11 +44,11 @@ Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R
     \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
 \end{itemize}
 
-Antes de entrar a la teoría de los PPP, es necesario definir un Proceso de Poisson.
+Antes de abordar la teoría de los PPP, es necesario definir un Proceso de Poisson. \newline
 
 \subsection{Procesos de Poisson}
 
-Los procesos de Poisson son altamente utilizados para representar o modelar fenómenos en las telecomunicaciones, p. ej. la generación de llamadas telefónicas.\newline
+Los procesos de Poisson son frecuentemente utilizados para representar o modelar fenómenos en las telecomunicaciones, p. ej. la generación de llamadas telefónicas.\newline
 
 Algunas propiedades de los procesos de Poisson son las siguientes \parencite{ PoissonMedium}:
 
@@ -56,7 +56,7 @@ Algunas propiedades de los procesos de Poisson son las siguientes \parencite{ Po
     \item Se compone de una secuencia de variables aleatorias $X1, X2, X3, ... Xk$, de modo que cada variable representa el número de ocurrencias de algún evento, durante un intervalo de tiempo.
     \item Es un proceso estocástico. Cada vez que ejecuta el proceso de Poisson, producirá una secuencia de resultados aleatorios diferentes según alguna distribución de probabilidad.
     \item Es un proceso discreto. Los resultados del proceso de Poisson son el número de ocurrencias de algún evento en el período de tiempo especificado, que sin duda es un número entero, es decir, un número discreto.
-    \item Tiene incrementos independientes. Lo que esto significa es que el número de eventos que el proceso predice que ocurrirá en cualquier intervalo dado, es independiente del número en cualquier otro intervalo disjunto.
+    \item Tiene incrementos independientes. Lo que esto significa es que el número de eventos que el proceso predice que ocurrirán en cualquier intervalo dado, es independiente del número en cualquier otro intervalo disjunto.
     \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución idéntica.
     \item Las variables constitutivas del proceso de Poisson $X1, X2, X3, ... Xk$ tienen una distribución de Poisson , que viene dada por la Función Masa de Probabilidad (PMF):
 \end{itemize}
@@ -68,12 +68,12 @@ Algunas propiedades de los procesos de Poisson son las siguientes \parencite{ Po
 
 La fórmula anterior nos da la probabilidad de ocurrencia de $k$ eventos en unidad de tiempo, dado que la tasa de ocurrencia promedio es $\lambda$ eventos por unidad de tiempo.\newline
 
-Los procesos de Poisson tienen una subestructura notable. Aunque el número de eventos ocurridos se modela usando una distribución de Poisson discreta, el intervalo de tiempo entre eventos consecutivos se puede modelar usando una distribución exponencial, que en contra, es una distribución continua \parencite{PoissonMedium}.\newline
+Los procesos de Poisson tienen una subestructura notable. Aunque el número de eventos ocurridos se modela usando una distribución de Poisson discreta, el intervalo de tiempo entre eventos consecutivos se puede modelar usando una distribución exponencial, que por el contrario, es una distribución continua \parencite{PoissonMedium}.\newline
 
 \subsection{Procesos Puntuales de Poisson (PPP)}\label{PPP_C4}
 \textit{Poisson Point Process} \parencite{Haenggi2009}\newline
 
-Ahora bien, sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es Poisson en $E$ si:
+Ahora bien, sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es de Poisson en $E$ si:
 
 \begin{itemize}
     \item Para todos los subconjuntos disjuntos $A1, ..., An$ de $E$, las variables aleatorias $\Phi(Ai)$ son independientes.
@@ -87,7 +87,7 @@ Una propiedad clave establece que condicionalmente $\Phi(A)= n$, estos $n$ punto
     \item El PPP homogéneo es estacionario y simple. Esto puede considerarse como el proceso puntual más simple (y más natural).
 \end{itemize}
 
-Un PPP ofrece un práctico marco computacional para diferentes cantidades de red de interés. El marco para las PPP no homogéneas también está bien desarrollado, aunque es más técnico que el del caso homogéneo. Se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.
+Los PPP no homogéneos se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio. \newline
 
 %	SUB-SECTION 
 %----------------------------------------------------------------------------------------
