@@ -635,7 +635,9 @@ Los últimos dos archivos resultados de cada rutina de este programa son el de c
 
 \section{Simulador de Eventos Discretos}
 
-El Simulador de eventos discretos se trata del otro programa además del Generador de tráfico IoT que conforma al \textbf{Simulador de modelos de tráfico para nodos IoT en una red de 5G}. Fue también programado en python 3.6 y sigue el paradigma de eventos discretos. La funcionalidad básica del programa se puede observar en el diagrama de la \textit{imagen~\ref{fig:flowdes}}. En el diagrama se puede ver que cuando se toma el siguiente evento en la cola, este es procesado y es aquí donde la mayor parte de la lógica del simulador recide. En la siguiente sección se describen los distintos eventos y cómo son procesados.\newline
+El Simulador de eventos discretos se trata del otro programa además del Generador de tráfico IoT que conforma al \textbf{Simulador de modelos de tráfico para nodos IoT en una red de 5G}. Fue también programado en python 3.6 y sigue el paradigma de eventos discretos. La Inicialización del simulador se hace a travez de un archivo de configuración .json que permite modificar varios parámetros de la simulación sin necesidad de alterar el código.\newline
+
+La funcionalidad básica del programa se puede observar en el diagrama de la \textit{imagen~\ref{fig:flowdes}}. En el diagrama se puede ver que cuando se toma el siguiente evento en la cola, este es procesado y es aquí donde la mayor parte de la lógica del simulador recide. En la siguiente sección se describen los distintos eventos y cómo son procesados.\newline
 
 \begin{figure}[th]
     \centering
@@ -651,6 +653,8 @@ A la salida del simulador, se tiene un archivo .csv con un historial de \textit{
 
 \subsection{Definición de eventos}
 
+El primero de los posibles eventos que el simulador procesa es el nacimiento de un nuevo paquete. Este evento tiene una correspondencia entera con el archivo de eventos (\textit{imagen~\ref{fig:archivoeventos}}) puesto que cada linea en ese archivo resulta en un evento de nacimiento en este Simulador. La \textit{imagen~\ref{fig:flownacimiento}} muestra la manera en que se procesa el evento, de ella se puede ver que si el dispositivo está disponible para transmitir se calendizará un proceso noma en el que posiblemente se le asignará un conjunto de recursos y comenzará a transmistir su paquete.\newline
+
 \begin{figure}[th]
     \centering
     \includegraphics[scale=.7]{Figures/flownacimiento.png}
@@ -658,6 +662,8 @@ A la salida del simulador, se tiene un archivo .csv con un historial de \textit{
     \caption[Procesamiento del evento: nacimiento de paquete]{Procesamiento del evento: nacimiento de paquete}
     \label{fig:flownacimiento}
 \end{figure}
+
+El siguiente posible evento es el de proceso noma. La \textit{imagen~\ref{fig:flownoma}} muestra cómo se procesa en el simulador y se puede observar que se realiza el algoritmo noma (\textit{algoritmo~\ref{A2}}) con los dispositivos que están haciendo uso del canal y aquellos que quieren transmitir. Los dispositivos que tengan la suerte de contar con un cluster (un conjunto de recursos) comenzará a transmitir y creará o actualizará su evento de fin de transmisión, tenindo en cuenta su nueva tasa de transmisión. Aquellos dispositivos que no consigan recursos cancelarán sus eventos de final de transmisión, y sus paquetes serán considerados en la estadística de bloqueos por falta de recursos. \newline
 
 \begin{figure}[th]
     \centering
@@ -667,7 +673,20 @@ A la salida del simulador, se tiene un archivo .csv con un historial de \textit{
     \label{fig:flownoma}
 \end{figure}
 
+El último evento se trata del fin de transmisión, en este evento un dispositivo termina de transmitir todo su paquete y un nuevo proceso noma es calendarizado para redistribuir los recursos. El dispositivo que recien termina de transmitir vuelve al estado \textit{idle} si no tiene paquetes en la cola, de lo contrario transmite el siguiente. Es aquí también cuando se calcula la tasa efectiva a la que se transmitió el paquete haciendo la resta entre el momento en que se comenzó a transmitir y el tiempo actual de la simulación. Esta tasa efectiva es considerada al calcular el porcentaje de paquetes que fueron transmitidos a las tasas requeridas.\newline
+
+La condición de paro del simuador es que se llegue al tiempo límite de la simulación o que se terminen los eventos en la cola. Cuando pase cualquiera de esas dos cosas la simulación termina y un archivo .csv con \textit{logs} de los eventos es generado utilizando la librería $pandas$. Este archivo es descrito en la siguiente sección. \newline
+
 \subsection{Descripción de los \textit{logs} de salida}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=1]{Figures/logsdes.png}
+    \decoRule
+    \caption[\textit{logs} resultantes de una rutina]{\textit{logs} resultantes de una rutina}
+    \label{fig:logsdes}
+\end{figure}
+
 
 \subsection{Resultados a la salida del simulador}
 
