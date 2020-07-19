@@ -559,9 +559,9 @@ En muchos sistemas prácticos, se utiliza una mezcla o combinación de estas té
 
 \subsection{NOMA}\label{NOMA_C2}
 
-Igualmente, el acceso múltiple no ortogonal (NOMA) se ha convertido en un principio importante para el diseño de técnicas de acceso por radio para las redes inalámbricas de quinta generación (5G) \parencite{DIng2017}. NOMA se puede clasificar en dos categorías, el dominio de código NOMA (CD-NOMA) y el dominio de potencia NOMA (PD-NOMA). CD-NOMA utiliza diferentes códigos en el mismo recurso para lograr una ganancia de multiplexación, mientras que PD-NOMA asigna a los usuarios niveles de potencia distintos para maximizar el rendimiento. En comparación con el acceso múltiple ortogonal (OMA) que se ha aplicado ampliamente en los sistemas de comunicación inalámbrica existentes, NOMA posee el potencial de mejorar aún más la eficiencia espectral del sistema y la capacidad de conectividad.\newline
+Igualmente, el acceso múltiple no ortogonal (NOMA) se ha convertido en un principio importante para el diseño de técnicas de acceso por radio para las redes inalámbricas de quinta generación (5G) \parencite{DIng2017}. NOMA se puede clasificar en dos categorías, NOMA en el dominio de código (CD-NOMA) y NOMA en el dominio de la potencia (PD-NOMA). CD-NOMA utiliza diferentes códigos en el mismo recurso para lograr una ganancia de multiplexación, mientras que PD-NOMA asigna a los usuarios niveles de potencia distintos para maximizar el rendimiento. En comparación con el acceso múltiple ortogonal (OMA) que se ha aplicado ampliamente en los sistemas de comunicación inalámbrica existentes, NOMA posee el potencial de mejorar aún más la eficiencia espectral del sistema y la capacidad de conectividad.\newline
 
-Como se mencionaba, PD-NOMA utiliza el dominio de la potencia para el acceso múltiple donde diferentes usuarios son servidos con diferentes niveles de potencia, como las señales de los diferentes usuarios se sobreponen, los receptores aprovechan la cancelación sucesiva de interferencia (SIC) para distinguir a cada una. Como varios usuarios son admitidos en la misma ranura de tiempo, frecuencia o código, la interferencia co-canal será fuerte en los sistemas NOMA \parencite{Ding2016}, por lo que no es realista el asegurar a todos los usuarios del sistema que utilicen NOMA conjuntamente, por esta razón, una alternativa es utilizar un esquema hibrido donde NOMA sea combinado con el esquema convencional ortogonal OMA. El rendimiento de este esquema hibrido es muy dependiente de como los usuarios son agrupados \parencite{Ding2016}. El agrupamiento de usuarios seleccionara a los usuarios con los que se les asignará el mismo bloque de recursos ortogonales.\newline
+PD-NOMA utiliza el dominio de la potencia para el acceso múltiple donde diferentes usuarios son servidos con diferentes niveles de potencia, como las señales de los diferentes usuarios se sobreponen, los receptores aprovechan la cancelación sucesiva de interferencia (SIC) para distinguir a cada señal. Como varios usuarios son admitidos en la misma ranura de tiempo, frecuencia o código, la interferencia co-canal será fuerte en los sistemas NOMA \parencite{Ding2016}, por lo que no es realista el asegurar a todos los usuarios del sistema utilicen NOMA conjuntamente. Una alternativa es utilizar un esquema hibrido donde NOMA sea combinado con el esquema convencional ortogonal OMA. El rendimiento de este esquema hibrido es muy dependiente de cómo son agrupados los usuarios \parencite{Ding2016}. El agrupamiento de usuarios seleccionará quienes compartirán un mismo bloque de recursos ortogonales y quienes no.\newline
 
 \begin{figure}[th]
 \centering
@@ -571,7 +571,7 @@ Como se mencionaba, PD-NOMA utiliza el dominio de la potencia para el acceso mú
 \label{fig:SIC}
 \end{figure}
 
-En la \textit{Figura~\ref{fig:SIC}}, las dos señales de información indicadas con diferentes colores se superponen en el transmisor. La señal recibida en el receptor SIC incluye todas estas tres señales. La primera señal que SIC decodifica es la más fuerte, mientras que la otra es tratada como ruido. La primera señal decodificada se resta de la señal recibida y si la decodificación es perfecta, la forma de onda con la otra señal se obtiene con precisión. SIC itera el proceso hasta que encuentra la señal deseada \parencite{Kizilirmak2016}.\newline
+En la \textit{Figura~\ref{fig:SIC}}, las dos señales de información indicadas con diferentes colores se superponen en el transmisor. La señal recibida en el receptor SIC incluye todas estas tres señales. La primer señal que SIC decodifica es la más fuerte, mientras que la restante es tratada como ruido. La primera señal decodificada se resta de la señal recibida y si la decodificación es perfecta, la forma de onda de la otra señal se obtiene con precisión. SIC itera el proceso hasta que encuentra todas las señales deseadas \parencite{Kizilirmak2016}.\newline
 
 \begin{figure}[th]
 \centering
@@ -581,9 +581,9 @@ En la \textit{Figura~\ref{fig:SIC}}, las dos señales de información indicadas 
 \label{fig:NOMADL}
 \end{figure}
 
-Como se muestra en la \textit{Figura~\ref{fig:NOMADL}}, la idea clave del NOMA en el dominio de potencia es asignar más potencia al usuario con condiciones de canal más pobres. El usuario 1 decodifica su propio mensaje directamente tratando el mensaje del usuario 2 como ruido y por otro lado, el usuario 2 realiza SIC, es decir, primero decodifica el mensaje del usuario 1 y luego elimina este mensaje de su observación antes de decodificar su propio mensaje.\newline
+Como se muestra en la \textit{Figura~\ref{fig:NOMADL}}, la idea clave de NOMA en el dominio de potencia es asignar más potencia al usuario con condiciones de canal más pobres. El usuario 1 decodifica su propio mensaje directamente tratando el mensaje del usuario 2 como ruido y por otro lado, el usuario 2 realiza SIC, es decir, primero decodifica el mensaje del usuario 1 y luego elimina este mensaje de su observación antes de decodificar su propio mensaje.\newline
 
-Suponga que el usuario 1 es un dispositivo IoT que requiere solo una baja velocidad de datos, y el usuario 2 es un usuario que exige una alta velocidad de datos. Cuando se utiliza OFDMA, que es un ejemplo típico de OMA, cada usuario se asigna a la sub-portadora. En este ejemplo, la eficiencia espectral de OMA es pobre ya que el dispositivo IoT tiene más ancho de banda de lo que realmente necesita, mientras que al usuario de banda ancha no se le asigna suficiente ancho de banda. Por otro lado, el uso de NOMA fomenta el intercambio de espectro, es decir, el usuario de banda ancha también puede tener acceso a la sub-portadora ocupada por el dispositivo IoT, en la F\textit{igura 24} se puede observar gráficamente la asignación del espectro en los dos esquemas.\newline
+Suponga que el usuario 1 es un dispositivo IoT que requiere solo una baja tasa de datos, y el usuario 2 es un usuario que exige una alta tasa de datos. Cuando se utiliza OFDMA, que es un ejemplo típico de OMA, cada usuario se asigna a una sub-portadora. En este ejemplo, la eficiencia espectral de OMA es pobre ya que el dispositivo IoT tiene más ancho de banda de lo que realmente necesita, mientras que al usuario de banda ancha no se le asigna suficiente ancho de banda. Por otro lado, el uso de NOMA fomenta el intercambio de espectro, es decir, el usuario de banda ancha también puede tener acceso a la sub-portadora ocupada por el dispositivo IoT, en la \textit{Figura 24} se puede observar gráficamente la asignación del espectro en los dos esquemas.\newline
 
 \begin{figure}[th]
 \centering
@@ -593,21 +593,21 @@ Suponga que el usuario 1 es un dispositivo IoT que requiere solo una baja veloci
 \label{fig:OFDMANOMA}
 \end{figure}
 
-Dada la madurez técnica de OFDMA, es muy probable que este tipo de OMA se incorpore a las redes 5G \parencite{DIng2017} y la forma en que múltiples sub-portadoras OFDMA se pueden combinar de manera eficiente con NOMA ha recibido mucha atención.\newline
+Dada la madurez técnica de OFDMA, es muy probable que este tipo de OMA se incorpore a las redes 5G \parencite{DIng2017}, sin embargo la forma en que múltiples sub-portadoras OFDMA se pueden combinar de manera eficiente con NOMA ha recibido mucha atención en la actualidad y podría ayudar a resolver algunos problemas vigentes.\newline
 
-Acerca del uso de arreglos múltiples de antenas (MIMO) para NOMA, han sido tema de mucho interés que han estado estudiandose para poder alcanzar un rendimiento óptimo del sistema, el ordenamiento de usuarios en escenarios de MIMO-NOMA es una tarea difícil \parencite{DIng2017}. En el caso de SISO, los canales de los usuarios son escalados, por lo que es sencillo ordenar a los usuarios de acuerdo con las condiciones de su canal. Sin embargo, cuando los nodos están equipados con antenas múltiples, los canales de los usuarios están en forma de vectores o matrices, lo que significa que ordenar a los usuarios de acuerdo con las condiciones de sus canales como en el caso SISO se vuelve difícil.
+Acerca del uso de arreglos múltiples de antenas (MIMO) para NOMA. Estos han sido tema de mucho interés. El ordenamiento de usuarios en escenarios de MIMO-NOMA es una tarea difícil \parencite{DIng2017}. En el caso de SISO, los canales de los usuarios son escalados, por lo que es sencillo ordenar a los usuarios de acuerdo con las condiciones de su canal. Sin embargo, cuando los nodos están equipados con antenas múltiples, los canales de los usuarios están en forma de vectores o matrices, lo que significa que ordenar a los usuarios de acuerdo con las condiciones de sus canales como en el caso SISO se vuelve complejo.
 
 \subsection{Interfaz de Radio}
-Los canales de transmisión dirigidos desde la BS a MT son referidos como canal \textit{downlink} y los dirigidos desde el MT a la BS como canales \textit{uplink}, estos canales juntos se identifican como canales ``dúplex'. La transmisión bidireccional de la información en sistemas dúplex puede dividirse en \parencite{Correia2018}:
+Los canales de transmisión dirigidos desde la BS hasta los UEs, son referidos como canal \textit{downlink} y los dirigidos desde los UEs a la BS como canales \textit{uplink}, estos canales juntos se identifican como canales ``dúplex''. La transmisión bidireccional de la información en sistemas dúplex puede dividirse en \parencite{Correia2018}:
 
 \begin{enumerate}
-\item  Frecuencia: Donde los canales UL y DL ocupan diferentes bandas de frecuencia - FDD (\textit{Frequency Division Multiplexing}).
+\item  Frecuencia: Donde los canales UL (\textit{uplink}) y DL (\textit{downlink}) ocupan diferentes bandas de frecuencia - FDD (\textit{Frequency Division Multiplexing}).
 \item  Tiempo: Donde los canales UL y DL ocupan diferentes ventanas de tiempo- TDD (\textit{Time Division Multiplexing}).
 \end{enumerate}
 
 FDD se caracteriza por: 
 \begin{itemize}
-\item  Cuando es utilizada una división ``dúplex'' de frecuencia FDD estos canales son transmitidos en diferentes frecuencias
+\item  Cuando es utilizada una división dúplex de frecuencia FDD estos canales son transmitidos en diferentes frecuencias
 \item  Permitir transmisión simultánea en ambos caminos
 \item  Requieren filtros con un buen rechazo en la banda adyacente
 \item  Requieren en general el uso de filtros dúplex
@@ -615,7 +615,7 @@ FDD se caracteriza por:
 
 TDD se caracteriza por: 
 \begin{itemize}
-\item  Cuando se usa una división ``dúplex'' de tiempo TDD los canales son transmitidos en la misma frecuencia pero utilizando diferentes ranuras de tiempo.
+\item  Cuando se usa una división dúplex de tiempo TDD los canales son transmitidos en la misma frecuencia pero utilizando diferentes ranuras de tiempo.
 \item  Permitir transmisión secuencial en ambos caminos
 \item  Requiere sincronización
 \item  No requieren uso de filtros dúplex
@@ -629,9 +629,9 @@ El uso de una técnica de división dúplex puede depender de la técnica de acc
 
 \section{GENERACIONES PASADAS DE LOS SISTEMAS DE COMUNICACIÓN MÓVIL}
 
-La generación 1G fue la primera generación de tecnología celular inalámbrica. 1G se introdujo en la década de 1980. Las señales de radio utilizadas por la red 1G fueron analógicas y proporcionaba comunicación solo por voz, alcanzaba una velocidad de 2.4 Kbps. La técnica de acceso múltiple utilizada en 1G es el acceso múltiple por división de frecuencia (FDMA) [véase Figura~\ref{fig:MAs}]\parencite{Nair2018}. Esta generación utiliza el método de conmutación de circuitos para la transmisión de datos. \newline
+La generación 1G fue la primera generación de tecnología celular inalámbrica. 1G se introdujo en la década de 1980. Las señales de radio utilizadas por la red 1G fueron analógicas y proporcionaba comunicación sólo por voz, alcanzaba una velocidad de 2.4 Kbps. La técnica de acceso múltiple utilizada en 1G es el acceso múltiple por división de frecuencia (FDMA) [véase Figura~\ref{fig:MAs}]\parencite{Nair2018}. Esta generación utilizó el método de conmutación de circuitos para la transmisión de datos. \newline
 
-Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en el estándar GSM en Finlandia 1991 \parencite{Nair2018}. 2G utilizó el método de conmutación de paquetes para la transmisión de datos y habilitó el cifrado digital de la conversación por teléfono, además proporcionaron servicios multimedia como SMS (Servicios de mensajes cortos) MMS (Servicios de mensajes multimedia) y las velocidades de descarga y carga fueron de hasta 236 Kbps. Se utilizó el acceso múltiple por división de tiempo (TDMA), como el número de usuarios aumentó con el tiempo, TDMA se volvió obsoleto por causar una velocidad más baja para cada usuario.\newline
+Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en Finlandia en 1991, en el estándar GSM \parencite{Nair2018}. 2G utilizó el método de conmutación de paquetes para la transmisión de datos y habilitó el cifrado digital de la conversación por teléfono, además proporcionaron servicios multimedia como SMS (Servicios de mensajes cortos) MMS (Servicios de mensajes multimedia) y las velocidades de descarga y carga fueron de hasta 236 Kbps. Se utilizó el acceso múltiple por división de tiempo (TDMA), como el número de usuarios aumentó con el tiempo, TDMA se volvió obsoleto por causar una velocidad más baja para cada usuario.\newline
 
 3G (conocida también como UMTS) fue la tercera generación de tecnología inalámbrica de telecomunicaciones móviles y utilizó el acceso múltiple por división de código de secuencia directa (DS-CDMA) \parencite{Nair2018}. Las redes 3G ofrecieron velocidades de 3.1 megabits por segundo (Mbps) o más y se instalaron por primera vez en 1998. La aplicación del concepto 3G se encuentra en telefonía inalámbrica, acceso a Internet móvil, acceso a Internet inalámbrico, llamadas de conferencia y TV portátil.\newline
 
@@ -643,7 +643,7 @@ Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en 
 \label{fig:MAs}
 \end{figure}
 
-4G (conocida también como LTE) es el término utilizado para describir la cuarta generación de servicio celular inalámbrico y es el estándar actual del servicio celular. Es hasta 10 veces más rápido que los servicios 3G. Sprint fue el primer operador en ofrecer velocidades 4G en los EE. UU a partir de 2009. Las redes 4G pueden ofrecer velocidades de descarga entre 5 y 12 Mbps y velocidades de carga entre 2 y 5 Mbps, lo que finalmente da una velocidad máxima de 50Mbps. El sistema de comunicación celular 4G utiliza una versión avanzada del esquema FDMA, es decir, OFDMA (acceso múltiple por división de frecuencia ortogonal) \parencite{Nair2018}.
+4G (conocida también como LTE) es el término utilizado para describir la cuarta generación de servicio celular inalámbrico y es el estándar actual del servicio celular. Es hasta 10 veces más rápido que los servicios 3G. Sprint fue el primer operador en ofrecer velocidades 4G en los EE. UU a partir de 2009. Las redes 4G pueden ofrecer velocidades de descarga entre 5 y 12 Mbps y velocidades de carga de entre 2 y 5 Mbps, lo que finalmente da una velocidad máxima de 50Mbps. El sistema de comunicación celular 4G utiliza una versión avanzada del esquema FDMA, es decir, OFDMA (acceso múltiple por división de frecuencia ortogonal) \parencite{Nair2018}.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -653,9 +653,9 @@ Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en 
 
 La NGMN define su visión de una red 5G de la siguiente manera: "5G es un ecosistema de extremo a extremo para permitir una sociedad totalmente móvil y conectada."\newline
 
-La anteriores generaciones de comunicaciones móviles (1G,{\dots},4G) han sido transformadoras en el sentido que fueron motivadas para mejorar los tradicionales KPIs de la red, sin embargo la nueva generación de comunicaciones móviles (5G) aparte de ser transformadora viene a ser disruptiva ante las generaciones anteriores ya que propone nuevas técnicas, modelos y KPIs que habilitarán una gama amplia de servicios con alta fiabilidad, ayudando a conformar toda una red heterogénea global móvil interconectada con altos índices de rendimiento.\newline
+La anteriores generaciones de comunicaciones móviles (1G,{\dots},4G) han sido transformadoras en el sentido de que fueron motivadas por mejorar los tradicionales KPIs de la red, sin embargo la nueva generación de comunicaciones móviles (5G) aparte de ser transformadora viene a ser disruptiva ante las generaciones anteriores ya que propone nuevas técnicas, modelos y KPIs que prometen habilitar una amplia gama de servicios con alta fiabilidad, ayudando a conformar toda una red heterogénea global móvil interconectada con altos índices de rendimiento.\newline
 
-La investigación sobre los casos de uso de una red 5G y sus requisitos técnicos han sido realizadas por la ITU-R, el 3GPP y la NGMN:
+Las investigacines sobre los casos de uso de una red 5G y sus requisitos técnicos han sido realizadas por la ITU-R, el 3GPP y la NGMN:
 
 \begin{figure}[th]
 \centering
@@ -665,14 +665,12 @@ La investigación sobre los casos de uso de una red 5G y sus requisitos técnico
 \label{fig:5g}
 \end{figure}
 
-5G admitirá una gran variedad de casos de uso que están surgiendo ahora o surgirán en el futuro. Los diversos casos de uso tienen características y requisitos variables. Es útil agrupar innumerables casos de uso emergentes en varias familias de casos de uso. \newline
-
-La \textit{Figura~\ref{fig:5g}} muestra las ocho familias de casos de uso por la NGMN con un ejemplo de caso de uso para cada familia, y sus correspondientes ejemplos de casos de uso con la 3GPP y la ITU-R.\newline
+5G admitirá una gran variedad de casos de uso que están surgiendo ahora o surgirán en el futuro. Los diversos casos de uso tienen características y requisitos variables. Es útil agrupar esta gran cantidad de casos de uso emergentes en varias familias. La \textit{Figura~\ref{fig:5g}} muestra las familias de casos de uso consideradas por la NGMN con un ejemplo de caso de uso para cada familia, se ve además la correspondencia que existe con los casos de uso de la 3GPP y la ITU-R.\newline
 
 En términos generales, ITU-R ha concluido tres casos de uso para abordar la gran variedad de requisitos y características \parencite{5gMobileComms}:
 
 \begin{enumerate}
-    \item \textbf{Banda ancha móvil mejorada} \textbf{(eMBB)}: la banda ancha móvil aborda casos de uso centrados en el hombre para acceder a contenido multimedia, servicios y datos. La demanda de banda ancha móvil seguirá aumentando, lo que dará lugar a una banda ancha móvil mejorada. El escenario mejorado de uso de banda ancha móvil vendrá con nuevas áreas de aplicación y requisitos, además de las aplicaciones de banda ancha móvil existentes para un mejor rendimiento y una experiencia de usuario cada vez más perfecta.
+    \item \textbf{Banda ancha móvil mejorada} \textbf{(eMBB)}: la banda ancha móvil aborda casos de uso centrados en los humanos, como el acceso a contenido multimedia, servicios y datos. La demanda de banda ancha móvil seguirá aumentando, lo que dará lugar a una banda ancha móvil mejorada. El escenario mejorado de uso de banda ancha móvil vendrá con nuevas áreas de aplicación y requisitos, además de las aplicaciones de banda ancha móvil existentes para un mejor rendimiento y una experiencia de usuario cada vez mejor.
     \item \textbf{Comunicaciones ultra fiables y de baja latencia (URLLC)}: este caso de uso tiene requisitos estrictos para capacidades tales como rendimiento, latencia y disponibilidad. Algunos ejemplos incluyen el control inalámbrico de la fabricación industrial o los procesos de producción, cirugía médica remota, automatización de la distribución en una red inteligente, seguridad en el transporte, manejo autónomo de automóviles, etc.
     \item \textbf{Comunicaciones masivas de tipo máquina (mMTC)}: este caso de uso se caracteriza por un gran número de dispositivos conectados que transmiten un volumen relativamente bajo de datos no sensibles al retardo. Los dispositivos deben ser de bajo costo y tener una batería de larga duración.
 \end{enumerate}
@@ -684,9 +682,9 @@ En términos generales, ITU-R ha concluido tres casos de uso para abordar la gra
 \section{INTERNET DE LAS COSAS (IoT)}
 
 
-El internet de las cosas (IoT) es una emergente y prometedora tecnología que habilitará la interconexión del mundo global a través de la conexión de objetos físicos (comúnmente dispositivos de bajo consumo) mediante el uso del internet \parencite{5GSurveyAkpaku}. Una de las características más importantes de esta tecnología es que ocupa la comunicación máquina a máquina (M2M) con el fin de que los dispositivos se conecten y comuniquen entre sí sin alguna intervención humana.\newline
+El internet de las cosas (IoT) es una emergente y prometedora tecnología que habilitará la interconexión global de objetos físicos (comúnmente dispositivos de bajo consumo) mediante el uso del internet \parencite{5GSurveyAkpaku}. Una de las características más importantes de esta tecnología es que hace uso de la comunicación máquina a máquina (M2M) con el fin de que los dispositivos se conecten y comuniquen entre sí sin alguna intervención humana.\newline
 
-Para habilitar esta tecnología se requiere el soporte para conexiones masivas, es decir, admitir la gran cantidad de sensores en una sola celda. Debido a que la mayoría de estos sensores deben operar durante varios años, la eficiencia energética en las transmisiones inalámbricas es un requisito importante. Además, se debe reducir el costo de implementación de tales sensores \parencite{IoT5GWire}.
+Para habilitar esta tecnología se requiere del soporte para conexiones masivas, es decir, admitir una gran cantidad de sensores por cada celda. Debido a que la mayoría de estos sensores deben operar durante varios años, la eficiencia energética en las transmisiones inalámbricas es un requisito importante. Finalmente, se debe también reducir el costo de implementación de tales sensores \parencite{IoT5GWire}.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -715,7 +713,7 @@ Suponiendo un sistema que es capaz de atender todas las peticiones de servicio y
     \label{eqn:a}
 \end{equation}
 
-Para un sistema que atiende todas las peticiones el tráfico cursado y el ofrecido son iguales, sin embargo, cuando se analizan sistemas que no cumplan esta característica, a se vuelve un valor hipotético (la intensidad de tráfico cursado, si todas las peticiones se atendieran), sin embargo, seguirá describiendo la intensidad del tráfico que se ofrece. Es importante mencionar que el desempeño de un sistema (en términos de algún parámetro de calidad de servicio) no va a depender del valor de $\lambda$ o de $\mu$ por sí solos, sino del producto de ellos. Por ejemplo, un sistema se puede saturar tanto por una alta tasa de arribos como por una gran duración del tiempo de servicio.\newline
+Para un sistema que atiende todas las peticiones el tráfico cursado y el ofrecido son iguales, sin embargo, cuando se analizan sistemas que no cumplan esta característica, $a$ se vuelve un valor hipotético (la intensidad de tráfico cursado, si todas las peticiones se atendieran), sin embargo, seguirá describiendo la intensidad del tráfico que se ofrece. Es importante mencionar que el desempeño de un sistema (en términos de algún parámetro de calidad de servicio) no va a depender del valor de $\lambda$ o de $\mu$ por sí solos, sino del producto de ellos. Por ejemplo, un sistema se puede saturar tanto por una alta tasa de arribos como por una gran duración del tiempo de servicio.\newline
 
 \subsection{Modelado de tiempos entre llegadas}
 
@@ -811,7 +809,7 @@ Notese que en la Ecuación~\ref{eqn:Pb} el producto $\lambda \mu$ se puede susti
 
 \section{SIMULACIÓNES A NIVEL DE SISTEMA}
 
-Debido a las complicadas estructuras de los sistemas de comunicación celular móvil, no podemos describirlos completamente a través de un modelo matemático simple y abstracto. Por lo tanto, siempre recurrimos a la simulación para evaluar su rendimiento. La simulación a nivel de sistema se ha utilizado ampliamente para evaluar el rendimiento integral de diferentes sistemas celulares móviles \parencite{Chen2011}. Los programas de computadora se utilizan para simular los mecanismos operativos de los sistemas móviles de comunicación celular, los tráficos cargados, etc. El rendimiento de estos sistemas se puede reflejar en última instancia por los resultados obtenidos de los programas de simulación.\newline
+Debido a las complicadas estructuras de los sistemas de comunicación celular móvil, no se pueden describir completamente a través de un modelo matemático simple y abstracto. Por lo tanto, se recurre a la simulación para evaluar su rendimiento. La simulación a nivel de sistema se ha utilizado ampliamente para evaluar el rendimiento integral de diferentes sistemas celulares móviles \parencite{Chen2011}. El rendimiento de estos sistemas se puede reflejar en última instancia por los resultados obtenidos de los programas de simulación.\newline
 
 \begin{figure}[th]
 \centering
@@ -821,7 +819,7 @@ Debido a las complicadas estructuras de los sistemas de comunicación celular m�
 \label{fig:sim_sistema}
 \end{figure}
 
-El escenario para la simulación a nivel de sistema generalmente consiste en una red con múltiples BS y MS [\textit{véase Figura~\ref{fig:sim_sistema}}]. A diferencia de la simulación a nivel de enlace, la simulación a nivel de sistema se centra en las métricas de rendimiento de la capa de aplicación expresadas por el rendimiento del sistema, la imparcialidad del usuario, la calidad de servicio percibida por el usuario (QoS), el retraso de la transferencia o la tasa de éxito, etc.
+El escenario para la simulación a nivel de sistema generalmente consiste en una red con múltiples BSs y UEs [\textit{véase Figura~\ref{fig:sim_sistema}}]. A diferencia de la simulación a nivel de enlace, la simulación a nivel de sistema se centra en las métricas de rendimiento de la capa de aplicación expresadas por el rendimiento del sistema, la imparcialidad del usuario, la calidad de servicio percibida por el usuario (QoS), el retraso de la transferencia o la tasa de éxito, etc.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -830,23 +828,16 @@ El escenario para la simulación a nivel de sistema generalmente consiste en una
 \section{SIMULACIONES ORIENTADAS A EVENTOS DISCRETOS}
 
 
-Una simulación es casi siempre la imitación de algún proceso o sistema que toma o podría tomar lugar en el mundo real, implementada utilizando un paradigma de programación y ejecutada por computadoras. Para realizarse esta, debe tenerse en cuenta un previo estudio del sistema real o de algún modelo o modelos existentes, junto con un análisis detallado de las variables presentes, además es necesario hacer distintas suposiciones al estar el estándar aún en desarrollo. Todo esto para permitir una simulación que simplifique el sistema, pero aun siendo capaz de generar resultados que puedan ayudar a su caracterización y a ser dimensionado. \newline
+Una simulación es casi siempre la imitación de algún proceso o sistema que toma o podría tomar lugar en el mundo real. Estas son implementadas utilizando un paradigma de programación y ejecutadas por computadoras. Para realizar un simulador, debe tenerse en cuenta un previo estudio del sistema real o de algún modelo o modelos existentes, junto con un análisis detallado de las variables presentes. Además es necesario hacer distintas suposiciones que faciliten la realización sin comprometer los resultados. Todo esto para permitir una simulación que simplifique el sistema, pero aun siendo capaz de generar resultados que puedan ayudar a su caracterización y a su dimensionamiento. \newline
 
 En \parencite{Banks2005} se describe a un sistema discreto como: \textit{``[{\dots}] aquel en el cual las variables de estado cambian únicamente en un número discreto de instantes en el tiempo''.} Por lo que la simulación de eventos discretos es la implementación en hardware de un sistema en el que sus variables de estado cambian de tal forma con el arribo de eventos, los cuales se tratan de ocurrencias que se presentan de forma instantánea y cuentan con un nacimiento y una muerte.\newline
 
-En cuanto a un evento o proceso estocástico, tenemos la siguiente definición \parencite{Correia2018}:\newline
-
-\textit{Definición: Un proceso estocástico es una colección de variables aleatorias $X_{t}:t\in T$ parametrizada por un conjunto T, llamado espacio parametral, en donde las variables toman valores en un conjunto S llamado espacio de estados.}\newline
-
-\textit{En los casos más sencillos se toma como espacio perimetral al conjunto discreto}\newline
-
-\textit{T = [0, 1, 2,...] y estos números se interpretan como tiempos. En este caso se dice que el proceso es a tiempo discreto, y en general este tipo de procesos se denotara  por [Xn: n = 0, 1,. . .]} 
 
 \subsection{Lenguajes de Programación para simulaciones orientadas a eventos discretos(DES)}
 
-Considerando solamente los lenguajes que sean de código abierto, tenemos a \textit{JAVA (DESMO-J y Ptolomeo I), Python (Simpy) y C++ (SystemC y PowerDEVS)} como los lenguajes más conocidos y de entre estos sobresalen \textit{Simpy }(P\textit{ython}) y \textit{SystemC }(\textit{C++) }como los que han tenido más soporte y actualización (2018), lo cual será un factor importante al elegir el lenguaje.\newline
+Considerando solamente los lenguajes que sean de código abierto, se tiene a \textit{JAVA (DESMO-J y Ptolomeo I), Python y C++ (SystemC y PowerDEVS)} como los lenguajes más conocidos y de entre estos sobresalen (P\textit{ython}) y \textit{SystemC }(\textit{C++) }como los que han tenido más soporte y actualización (2018), lo cual será un factor importante al elegir el lenguaje.\newline
 
-Simpy es una librería basada en procesos, se pueden definir diferentes entornos, todos los procesos interactúan mediante eventos con el mismo entorno y entre ellos. Durante su estancia, los procesos crean eventos y producen nuevos eventos para esperar a que se activen. Cuando un proceso produce un evento, el proceso se suspende, SimPy reanuda el proceso, cuando ocurre el evento. Varios procesos pueden esperar el mismo evento, SimPy los reanuda en el mismo orden en que dieron lugar a ese evento \parencite{Simpy}. Además proporciona varios tipos de recursos compartidos para modelar puntos de congestión de capacidad limitada (p. ej. servidores).\newline
+Simpy es una librería basada en procesos, con la cual se pueden definir diferentes entornos, y todos los procesos interactúan mediante eventos con el mismo entorno y entre ellos mismos. Durante su estancia, los procesos crean eventos. Cuando un proceso produce un evento, el proceso se suspende, SimPy reanuda el proceso, cuando ocurre el evento. Varios procesos pueden esperar el mismo evento, SimPy los reanuda en el mismo orden en que dieron lugar a ese evento \parencite{Simpy}. Además proporciona varios tipos de recursos compartidos para modelar puntos de congestión de capacidad limitada (p. ej. servidores).\newline
 
 La documentación de SimPy contiene tutoriales, guías detalladas y una gran cantidad de ejemplos \parencite{Simpy}. SimPy se lanza como software de código abierto bajo la licencia del MIT. La primera versión fue lanzada en diciembre de 2002 y hoy en día su última versión estable es la 3.0.11 / 16 de noviembre de 2018.\newline
 
@@ -865,14 +856,14 @@ Scipy es una librería de Python utilizada para la informática científica y la
 
 NumPy es una librería de Python utilizada para la informática científica que, aparte de sus usos científicos, puede utilizarse como un contenedor multidimensional para datos genéricos.\newline
 
-Matplotlib es una librería para la generación de gráficos a partir de datos contenidos en listas o arrays en el lenguaje de programación Python y su extensión matemática NumPy. Proporciona una API, pylab, diseñada para recordar a la de MATLAB.\newline
+Matplotlib es una librería para la generación de gráficos a partir de datos contenidos en listas o arrays en el lenguaje de programación Python y su extensión matemática NumPy.\newline
 
 Desventajas o Limitaciones de Python:
 \begin{enumerate}
-\item  Lenguaje interpretado: se ralentiza en velocidad: Python se ejecuta con la ayuda de un intérprete en lugar del compilador, lo que hace que se ralentice porque la compilación y la ejecución ayudan a que funcione normalmente.
+\item  Lenguaje interpretado: Python se ejecuta con la ayuda de un intérprete en lugar del compilador, lo que hace que se ralentice.
 \end{enumerate}
 
-El mecanismo que degrada el desempeño de CPython es la ejecución de bytecode por varios hilos a la vez, conocido como \textit{Global Interpreter Lock} o GIL, es un mecanismo utilizado en intérpretes de lenguaje de computadora para sincronizar la ejecución de subprocesos para que solo un subproceso nativo pueda ejecutarse a la vez. Un intérprete que usa GIL siempre permite que se ejecute exactamente un subproceso a la vez, incluso si se ejecuta en un procesador multinúcleo.
+El mecanismo que degrada el desempeño de CPython es la ejecución de bytecode por varios hilos a la vez, conocido como \textit{Global Interpreter Lock} o GIL. Este es un mecanismo utilizado en intérpretes de lenguaje de computadora para sincronizar la ejecución de subprocesos y que sólo un subproceso nativo pueda ejecutarse a la vez. Un intérprete que usa GIL siempre permite que se ejecute exactamente un subproceso a la vez, incluso si se ejecuta en un procesador multinúcleo.
 
 \subsection{Multiprocesamiento}
 Afortunadamente, existen métodos para evitar este comportamientto del interpretador, haciendo que se usen todos los nucleos del PC con ayuda de la librería \textit{multiprocessing} \parencite{Multiprocessing}.\newline
@@ -884,7 +875,7 @@ Afortunadamente, existen métodos para evitar este comportamientto del interpret
     \label{fig:multiprocessing}
 \end{figure}
 
-El módulo de multiprocessing permite al programador aprovechar al máximo múltiples procesadores en paralelo. Se ejecuta tanto en Unix como en Windows, no confundir con concurrencia (esta hace uso de múltiples hilos) [véase Figura~\ref{fig:multiprocessing}].
+El módulo de multiprocessing permite al programador aprovechar al máximo múltiples procesadores en paralelo. Se ejecuta tanto en Unix como en Windows, es importante no confundir la técnica con la concurrencia (esta hace uso de múltiples hilos) [véase Figura~\ref{fig:multiprocessing}].
 \hfill 
 
 \break
