@@ -85,13 +85,6 @@ Ahora bien, al incorporar el desvanecimiento tipo Rayleigh y las pérdidas por t
 
 Para la generación de las ganancias $h$ se utilizó la siguiente Ecuación:\newline
 
-\begin{equation}
-    h =  10^{(\frac{-L_{p [dB]}^{CI}}{10})} \cdot \gamma\ [W]
-    \label{eqn:h_canal}
-\end{equation}
-Donde:
-\[\gamma \to ganancia\ desvanecimiento\ Rayleigh\]
-\[\ L_{p [dB]}^{CI} \to \textit{Path\ Loss}\ Modelo\ CI \]
 
 \begin{figure}[th]
     \centering
@@ -138,26 +131,7 @@ Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       EJEMPLO DE ALGORITMO EN LaTeX       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Definición de variables de los algoritmos 1 y 2:\newline
-
-\begin{itemize}
-    \item U: Lista de dispositivos uRLLC
-    \item M: Lista de dispositivoss mMTC
-    \item S: Lista de Subportadoras s
-    \item C: Lista de Grupos NOMA
-    \item $R_{m}^{th}:$ Tasa objetivo del enésimo dispositivo m mMTC 
-    \item $R_{u}^{th}:$ Tasa objetivo del enésimo dispositivo u uRLLC
-    \item $P_{m}^{max}:$ Potencia máxima del enésimo dispositivo m mMTC 
-    \item $P_{u}^{max}:$ Potencia máxima del enésimo dispositivo u uRLLC (i.e. 23dBm)
-    \item $P_{m}^{s}:$ Potencia del enésimo dispositivo m mMTC 
-    \item $P_{u}^{s}:$ Potencia del enésimo dispositivo u uRLLC 
-    \item $h_{m}^{s}:$ Ganancia de canal del enésimo dispositivo m mMTC sobre la portadora s
-    \item $h_{u}^{s}:$ Ganancia de canal del enésimo dispositivo u uRLLC sobre la portadora s
-    \item ${\hat S}$: Lista de subportadoras asignadas
-    \item $S_{a}^{c}$: Lista de subportadoras asignadas al enésimo cluster
-    \item ${C_{ns}}$: Lista de cluster aún no asignados
-\end{itemize}
-
+Entonces, siguiendo la definición de variables de los algoritmos en \parencite{Shahini2019} [descritas en la Sección~\ref{VariablesSHahini}], se tiene:\newline
 
 \makeatletter
 % Reinsert missing \algbackskip
@@ -366,7 +340,7 @@ La generación de tráfico CMMPP, sigue el diseño mostrado en la \textit{figura
 
 El cambio de estado de normal  al estado de alarma requiere primeramente de un proceso en la simulación que se encargue de generar alarmas para cada tipo de dispositivo, este proceso se caracteriza por una tasa de arribo de alarmas $ \lambda_{alarma}$. Esta tasa representa la cantidad promedio de alarmas por segundo que ocurrirán en el área de la célula, además de este parámetro se necesita especificar la velocidad a la que las alarmas se transmiten desde su lugar de origen.\newline
 
-El siguiente proceso que propicia un cambio de estado, es el cálculo de la matriz de cambio de estado $P_n\left[k\right]$ que se lleva a cabo en cada dispositivo. La ecuación \ref{eqn:Pn} utiliza la información de cuándo y donde se produjeron eventos de alarma, además de su velocidad de propagación para determinar el momento en el que la alarma llega al dispositivo. Adicionalmente es necesario un modelo que caracterice la propagación espacial. Los modelos implementados fueron los propuestos en [A] :\newline
+El siguiente proceso que propicia un cambio de estado, es el cálculo de la matriz de cambio de estado $P_n\left[k\right]$ que se lleva a cabo en cada dispositivo. La ecuación \ref{eqn:Pn} utiliza la información de cuándo y donde se produjeron eventos de alarma, además de su velocidad de propagación para determinar el momento en el que la alarma llega al dispositivo. Adicionalmente es necesario un modelo que caracterice la propagación espacial. Los modelos implementados fueron los propuestos en \parencite{Gupta2018} :\newline
 
 \begin{equation}
 \delta_n = e^{-\alpha.d_{n}}
@@ -496,7 +470,7 @@ Los resultados de la simulación se presentan en las siguientes gráficas las cu
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.4]{Figures/histoeventos.png}
+    \includegraphics[scale=.55]{Figures/histoeventos.png}
     \decoRule
     \caption[Histograma de nacimientos de paquetes]{Histograma de nacimiento de paquetes}
     \label{fig:histoeventos}
@@ -506,7 +480,7 @@ La \textit{imagen~\ref{fig:histoeventos}} muestra el histograma de nacimientos a
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.4]{Figures/Otros_dispositivos_mMTC.png}
+    \includegraphics[scale=.55]{Figures/Otros_dispositivos_mMTC.png}
     \decoRule
     \caption[Otros dispositivos mMTC, Histograma de nacimientos y sus distribuciones]{Otros dispositivos mMTC, Histograma de nacimientos y sus distribuciones}
     \label{fig:histoeventos1}
@@ -516,7 +490,7 @@ La \textit{imagen~\ref{fig:histoeventos1}} contiene a la izquierda el histograma
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.4]{Figures/Semaforos_inteligentes.png}
+    \includegraphics[scale=.55]{Figures/Semaforos_inteligentes.png}
     \decoRule
     \caption[Semáforos inteligentes, Histograma de nacimientos y sus distribuciones]{Semáforos inteligentes, Histograma de nacimientos y sus distribuciones}
     \label{fig:histoeventos2}
@@ -528,7 +502,7 @@ Finalmente en las \textit{imagenes \ref{fig:propagacion1} y \ref{fig:propagacion
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=1]{Figures/UEs_de_tipo_Control_de_iluminacion_activados_por_una_alarma.png}
+    \includegraphics[scale=.7]{Figures/UEs_de_tipo_Control_de_iluminacion_activados_por_una_alarma.png}
     \decoRule
     \caption[Propagación de alarma en dispositivos de control de iluminación]{Propagación de alarma en dispositivos de control de iluminación}
     \label{fig:propagacion1}
@@ -536,7 +510,7 @@ Finalmente en las \textit{imagenes \ref{fig:propagacion1} y \ref{fig:propagacion
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=1]{Figures/UEs_de_tipo_Otros_dispositivos_mMTC_activados_por_una_alarma.png}
+    \includegraphics[scale=.7]{Figures/UEs_de_tipo_Otros_dispositivos_mMTC_activados_por_una_alarma.png}
     \decoRule
     \caption[Propagación de alarma en otros dispositivos mMTC]{Propagación de alarma en otros dispositivos mMTC}
     \label{fig:propagacion2}
@@ -562,7 +536,7 @@ Ambos sistemas fueron programados en Python 3.6 y fueron implementados de manera
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.7]{Figures/interconexion4modulos.png}
+    \includegraphics[scale=.74]{Figures/interconexion4modulos.png}
     \decoRule
     \caption[Interconexión de los 4 módulos en un simulador]{Interconexión de los 4 módulos en un simulador}
     \label{fig:interconexion4}
@@ -594,7 +568,7 @@ En las siguientes secciones se aborda con más detalle la implementación de los
     
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.6]{Figures/GUI.png}
+    \includegraphics[scale=.65]{Figures/GUI.png}
     \decoRule
     \caption[Interfaz de Usuario, Generador de Tráfico IoT]{Interfaz de Usuario, Generador de Tráfico IoT}
     \label{fig:GUITrafico}
@@ -608,7 +582,7 @@ Los principales archivos que resultan de ejecutar cada rutina del Generador de T
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.7]{Figures/disparchivo.png}
+    \includegraphics[scale=.75]{Figures/disparchivo.png}
     \decoRule
     \caption[Archivo de dispositivos]{Archivo de dispositivos}
     \label{fig:archivodispositivos}
@@ -616,7 +590,7 @@ Los principales archivos que resultan de ejecutar cada rutina del Generador de T
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.7]{Figures/eventosarchivo.png}
+    \includegraphics[scale=.75]{Figures/eventosarchivo.png}
     \decoRule
     \caption[Archivo de eventos]{Archivo de eventos}
     \label{fig:archivoeventos}
@@ -705,7 +679,14 @@ Con este archivo es posible ver cómo reaccionó el sistema en momentos específ
 
 La generación de distintas variables aleatorias y el uso de algoritmos de asignación de recursos nos mantuvo en la preocupación de que los tiempos de simulación probablemente llegarán a ser excesivamente largos, por tal se propuso utilizar una técnica de paralelismo en python. Favorablemente esto no sucedió como se esperaba, el tiempo máximo de espera para una simulación rondó los 20 minutos como máximo.\newline
 
-De cualquier forma, la técnica de paralelización si se implementó pero solamente en la generación de resultados de NOMA para un TTI ya que en esta parte fue que se necesitaron obtener resultados promedio donde cada punto o muestra de los datos necesitaba simularse 1000 repeticiones para así obtener un promedio. En la Tabla~\ref{tab:} se observa la comparación de los tiempos de simulación e un caso normal (solamente 1 núcleo en uso) e implementando la paralelización (uso de todos los núcleos de la PC).\newline
+De cualquier forma, la técnica de paralelización si se implementó pero solamente en la generación de resultados de NOMA para un TTI ya que en esta parte fue que se necesitaron obtener resultados promedio donde cada punto o muestra de los datos necesitaba simularse 1000 repeticiones para así obtener un promedio. En la Figura~\ref{fig:SIMmultiprocessing} se observa la comparación de los tiempos de simulación en un caso normal (solamente 1 núcleo en uso) e implementando la paralelización (uso de todos los núcleos de la PC).\newline
 
-[Cabe mencionar que esta simulación se montó en una PC con procesador Intel(R) Core(TM) i7-7700HQ CPU @2.80 GHz y 16 GB de Memoria RAM.]
+Cabe mencionar que esta simulación se montó en una PC con procesador Intel(R) Core(TM) i7-7700HQ CPU @2.80 GHz y 16 GB de Memoria RAM.
 
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/MultiprocesamientoSIM.png}
+    \decoRule
+    \caption[Gráfica de comparación de tiempos de simulación]{Gráfica de comparación de tiempos de simulación}
+    \label{fig:SIMmultiprocessing}
+\end{figure}

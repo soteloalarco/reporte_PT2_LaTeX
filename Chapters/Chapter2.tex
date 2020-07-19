@@ -23,7 +23,7 @@ En el modelado de posicionamiento de las estaciones base y los usuarios existen 
 
 \begin{figure}[th]
 \centering
-\includegraphics[scale=1]{Diferentes estrategias de despliegue para BSs}
+\includegraphics[scale=.85]{Diferentes estrategias de despliegue para BSs}
 \decoRule
 \caption[Diferentes estrategias de despliegue para BSs]{Diferentes estrategias de despliegue para BSs}
 \label{fig:BSs}
@@ -87,7 +87,7 @@ Una propiedad clave establece que condicionalmente $\Phi(A)= n$, estos $n$ punto
     \item El PPP homogéneo es estacionario y simple. Esto puede considerarse como el proceso puntual más simple (y más natural).
 \end{itemize}
 
-Un PPP ofrece un práctico marco computacional para diferentes cantidades de red de interés. El marco para las PPP no homogéneas también está bien desarrollado, aunque es más técnico que el del caso homogéneo. Se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.\newline
+Un PPP ofrece un práctico marco computacional para diferentes cantidades de red de interés. El marco para las PPP no homogéneas también está bien desarrollado, aunque es más técnico que el del caso homogéneo. Se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.
 
 %	SUB-SECTION 
 %----------------------------------------------------------------------------------------
@@ -180,7 +180,7 @@ Un valor grande de $r_{cc}$ corresponde a:
 \item  Una baja interferencia co-canal
 \item  Baja capacidad del sistema
 \end{enumerate}
-El clúster es escogido lo más pequeño posible tomando los umbrales de interferencia en consideración \parencite{Correia2018}.
+El clúster es escogido lo más pequeño posible, tomando los umbrales de interferencia en consideración \parencite{Correia2018}.
 \[GSM,\ {N}_{cc}=4\] 
 \[UMTS,\ {N}_{cc}=1\] 
 \[LTE,\ {N}_{cc}=3\] 
@@ -234,7 +234,7 @@ Cuando $N_{sc}$ sectores por celdas son implementados, cada sector deberá conte
 
 \[i=1,\ \dots ,\ N_{cc}\] 
 \[j=1,\ \dots ,\ N_{fc}\] 
-\[k=1,\ \dots ,\ N_{sc}\] \\
+\[k=1,\ \dots ,\ N_{sc}\] 
 
 
 %	SUB-SECTION 
@@ -316,8 +316,7 @@ En resumen, la planeación de una red celular de radio es ejecutada de la siguie
     \item En caso de que el número de canales disponibles no sea suficiente, el tráfico se reducirá, es decir, la cobertura se reducirá.
     \item Se establece el plan de frecuencias y la estructura del despliegue de celdas.
     \item Cuando se propone una estructura de celdas no uniforme, los canales deberán ser distribuidos de acuerdo a las necesidades de capacidad, y a los valores topes permitidos de interferencias co- canal y canal-adyacente.
-\end{enumerate}\
-
+\end{enumerate}
 %	SUB-SECTION 
 %----------------------------------------------------------------------------------------
 \subsection{Capacidad en los sistemas de comunicaciones}
@@ -342,8 +341,6 @@ Donde:
 \[P_{tx}:\ es\ la\ potencia\ de\ transmisión\ promedio\]
 \[H:\ es\ la\ ganancia\ de\ potencia\ del\ canal\]
 \[N_0:\ es\ la\ densidad\ de\ potencia\ del\ ruido (~-173 dBm/Hz)\]
-
-\break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
@@ -362,7 +359,7 @@ Los modelos de propagación por radio se clasifican en modelos a gran escala y a
 
 El rendimiento a nivel de enlace es un fenómeno de pequeña escala el cual lidia con cambios instantáneos en el canal a través de áreas e instantes de tiempo pequeños donde se considera la potencia recibida como constante, por otra parte, en las simulaciones a nivel de sistema para determinar el rendimiento en general del sistema para un gran número de usuarios esparcidos en una área geográfica es necesario incorporar parámetros de larga escala como el comportamiento estadístico de la interferencia, así como los niveles de señal experimentados por cada usuario a través de largas distancias, ignorando las características transitorias del canal (las de pequeña escala) \parencite{Tranter2003}.\newline
 
-En una simulación a nivel de sistema, principalmente se busca la probabilidad de que un usuario en particular alcance un servicio aceptable en el sistema, para esto es necesario contemplar los efectos de los múltiples usuarios para cada enlace individual entre un móvil y la estación base. Por lo tanto en las simulaciones a nivel de sistema se suelen omitir los parámetros a pequeña escala.\newline
+En una simulación a nivel de sistema, principalmente se busca la probabilidad de que un usuario en particular alcance un servicio aceptable en el sistema, para esto es necesario contemplar los efectos de los múltiples usuarios para cada enlace individual entre un móvil y la estación base. Por lo tanto en las simulaciones a nivel de sistema se suelen omitir los parámetros a pequeña escala.
 
 \subsection{Relaciones Generales de Propagación}
 
@@ -479,7 +476,7 @@ Donde:
 \[\sigma\to Desviación\ estándar\] 
 
 \begin{equation}
-    f(x)=\lambda e^{-\lambda x}
+    P_{X}(x)=\lambda e^{-\lambda x}
     \label{eqn:Exponeqn}
 \end{equation}
 Donde:
@@ -536,13 +533,13 @@ Los modelos de estimación de señal pueden ser divididos en dos categorías:
     \end{itemize}
 \end{enumerate}
 
-\break
+
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
 \section{ESQUEMAS DE ACCESO MÚLTIPLE AL MEDIO}
-Las técnicas de acceso múltiple (MA) generalmente se pueden dividir en enfoques ortogonales y no ortogonales \parencite{Tse2004}. En MA ortogonal (OMA), los recursos de radio se dividen ortogonalmente entre dispositivos, donde las señales de diferentes dispositivos no se superponen entre sí. Las instancias de OMA son acceso múltiple por división de tiempo (TDMA), acceso múltiple por división de frecuencia (FDMA), acceso múltiple por división de frecuencia ortogonal (OFDMA), y FDMA de portadora única (SC-FDMA).\newline
+Las técnicas de acceso múltiple (MA) generalmente se pueden dividir en enfoques ortogonales y no ortogonales \parencite{Tse2004}. En MA ortogonal (OMA), los recursos de radio se dividen ortogonalmente entre dispositivos, donde las señales de diferentes dispositivos no se superponen entre sí. Las instancias de OMA son acceso múltiple por división de tiempo (TDMA), acceso múltiple por división de frecuencia (FDMA), acceso múltiple por división de frecuencia ortogonal (OFDMA), y FDMA de portadora única (SC-FDMA).
 
 \subsection{OMA}
 
@@ -557,9 +554,9 @@ Existen 4 técnicas básicas de acceso múltiple (OMA):
 \item  Frecuencia Ortogonal: asignación de un conjunto de sub-portadoras - OFDMA (Acceso múltiple por división de frecuencia ortogonal).
 \end{enumerate}
 
-En muchos sistemas prácticos, se utiliza una mezcla o combinación de estas técnicas básicas \parencite{Correia2018}. Y también, de acuerdo a cada generación de comunicaciones móviles, el esquema de acceso al medio suele cambiar [véase Figura~\ref{fig:MAs}].\newline
+En muchos sistemas prácticos, se utiliza una mezcla o combinación de estas técnicas básicas \parencite{Correia2018}. Y también, de acuerdo a cada generación de comunicaciones móviles, el esquema de acceso al medio suele cambiar [véase Figura~\ref{fig:MAs}].
 
-\subsection{NOMA}
+\subsection{NOMA}\label{NOMA_C2}
 
 Igualmente, el acceso múltiple no ortogonal (NOMA) se ha convertido en un principio importante para el diseño de técnicas de acceso por radio para las redes inalámbricas de quinta generación (5G) \parencite{DIng2017}. NOMA se puede clasificar en dos categorías, el dominio de código NOMA (CD-NOMA) y el dominio de potencia NOMA (PD-NOMA). CD-NOMA utiliza diferentes códigos en el mismo recurso para lograr una ganancia de multiplexación, mientras que PD-NOMA asigna a los usuarios niveles de potencia distintos para maximizar el rendimiento. En comparación con el acceso múltiple ortogonal (OMA) que se ha aplicado ampliamente en los sistemas de comunicación inalámbrica existentes, NOMA posee el potencial de mejorar aún más la eficiencia espectral del sistema y la capacidad de conectividad.\newline
 
@@ -567,7 +564,7 @@ Como se mencionaba, PD-NOMA utiliza el dominio de la potencia para el acceso mú
 
 \begin{figure}[th]
 \centering
-\includegraphics[scale=1]{Figures/Cancelación Sucesiva de Interferencia (SIC)}
+\includegraphics[scale=.9]{Figures/Cancelación Sucesiva de Interferencia (SIC)}
 \decoRule
 \caption[Cancelación Sucesiva de Interferencia (SIC)]{Cancelación Sucesiva de Interferencia (SIC), [Fuente: R. Kizilirmak 2017]}
 \label{fig:SIC}
@@ -577,27 +574,27 @@ En la \textit{Figura~\ref{fig:SIC}}, las dos señales de información indicadas 
 
 \begin{figure}[th]
 \centering
-\includegraphics[scale=1]{Figures/Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora}
+\includegraphics[scale=.85]{Figures/Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora}
 \decoRule
 \caption[Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora.]{Ejemplo del esquema NOMA en un enlace de bajada con dos usuarios y una sub-portadora, [Fuente: Ding 2017]}
 \label{fig:NOMADL}
 \end{figure}
 
-Como se muestra en la \textit{Figura~\ref{fig:NOMADL}}, la idea clave del NOMA en el dominio de potencia es asignar más potencia al usuario con condiciones de canal más pobres. El usuario 1 decodifica su propio mensaje directamente tratando el mensaje del usuario 2 como ruido y por otro lado, el usuario 2 realiza SIC, es decir, primero decodifica el mensaje del usuario 1 y luego elimina este mensaje de su observación antes de decodificar su propio mensaje.
+Como se muestra en la \textit{Figura~\ref{fig:NOMADL}}, la idea clave del NOMA en el dominio de potencia es asignar más potencia al usuario con condiciones de canal más pobres. El usuario 1 decodifica su propio mensaje directamente tratando el mensaje del usuario 2 como ruido y por otro lado, el usuario 2 realiza SIC, es decir, primero decodifica el mensaje del usuario 1 y luego elimina este mensaje de su observación antes de decodificar su propio mensaje.\newline
 
-Suponga que el usuario 1 es un dispositivo IoT que requiere solo una baja velocidad de datos, y el usuario 2 es un usuario que exige una alta velocidad de datos. Cuando se utiliza OFDMA, que es un ejemplo típico de OMA, cada usuario se asigna a la sub-portadora. En este ejemplo, la eficiencia espectral de OMA es pobre ya que el dispositivo IoT tiene más ancho de banda de lo que realmente necesita, mientras que al usuario de banda ancha no se le asigna suficiente ancho de banda. Por otro lado, el uso de NOMA fomenta el intercambio de espectro, es decir, el usuario de banda ancha también puede tener acceso a la sub-portadora ocupada por el dispositivo IoT, en la F\textit{igura 24} se puede observar gráficamente la asignación del espectro en los dos esquemas.
+Suponga que el usuario 1 es un dispositivo IoT que requiere solo una baja velocidad de datos, y el usuario 2 es un usuario que exige una alta velocidad de datos. Cuando se utiliza OFDMA, que es un ejemplo típico de OMA, cada usuario se asigna a la sub-portadora. En este ejemplo, la eficiencia espectral de OMA es pobre ya que el dispositivo IoT tiene más ancho de banda de lo que realmente necesita, mientras que al usuario de banda ancha no se le asigna suficiente ancho de banda. Por otro lado, el uso de NOMA fomenta el intercambio de espectro, es decir, el usuario de banda ancha también puede tener acceso a la sub-portadora ocupada por el dispositivo IoT, en la F\textit{igura 24} se puede observar gráficamente la asignación del espectro en los dos esquemas.\newline
 
 \begin{figure}[th]
 \centering
-\includegraphics[scale=1]{Figures/Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios}
+\includegraphics[scale=.87]{Figures/Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios}
 \decoRule
 \caption[Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios.]{Ejemplo del espectro compartido para OFDMA y NOMA con dos usuarios, [Fuente: R. Kizilirmak 2017]}
 \label{fig:OFDMANOMA}
 \end{figure}
 
-Dada la madurez técnica de OFDMA, es muy probable que este tipo de OMA se incorpore a las redes 5G \parencite{DIng2017} y la forma en que múltiples sub-portadoras OFDMA se pueden combinar de manera eficiente con NOMA ha recibido mucha atención.
+Dada la madurez técnica de OFDMA, es muy probable que este tipo de OMA se incorpore a las redes 5G \parencite{DIng2017} y la forma en que múltiples sub-portadoras OFDMA se pueden combinar de manera eficiente con NOMA ha recibido mucha atención.\newline
 
-Acerca del uso de arreglos múltiples de antenas (MIMO) para NOMA, han sido tema de mucho interés que han estado estudiandose para poder alcanzar un rendimiento óptimo del sistema, el ordenamiento de usuarios en escenarios de MIMO-NOMA es una tarea difícil \parencite{DIng2017}. En el caso de SISO, los canales de los usuarios son escalados, por lo que es sencillo ordenar a los usuarios de acuerdo con las condiciones de su canal. Sin embargo, cuando los nodos están equipados con antenas múltiples, los canales de los usuarios están en forma de vectores o matrices, lo que significa que ordenar a los usuarios de acuerdo con las condiciones de sus canales como en el caso SISO se vuelve difícil. 
+Acerca del uso de arreglos múltiples de antenas (MIMO) para NOMA, han sido tema de mucho interés que han estado estudiandose para poder alcanzar un rendimiento óptimo del sistema, el ordenamiento de usuarios en escenarios de MIMO-NOMA es una tarea difícil \parencite{DIng2017}. En el caso de SISO, los canales de los usuarios son escalados, por lo que es sencillo ordenar a los usuarios de acuerdo con las condiciones de su canal. Sin embargo, cuando los nodos están equipados con antenas múltiples, los canales de los usuarios están en forma de vectores o matrices, lo que significa que ordenar a los usuarios de acuerdo con las condiciones de sus canales como en el caso SISO se vuelve difícil.
 
 \subsection{Interfaz de Radio}
 Los canales de transmisión dirigidos desde la BS a MT son referidos como canal \textit{downlink} y los dirigidos desde el MT a la BS como canales \textit{uplink}, estos canales juntos se identifican como canales ``dúplex'. La transmisión bidireccional de la información en sistemas dúplex puede dividirse en \parencite{Correia2018}:
@@ -645,7 +642,7 @@ Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en 
 \label{fig:MAs}
 \end{figure}
 
-4G (conocida también como LTE) es el término utilizado para describir la cuarta generación de servicio celular inalámbrico y es el estándar actual del servicio celular. Es hasta 10 veces más rápido que los servicios 3G. Sprint fue el primer operador en ofrecer velocidades 4G en los EE. UU a partir de 2009. Las redes 4G pueden ofrecer velocidades de descarga entre 5 y 12 Mbps y velocidades de carga entre 2 y 5 Mbps, lo que finalmente da una velocidad máxima de 50Mbps. El sistema de comunicación celular 4G utiliza una versión avanzada del esquema FDMA, es decir, OFDMA (acceso múltiple por división de frecuencia ortogonal) \parencite{Nair2018}.\newline
+4G (conocida también como LTE) es el término utilizado para describir la cuarta generación de servicio celular inalámbrico y es el estándar actual del servicio celular. Es hasta 10 veces más rápido que los servicios 3G. Sprint fue el primer operador en ofrecer velocidades 4G en los EE. UU a partir de 2009. Las redes 4G pueden ofrecer velocidades de descarga entre 5 y 12 Mbps y velocidades de carga entre 2 y 5 Mbps, lo que finalmente da una velocidad máxima de 50Mbps. El sistema de comunicación celular 4G utiliza una versión avanzada del esquema FDMA, es decir, OFDMA (acceso múltiple por división de frecuencia ortogonal) \parencite{Nair2018}.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -690,7 +687,6 @@ El internet de las cosas (IoT) es una emergente y prometedora tecnología que ha
 
 Para habilitar esta tecnología se requiere el soporte para conexiones masivas, es decir, admitir la gran cantidad de sensores en una sola celda. Debido a que la mayoría de estos sensores deben operar durante varios años, la eficiencia energética en las transmisiones inalámbricas es un requisito importante. Además, se debe reducir el costo de implementación de tales sensores \parencite{IoT5GWire}.
 
-\break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
@@ -806,7 +802,7 @@ De todas las probabilidades de estado, Ps tiene particular importancia, ya que r
 
 La Ecuación~\ref{eqn:Ps} fue desarrollada originalmente por el danés A. K. Erlang, por lo que es comúnmente conocida como fórmula de \textbf{Erlang-B}.\newline
 
-Notese que en la Ecuación~\ref{eqn:Pb} el producto $\lambda \mu$ se puede sustituir por a, el tráfico ofrecido, y con esto se corrobora que la calidad del servicio (en este caso la probabilidad de bloqueo) no depende de $\lambda$ o de $\mu$ por si solos, sino de su producto.\newline
+Notese que en la Ecuación~\ref{eqn:Pb} el producto $\lambda \mu$ se puede sustituir por a, el tráfico ofrecido, y con esto se corrobora que la calidad del servicio (en este caso la probabilidad de bloqueo) no depende de $\lambda$ o de $\mu$ por si solos, sino de su producto.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -853,7 +849,7 @@ Simpy es una librería basada en procesos, se pueden definir diferentes entornos
 
 La documentación de SimPy contiene tutoriales, guías detalladas y una gran cantidad de ejemplos \parencite{Simpy}. SimPy se lanza como software de código abierto bajo la licencia del MIT. La primera versión fue lanzada en diciembre de 2002 y hoy en día su última versión estable es la 3.0.11 / 16 de noviembre de 2018.\newline
 
-Python es un lenguaje de programación dinámico de alto nivel, interpretado y de propósito general que se enfoca en la legibilidad del código. La sintaxis en Python ayuda a los programadores a codificar en menos pasos en comparación con Java o C ++ \parencite{PythonVentajas}. Python es ampliamente utilizado en organizaciones más grandes debido a sus múltiples paradigmas de programación. Usualmente involucran programación funcional imperativa y orientada a objetos. \newline
+Python es un lenguaje de programación dinámico de alto nivel, interpretado y de propósito general que se enfoca en la legibilidad del código. La sintaxis en Python ayuda a los programadores a codificar en menos pasos en comparación con Java o C ++ \parencite{PythonVentajas}. Python es ampliamente utilizado en organizaciones más grandes debido a sus múltiples paradigmas de programación. Usualmente involucran programación funcional imperativa y orientada a objetos. 
 
 \subsection{Python}
 
@@ -881,7 +877,7 @@ El mecanismo que degrada el desempeño de CPython es la ejecución de bytecode p
 Afortunadamente, existen métodos para evitar este comportamientto del interpretador, haciendo que se usen todos los nucleos del PC con ayuda de la librería \textit{multiprocessing} \parencite{Multiprocessing}.\newline
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.4]{Figures/Multiprocesamiento}
+    \includegraphics[scale=.35]{Figures/Multiprocesamiento}
     \decoRule
     \caption[Concurrencia Vs Paralelismo]{Concurrencia  Vs Paralelismo}
     \label{fig:multiprocessing}
