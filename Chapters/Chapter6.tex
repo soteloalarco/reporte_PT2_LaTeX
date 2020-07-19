@@ -635,7 +635,37 @@ Los últimos dos archivos resultados de cada rutina de este programa son el de c
 
 \section{Simulador de Eventos Discretos}
 
+El Simulador de eventos discretos se trata del otro programa además del Generador de tráfico IoT que conforma al \textbf{Simulador de modelos de tráfico para nodos IoT en una red de 5G}. Fue también programado en python 3.6 y sigue el paradigma de eventos discretos. La funcionalidad básica del programa se puede observar en el diagrama de la \textit{imagen~\ref{fig:flowdes}}. En el diagrama se puede ver que cuando se toma el siguiente evento en la cola, este es procesado y es aquí donde la mayor parte de la lógica del simulador recide. En la siguiente sección se describen los distintos eventos y cómo son procesados.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/flowdes.png}
+    \decoRule
+    \caption[Simulación de eventos discretos]{Simulación de eventos discretos}
+    \label{fig:flowdes}
+\end{figure}
+
+Para realizar la funcionalidad de eventos discretos en python se utilizó la librería $heapq$, la cual permite la utilización de \textit{heaps}, que son arboles binarios, para los cuales cada nodo padre tiene un valor menor o igual a cualquiera de sus hijos. De tal manera es posible mantener una lista que sigua esta estructura con el calendario de eventos (el arbol se ordena teniendo en cuenta el tiempo en el que ocurre el evento) y utilizar las funciones $heappush$ y $heappop$ para agregar nuevos eventos y removerlos del arbol respectivamente. Esta estructura asegura que el primer evento de la lista sea siempre el siguiente a ser evaluado y la librería representa una manera fácil de interactuar con la lista.\newline
+
+A la salida del simulador, se tiene un archivo .csv con un historial de \textit{logs} correspondiente a los eventos que fueron procesados además de otro archivo con el resultado de las probabilidades de bloqueo por falta de cluster, el porcentaje de paquetes que fueron transmitidos a la tasa deseada y el \textit{throughput} del sistema. Los eventos que tienen lugar y son procesados por el sistema se presentan en la siguiente sección. \newline 
+
 \subsection{Definición de eventos}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/flownacimiento.png}
+    \decoRule
+    \caption[Procesamiento del evento: nacimiento de paquete]{Procesamiento del evento: nacimiento de paquete}
+    \label{fig:flownacimiento}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=1]{Figures/flownoma.png}
+    \decoRule
+    \caption[Procesamiento del evento: proceso noma]{Procesamiento del evento: proceso noma}
+    \label{fig:flownoma}
+\end{figure}
 
 \subsection{Descripción de los \textit{logs} de salida}
 
