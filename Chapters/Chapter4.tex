@@ -2,7 +2,7 @@
 \chapter{Análisis} % Main chapter title
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este capítulo se realiza el análisis de las diversas aplicaciones de dispositivos IoT y su implementación en redes de comunicaciones móviles 5G. Se comienza con una breve descripción de estas tecnologías, y después se profundiza en el caso de uso mMTC donde se mencionan los escenarios más comunes de implementación, su clasificación y sus características, además se revisa el estándar actual (NB-IoT\footnote{ Muchos\ de\ los\ modelos\ aqu\textrm{í}\ propuestos\ est\textrm{á}n\ basados\ en\ trabajos\ de\ la\ 3GPP,\ como\ se\ revis\textrm{ó}\ en\ el Capítulo II,\ la\ 3GPP,\ es\ una\ organizaci\textrm{ó}n\ que\ est\textrm{á}\ respaldada\ por\ organismos\ alrededor\ de\ todo\ el\ mundo,\ adem\textrm{á}s\ de\ que\ se\ trata\ del\ grupo\ que\ estandariza\ tecnolog\textrm{í}as\ como\ LTE-M\ y\ NB-IoT,\ de\ manera\ que\ es\ una\ indudable\ referencia\ en\ su\ ahora\ inmersi\textrm{ó}n\ en\ la\ estandarizaci\textrm{ó}n\ de\ 5G.}) que cumple con los requisitos para la implementación de mMTC. Finalmente se revisan los KPIs propuestos para este tipo de escenarios.\newline
+En este capítulo se realiza el análisis de las diversas aplicaciones de dispositivos IoT y su modelado, para su implementación en redes de comunicaciones móviles 5G. Se comienza con una breve descripción de estas tecnologías, y después se profundiza en el caso de uso mMTC donde se mencionan los escenarios más comunes de implementación, su clasificación y sus características, además se revisa el estándar actual (NB-IoT\footnote{ Muchos\ de\ los\ modelos\ aqu\textrm{í}\ propuestos\ est\textrm{á}n\ basados\ en\ trabajos\ de\ la\ 3GPP,\ como\ se\ revis\textrm{ó}\ en\ el Capítulo II,\ la\ 3GPP,\ es\ una\ organizaci\textrm{ó}n\ que\ est\textrm{á}\ respaldada\ por\ organismos\ alrededor\ de\ todo\ el\ mundo,\ adem\textrm{á}s\ de\ que\ se\ trata\ del\ grupo\ que\ estandariza\ tecnolog\textrm{í}as\ como\ LTE-M\ y\ NB-IoT,\ de\ manera\ que\ es\ una\ indudable\ referencia\ en\ su\ ahora\ inmersi\textrm{ó}n\ en\ la\ estandarizaci\textrm{ó}n\ de\ 5G.}) que cumple con los requisitos para la implementación de mMTC. Finalmente se revisan los KPIs propuestos para este tipo de escenarios.\newline
 
 Por último, se presentan cuáles son los modelos que se usan para caracterizar el despliegue, la condición del canal y tráfico de dispositivos IoT en redes 5G y además, se presenta la actual propuesta de técnica de acceso múltiple al medio no ortogonal (NOMA) para redes 5G/IoT usando agrupamientos \textit{(clustering)}, enfocada a escenarios masivos de dispositivos tipo máquina (mMTC).
 
@@ -28,11 +28,11 @@ La contribución en cuanto a la categorización de las aplicaciones de IoT que y
 
 La mayor parte del artículo \parencite{NetTrafficIoT}, los autores se dedicaron a la caracterización de las aplicaciones de IoT y sus dominios, los cuales se pueden dividir en 8, específicamente: edificios inteligentes y vivienda (\textit{Smart buildings and living}), cuidado de la salud inteligente (\textit{Smart healthcare}), medio ambiente inteligente (\textit{Smart environment}), ciudades inteligentes (\textit{Smart city}), energía inteligente (\textit{Smart energy}), transporte y movilidad  inteligentes (\textit{Smart transport and mobility}), fabricación y venta inteligentes (\textit{Smart manufacturing and retail}), agricultura inteligente (\textit{Smart agriculture}). Para cada uno de los dominios se especifican aplicaciones típicas que se podrían encontrar, sus características de tráfico, las tecnologías de red más adecuadas para darles servicio entre otras cosas.\newline
 
-La primera parte del análisis correspondió a la selección de los dominios que resultasen adecuados para el sistema que se diseña, es decir los dominios cuya red que les brindará servicio primordialmente será una red de área amplia de bajo consumo (LPWAN, \textit{Low Power Wide Area Network}). Esto se debe a que algunas de las aplicaciones en los dominios antes mencionados están pensadas para redes de distintas características en las que tecnologías como RFID, \textit{Bluetooth }o \textit{ZigBee }podrían ser una mejor solución. A continuación se presenta la caracterización de cada uno de los dominios que en \parencite{NetTrafficIoT} se consideran viables para redes LPWAN.\newline
+La primera parte del análisis correspondió a la selección de los dominios que resultasen adecuados para el sistema que se diseña, es decir los dominios cuya red que les brindará servicio primordialmente será una red de área amplia de bajo consumo (LPWAN, \textit{Low Power Wide Area Network}). Esto se debe a que algunas de las aplicaciones en los dominios antes mencionados están pensadas para redes de distintas características en las que tecnologías como RFID, \textit{Bluetooth }o \textit{ZigBee }podrían ser una mejor solución. A continuación se presenta la caracterización de cada uno de los dominios que en \parencite{NetTrafficIoT} se consideran viables para redes LPWAN.
 
 \subsection{Ciudades inteligentes \textit{(Smart City)}:}
 
-Con el rápido incremento de la población y su concentración en poblaciones urbanas, se ha convertido en una prioridad la reducción del uso de recursos públicos, así como la reducción de costos de operación del día a día de una ciudad, ambas de la manera más óptima posible. Las aplicaciones en este dominio tratan justamente de abordar estos problemas y los servicios que brindan son bastante variados, los ejemplos van desde el control de luminarias hasta el manejo de desechos, estos y otros  pueden encontrarse en la \textit{Tabla~\ref{tab:smartcity}}, acompañados de más información tal como la caracterización de su tráfico y su demanda de QoS.\newline
+Con el rápido incremento de la población y su concentración en poblaciones urbanas, se ha convertido en una prioridad la reducción del uso de recursos públicos, así como la reducción de costos de operación del día a día de una ciudad, ambas de la manera más óptima posible. Las aplicaciones en este dominio tratan justamente de abordar estos problemas y los servicios que brindan son bastante variados, los ejemplos van desde el control de luminarias hasta el manejo de desechos, estos y otros  pueden encontrarse en la \textit{Tabla~\ref{tab:smartcity}}, acompañados de más información tal como la caracterización de su tráfico y su demanda de QoS.
 
 \begin{table}
 \caption{Características de las aplicaciones de Ciudades Inteligentes}
@@ -52,15 +52,14 @@ Con el rápido incremento de la población y su concentración en poblaciones ur
 
 \subsection{Ambiente inteligente \textit{(Smart Environment)}}
 
-Este dominio comprende las aplicaciones que se encargan de monitorear el ambiente a nuestro alrededor y lo que ocurre en él, y aunque no se pueda controlar la fuerza de la naturaleza, con una correcta observación se pueden detectar distintos fenómenos naturales y reaccionar a tiempo ante ellos. En el caso especial de eventos que podrían ocasionar una catástrofe, es importante reaccionar lo más rápido posible por lo que el brindar el servicio a algunas de las aplicaciones de este dominio se volverá crítico. En la \textit{Tabla~\ref{tab:smartenv}} podemos encontrar la caracterización de las aplicaciones consideradas en \parencite{NetTrafficIoT} para \textit{Ambiente Inteligente.}\newline
-
+Este dominio comprende las aplicaciones que se encargan de monitorear el ambiente a nuestro alrededor y lo que ocurre en él, y aunque no se pueda controlar la fuerza de la naturaleza, con una correcta observación se pueden detectar distintos fenómenos naturales y reaccionar a tiempo ante ellos. En el caso especial de eventos que podrían ocasionar una catástrofe, es importante reaccionar lo más rápido posible por lo que el brindar el servicio a algunas de las aplicaciones de este dominio se volverá crítico. En la \textit{Tabla~\ref{tab:smartenv}} podemos encontrar la caracterización de las aplicaciones consideradas en \parencite{NetTrafficIoT} para \textit{Ambiente Inteligente.}
 
 \begin{table}
 \caption{Características de las aplicaciones de Ambiente Inteligente}
 \label{tab:smartenv}
 \centering
 \begin{tabular}{*{5}{m{3cm}}} \\ 
-\textbf{\textit{Servicio}} & \textbf{Tamaño de red} & \textbf{Tasa de tráfico} & \textbf{Demanda de QoS} & \textbf{Fuente de energía} \\ \hline 
+\textbf{\textit{Servicio}} & \textbf{Tamaño de red} & \textbf{Tasa de tráfico} & \textbf{Demanda de QoS} & \textbf{Fuente de energía} \\ \hline \hline
 \textit{Detección de incendios forestales}  & \footnotesize{ Media a grande, cientos a miles de dispositivos } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Media, tolerante al retardo 15 seg } & \footnotesize{ Alimentado por batería } \\ \hline 
 \textit{Detección de terremotos}  & \footnotesize{ Media a grande, cientos a miles de dispositivos } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Alta, tolerante al retardo 5 seg } & \footnotesize{ Alimentado por batería } \\ \hline 
 \textit{Detección de Tsunamis}  & \footnotesize{ Media a grande, cientos a miles de dispositivos } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Alta, tolerante al retardo 5 seg } & \footnotesize{ Alimentado por batería } \\ \hline 
@@ -75,16 +74,14 @@ Este dominio comprende las aplicaciones que se encargan de monitorear el ambient
 
 El dominio de Energía Inteligente\textit{Smart Energy }se refiere a las mejoras en la distribución y el consumo de fuentes de energía o recursos necesarios, tales como la electricidad, el gas y el agua. Aunque el foco de atención está en la electricidad ya que existe una tendencia más marcada hacia su ahorro y la utilización de fuentes renovables. \newline
 
-Los nodos de IoT para aplicaciones de este dominio podrían monitorear las condiciones cambiantes de la red, para posteriormente generar una reconfiguración apropiada del servicio. En la \textit{Tabla~\ref{tab:smartenergy}} podemos encontrar la caracterización descrita en \parencite{NetTrafficIoT} para distintas aplicaciones de Energía Inteligente.\newline
+Los nodos de IoT para aplicaciones de este dominio podrían monitorear las condiciones cambiantes de la red, para posteriormente generar una reconfiguración apropiada del servicio. En la \textit{Tabla~\ref{tab:smartenergy}} podemos encontrar la caracterización descrita en \parencite{NetTrafficIoT} para distintas aplicaciones de Energía Inteligente.
 
 \begin{table}
 \caption{Características de las aplicaciones de Energía Inteligente}
 \label{tab:smartenergy}
 \centering
-
-
 \begin{tabular}{*{5}{m{3cm}}}  \\  
-\textbf{\textit{Servicio}} & \textbf{Tamaño de red} & \textbf{Tasa de tráfico} & \textbf{Demanda de QoS} & \textbf{Fuente de energía} \\ \hline
+\textbf{\textit{Servicio}} & \textbf{Tamaño de red} & \textbf{Tasa de tráfico} & \textbf{Demanda de QoS} & \textbf{Fuente de energía} \\ \hline \hline
 \textit{Medición inteligente}  & \footnotesize{ Media a grande, 1 dispositivo por hogar } & \footnotesize{ Periódico, 1 msj cada 15 min por dispositivo } & \footnotesize{ Media, tolerante al retardo 15 seg } & \footnotesize{ Alimentado por la red eléctrica/ Baterías } \\ \hline 
 \textit{Gestión de activos}  & \footnotesize{ Media a grande, cientos a miles de dispositivos } & \footnotesize{ Periódico, 1 msj cada 15 min por dispositivo } & \footnotesize{ Media, tolerante al retardo 15 seg } & \footnotesize{ Alimentado por la red eléctrica/ Baterías } \\ \hline 
 \textit{Detección de interrupciones en el servicio } & \footnotesize{ Media a grande, 1 dispositivo por hogar } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Alta, tiempo real } & \footnotesize{ Alimentado por la red eléctrica/ Baterías } \\ 
@@ -95,14 +92,14 @@ Los nodos de IoT para aplicaciones de este dominio podrían monitorear las condi
 
 Tanto el crecimiento urbano como el crecimiento de las fuentes de transporte de pasajeros y de mercancías, con más frecuentes congestiones viales y una mayor movilidad requerida, han creado una demanda de administrar el transporte y la movilidad de una manera más inteligente. \newline
 
-El objetivo de aplicaciones IoT en el dominio de Transporte y movilidad inteligentes\textit{ (Smart Transport and Mobility)}es ayudar a resolver el problema de movilidad tanto de pasajeros como de mercancías, haciéndolo más rápido, más barato y más seguro. En la \textit{Tabla~\ref{tab:smartrans}} se encuentra la caracterización presentada en \parencite{NetTrafficIoT} para distintas aplicaciones de este dominio.\newline
+El objetivo de aplicaciones IoT en el dominio de Transporte y movilidad inteligentes\textit{ (Smart Transport and Mobility)}es ayudar a resolver el problema de movilidad tanto de pasajeros como de mercancías, haciéndolo más rápido, más barato y más seguro. En la \textit{Tabla~\ref{tab:smartrans}} se encuentra la caracterización presentada en \parencite{NetTrafficIoT} para distintas aplicaciones de este dominio.
 
 \begin{table}
 \caption{Características de las aplicaciones de Transporte y Movilidad inteligentes}
 \label{tab:smartrans}
 \centering
 \begin{tabular}{*{5}{m{3cm}}}\\ 
-\textit{Servicio} & Tamaño de red & Tasa de tráfico & Demanda de QoS & Fuente de energía \\ \hline
+\textit{Servicio} & Tamaño de red & Tasa de tráfico & Demanda de QoS & Fuente de energía \\ \hline \hline
 \textit{Automatización de vehículos}  & \footnotesize{ Grande, miles de dispositivos } & \footnotesize{ Periódico, 1 msj cada 24 hrs por vehículo. } & \footnotesize{ Baja, tolerante al retardo 1 min } & \footnotesize{ Alimentado por batería del vehículo } \\ \hline 
 \textit{Localización y monitoreo de vehículos}  & \footnotesize{ Grande, miles de dispositivos } & \footnotesize{ Periódico, 1 msj cada 30 seg por vehículo } & \footnotesize{ Media, tolerante al retardo 10 seg } & \footnotesize{ Alimentado por batería del vehículo } \\ \hline 
 \textit{Monitoreo de la calidad del embarque}  & \footnotesize{ Media, cientos de dispositivos } & \footnotesize{ Periódico, 1 msj cada 15 min por dispositivo } & \footnotesize{ Media, tolerante al retardo 15 seg } & \footnotesize{ Alimentado por batería } \\ \hline 
@@ -115,9 +112,9 @@ El objetivo de aplicaciones IoT en el dominio de Transporte y movilidad intelige
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{CARACTERÍSTICAS DEL ESCENARIO A IMPLEMENTAR}
+\section{CARACTERÍSTICAS DEL ESCENARIO A IMPLEMENTAR}\label{AppsEscenario}
 
-Las distintas aplicaciones presentadas en la sección anterior pertenecen a varios dominios y estas muy seguramente se verán desplegadas en un futuro próximo en ciudades alrededor de todo el mundo. Una aserción que resulta importante es la gran cantidad de aplicaciones que se esperan para IoT \parencite{Ericsson2019}, pero en este análisis se toman en consideración únicamente aquellas bajo el paradigma de redes LPWAN, para las cuales la red celular podría ser las más idónea para brindarles servicio. En estas aplicaciones lo primordial es tener un bajo consumo y complejidad de los dispositivos, además de una amplia cobertura y una gran densidad de dispositivos \parencite{5GAmericas}, en contraste con las aplicaciones más inclinadas a los casos de uso eMBB y URLLC donde lo primordial es el amplio ancho de banda disponible para las aplicaciones y una menor latencia, respectivamente.\newline
+Las distintas aplicaciones presentadas en la sección anterior pertenecen a varios dominios y estas muy seguramente se verán desplegadas en un futuro próximo en ciudades alrededor de todo el mundo. Una aserción que resulta importante es la gran cantidad de aplicaciones que se esperan para IoT \parencite{Ericsson2019}, pero en este análisis se toman en consideración únicamente aquellas bajo el paradigma de redes LPWAN, para las cuales la red celular podría ser las más idónea para brindarles servicio. En estas aplicaciones lo primordial es tener un bajo consumo y complejidad de los dispositivos, además de una amplia cobertura y una gran densidad de dispositivos \parencite{5GAmericas}, en contraste con las aplicaciones más inclinadas a los casos de uso eMBB y URLLC donde lo primordial es el amplio ancho de banda disponible para las aplicaciones y una menor latencia, respectivamente.
 
 \subsection{Análisis de las aplicaciones de IoT y selección de casos considerados}
 
@@ -131,15 +128,14 @@ A continuación se hace una descripción de la \textit{Tabla~\ref{tab:appssim}}.
 
 La decisión de agregar un servicio más que fuera genérico surge a raíz de la necesidad de representar en la red los dispositivos restantes con comportamientos de lo más diversos, razón por la cual se consideró que este tendrá una tasa de tráfico aleatoria y su requerimiento de QoS será superior al de la mayoría.\newline
 
-Finalmente se introduce una distinción entre nodos que se mencionará principalmente en el capítulo~\ref{Chapter5}, se trata de la clasificación de dispositivos de Clase 1 y de Clase 2, esta distinción está ligada directamente a la aplicación del noto IoT que determina a su vez la demanda de QoS. Los nodos con mayores requerimientos de QoS que son a su vez la minoría del total de dispositivos corresponden a la clase 2, mientras que todo el resto de nodos corresponden a la clase 1. En la \textit{Tabla~\ref{tab:appssim}}los nodos que dicen requerir de una transmisión en tiempo real corresponderán entonces a aquellos de clase 2.\newline
-
+Finalmente se introduce una distinción entre nodos que se mencionará principalmente en el capítulo~\ref{Chapter5}, se trata de la clasificación de dispositivos de Clase 1 y de Clase 2, esta distinción está ligada directamente a la aplicación del noto IoT que determina a su vez la demanda de QoS. Los nodos con mayores requerimientos de QoS que son a su vez la minoría del total de dispositivos corresponden a la clase 2, mientras que todo el resto de nodos corresponden a la clase 1. En la \textit{Tabla~\ref{tab:appssim}}los nodos que dicen requerir de una transmisión en tiempo real corresponderán entonces a aquellos de clase 2.
 
 \begin{table}
 \caption{Aplicaciones seleccionadas para la simulación}
 \label{tab:appssim}
 \centering
 \begin{tabular}{*{5}{m{3cm}}} \\ 
-\textbf{\textit{Servicio}} & \textbf{Tamaño de red} & \textbf{Tasa de tráfico} & \textbf{Demanda de QoS} & \textbf{Fuente de energía} \\ 
+\textbf{\textit{Servicio}} & \textbf{Tamaño de red} & \textbf{Tasa de tráfico} & \textbf{Demanda de QoS} & \textbf{Fuente de energía} \\ \hline \hline
 \textit{Control de iluminación (Ciudad Inteligente)}  & \footnotesize{ Grande, miles de dispositivos } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Media, tolerante al retardo 15seg } & \footnotesize{ Alimentado por la red eléctrica } \\ \hline 
 \textit{Monitoreo del consumo de agua y electricidad en la ciudad (Ciudad Inteligente)}  & \footnotesize{ Media a grande, cientos a miles de dispositivos } & \footnotesize{ Periódico, 1 msj cada 10 min por dispositivo } & \footnotesize{ Baja, tolerante al retardo 1min } & \footnotesize{ Alimentado por la red eléctrica/ autoalimentado } \\ \hline 
 \textit{Detección de terremotos (Ambiente Inteligente)}  & \footnotesize{ Media a grande, cientos a miles de dispositivos } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Alta, tolerante al retardo 3seg } & \footnotesize{ Alimentado por batería } \\ \hline 
@@ -189,7 +185,7 @@ En la \textit{Tabla~\ref{tab:tecIoT}} se pueden encontrar características de es
 \caption{Características de las tecnologías de red para IoT en la red celular}
 \label{tab:tecIoT}
 \centering
-\begin{tabular}{|p{0.9in}|p{0.6in}|p{0.4in}|p{0.6in}|p{0.4in}|p{0.8in}|p{1.3in}|p{0.4in}|} \\ 
+\begin{tabular}{|p{0.9in}|p{0.6in}|p{0.4in}|p{0.6in}|p{0.4in}|p{0.8in}|p{1.3in}|p{0.4in}|} \\ \hline \hline
 \textbf{\textit{Tecnología}} & \textbf{\textit{Banda de Frecuencia}} & \textbf{\textit{Rango}} & \textbf{\textit{Tasa de transmisión}} & \textbf{\textit{Vida de la batería}} & \textbf{\textit{Topología}} & \textbf{\textit{Estandarización}} & \textbf{\textit{Grupo}} \\ 
 \textbf{NB-IoT}  & \footnotesize{ 450 MHZ -- 3.5 GHz (Espectro de 2G/3G/4G) } & \footnotesize{ 10-15 km } & \footnotesize{ 250 kbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierta } & \footnotesize{ 3GPP } \\ \hline
 \textbf{eMTC}  & \footnotesize{ 450 MHZ -- 3.5 GHz (El mismo que LTE) } & \footnotesize{ 10-15 km } & \footnotesize{ 1 Mbps } & \footnotesize{ 10+ años } & \footnotesize{ Estrella } & \footnotesize{ Abierta } & \footnotesize{ 3GPP } \\
@@ -247,7 +243,7 @@ Por lo tanto, NB-IoT puede proporcionar velocidades de datos de casi 250 kb / s 
 
 Es preciso puntualizar que para lograr una mayor tasa de datos, de acuerdo con el Teorema de Shannon-Hartley (Ecuación~\ref{eqn:Shannon}), el ancho de banda debe ser elevado o una relación S/N alta. Para el caso de NB-IoT se cuenta con un ancho de banda muy pequeño (3.75KHz), por lo cual alcanzar una buena relación S/N (en este caso, para sistemas celulares S/I) es de suma importancia.\\
 
-La tecnología NB-IoT al ocupar un ancho de banda de frecuencias de 180 kHz, corresponde a un bloque de recursos en la transmisión LTE. \newline
+La tecnología NB-IoT al ocupar un ancho de banda de frecuencias de 180 kHz, corresponde a un bloque de recursos en la transmisión LTE. 
 
 \subsection{Modos de operación}
 
@@ -259,11 +255,11 @@ Despliegue en banda (in-band) y en guarda de banda (guard-band) LTE.\newline
 
 NB-IoT también está diseñado para su despliegue en las redes LTE existentes, ya sea utilizando uno de los bloques de recursos físicos (PRB) de LTE o utilizando la banda de guarda LTE. El despliegue en banda de guarda hace uso del hecho de que el ancho de banda ocupado en LTE es aproximadamente el $90\%$ del ancho de banda del canal\newline
 
-Para el modo de operación independiente y de banda de guarda, el PRB de enlace descendente y ascendente debe establecerse simétricamente y para el modo en banda, el despliegue del PRB estará restringido a algunos prefijos de PRB’s de acuerdo al ancho de banda LTE, (ya sea 3, 5, 10, 15 o 20 MHz.) esto debido por la sincronización entre el UE y la celda NB-IoT \parencite{NBIoTDeploymentGSMA}.\newline
+Para el modo de operación independiente y de banda de guarda, el PRB de enlace descendente y ascendente debe establecerse simétricamente y para el modo en banda, el despliegue del PRB estará restringido a algunos prefijos de PRB’s de acuerdo al ancho de banda LTE, (ya sea 3, 5, 10, 15 o 20 MHz.) esto debido por la sincronización entre el UE y la celda NB-IoT \parencite{NBIoTDeploymentGSMA}.
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.6]{modooperacionNBIOT}
+    \includegraphics[scale=.5]{modooperacionNBIOT}
     \decoRule
     \caption[Modos de Operación en NB-IoT.]{Modos de Operación en NB-IoT. \parencite{Liberg2018}}
     \label{fig:NBIoT2}
@@ -275,7 +271,7 @@ Como se muestra en la Figura~\ref{fig:5gnr}, en el futuro se espera que NB IoT s
 
 En la especificación técnica TS-36.101 de la 3GPP de su \textit{release} 13 proporciona la lista de las bandas compatibles: 1, 2, 3, 5, 8, 12, 13, 17, 18, 19, 20, 26, 28, 66, el \textit{release} 14 agregó las bandas : 11, 25, 31 y 70. Y el \textit{release} 15 agregó más bandas: 4, 14 y 71. La información recibida por los miembros de \textit{Mobile IoT}, hasta ahora, indica que se han utilizado una variedad de estas bandas en diferentes regiones\parencite{NBIoTDeploymentGSMA}.\newline
 
-P. ej. en el caso de Latino América las bandas disponibles son las: \textbf{2} (1850-1990 MHz), \textbf{3} (1710-1880 MHz), \textbf{5} (824-894MHz) y \textbf{28} (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.\newline
+P. ej. en el caso de Latino América las bandas disponibles son las: \textbf{2} (1850-1990 MHz), \textbf{3} (1710-1880 MHz), \textbf{5} (824-894MHz) y \textbf{28} (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.
 
 \subsection{Clases de Potencia}
 
@@ -288,36 +284,16 @@ Solo se admite el modo de \textit{singletone}, cuando el PRB se divide en 48 sub
 
 Se admiten los modos de \textit{singletone} y \textit{multitone}, cuando el PRB se divide en 12 subportadoras donde el ancho de banda de la subportadora es de 15 kHz. En \parencite{Mostafa2019} se estudió más a fondo el uso de \textit{singletone} y \textit{multitone} en transmisiones UL. Una de las reglas que incorporaron es que en \textit{multitone}, para cada dispositivo IoT únicamente se le pueden asignar 0, 1, 3, 6 o 12 subportadoras.
 
-\subsection{Indicadores clave de rendimiento (KPIs)}
-
-Hay muchas formas de medir el rendimiento de una red, por medio de sus características se pueden definir los indicadores clave de rendimiento para la evaluación integral, precisa y eficiente de las tecnologías de red 5G.\newline
-
-Con la profundización de la investigación de la tecnología 5G, se puede prever que habrá nuevos indicadores de evaluación. El diseño de estos indicadores directamente medibles, por un lado, necesita combinar las características de los nuevos servicios, y por otro lado, debe aprender completamente de la experiencia de los KPI clásicos de generaciones anteriores como lo son: el \textit{throughput, }dada una\textit{ }probabilidad de salida y la latencia. La densidad de conexión, la densidad de volumen de tráfico y el consumo de energía son nuevos KPI introducidos por las redes 5G/IoT \parencite{WirelessSim}.\newline
-
-Para cumplir con el conjunto de requisitos de mMTC, NB-IoT debe admitir principalmente cuatro indicadores clave de rendimiento (KPI).\newline
-
-\begin{enumerate}
-\item  Vida útil de la batería del dispositivo más allá de 10 años, suponiendo una capacidad de energía almacenada de 5 Wh.
-\item  Densidad de conexión masiva de hasta 1M dispositivos por km cuadrado en un entorno urbano.
-\item  Latencia de como máximo 10 s.
-\item  Una tasa máxima alcanzable de hasta 200kbps (subida).
-\end{enumerate}
-
-El análisis fundamental del simulador contemplará como métricas de desempeño a la compensación entre la tasa máxima alcanzable y la densidad de usuarios atendidos en términos de una calidad de servicio QoS. Esta QoS dependerá de los cuatro principales KPIs para mIoT.\newline
-
-Por lo tanto, de acuerdo a las métricas que serán consideradas, los KPIs a considerar son: la tasa máxima alcanzable y la densidad de usuarios, sin embargo durante las investigaciones que hemos realizado en la literatura científica no hemos encontrado ningún artículo que proponga un modelo de sistema que alcance el KPI de soportar hasta 1 millón de dispositivos. Por lo que para esta métrica se buscará un diseño de sistema tal que a un determinado tope de usuarios se logre una óptima tasa UL, es decir, el dimensionamiento de la red.
-
 \subsection{Características del tráfico de paquetes}
 
 De acuerdo con la especificación de los Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting} también se detallan algunos aspectos de tráfico en términos de los tamaños de paquetes que se esperan para NB-IoT. Se definen cuatro tipos de aplicaciones de tráfico diferentes:
-
 \subsubsection{Informes de excepción}
 
 Se espera que muchas aplicaciones de tipo sensor monitoreen una condición física y activen un informe de excepción cuando se detecte un evento. Estos eventos serán, en general, raros y ocurrirán cada pocos días, meses o incluso años. Ejemplos de tales aplicaciones incluyen detectores de alarma de humo, notificaciones de fallas de energía de medidores inteligentes, notificaciones de manipulación, etc.\newline
 
 Para el análisis de latencia, se supone que los informes de excepción MAR tienen una carga útil de la aplicación de enlace ascendente de 20 bytes. Se requiere que dichos informes se entreguen casi en tiempo real, con un objetivo de latencia de 10 segundos.\newline
 
-Para cada informe de enlace ascendente generado (es decir, el 100\% de los informes de excepción de enlace ascendente), también se supone que la aplicación enviará un ACK de aplicación de enlace descendente. El tamaño del tamaño ACK de la capa de aplicación es cero. El tamaño total del paquete (por encima del equivalente de la capa SNDCP) es la sobrecarga debida COAP / DTLS / UDP / IP.\newline
+Para cada informe de enlace ascendente generado (es decir, el 100\% de los informes de excepción de enlace ascendente), también se supone que la aplicación enviará un ACK de aplicación de enlace descendente. El tamaño del tamaño ACK de la capa de aplicación es cero. El tamaño total del paquete (por encima del equivalente de la capa SNDCP) es la sobrecarga debida COAP / DTLS / UDP / IP.
 
 \subsubsection{Informes periódicos}\label{Informesperiodicos}
 
@@ -327,16 +303,15 @@ Distribución del tamaño de la carga útil de la aplicación. UL. Sigue una dis
 
 Se supone un ACK de capa de aplicación DL para un evento de informe periódico de enlace ascendente en el 50\% de los informes periódicos UL MAR generados. Se supone que el tamaño de la carga útil ACK del enlace descendente de la aplicación es de 0 bytes. El tamaño total del paquete (superior al equivalente de la capa SNDCP) es la sobrecarga debida a COAP / DTLS / UDP / IP y se envía inmediatamente después de que la estación base recibe con éxito un paquete UL de aplicación.\newline
 
-Entonces, una vez revisadas estas clasificaciones de tráfico compatibles para NB-IoT, se procede a agrupar estos tipos de tráfico con los escenarios que se consideraron en la \textit{Tabla 8} de la sección anterior, de tal manera que se establezcan las condiciones base de un ambiente NB-IoT de acuerdo a los servicios seleccionados (secXXXX).\newline
+Entonces, una vez revisadas estas clasificaciones de tráfico compatibles para NB-IoT, se procede a agrupar estos tipos de tráfico con los escenarios que se consideraron en la \textit{Tabla~\ref{tab:appssim}} de la sección anterior, de tal manera que se establezcan las condiciones base de un ambiente NB-IoT de acuerdo a los servicios seleccionados.\newline
 
-La adición de la columna "Tamaños de paquete" para la \textit{Tabla~\ref{tab:}} se da en la \textit{Tabla~\ref{tab:}}\newline
-
+La adición de la columna "Tamaños de paquete"  para la \textit{Tabla~\ref{tab:appssim}} se da en la \textit{Tabla~\ref{tab:trafpkt}}.
 \begin{table}
 \caption{Caracterización del tráfico de paquetes en aplicaciones seleccionadas para la simulación.}
 \label{tab:trafpkt}
 \centering
 \begin{tabular}{*{2}{m{7cm}}}\\ 
-\textbf{\textit{Servicio}} & \textbf{Tamaño de paquetes} \\ 
+\textbf{\textit{Servicio}} & \textbf{Tamaño de paquetes} \\ \hline \hline
 \textit{Control de iluminación (Smart City) } & \footnotesize{ Activación aleatoria \textbf{UL}: 20 bytes \textit{payload} \textbf{DL}: ACK de 0 bytes } \\ \hline 
 \textit{Monitoreo del consumo de agua y electricidad en la ciudad (Smart City) } & \footnotesize{ Activación periódica \textbf{UL}: distribución de Pareto con parámetro alfa = 2.5 y tamaño mínimo de carga útil de la aplicación = 20 bytes con un corte a 200 bytes \textbf{DL}: ACK de 0 bytes 50\% de las veces. } \\ \hline 
 \textit{Detección de terremotos (Smart Environment)}  & \footnotesize{ Activación aleatoria \textbf{UL}: 20 bytes \textit{payload} \textbf{DL}: ACK de 0 bytes } \\ \hline 
@@ -346,16 +321,32 @@ La adición de la columna "Tamaños de paquete" para la \textit{Tabla~\ref{tab:}
 \end{tabular}
 \end{table}
 
+\subsection{Indicadores clave de rendimiento (KPIs)}
+
+Hay muchas formas de medir el rendimiento de una red, por medio de sus características se pueden definir los indicadores clave de rendimiento para la evaluación integral, precisa y eficiente de las tecnologías de red 5G.\newline
+
+Con la profundización de la investigación de la tecnología 5G, se puede prever que habrá nuevos indicadores de evaluación. El diseño de estos indicadores directamente medibles, por un lado, necesita combinar las características de los nuevos servicios, y por otro lado, debe aprender completamente de la experiencia de los KPI clásicos de generaciones anteriores como lo son: el \textit{throughput, }dada una\textit{ }probabilidad de salida y la latencia. La densidad de conexión, la densidad de volumen de tráfico y el consumo de energía son nuevos KPI introducidos por las redes 5G/IoT \parencite{WirelessSim}.\newline
+
+Para cumplir con el conjunto de requisitos de mMTC, NB-IoT debe admitir principalmente cuatro indicadores clave de rendimiento (KPI):
+
+\begin{enumerate}
+\item  Vida útil de la batería del dispositivo más allá de 10 años, suponiendo una capacidad de energía almacenada de 5 Wh.
+\item  Densidad de conexión masiva de hasta 1M dispositivos por km cuadrado en un entorno urbano.
+\item  Latencia de como máximo 10 s.
+\item  Una tasa máxima alcanzable de hasta 200kbps (subida).
+\end{enumerate}
+
+El análisis fundamental del simulador contemplará como métricas de desempeño a la compensación entre la tasa máxima alcanzable y la densidad de usuarios atendidos en términos de una calidad de servicio QoS. Esta QoS dependerá de los cuatro principales KPIs para mIoT.
+
 \break
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{ANÁLISIS DE MODELOS PARA LA EVALUACIÓN DE REDES 5G/IoT}
+\section{ANÁLISIS DE MODELOS PARA LA EVALUACIÓN DE REDES 5G/IoT}\label{AnalisisMODELOS}
 En el modelado de redes 5g / IoT entran diferentes aspectos para representar y caracterizar el comportamiento correcto de estas redes. Para este caso, desde el punto de vista de simulaciones a nivel de sistema, los modelos se suelen concentrar en las capas superiores de la pila TCP / IP.\newline
 
 Los aspectos más importantes y considerados en la literatura \parencite{WirelessSim}, son:
-
 \begin{enumerate}
     \item  Modelo de despliegue de BSs y UEs.
     \item  Modelo de antenas (MIMO, MISO, entre otras) y formación de haz.
@@ -368,6 +359,7 @@ Los aspectos más importantes y considerados en la literatura \parencite{Wireles
 \end{enumerate}
 
 Como se puede leer, una simulación se puede realizar tan compleja como se desee, para este proyecto se contemplan solamente algunos de estos aspectos que son compatibles para una simulación a nivel de sistema. Estas simulaciones dan una buena estimación de un análisis fundamental desde la perspectiva del dimensionamiento que puede alcanzar una red.\newline
+
 Los modelos que se incluyen en el simulador son los siguientes:
 
 \subsection{MODELO DE DESPLIEGUE DE BSs Y UEs}
@@ -378,7 +370,7 @@ Muchos autores coinciden en que varias distribuciones de redes móviles siguen u
 
 Para esto, la distribución de terminales móviles se realiza de acuerdo con varios procesos de punto estacionario de Poisson independientes con intensidad \textit{$\lambda$m}. Con un PPP estacionario, la distancia entre un terminal móvil y su BS de servicio se distribuye independientemente de la ubicación exacta del terminal móvil.\newline
 
-En este proyecto con fines de diseño y análisis, se simularon ambos despliegues, uno uniforme y otro siguiendo una geometría estocástica, es decir, un PPP.\newline
+En este proyecto con fines de diseño y análisis, se simularon ambos despliegues, uno uniforme y otro siguiendo una geometría estocástica, es decir, un PPP.
 
 \subsection{MODELO DE CANAL}
 
@@ -439,27 +431,50 @@ Por otro lado, el modelo CIF es muy adecuado para entornos interiores, ya que pr
 
 Los modelos CI y CIF son más robustos y precisos en comparación con el modelo ABG, por lo que es confiable la aplicación del modelo CI para simular entornos en exteriores y el CIF para interiores \parencite{Sun2016}.\newline
 
-De acuerdo a lo propuesto en la \textit{sección \ref{} }, el ambiente urbano que consideraremos está dirigido a un entorno en exteriores por la aplicación de los sensores a implementar. Por lo que se selecciona al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano) como el que ayudará a caracterizar las perdidas por trayectoria y desvanecimiento por el canal. 
+De acuerdo a lo propuesto en la \textit{sección~\ref{AppsEscenario} }, el ambiente urbano que consideraremos está dirigido a un entorno en exteriores por la aplicación de los sensores a implementar. Por lo que se selecciona al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano) como el que ayudará a caracterizar las perdidas por trayectoria y desvanecimiento por el canal. \newline
 
-Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]). Además de esto también pide un valor d${}_{0}$ que es la distancia cercana de referencia al espacio libre.\newline
+Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]).\newline
 
-Por último lo autores proponen a $d_{0} = 1 m$ en los modelos de pérdida por trayectoria para sistemas 5G ya que se espera que las distancias de cobertura serán más cortas a frecuencias más altas. Además, lo que se espera son futuras celdas pequeñas, es probable que las BS se monten más cerca de las obstrucciones. La estandarización a una distancia de referencia de 1 m simplifica las comparaciones de mediciones y modelos y proporciona una definición estándar para el PLE, al tiempo que permite la intuición y el cálculo rápido de la pérdida de trayectoria.
+Por último, los autores proponen a $d_{0} = 1 m$ en los modelos de pérdida por trayectoria para sistemas 5G ya que se espera que las distancias de cobertura serán más cortas a frecuencias más altas. Además, lo que se espera son futuras celdas pequeñas, es probable que las BS se monten más cerca de las obstrucciones. La estandarización a una distancia de referencia de 1 m simplifica las comparaciones de mediciones y modelos y proporciona una definición estándar para el PLE, al tiempo que permite la intuición y el cálculo rápido de la pérdida de trayectoria.
 
 \subsection{ESQUEMA DE ACCESO MÚLTIPLE AL MEDIO}
 
-\subsubsection{Acceso Múltiple No Ortogonal (NOMA)}
+\subsubsection{Acceso Múltiple No Ortogonal (NOMA)}\label{NOMA_C4}
 
-Se estudióo en la Sección~\ref{}, que el uso de NOMA soporta eficientemente la conectividad masiva y cumple con los diversos requisitos de QoS de los usuarios. El diseño de NOMA en transmisiones de subida (\textit{uplink}) ha sido propuesto en \parencite{Al-Imari2014} y el diseño óptimo de NOMA en transmisiones de bajada (\textit{downlink}) ha sido propuesto en \parencite{Zhu2019}.
+Se estudió en la Sección~\ref{NOMA_C2}, el uso de NOMA soporta eficientemente la conectividad masiva y cumple con los diversos requisitos de QoS de los usuarios. El diseño de NOMA en transmisiones de subida (\textit{uplink}) ha sido propuesto en \parencite{Al-Imari2014} y el diseño óptimo de NOMA en transmisiones de bajada (\textit{downlink}) ha sido propuesto en \parencite{Zhu2019}.\newline
 
-Por una parte, en \parencite{Zhang2017} se implementó NOMA emparejando selectivamente dos usuarios, es decir, se escogía a un usuario con una condición de canal muy buena (cerca de la BS) y otro con una condición de canal muy pobre (en el borde de la celda). Por otro lado en \parencite{Shahini2019}, se implementó NOMA usando la técnica de agrupamiento de usuarios, para esto, considerando un entorno donde conviven dispositivos mMTC y URLLC (mayores requisitos de velocidad de datos en comparación con los dispositivos mMTC), de igual manera se agrupan a un grupo de usuarios (p.ej., 2, 3 o 4 usuarios) de diferente tipo (mMTC y URLLC), se ordenan convenientemente para implementar SIC.
+Por una parte, en \parencite{Zhang2017} se implementó NOMA emparejando selectivamente dos usuarios, es decir, se escogía a un usuario con una condición de canal muy buena (cerca de la BS) y otro con una condición de canal muy pobre (en el borde de la celda). Por otro lado en \parencite{Shahini2019}, se implementó NOMA usando la técnica de agrupamiento de usuarios, para esto, considerando un entorno donde conviven dispositivos mMTC y URLLC (mayores requisitos de velocidad de datos en comparación con los dispositivos mMTC), de igual manera se agrupan a un grupo de usuarios (p.ej., 2, 3 o 4 usuarios) de diferente tipo (mMTC y URLLC), se ordenan convenientemente para implementar SIC.\newline
 
-Entonces, como vemos hay dos maneras de implementar NOMA. Las dos son propuestas que han sido estudiadas para para cubrir los requerimientos de mMTC ya que NB-IoT no es capaz de proveer conectividad a una cantidad masiva de dispositivos IoT como se espera en el futuro.
+Entonces, como vemos hay dos maneras de implementar NOMA. Las dos son propuestas que han sido estudiadas para para cubrir los requerimientos de mMTC ya que NB-IoT no es capaz de proveer conectividad a una cantidad masiva de dispositivos IoT como se espera en el futuro.\newline
 
 En nuestro simulador se implementará la metodologia en \parencite{Shahini2019}, donde los dispositivos activos de URLLC y mMTC comparten un PRB para la transmisión de datos de enlace ascendente en un intervalo de tiempo de transmisión (TTI). Se supone que el ancho de banda disponible de un PRB se divide en un conjunto de frecuencias de subcanal S y el ancho de banda de cada subcanal es W . De hecho, el ancho de banda del sistema se puede dividir por igual en 48 o 12 subportadoras en los sistemas NB-IoT.\newline
 
 En particular, el espacio de subportadora de 3.75 kHz puede ser soportado para transmisiones de enlace ascendente [9] . Por lo tanto, en este artículo, consideraron un PRB con 48 subportadoras de 3.75 kHz para las transmisiones de datos de enlace ascendente. Tenga en cuenta que, a diferencia del FDMA de una sola portadora (SC-FDMA) que se usa actualmente para las transmisiones de enlace ascendente en NB-IoT, este modelo de sistema puede admitir más dispositivos conectados al asignar múltiples dispositivos a cada subportadora. Por lo tanto, los dispositivos MTC se deben clasificar en diferentes grupos para compartir los mismos recursos espectrales asignados a su grupo.\newline
 
-Por lo tanto, en el simulador se propone implementar NOMA usando la técnica de agrupamiento de usuarios, en nuestro caso como consideraremos dos tipos de clase de sensores NB-IoT (mMTC) clase I y NB-IoT (uRLLC) clase II (con mayores requisitos de velocidad de datos en comparación con clase I). La relación de la distribución de dispositivos clase 1 con los de clase 2 será de 3 a 1. Con el fin de que por lo menos se un dispositivo de clase II se agrupe con tres de clase I. Todo esto con base en las consideraciones del modelo de sistema en \parencite{Shahini2019}.
+Por lo tanto, en el simulador se propone implementar NOMA usando la técnica de agrupamiento de usuarios, en nuestro caso como consideraremos dos tipos de clase de sensores NB-IoT (mMTC) clase I y NB-IoT (uRLLC) clase II (con mayores requisitos de velocidad de datos en comparación con clase I). La relación de la distribución de dispositivos clase 1 con los de clase 2 será de 3 a 1. Con el fin de que por lo menos se un dispositivo de clase II se agrupe con tres de clase I. Todo esto con base en las consideraciones del modelo de sistema en \parencite{Shahini2019}.\newline
+
+De acuerdo con \parencite{Shahini2019}, su modelo de sistema considera lo siguiente:\label{VariablesSHahini}
+
+\begin{itemize}
+    \item U: Lista de dispositivos uRLLC
+    \item M: Lista de dispositivoss mMTC
+    \item S: Lista de Subportadoras s
+    \item C: Lista de Grupos NOMA
+    \item $k_{max}$ Rango máximo de usuarios en un grupo NOMA
+    \item $R_{m}^{th}:$ Tasa objetivo del enésimo dispositivo m mMTC 
+    \item $R_{u}^{th}:$ Tasa objetivo del enésimo dispositivo u uRLLC
+    \item $P_{m}^{max}:$ Potencia máxima del enésimo dispositivo m mMTC 
+    \item $P_{u}^{max}:$ Potencia máxima del enésimo dispositivo u uRLLC (i.e. 23dBm)
+    \item $P_{m}^{s}:$ Potencia del enésimo dispositivo m mMTC 
+    \item $P_{u}^{s}:$ Potencia del enésimo dispositivo u uRLLC 
+    \item $h_{m}^{s}:$ Ganancia de canal del enésimo dispositivo m mMTC sobre la portadora s
+    \item $h_{u}^{s}:$ Ganancia de canal del enésimo dispositivo u uRLLC sobre la portadora s
+    \item ${\hat S}$: Lista de subportadoras asignadas
+    \item $S_{a}^{c}$: Lista de subportadoras asignadas al enésimo cluster
+    \item ${C_{ns}}$: Lista de cluster aún no asignados
+    \item $W$ Ancho de banda en un tono NB-IoT (3.75KHz)
+    \item $\alpha$, $\gamma$, $\beta$ son variables binarias que indican asignaciones.
+\end{itemize}
 
 La tasa de datos alcanzable de un dispositivo $m$ (mMTC) en términos de la tasa agregada sobre las subportadoras asignadas se puede expresar como \parencite{Shahini2019}:
 \begin{equation}
@@ -469,15 +484,11 @@ La tasa de datos alcanzable de un dispositivo $m$ (mMTC) en términos de la tasa
 
 Del mismo modo, la Tasa de datos alcanzable de un dispositivo $u$ (URLLC) puede determinarse mediante el teorema de Shannon-Hartley. Hay que tomar en cuenta que los rangos de URLLC siempre son mayores que los de mMTC en cada clúster NOMA. Por lo tanto, reciben interferencia de todos los miembros del clúster mMTC, así como de los miembros del clúster URLLC con rangos más altos. 
 Por lo tanto, la tasa de datos alcanzable de un dispositivo $u$ URLLC sobre las subportadoras asignadas es \parencite{Shahini2019}:
-
 \begin{equation}
 {R_{u}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\beta _{u}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{u}^{s}} }\right |}^{2}}p_{u}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {U}\backslash u} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\beta _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}}} \sum \limits _{m \in \mathcal {M}} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}} } }}} }\right)
 \label{eqn:Ru}
 \end{equation}
 
-
-
-\break
 \subsection{MODELOS DE TRÁFICO}
 
 Los modelos de tráfico en comunicaciones móviles buscan acercarse, lo más posible a cómo transmiten datos o realizan peticiones de acceso los dispositivos que intentan modelar. Estos modelos de tráfico pueden clasificarse en modelos de tráfico\textbf{ }agregado y modelos de tráfico fuente \parencite{Laner2013}, el tráfico agregado simula un flujo de tráfico que se agrupa para recibir un tratamiento común, mientras que en los modelos de tráfico fuente es justamente cada una de las fuentes generadoras del tráfico la que se simula y frecuentemente se hace acompañada de una cadena de Markov que intenta representar los distintos estados del dispositivo fuente y la probabilidad de transición entre ellos.\newline
@@ -506,11 +517,10 @@ Además, se hace  la distinción de 3 patrones de tráfico que pueden presentars
 \begin{enumerate}
     \item \underbar{Actualización periódica (PU, }\textit{\underbar{Periodic Update}}\underbar{):} Este tipo de tráfico ocurre cuando el dispositivo transmite reportes de estado y/o actualizaciones de estado de manera periódica. Puede verse como una activación por evento que ocurre por el mismo dispositivo en un intervalo periódico. Típicamente, el tráfico PU no necesita transmitirse en tiempo real y cuenta además de un patrón periódico de tiempo con un tamaño constante en sus paquetes. Un ejemplo típico de estos dispositivos son medidores inteligentes (por ejemplo gas, electricidad, agua).
     \item \underbar{Activación por evento (ED, }\textit{\underbar{Event-Driven}}\underbar{):} En caso de que un evento desencadene la transmisión de datos de un dispositivo, el patrón de tráfico corresponde a esta segunda clase. Un evento puede ser causado ya sea por la medición de un parámetro que sobrepasó un límite y activó alguna alarma o bien por el nodo que actúa como servidor y envía comandos al dispositivo. El tráfico \textit{Event-Driven} puede requerir ser transmitido tanto en tiempo real o no, un ejemplo de mensajes de subida que debieran ser transmitidos en tiempo real son alarmas y notificaciones médicas de emergencia, en cuanto a los mensajes de bajada, estos podrían ser la distribución de mensajes de emergencia locales, por ejemplo en caso de sismo o tsunamis. En algunos casos, como ya se mencionó, este tráfico no necesita ser transmitido en tiempo real. Por ejemplo, cuando un dispositivo IoT envía una actualización de su ubicación al servidor o se reciba una actualización de \textit{firmware }desde este.
-    \item \underbar{Intercambio de carga útil (PE, }\textit{\underbar{Payload Exchange}}\underbar{):} este último tipo de tráfico ocurre después de una transmisión previa (PU o ED). Comprende todos los casos en los que es necesario un mayor intercambio de datos entre el dispositivo que envía y su servidor, este tráfico se espera sea predominantemente de subida y puede ser de tamaño constante o variable según la aplicación.\newline
+    \item \underbar{Intercambio de carga útil (PE, }\textit{\underbar{Payload Exchange}}\underbar{):} este último tipo de tráfico ocurre después de una transmisión previa (PU o ED). Comprende todos los casos en los que es necesario un mayor intercambio de datos entre el dispositivo que envía y su servidor, este tráfico se espera sea predominantemente de subida y puede ser de tamaño constante o variable según la aplicación.
 \end{enumerate}
 
-Las aplicaciones en el mundo real que implementan dispositivos de IoT serán casi siempre una combinación de estos tipos de tráfico más un estado de reposo o de ahorro de batería.\newline
-
+Las aplicaciones en el mundo real que implementan dispositivos de IoT serán casi siempre una combinación de estos tipos de tráfico más un estado de reposo o de ahorro de batería.
 \begin{figure}[th]
 \centering
 \includegraphics[scale=1]{Figures/Estructura de los estados principales del tráfico M2M}
@@ -519,11 +529,11 @@ Las aplicaciones en el mundo real que implementan dispositivos de IoT serán cas
 \label{fig:}
 \end{figure}
 
-Ahora se presentan los modelos de tráfico más recurrentes en la literatura para la simulación de comunicaciones M2M.\newline
+Ahora se presentan los modelos de tráfico más recurrentes en la literatura para la simulación de comunicaciones M2M.
 
 \subsubsection{Modelos de tráfico agregado}
 
-Han sido propuestos por la 3GPP al reconocer la importancia de caracterizar el tráfico M2M. Se trata en realidad de 2 modelos de tráfico agregado generado por una gran cantidad de usuarios, el primero modela el tráfico generado de forma aleatoria y el segundo modela tráfico síncrono en el tiempo, esto se puede observar en la \textit{Tabla~\ref{tab:trafico3gpp}}.\newline
+Han sido propuestos por la 3GPP al reconocer la importancia de caracterizar el tráfico M2M. Se trata en realidad de 2 modelos de tráfico agregado generado por una gran cantidad de usuarios, el primero modela el tráfico generado de forma aleatoria y el segundo modela tráfico síncrono en el tiempo, esto se puede observar en la \textit{Tabla~\ref{tab:trafico3gpp}}.
 
 \begin{itemize}
 \item  \textit{Modelo 1} - Modelo de tráfico agregado sin correlación 3GPP: Genera tráfico sin correlación en un intervalo específico de tiempo. Lo que significa que no se tomarían en cuenta la correlación entre los dispositivos IoT. Utiliza una distribución uniforme para modelar el tráfico agregado en un intervalo de tiempo específico.
@@ -535,7 +545,7 @@ Han sido propuestos por la 3GPP al reconocer la importancia de caracterizar el t
 \label{tab:trafico3gpp}
 \centering
 \begin{tabular}{*{2}{m{8.5cm}}}\\
-\textbf{Sincronizado/Coordinado/Correlacionado\newline (En un intervalo limitado en el tiempo)} & \textbf{No sincronizado/No coordinado/ No correlacionado\newline (En un intervalo limitado en el tiempo)} \\ \hline
+\textbf{Sincronizado/Coordinado/Correlacionado\newline (En un intervalo limitado en el tiempo)} & \textbf{No sincronizado/No coordinado/ No correlacionado\newline (En un intervalo limitado en el tiempo)} \\ \hline \hline
 Distribución de probabilidad de arribo de paquetes/peticiones f(t) en [0,1] : \underbar{Beta} (3,4) & Distribución de probabilidad de arribo de paquetes/peticiones f(t) en [0,1]: \underbar{Uniforme} \\ 
 Número de dispositivos: 1 000, 3 000, 5 000, 10 000, 30 000. & Número de dispositivos: 1 000, 3 000, 5 000, 10 000, 30 000. \\ 
 Periodo \textit{T }: 10 s & Periodo \textit{T }: 60 s \\ 
@@ -546,10 +556,10 @@ La principal ventaja de los modelos de tráfico agregado es su fácil implementa
 
 \subsubsection{Modelos de tráfico fuente}
 
-Los modelos de tráfico fuente de dispositivos MTC, modelan justamente el tráfico que genera cada uno de los dispositivos. Este tipo de modelado es más preciso que el de tráfico agregado ya que modela el comportamiento de cada fuente, sin embargo, puede fácilmente volverse muy complejo cuando se agrega una gran cantidad de dispositivos (fuentes). A continuación se presentan y analizan dos modelos de tráfico fuente.\newline
+Los modelos de tráfico fuente de dispositivos MTC, modelan justamente el tráfico que genera cada uno de los dispositivos. Este tipo de modelado es más preciso que el de tráfico agregado ya que modela el comportamiento de cada fuente, sin embargo, puede fácilmente volverse muy complejo cuando se agrega una gran cantidad de dispositivos (fuentes). A continuación se presentan y analizan dos modelos de tráfico fuente.
 
 \begin{itemize}
-\item  \textit{Modelo 3:} Modelo de fuente de \textit{Semi-Markov} (\textit{Semi-Markov Models, SMM)}\\
+\item  \textit{Modelo 3:} Modelo de fuente de \textit{Semi-Markov} (\textit{Semi-Markov Models, SMM)}
 
 En este modelo de fuente cada dispositivo se modela utilizando una cadena de Markov en la que se define la probabilidad de transición entre estados. Los estados que se encontrarán casi siempre modelados son los mencionados anteriormente: el de actualización periódica (PU), el de activación por evento (ED) y el de intercambio de carga útil. La \textit{Figura~\ref{fig:SMM}} muestra cómo se verían modelados los estados de un dispositivo en una cadena de Markov.\newline
 
@@ -563,7 +573,7 @@ La probabilidad de transición entre el mismo estado es 0, además los tiempos d
 \label{fig:SMM}
 \end{figure}
 
-La principal ventaja del modelo de tráfico fuente SMM es que permitiría una descripción más detallada del comportamiento de los dispositivos IoT de manera individual, sin embargo no es capaz de capturar la relación que existe entre dos dispositivos cercanos que pudieran tener una cierta sincronía entre ellos, otra desventaja es que la complejidad del sistema aumenta considerablemente entre más dispositivos se simulan a diferencia de los modelos de tráfico agregado.\newline
+La principal ventaja del modelo de tráfico fuente SMM es que permitiría una descripción más detallada del comportamiento de los dispositivos IoT de manera individual, sin embargo no es capaz de capturar la relación que existe entre dos dispositivos cercanos que pudieran tener una cierta sincronía entre ellos, otra desventaja es que la complejidad del sistema aumenta considerablemente entre más dispositivos se simulan a diferencia de los modelos de tráfico agregado.
 
 \item  \textit{Modelo 4:} Modelo de fuente de Procesos de Poisson emparejados Markov-modulados (CMMPP\textit{, Coupled Markov Modulated Poisson Process)}
 
@@ -586,7 +596,7 @@ La principal ventaja como ya se mencionó del tráfico fuente frente al tráfico
 \caption{Comparativa entre los modelos de tráfico MTC abordados}
 \label{tab:Traficos}
 \centering
-\begin{tabular}{|p{3in}|p{1in}|p{0.8in}|p{1in}|} \\  
+\begin{tabular}{|p{3in}|p{1in}|p{0.8in}|p{1in}|} \\  \hline \hline
 \textbf{\textit{Métrica}} & \textbf{Agregado~} & \textbf{SMM} & \textbf{CMMPP} \\ \hline 
 \textit{Modelado de los dispositivos} &  & \checkmark & \checkmark \\ \hline 
 \textit{Modelado de dispositivos coordinados} & \checkmark &  & \checkmark \\ \hline 
@@ -599,9 +609,6 @@ La principal ventaja como ya se mencionó del tráfico fuente frente al tráfico
 \textit{Complejidad (N número de dispositivos)} & O(1) & O(N) & O(N) \\  
 \end{tabular}
 \end{table}
-
-
-
 
 Como puede observarse en la \textit{Tabla~\ref{tab:Traficos}}, las ventajas que trae consigo la utilización de un modelo de tráfico como el CMMPP son bastante convenientes para modelar el tráfico de dispositivos mIoT, pues este es capaz de simular la relación espacial y temporal que existiría entre los nodos. Si se regresa a la \textit{Tabla~\ref{tab:appssim}} en la que se presentan los servicios que se simularan, se encuentra que servicios como el monitoreo de la condición del aire en la ciudad, la detección de terremotos, la manipulación de la iluminación y demás tendrá un comportamiento similar en un espacio confinado y para poder hacer hincapié en la importancia del diseño de la red para a la hora de cumplir con la QoS esperada, es necesario que se implemente la posibilidad de recibir una gran cantidad de dispositivos en el caso de uso mMTC, los cuales estarían tratando de acceder a los recursos del sistema simultáneamente. De manera que el modelo CMMPP es el seleccionado para la simulación de este sistema complementándolo con un modelo determinístico para las aplicaciones que sólo producen tráfico periódico.\newline
 

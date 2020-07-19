@@ -85,13 +85,6 @@ Ahora bien, al incorporar el desvanecimiento tipo Rayleigh y las pérdidas por t
 
 Para la generación de las ganancias $h$ se utilizó la siguiente Ecuación:\newline
 
-\begin{equation}
-    h =  10^{(\frac{-L_{p [dB]}^{CI}}{10})} \cdot \gamma\ [W]
-    \label{eqn:h_canal}
-\end{equation}
-Donde:
-\[\gamma \to ganancia\ desvanecimiento\ Rayleigh\]
-\[\ L_{p [dB]}^{CI} \to \textit{Path\ Loss}\ Modelo\ CI \]
 
 \begin{figure}[th]
     \centering
@@ -138,26 +131,7 @@ Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       EJEMPLO DE ALGORITMO EN LaTeX       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Definición de variables de los algoritmos 1 y 2:\newline
-
-\begin{itemize}
-    \item U: Lista de dispositivos uRLLC
-    \item M: Lista de dispositivoss mMTC
-    \item S: Lista de Subportadoras s
-    \item C: Lista de Grupos NOMA
-    \item $R_{m}^{th}:$ Tasa objetivo del enésimo dispositivo m mMTC 
-    \item $R_{u}^{th}:$ Tasa objetivo del enésimo dispositivo u uRLLC
-    \item $P_{m}^{max}:$ Potencia máxima del enésimo dispositivo m mMTC 
-    \item $P_{u}^{max}:$ Potencia máxima del enésimo dispositivo u uRLLC (i.e. 23dBm)
-    \item $P_{m}^{s}:$ Potencia del enésimo dispositivo m mMTC 
-    \item $P_{u}^{s}:$ Potencia del enésimo dispositivo u uRLLC 
-    \item $h_{m}^{s}:$ Ganancia de canal del enésimo dispositivo m mMTC sobre la portadora s
-    \item $h_{u}^{s}:$ Ganancia de canal del enésimo dispositivo u uRLLC sobre la portadora s
-    \item ${\hat S}$: Lista de subportadoras asignadas
-    \item $S_{a}^{c}$: Lista de subportadoras asignadas al enésimo cluster
-    \item ${C_{ns}}$: Lista de cluster aún no asignados
-\end{itemize}
-
+Entonces, siguiendo la definición de variables de los algoritmos en \parencite{Shahini2019} [descritas en la Sección~\ref{VariablesSHahini}], se tiene:\newline
 
 \makeatletter
 % Reinsert missing \algbackskip
@@ -366,7 +340,7 @@ La generación de tráfico CMMPP, sigue el diseño mostrado en la \textit{figura
 
 El cambio de estado de normal  al estado de alarma requiere primeramente de un proceso en la simulación que se encargue de generar alarmas para cada tipo de dispositivo, este proceso se caracteriza por una tasa de arribo de alarmas $ \lambda_{alarma}$. Esta tasa representa la cantidad promedio de alarmas por segundo que ocurrirán en el área de la célula, además de este parámetro se necesita especificar la velocidad a la que las alarmas se transmiten desde su lugar de origen.\newline
 
-El siguiente proceso que propicia un cambio de estado, es el cálculo de la matriz de cambio de estado $P_n\left[k\right]$ que se lleva a cabo en cada dispositivo. La ecuación \ref{eqn:Pn} utiliza la información de cuándo y donde se produjeron eventos de alarma, además de su velocidad de propagación para determinar el momento en el que la alarma llega al dispositivo. Adicionalmente es necesario un modelo que caracterice la propagación espacial. Los modelos implementados fueron los propuestos en [A] :\newline
+El siguiente proceso que propicia un cambio de estado, es el cálculo de la matriz de cambio de estado $P_n\left[k\right]$ que se lleva a cabo en cada dispositivo. La ecuación \ref{eqn:Pn} utiliza la información de cuándo y donde se produjeron eventos de alarma, además de su velocidad de propagación para determinar el momento en el que la alarma llega al dispositivo. Adicionalmente es necesario un modelo que caracterice la propagación espacial. Los modelos implementados fueron los propuestos en \parencite{Gupta2018} :\newline
 
 \begin{equation}
 \delta_n = e^{-\alpha.d_{n}}
