@@ -443,44 +443,43 @@ El \textit{algoritmo~\ref{generacionTrafico}} describe el proceso seguido por el
 
     $Inicialización: $ \\
     $D=[ ]$, $G=[ ]$ // listas de dispositivos y generadores de alarmas
-    \For{$i$ in range(1,8)} \newline
-    // se crean los dispositivos especificados para cada servicio \newline
-    $D$.append( crearDispositivos($S_i$,$R_{célula}$)) \newline
-    // se crea un generador de alarma para cada servicio\newline
-    $G$.append( crearGeneradorAlarmas($S_i$,$R_{célula}$)) \newline
-    \textbf{end for}
+    \For{$i$ in range(1,8)} 
+    \State // se crean los dispositivos especificados para cada servicio 
+    \State$D$.append( crearDispositivos($S_i$,$R_{célula}$)) 
+    \State// se crea un generador de alarma para cada servicio
+    \State$G$.append( crearGeneradorAlarmas($S_i$,$R_{célula}$)) 
+    
     \EndFor \\
-$tiempo=0$
+$tiempo=0$ \\
 
 // rutina principal
-    \While{$tiempo < T_{límite}$}{}
-        \For{$dispPorServicio$, $generadorAlarma$ in $D$, $G$}
+    \While{$tiempo < T_{límite}$}
+        \For{$dispPorServicio$, $generadorAlarma$ in $D$, $G$} 
 
-            \If{$tiempo==0$}  \newline
-            // se crea la primera alarma para cada servicio \newline
-            $nuevaAlarma$ = $generadorAlarma$.generarAlarma($tiempo$) \newline
-            \textbf{end if}
+            \If{$tiempo==0$} 
+            \State// se crea la primera alarma para cada servicio 
+            \State$nuevaAlarma$ = $generadorAlarma$.generarAlarma($tiempo$) 
+            
             \EndIf
 
-            \For{dispositivo in dispPorServicio} \newline
-            // ciclo que recorre cada dispositivo de un servicio\newline
-            \If{$dispositivo$.modeloTrafico == CMMPP}\newline
-            $dispositivo$.registrarAlarma(nuevaAlarma)\newline
-            $dispositivo$.calcularPnk($tiempo$,generadorAlarma)\newline
-            $dispositivo$.actualizarEstado()\newline
-            $dispositivo$.generarPaquete($tiempo$)\newline
-            \Else \newline
-            $dispositivo$.generarPaquetePeriodico($tiempo$)\newline
-
-            \textbf{end if}  \newline
+            \For{dispositivo in dispPorServicio} 
+            \State// ciclo que recorre cada dispositivo de un servicio
+            \If{$dispositivo$.modeloTrafico == CMMPP}
+            \State$dispositivo$.registrarAlarma(nuevaAlarma)
+            \State$dispositivo$.calcularPnk($tiempo$,generadorAlarma)
+            \State$dispositivo$.actualizarEstado()
+            \State$dispositivo$.generarPaquete($tiempo$)
+            \Else 
+            \State$dispositivo$.generarPaquetePeriodico($tiempo$)
+            
             \EndIf
-            \textbf{end for}  \newline
+            
             \EndFor
-        $nuevaAlarma$ = $generadorAlarma$.generarAlarma($tiempo$)\newline
-        \textbf{end for}
+            \State$nuevaAlarma$ = $generadorAlarma$.generarAlarma($tiempo$)
+        
         \EndFor 
-        $tiempo+=\Delta_{tiempo}$ \newline
-        \textbf{end while}
+        \State$tiempo+=\Delta_{tiempo}$ 
+    
     \EndWhile \\
     $ListaEventos$ = $D$.ListaNacimientos\\
     $ListaDispositivos$ $D$.ListaDispositivos\\
