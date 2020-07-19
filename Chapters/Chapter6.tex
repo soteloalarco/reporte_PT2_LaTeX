@@ -679,14 +679,17 @@ La condición de paro del simuador es que se llegue al tiempo límite de la simu
 
 \subsection{Descripción de los \textit{logs} de salida}
 
+La \textit{imagen~\ref{fig:logsdes}} muestra una porción del archivo de \textit{logs} resultante del Simulador de eventos discretos. En él se puede ver cúando y donde ocurrieron los eventos. Por ejemplo en el instante de tiempo 0 hubo el nacimiento de 5 paquetes provenientes de distintos dispositivos, cada uno de estos nacimientos propició que los dispoitivos contendieran por recursos del canal, razón por la cual todos enviaron un preámbulo. Un instante de tiempo después se realiza el proceso noma con estos 5 dispositivos (no había más dispoitivos utilizando el canal) y aquellos dispoitivos que consiguieron recursos comienzan a transmitir. En el evento nuevo cluster cáda dispositivo que consiguió recursos imprime a qué cluster pertenece y a qué tasa transmite. Finalmente el último evento que se ve en la imagen muestrá cuantos dispositivos están transmitiendo a una tasa menor de la que requieren. \newline
+
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=1]{Figures/logsdes.png}
+    \includegraphics[scale=0.8]{Figures/logsdes.png}
     \decoRule
     \caption[\textit{logs} resultantes de una rutina]{\textit{logs} resultantes de una rutina}
     \label{fig:logsdes}
 \end{figure}
 
+Con este archivo es posible ver cómo reaccionó el sistema en momentos específicos de la simulación. Con ayuda del archivo de eventos se puede analizar el comportamiento del sistema en distintas situaciones, como cuando ocurre una alarma y de pronto hay muchos nacimientos de paquetes o para ver cúanto tiempo después de estas el sistema se estabiliza por ejemplo. \newline
 
 \subsection{Resultados a la salida del simulador}
 
