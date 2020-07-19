@@ -410,27 +410,53 @@ El \textit{algoritmo~\ref{generacionTrafico}} describe el proceso seguido por el
 \begin{algorithm}
     \caption{Generación de tráfico fuente}
     \label{generacionTrafico}
-    \hspace*{\algorithmicindent} \textbf{Entrada} NumeroDispositivos\\
-    \hspace*{\algorithmicindent} \textbf{Output} NumeroGrupos
+    \hspace*{\algorithmicindent} \textbf{Entrada} $T_{límite}$, $\Delta_{tiempo}$, $R_{célula}$, $S_1$, $S_2$, $S_3$, $S_4$, $S_5$, $S_6$, $S_7$, \\
+    \hspace*{\algorithmicindent} \textbf{Salida} $ListaEventos$, $ListaDispositivos$
     \begin{algorithmic}[1]
-    \Procedure{Ejemplo de procedimiento \textit{Multitone} con kmax=4}{}
-    \If {$kmax ==4$} 
-        \If {$NumeroDispositivos <= 48$} 
-        \Return NumeroDispositivos
-        \EndIf
-        \If {$NumeroDispositivos > 48\ and\ NumeroDispositivos <=96$} 
-        \Return NumeroDispositivos/2
-        \EndIf
-        \If {$NumeroDispositivos > 96\ and\ NumeroDispositivos <= 144 $} 
-        \Return NumeroDispositivos/3
-        \EndIf
-        \If {$NumeroDispositivos > 144\ and\ NumeroDispositivos < 192$} 
-        \Return NumeroDispositivos/4
-        \EndIf
-        \If {$NumeroDispositivos >= 192$} 
-        \Return 48
-        \EndIf
-    \EndIf
+    \Procedure{Generación de tráfico IoT}{}
+
+    $Inicialización: $ \\
+    $D=[ ]$, $G=[ ]$ // listas de dispositivos y generadores de alarmas
+    \For{$i$ in range(1,8)} 
+    \State // se crean los dispositivos especificados para cada servicio 
+    \State$D$.append( crearDispositivos($S_i$,$R_{célula}$)) 
+    \State// se crea un generador de alarma para cada servicio
+    \State$G$.append( crearGeneradorAlarmas($S_i$,$R_{célula}$)) 
+    
+    \EndFor \\
+$tiempo=0$ \\
+
+// rutina principal
+    \While{$tiempo < T_{límite}$}
+        \For{$dispPorServicio$, $generadorAlarma$ in $D$, $G$} 
+
+            \If{$tiempo==0$} 
+            \State// se crea la primera alarma para cada servicio 
+            \State$nuevaAlarma$ = $generadorAlarma$.generarAlarma($tiempo$) 
+            
+            \EndIf
+
+            \For{dispositivo in dispPorServicio} 
+            \State// ciclo que recorre cada dispositivo de un servicio
+            \If{$dispositivo$.modeloTrafico == CMMPP}
+            \State$dispositivo$.registrarAlarma(nuevaAlarma)
+            \State$dispositivo$.calcularPnk($tiempo$,generadorAlarma)
+            \State$dispositivo$.actualizarEstado()
+            \State$dispositivo$.generarPaquete($tiempo$)
+            \Else 
+            \State$dispositivo$.generarPaquetePeriodico($tiempo$)
+            
+            \EndIf
+            
+            \EndFor
+            \State$nuevaAlarma$ = $generadorAlarma$.generarAlarma($tiempo$)
+        
+        \EndFor 
+        \State$tiempo+=\Delta_{tiempo}$ 
+    
+    \EndWhile \\
+    $ListaEventos$ = $D$.ListaNacimientos\\
+    $ListaDispositivos$ $D$.ListaDispositivos\\
     \EndProcedure
     \end{algorithmic}
 \end{algorithm}
