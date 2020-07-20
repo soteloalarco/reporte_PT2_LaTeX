@@ -300,9 +300,7 @@ La adición de la columna "Tamaños de paquete"  para la \textit{Tabla~\ref{tab:
 
 \subsection{Indicadores clave de rendimiento (KPIs)}
 
-Hay muchas formas de medir el rendimiento de una red, por medio de sus características se pueden definir los indicadores clave de rendimiento para la evaluación integral, precisa y eficiente de las tecnologías de red 5G.\newline
-
-Con la profundización de la investigación de la tecnología 5G, se puede prever que habrá nuevos indicadores de evaluación. El diseño de estos indicadores directamente medibles, por un lado, necesita combinar las características de los nuevos servicios, y por otro lado, debe aprender completamente de la experiencia de los KPI clásicos de generaciones anteriores como lo son: el \textit{throughput, }dada una\textit{ }probabilidad de salida y la latencia. La densidad de conexión, la densidad de volumen de tráfico y el consumo de energía son nuevos KPI introducidos por las redes 5G/IoT \parencite{WirelessSim}.\newline
+Debido a que 5G representará un cambio radical a las generaciones anteriores, se puede prever que habrá nuevos indicadores de evaluación. El diseño de estos indicadores directamente medibles, por un lado, necesita combinar las características de los nuevos servicios, y por otro lado, debe aprender completamente de la experiencia de los KPI clásicos de generaciones anteriores como lo son: el \textit{throughput, }dada una probabilidad de salida y la latencia. Además la densidad de conexión, la densidad de volumen de tráfico y el consumo de energía son KPI's que preocupan también a las redes 5G/IoT \parencite{WirelessSim}.\newline
 
 Para cumplir con el conjunto de requisitos de mMTC, NB-IoT debe admitir principalmente cuatro indicadores clave de rendimiento (KPI):
 
@@ -313,7 +311,7 @@ Para cumplir con el conjunto de requisitos de mMTC, NB-IoT debe admitir principa
 \item  Una tasa máxima alcanzable de hasta 200kbps (subida).
 \end{enumerate}
 
-El análisis fundamental del simulador contemplará como métricas de desempeño a la compensación entre la tasa máxima alcanzable y la densidad de usuarios atendidos en términos de una calidad de servicio QoS. Esta QoS dependerá de los cuatro principales KPIs para mIoT.
+El simulador obtuvo como resultados la tasa de datos alcanzada por el sistema y el porcentaje de dispositivos que transmitieron sus paquetes a la tasa requerida.
 
 \break
 %----------------------------------------------------------------------------------------
@@ -321,9 +319,7 @@ El análisis fundamental del simulador contemplará como métricas de desempeño
 %----------------------------------------------------------------------------------------
 
 \section{ANÁLISIS DE MODELOS PARA LA EVALUACIÓN DE REDES 5G/IoT}\label{AnalisisMODELOS}
-En el modelado de redes 5g / IoT entran diferentes aspectos para representar y caracterizar el comportamiento correcto de estas redes. Para este caso, desde el punto de vista de simulaciones a nivel de sistema, los modelos se suelen concentrar en las capas superiores de la pila TCP / IP.\newline
-
-Los aspectos más importantes y considerados en la literatura \parencite{WirelessSim}, son:
+Los modelos necesarios para caracterizar el comportamiento de redes móviles, desde el punto de vista de simulaciones a nivel de sistema, se presentan a continuación \parencite{WirelessSim}:
 \begin{enumerate}
     \item  Modelo de despliegue de BSs y UEs.
     \item  Modelo de antenas (MIMO, MISO, entre otras) y formación de haz.
@@ -335,29 +331,26 @@ Los aspectos más importantes y considerados en la literatura \parencite{Wireles
     \item  Modelos de tráfico.
 \end{enumerate}
 
-Como se puede leer, una simulación se puede realizar tan compleja como se desee, para este proyecto se contemplan solamente algunos de estos aspectos que son compatibles para una simulación a nivel de sistema. Estas simulaciones dan una buena estimación de un análisis fundamental desde la perspectiva del dimensionamiento que puede alcanzar una red.\newline
 
-Los modelos que se incluyen en el simulador son los siguientes:
+Los modelos que se incluyeron en el simulador son los siguientes:
 
 \subsection{MODELO DE DESPLIEGUE DE BSs Y UEs}
 
-En el modelado de posicionamiento de las estaciones base y los nodos IoT existen diferentes estrategias de despliegue (como se puede ver en la \textit{Figura~\ref{fig:BSs}}) y es de mucha importancia dependiendo los objetivos de la simulación, es decir, para un alcance comercial resulta importante simular el despliegue determinístico de los actores de la red de acuerdo al escenario donde se vaya a montar una determinada red, por otro lado para un alcance con fines de análisis en el diseño y dimensionamiento de estas redes resulta más adecuado un despliegue aleatorio. \newline
+Los modelos del posicionamiento de las estaciones base y los nodos IoT utilizan diferentes estrategias de despliegue (como se puede ver en la \textit{Figura~\ref{fig:BSs}}). Este aspecto como los demás es de mayor o menor importancia dependiendo de los objetivos de la simulación, es decir, para un alcance comercial resulta importante simular el despliegue determinístico de los actores de la red, por otro lado para un alcance con fines de análisis en el diseño y dimensionamiento de estas redes resulta más adecuado un despliegue aleatorio. \newline
 
-Muchos autores coinciden en que varias distribuciones de redes móviles siguen un proceso estocástico \parencite{Kouzayha2018}\parencite{Zhang2017}. La geometría estocástica es una rama de la probabilidad con muchas aplicaciones que permiten el estudio de fenómenos aleatorios en el plano o en dimensiones superiores \parencite{Haenggi2009}. Está intrínsecamente relacionada con la teoría de los procesos puntuales. Inicialmente su desarrollo fue estimulado por aplicaciones en biología, astronomía y ciencias de los materiales. Hoy en día, también se utiliza en análisis de imágenes y en el contexto de redes de comunicación. Recientemente se ha utilizado con éxito para modelar la distribución espacial de células pequeñas como las femtoceldas \parencite{TurjmanSmallCells}. \newline
-
-Para esto, la distribución de terminales móviles se realiza de acuerdo con varios procesos de punto estacionario de Poisson independientes con intensidad \textit{$\lambda$m}. Con un PPP estacionario, la distancia entre un terminal móvil y su BS de servicio se distribuye independientemente de la ubicación exacta del terminal móvil.\newline
+Diversos autores coinciden en que varias distribuciones de redes móviles siguen un proceso estocástico \parencite{Kouzayha2018}\parencite{Zhang2017}. La geometría estocástica es una rama de la probabilidad con muchas aplicaciones que permiten el estudio de fenómenos aleatorios en el plano o en dimensiones superiores \parencite{Haenggi2009}. Recientemente se ha utilizado con éxito para modelar la distribución espacial de células pequeñas como las femtoceldas \parencite{TurjmanSmallCells}. \newline
 
 En este proyecto con fines de diseño y análisis, se simularon ambos despliegues, uno uniforme y otro siguiendo una geometría estocástica, es decir, un PPP.
 
 \subsection{MODELO DE CANAL}
 
-Para conducir al diseño preciso y confiable de un sistema 5G es necesario tener buen conocimiento de las características del canal de propagación a través de las frecuencias de microondas y ondas milimétricas. \newline
+Un buen diseño de sistema necesitó de conocer las características del canal de propagación a través de las frecuencias de microondas y ondas milimétricas. \newline
 
-Los modelos de canal son necesarios para simular la propagación de una manera reproducible y rentable, y se utilizan para diseñar y comparar con precisión las interfaces de radio aire y el despliegue del sistema. Los parámetros comunes del modelo de canal inalámbrico incluyen frecuencia de portadora, ancho de banda, distancia 2D o 3D entre el transmisor (Tx) y el receptor (Rx), los efectos ambientales y otros requisitos necesarios para construir equipos y sistemas estandarizados a nivel mundial. El desafío definitivo para un modelo de canal 5G es proporcionar una base física fundamental, a la vez flexible y precisa, especialmente en un amplio rango de frecuencias como 0.5--100 GHz \parencite{Rappaport2017}. Los modelos de canal investigados se dividen principalmente de acuerdo al escenario en el que se están diseñando, ya sea \textit{Urban Macro (UMa) o Urban Micro (UMi)}, además de la condición del ambiente si es que hay línea de vista (\textit{LoS}) entre el UE y la BS.\newline
+Los modelos de canal son necesarios para simular la propagación de una manera reproducible y rentable, y se utilizan para diseñar y comparar con precisión las interfaces de radio y el despliegue del sistema. Los parámetros comunes del modelo de canal inalámbrico incluyen frecuencia de portadora, ancho de banda, distancia entre el transmisor (Tx) y el receptor (Rx), los efectos ambientales y otros requisitos necesarios. El desafío definitivo para un modelo de canal 5G es proporcionar una base física fundamental, a la vez flexible y precisa, especialmente en un amplio rango de frecuencias como 0.5--100 GHz \parencite{Rappaport2017}. Los modelos de canal investigados se dividen principalmente de acuerdo al escenario en el que se están diseñando, ya sea \textit{Urban Macro (UMa) o Urban Micro (UMi)}, además de la condición del ambiente si es que hay línea de vista (\textit{LoS}) entre el UE y la BS.\newline
 
 Existe una gama amplia de modelos de canal propuestos para redes 5G, (p.ej. 3GPP, WINNER I/II, QuaDRiga/ mmMagic, 5GCM, METIS, MiWEBA, IEEE \parencite{WirelessSim}). Aunque existen diversos modelos, los modelos de canal 3GPP y WINNER II son los más conocidos y empleados en la industria de comunicaciones móviles \parencite{Sun2016}, conteniendo una gran diversidad de escenarios de despliegue como lo son \textit{UMi, UMa, indoor office (InH)}, etc. Además proveen parámetros clave del canal incluyendo probabilidades de línea de vista (\textit{LoS}), modelos de pérdida por trayectoria, retardos y niveles de potencia por trayectoria \parencite{Sun2016}. \newline
 
-En la búsqueda del modelo de canal a implementar en el simulador nos enfocamos en buscar un modelo teórico y estocástico en vez de uno empírico, ya que nuestro proyecto va más enfocado en el teletráfico. Los modelos empíricos suelen ser más sofisticados y piden una gran cantidad de parámetros de entrada. Por lo tanto buscamos los modelos estocásticos que se adaptaran al rango de frecuencia de transmisión y a los ambientes urbanos que se proponen.\newline
+El modelo implementado se trató de uno teórico y estocástico en vez de uno empírico, ya que este proyecto está enfocado en el teletráfico. Los modelos empíricos suelen ser más sofisticados y piden una gran cantidad de parámetros de entrada. Por lo tanto se eligieron modelos estocásticos que se adaptaran al rango de frecuencia de transmisión y a los ambientes urbanos que se propusieron.\newline
 
 En \parencite{Sun2016}, los autores evaluaron tres diferentes modelos de propagación estocásticos de perdida por trayectoria a larga escala para ser implementados a través de la banda de frecuencias de microondas y ondas milimétricas. ABG, CI y CIF son modelos estadísticos de propagación para multi-frecuencias (estocásticos) que describen los parámetros de larga escala con pérdida de trayectoria de acuerdo a la distancia.
 
@@ -400,7 +393,7 @@ Para el tercero, la ecuación del modelo CIF está dada por:
 \[desvanecimiento\ tipo\ Rayleigh\]
 \end{flushleft}
 
-Cada uno de estos modelos han sido recientemente estudiados por organizaciones de estandarización como 3GPP y son propuestos para el uso en el diseño de sistemas inalámbricos de comunicación de 5G enfocados en escenarios \textit{UMa, UMi, InH,y SM}.\newline
+Cada uno de estos modelos han sido recientemente estudiados por organizaciones de estandarización como 3GPP y son propuestos para su uso en el diseño de sistemas inalámbricos de comunicación de 5G enfocados en escenarios \textit{UMa, UMi, InH,y SM}.\newline
 
 De acuerdo al análisis de sensibilidad en \parencite{Sun2016}, se demostró que el modelo CI es el más adecuado para entornos al aire libre debido a su precisión, simplicidad y rendimiento de sensibilidad, dado que la pérdida de trayectoria medida depende poco de la frecuencia en ambientes exteriores más allá del primer metro de propagación de espacio libre.\newline
 
@@ -408,9 +401,9 @@ Por otro lado, el modelo CIF es muy adecuado para entornos interiores, ya que pr
 
 Los modelos CI y CIF son más robustos y precisos en comparación con el modelo ABG, por lo que es confiable la aplicación del modelo CI para simular entornos en exteriores y el CIF para interiores \parencite{Sun2016}.\newline
 
-De acuerdo a lo propuesto en la \textit{sección~\ref{AppsEscenario} }, el ambiente urbano que consideraremos está dirigido a un entorno en exteriores por la aplicación de los sensores a implementar. Por lo que se selecciona al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano) como el que ayudará a caracterizar las perdidas por trayectoria y desvanecimiento por el canal. \newline
+De acuerdo a lo propuesto en la \textit{sección~\ref{AppsEscenario} }, el ambiente urbano que consideraremos está dirigido a un entorno en exteriores. Por lo que se seleccionó al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano). \newline
 
-Los parámetros que solicita este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]).\newline
+Los parámetros que requiere este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]).\newline
 
 Por último, los autores proponen a $d_{0} = 1 m$ en los modelos de pérdida por trayectoria para sistemas 5G ya que se espera que las distancias de cobertura serán más cortas a frecuencias más altas. Además, lo que se espera son futuras celdas pequeñas, es probable que las BS se monten más cerca de las obstrucciones. La estandarización a una distancia de referencia de 1 m simplifica las comparaciones de mediciones y modelos y proporciona una definición estándar para el PLE, al tiempo que permite la intuición y el cálculo rápido de la pérdida de trayectoria.
 
