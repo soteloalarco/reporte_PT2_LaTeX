@@ -81,10 +81,7 @@ Se propuso un escenario UMa en exteriores en un ambiente con línea de vista (Lo
 
 \subsection{Escenario de Prueba del Modelo de canal CI}
 
-Ahora bien, al incorporar el desvanecimiento tipo Rayleigh y las pérdidas por trayectoria, siguiendo la Tabla~\ref{tab:ParametrosGral} donde se definen los parámetros de la simulación (PLE= 2 con radio celular de 200m, en una banda de 2 GHz), se generó el histograma (pdf) de los coeficientes de canal (ganancias de canal) esperados para el simulador, véase Figura~\ref{fig:GananciasCI_C6}, se puede observar que el valor promedio de las ganancias ($h$) es de 80.35 dB. \newline
-
-Para la generación de las ganancias $h$ se utilizó la siguiente Ecuación:\newline
-
+Ahora bien, al incorporar el desvanecimiento tipo Rayleigh y las pérdidas por trayectoria, siguiendo la Tabla~\ref{tab:ParametrosGral} donde se definen los parámetros de la simulación (PLE= 2 con radio celular de 200m, en una banda de 2 GHz), se generó el histograma (pdf) de los coeficientes de canal (pérdidas del canal) esperados para el simulador, véase Figura~\ref{fig:GananciasCI_C6}, se puede observar que el valor promedio de las ganancias ($h$) es de 80.35 dB. \newline
 
 \begin{figure}[th]
     \centering
@@ -103,28 +100,24 @@ Para la generación de las ganancias $h$ se utilizó la siguiente Ecuación:\new
 
 \section{Esquema de acceso múltiple al medio no ortogonal, basado en potencia (PD-NOMA)}
 
-De acuerdo con el modelo de sistema (sección~\ref{}), se propuso implementar un esquema de acceso múltiple no ortogonal (NOMA), con base en \parencite{Shahini2019}, los autores desarrollaron un esquema NOMA basado en NB-IoT por medio de un agrupamiento óptimo de los usuarios y una optimización en la asignación de recursos, de acuerdo con la maximización de la tasa de transmisión total de subida de los dispositivos MTC.\newline
+De acuerdo con el modelo de sistema del Capítulo~\ref{Chapter5} en esta sección se implementa un esquema de acceso múltiple no ortogonal (NOMA), con base en \parencite{Shahini2019}, los autores desarrollaron un esquema NOMA basado en NB-IoT por medio de un agrupamiento óptimo de los usuarios y una optimización en la asignación de recursos, de acuerdo con la maximización de la tasa de transmisión total de subida de los dispositivos MTC.\newline
 
 \subsection{Algoritmo de Agrupación de dispositivos uRLLC  y mMTC}
 
-Se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC descrito en \parencite{Shahini2019}[\textit{véase Algorithm \ref{A1}}], este algoritmo realiza un ordenamiento conveniente con respecto al uso de la Cancelación Sucesiva de Interferencia (SIC), es decir, se ordenan los dispositivos URLLC y mMTC de acuerdo con su ganancia de canal promedio dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo[\textit{véase Figura~\ref{fig:NOMAgrupoexample}}]. El Algoritmo da prioridad a los dispositivos uRLLC para que obtengan los rangos más bajos. \newline
+Se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC descrito en \parencite{Shahini2019}[\textit{véase Algorithm \ref{A1}}], este algoritmo realiza un ordenamiento conveniente con respecto al uso de la Cancelación Sucesiva de Interferencia (SIC), es decir, se ordenan los dispositivos URLLC y mMTC de acuerdo con su ganancia de canal promedio dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo[\textit{véase Figura~\ref{fig:NOMAgrupoexample}}]. Por lo tanto, un mensaje combinado de los dispositivos mMTC y uRLLC con ruido aditivo es recibido en la BS, la BS emplea la recepción SIC de acuerdo en cómo son ordenados los dispositivos. \newline
 
-Por lo tanto, un mensaje combinado de los dispositivos mMTC y uRLLC con ruido aditivo es recibido en la BS, la BS emplea la recepción SIC de acuerdo en cómo son ordenados los dispositivos. \newline
+La recepción SIC decodifica primero el mensaje del dispositivo con el rango más bajo, por consiguiente los usuarios con los rangos siguientes (o más altos) le introducen interferencia y a su vez el usuario con el rango más alto no experimenta interferencia de ninguna señal. \newline
 
-La recepción SIC decodifica primero el mensaje del dispositivo con el rango más bajo, por consiguiente los usuarios con los rangos siguientes (o más altos) le introducen interferencia y a su vez el usuario con el rango más alto no experimenta interferencia de ninguna señal.\newline
-
-Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de datos más altos, por lo tanto, su potencia de transmisión será mayor que la de los dispositivos mMTC. Es por esto que en cada grupo los dispositivos uRLLC tendrán los rangos más bajos y los dispositivos mMTC los más altos. De hecho, el decodificador SIC en la BS comienza a decodificar con URLLC y, en consecuencia, los dispositivos mMTC no se ven afectados por la alta interferencia de los URLLC [véase Figura NOMAgrupoexample].\newline
-
-
-
+Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de datos más altos, por lo tanto, su potencia de transmisión será mayor que la de los dispositivos mMTC. Es por esto que en cada grupo los dispositivos uRLLC tendrán los rangos más bajos y los dispositivos mMTC los más altos. De hecho, el decodificador SIC en la BS comienza a decodificar con URLLC y, en consecuencia, los dispositivos mMTC no se ven afectados por la alta interferencia de los URLLC, en la Figura~ref{NOMAgrupoexample} se puede observar un ejemplo de un agrupamiento de de 4 usuarios uRLLC y 8 usuarios mMTC en 3 grupos NOMA, es importante notar que si los dispositivos URLLC no se alcanzan a agrupar en el primer rango de los grupos NOMA, estos se seguirán agrupando hasta un segundo rango.\newline
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=1]{Figures/EjemploNOMAclusters}
+    \includegraphics[scale=.8]{Figures/EjemploNOMAclusters}
     \decoRule
     \caption[Ejemplo ilustrativo del ordenamiento de usuarios en los grupos NOMA]{Ejemplo ilustrativo del ordenamiento de 4 usuarios uRLLC y 8 usuarios mMTC en 3 grupos NOMA}
     \label{fig:NOMAgrupoexample}
 \end{figure}
+
 
 
 
@@ -172,26 +165,21 @@ Entonces, siguiendo la definición de variables de los algoritmos en \parencite{
 \end{algorithm}
 
 
+
 \subsection{Algoritmo de Asignacion de Subportadoras}
 
+Este algoritmo garantiza una óptima asignación de portadoras (S), de acuerdo con la maximización de la tasa total de transmisión, para los grupos NOMA parencite{Shahini2019}. En el \textit{Algoritmo \ref{A2}} se plantea la metodología para la asignación de subportadoras a los grupos NOMA. \newline
 
-Este algoritmo garantiza una óptima asignación de portadoras (S), de acuerdo con la maximización de la tasa total de transmisión, para los grupos NOMA. En \parencite{Shahini2019} se plantea la metodología para la asignación de subportadoras a los grupos NOMA. \newline
-
-Cabe destacar que en \parencite{Shahini2019}, el modelo de sistema no es implementado hacia una banda de frecuencias en específico, las ganancias de las subportadoras son estadíticas por el uso de un desvanecimiento tipo Rayleigh dentro de su simulación.\newline
-
-En nuestro caso como se ocupa un modelo de canal que depende de la frecuencia, se tuvo que escoger un PRB de 180 KHz, con un conjunto de subportadoras fijadas en una banda LTE, se escogió la banda de 2GHz, esto por el hecho de que LTE se implementa en bandas de microondas. \newline
-
-Para cada subportadora, el mejor grupo (c*) es el que maximiza el rendimiento total, [\textit{véase Algorithm \ref{A2}}]. Luego, por consecuencia, las velocidades de datos de los dispositivos mMTC y URLLC y sus potencias de transmisión se actualizan. Durante el proceso de asignación de subportadoras, los clústeres asignados se excluyen del conjunto de Cns. \newline
+Después de haberse creado los grupos NOMA con el Algoritmo ref{A1}, se procede a asignar los recursos (subportadoras), para cada subportadora, el mejor grupo $c^*$ es el que maximiza el rendimiento total. Luego, por consecuencia, las velocidades de datos de los dispositivos mMTC y URLLC y sus potencias de transmisión se actualizan. Durante el proceso de asignación de subportadoras, los clústeres asignados se excluyen del conjunto de Cns. \newline
 
 El algoritmo asigna iterativamente las subportadoras disponibles una por una. Dado que cada dispositivo MTC divide por igual su potencia de transmisión máxima entre todas las subportadoras asignados, las potencias de transmisión de los dispositivos MTC a través de las diferentes subportadoras no son óptimas utilizando el algoritmo planteado. \newline
 
-La fase de asignación de recursos termina hasta que las 48 subportadoras se asignan a los 48 clústeres NOMA, esto del hecho que se adapta para una transmisión singletone. \newline
-
+La fase de asignación de recursos termina hasta que las 48 subportadoras se asignan a los 48 clústeres NOMA, es decir una subportadora por grupo, esto del hecho que se adaptó el algoritmo para una transmisión singletone. \newline
 
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.5]{Figures/PD_NOMA_Cluster.png}
+    \includegraphics[scale=.4]{Figures/PD_NOMA_Cluster.png}
     \decoRule
     \caption[Ejemplo ilustrativo de la distribución de potencia para PD-NOMA en \textit{Multitone}]{Ejemplo ilustrativo de la distribución de potencia para PD-NOMA en \textit{Multitone}}
     \label{fig:NOMAgrupoexample}
@@ -264,66 +252,61 @@ La fase de asignación de recursos termina hasta que las 48 subportadoras se asi
     \end{algorithmic}
     \end{algorithm}
 
-\subsection{Escenario de Prueba de NOMA}
+    \subsection{Escenario de Prueba de NOMA}
 
-En este escenario de pruebas, evaluamos el rendimiento del sistema del esquema NB-IoT basado en NOMA propuesto en \parencite{Shahini2019}, el cual implementó dos Algoritmos uno para la formación de grupos y otro para la asignación de recursos. \newline
+    En este escenario de pruebas, se evaluó el rendimiento del sistema del esquema NB-IoT basado en NOMA propuesto en \parencite{Shahini2019}, se programaron en python los dos Algoritmos, el de formación de grupos y el de asignación de recursos. \newline
+    
+    Su modelo de sistema consideró una celda con un radio de 0.5 km donde las ubicaciones de los dispositivos mMTC y URLLC se generaron aleatoriamente (de manera uniforme) dentro de la celda. Además, consideraron un PRB con 48 subportadoras de 3.75 kHz para las transmisiones de enlace ascendente (UL) en un solo intervalo de tiempo (TTI). \newline
+    
+    Modelaron las ganancias de canal de los dispositivos mMTC como $h_{s}^{m} = \gamma d^{ -\beta}_{ m, s}$ (de manera similar $h_{s}^{u}$ para los URLLCs), donde $\gamma$ es un valor aleatorio generado por la PDF de Rayleigh, $d_{-\beta}^{m,s}$ representa la distancia entre el UE y la BS, y $\beta$ es el PLE el cual lo establecieron en $\beta = 3$ y $d$ varía entre 0.1 y 500 m. Se generó el histograma (pdf) de los coeficientes de canal (pérdidas del canal) esperados para el este modelo de sistema, véase Figura~\ref{fig: CoeficientesCanalShahini}, se puede observar que el valor promedio de las ganancias ($h$) es de 74.67 dB. \newline
+    
+    \begin{figure}[th]
+        \centering
+        \includegraphics[scale=.7]{Figures/CoeficientesCanalShahini}
+        \decoRule
+        \caption[]{}
+        \label{fig:CoeficientesCanalShahini}
+    \end{figure}
 
-Consideraron una celda con un radio de 0.5 km donde las ubicaciones de los dispositivos mMTC y URLLC se generaron aleatoriamente (de manera uniforme) dentro de la celda. Además, consideraron un solo PRB con 48 subportadoras de 3.75 kHz para las transmisiones de enlace ascendente (UL) en un intervalo de tiempo (TTI). \newline
-
-Modelaron las ganancias de canal de los dispositivos mMTC como $h_{s}^{m} = \gamma d^{ -\beta}_{ m, s}$ (de manera similar $h_{s}^{u}$ para URLLCs), donde $\gamma$ es un valor aleatorio generado por la PDF de Rayleigh, $d_{-\beta}^{m,s}$ representa la distancia entre el UE y la BS, y $\beta$ es el PLE el cual lo establecieron en $\beta = 3$ y $d$ varía entre 0.1 y 500 m. \newline
-
-También, consideraron el ruido gaussiano blanco aditivo $(AWGN)$ con una densidad espectral de potencia de $-173 dBm / Hz$. Los presupuestos de potencia de transmisión máxima de todos los dispositivos URLLC y mMTC, $Pmax ^{u}$ y $Pmax ^{m}$ ($\forall m \in \mathcal {M} , \forall u \in \mathcal {U}$), se establecen en 23 dBm. Los umbrales de velocidad de datos de los dispositivos mMTC siguen una distribución uniforme, es decir, $R_{th}^{ m} = Uniforme (0.1, 2) kb / s$, $R_{th}^{u} = Uniforme (0.1, 20) kb / s$.\newline
-
-Los autores en \parencite{Shahini2019} proponen la oportunidad de asignar más de una subportadora (\textit{multitone}) por grupo NOMA en transmisiones con anchos de banda UL de 3.75KHz para NB-IoT. Entonces, aunque aún no ha sido especificado la asignación de múltiples subportadoras por cluster en anchos de banda de 3.75KHz para NB-IoT, se tomó la propuesta de \parencite{Shahini2019} en este simulador. \newline
-
-Cabe destacar que no necesariamente deben coincidir nuestros resultados con los del artículo ya que se tomaron algunas consideraciones diferentes a la de ellos. En la implementación del Algoritmo \ref{A2} se percató que los autores \parencite{Shahini2019} siempre buscan alcanzar la tasa objetivo de cada dispositivo uRLLC y mMTC en cada cluster haciendo la agregación de multiples subportadoras a cada clúster, el problema que surge con esto, es que muchas de las veces que se corría la simulación, la mayoría de las subportadoras se asignaban de entre 1 - 3 clusters esto porque parecía difícil cumplir con las tasas de todos los dispositivos en estos grupos, dejando a los otros grupos sin subportadora. La modificación que se implementó es que siempre se logre asignar una subportadora para cada grupo aunque sus dispositivos no alcancen su tasa objetivo, es decir se adoptó un número fijo de grupos NOMA igual a 48. \newline
-
-Se intentó aplicar una transmisión \textit{multitone} de otro modo, analizemos el siguiente ejemplo: \newline
-
-En un TTI, 50 dispositivos desean transmitir, en un modo \textit{singletone} se crearían siempre 48 grupos, entonces, 48 usuarios se agruparían en el primer rango de cada grupo y los otros dos restantes se agruparían en el segundo rango de los dos primeros grupos. En este caso no puede hacerse \textit{multitone} ya que las 48 subportadoras son ocupadas por cada grupo NOMA. \newline
-
-Ahora bien, un modo \textit{multitone} se podría aplicar de la siguiente manera, si se consideran de igual manera 50 dispositivos queriendo transmitir, estos se pueden dividir en dos grupos de 25 dispositivos, es decir crear 25 grupos con su primer y segundo rangos completos, esto con la finalidad de que las 23 subportadoras restantes se agreguen en los grupos donde sus dispositivos aún no alcanzan su tasa objetivo, esto se implementó siguiendo la metodología del $Algorithm$ \ref{A3}. \newline
-
-Al comparar los resultados entre \textit{multitone} y \textit{singletone} en la Figura XXX se puede que el desempeño de ambos es similar, solo un caso, y es cuando el número de dispositivos es menor al número de clusters, es decir, en un modo \textit{singletone}.\newline
-
-\begin{figure}[th]
-    \centering
-    \includegraphics[scale=.7]{Figures/NOMA_results_comparation.png}
-    \decoRule
-    \caption[]{}
-    \label{fig:ResultsNOMA}
-\end{figure}
-
-El impacto de la agregación de las subportadoras solo beneficia a aquellos dispositivos que tienen una buena condición de canal o que están en los últimos rangos (ya que experimentan menos interferencia). \newline
-
-Se estudió de igual manera el impacto de \textit{multitone} con diferentes clases de potencia para los dispositivos MTC con $kmax = 4$ y su desempeño no resultó ser favorable. Igualmente, se evaluó el desempeño con diferentes tamaños de grupos. Por ese motivo esos resultados no se reportaron.\newline
-
-Como se observa, no se logran satisfacer todos los requisitos de velocidad de datos de los dispositivos mMTC y URLLC pero si se incrementa significativamente la conectividad de usuarios en comparación con OFDMA donde solo se puede dar servicio a un usuario por subportadora, lo que son 48 usuarios.\newline
-
-
-\begin{figure}[th]
-    \centering
-    \includegraphics[scale=.7]{Figures/NOMA_sumrate.png}
-    \decoRule
-    \caption[]{}
-    \label{fig:ResultsNOMA}
-\end{figure}
-
-\begin{figure}[th]
-    \centering
-    \includegraphics[scale=.7]{Figures/CoeficientesCanalShahini}
-    \decoRule
-    \caption[]{}
-    \label{fig:CoeficientesCanalShahini}
-\end{figure}
-
-
-
-
-
-\hfill
-
-\break
+    También, consideraron el ruido gaussiano blanco aditivo $(AWGN)$ con una densidad espectral de potencia de $-173 dBm / Hz$. Los presupuestos de potencia de transmisión máxima de todos los dispositivos URLLC y mMTC, $Pmax ^{u}$ y $Pmax ^{m}$ ($\forall m \in \mathcal {M} , \forall u \in \mathcal {U}$), se establecen en 23 dBm. Los umbrales de velocidad de datos de los dispositivos mMTC siguen una distribución uniforme, es decir, $R_{th}^{ m} = Uniforme (0.1, 2) kb / s$, $R_{th}^{u} = Uniforme (0.1, 20) kb / s$.\newline
+    
+    Cabe destacar que los autores en \parencite{Shahini2019} propusieron la oportunidad de asignar más de una subportadora (\textit{multitone}) por grupo NOMA en transmisiones UL con anchos de banda de 3.75KHz en NB-IoT. Entonces, aunque aún no ha sido especificada esta característica, se tomó la propuesta de la asignación de múltiples subportadoras por cluster en anchos de banda de 3.75KHz en este simulador. \newline
+    
+    Es importante enfatizar que no necesariamente deben coincidir nuestros resultados con los del artículo ya que se tomaron algunas consideraciones diferentes a la de ellos. En la implementación del Algoritmo \ref{A2} se percató que los autores \parencite{Shahini2019} siempre buscan alcanzar la tasa objetivo de los dispositivos uRLLC y mMTC en cada grupo, realizando la agregación de multiples subportadoras a cada grupo, el problema que surge con esto es que muchas de las veces que se corría la simulación, la mayoría de las subportadoras se asignaban de entre 1 - 6 clusters esto porque parecía difícil cumplir con las tasas de todos los dispositivos en estos grupos, dejando a los otros grupos sin subportadora. La modificación que se implementó es que siempre se logre asignar una subportadora para cada grupo aunque sus dispositivos no alcancen su tasa objetivo, es decir se adoptó un número fijo de grupos NOMA igual a 48. \newline
+    
+    Por otra parte, se intentó aplicar una transmisión \textit{multitone} de otro modo (esto con fines de una evaluación comparativa con singletone), analizemos el siguiente ejemplo: \newline
+    
+    Si en un TTI, 50 dispositivos desean transmitir, en un modo \textit{singletone} se crearían siempre 48 grupos, entonces, 48 usuarios se agruparían en el primer rango de cada grupo y los otros dos restantes se agruparían en el segundo rango de los dos primeros grupos. En este caso no puede hacerse \textit{multitone} ya que las 48 subportadoras serían ocupadas por cada grupo NOMA. \newline
+    
+    Ahora bien, un modo \textit{multitone} se podría aplicar de la siguiente manera: si se consideran 50 dispositivos queriendo transmitir, estos se pueden dividir en dos grupos de 25 dispositivos, es decir crear 25 grupos con su primer y segundo rangos completos, esto con la finalidad de que las 23 subportadoras restantes se agreguen en los grupos donde sus dispositivos aún no alcanzan su tasa objetivo, esto se implementó siguiendo la metodología del $Algorithm$ \ref{A3}. \newline
+    
+    En la Figura \ref{fig:ResultsNOMA} se muestra una gráfica de la evaluación del número de usuarios que alcanzan su tasa objetivo en un TTI, se compararon los resultados de NOMA del artículo, los resultados NOMA de nuestra simulación (en modo singletone y multitone) y OFDMA. Se puede observar que los resultados del artículo muestran mejor desempeño cuando el núm. de usuarios ronda entre los 50 y 175 usuarios, y cuando llegan a ser 192 usuarios el rendimiento de ambos es muy similar. También se agregó el desempeño de OFDMA donde solo se puede dar servicio a un usuario por subportadora, lo que son 48 usuarios.\newline
+    
+    Con respecto a los resultados entre \textit{multitone} y \textit{singletone} de nuestra simulacion, se puede ver que el desempeño de ambos modos de operación es muy similar en varios puntos. EN particular, en multitone, cuando son 25 usuarios , este logra un mayor rendimiento a comparación que singletone. Esto se debe a que en singletone cuando el número de dispositivos es menor al número de clusters, hay desperdicio de recursos, por ej. con 25 grupos, estos se agrupan a solo 25 subportadoras dejando a las restantes sin utilizar, caso contrario con multitone, donde sí se aprovecharían todas.\newline
+    
+    En la figura \ref{fig:ResultsNOMA} se muestra una gráfica de la evaluación de la tasa suma alcanzable en un TTI, se compararon los resultados de NOMA del artículo y los resultados NOMA de nuestra simulación en modo singletone y multitone. Se puede observar que \textit{multitone} alcanza una mayor tasa-suma en comparación con \textit{singletone}, esto es por lo que se comentó anteriormente, que \textit{multitone} no desperdicia subportadoras por eso alcanza una mayor tasa-suma. Pero que llega a empatar (con\textit{singletone}) cuando son 48 usuarios, esto es porque ya no hay más subportadoras que se puedan agregar.
+    
+    \begin{figure}[th]
+        \centering
+        \includegraphics[scale=.7]{Figures/NOMA_results_comparation.png}
+        \decoRule
+        \caption[]{}
+        \label{fig:ResultsNOMA}
+    \end{figure}
+    
+    El impacto de la agregación de las subportadoras solo beneficia a aquellos dispositivos que tienen una buena condición de canal o que están en los últimos rangos (ya que experimentan menos interferencia), por lo tanto, la compensación de tasa no es equitativa para todos los dispositivos en un grupo NOMA. \newline
+    
+    \begin{figure}[th]
+        \centering
+        \includegraphics[scale=.7]{Figures/NOMA_sumrate.png}
+        \decoRule
+        \caption[]{}
+        \label{fig:ResultsNOMA}
+    \end{figure}
+    
+    \hfill
+    \break
+    
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
