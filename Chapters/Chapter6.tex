@@ -502,7 +502,7 @@ Los resultados de la simulación se presentan en las siguientes gráficas las cu
     \label{fig:histoeventos}
 \end{figure}
 
-La \textit{imagen~\ref{fig:histoeventos}} muestra el histograma de nacimientos a lo largo de toda la simulación, el ancho de las barras es el mismo que $\Delta T$. En este histograma se contempla el tráfico generado por los 7 distintos servicios, de manera que es difícil extraer mucha información. A eso ayudan más las \textit{imagenes \ref{fig:histoeventos1} y \ref{fig:histoeventos2}}, las cuales se concentran en el tráfico de un sólo servicio, es decir de todos los dispositivos de un mismo tipo.\newline
+La \textit{figura~\ref{fig:histoeventos}} muestra el histograma de nacimientos a lo largo de toda la simulación, el ancho de las barras es el mismo que $\Delta T$. En este histograma se contempla el tráfico generado por los 7 distintos servicios, de manera que es difícil extraer mucha información. A eso ayudan más las \textit{figuras \ref{fig:histoeventos1} y \ref{fig:histoeventos2}}, las cuales se concentran en el tráfico de un sólo servicio, es decir de todos los dispositivos de un mismo tipo.\newline
 
 \begin{figure}[th]
     \centering
@@ -512,7 +512,7 @@ La \textit{imagen~\ref{fig:histoeventos}} muestra el histograma de nacimientos a
     \label{fig:histoeventos1}
 \end{figure}
 
-La \textit{imagen~\ref{fig:histoeventos1}} contiene a la izquierda el histograma de  nacimiento de paquetes junto con el nacimiento de las alarmas para los dispositivos  del tipo Otros dispositivos mMTC. Las gráficas a la derecha por otra parte son más fáciles de interpretar y se trata de la distribuciones que sigue el tiempo entre nacimiento de paquetes y de alarmas, las cuales podemos ver  siguen una distribución exponencial a la tasas establecidas como parámetros en la  \textit{tabla~\ref{tab:paramPruebaTrafico}}, justo como se esperaba.\newline
+La \textit{figura~\ref{fig:histoeventos1}} contiene a la izquierda el histograma de  nacimiento de paquetes junto con el nacimiento de las alarmas para los dispositivos  del tipo Otros dispositivos mMTC. Las gráficas a la derecha por otra parte son más fáciles de interpretar y se trata de la distribuciones que sigue el tiempo entre nacimiento de paquetes y de alarmas, las cuales podemos ver  siguen una distribución exponencial a la tasas establecidas como parámetros en la  \textit{tabla~\ref{tab:paramPruebaTrafico}}, justo como se esperaba.\newline
 
 \begin{figure}[th]
     \centering
@@ -522,9 +522,9 @@ La \textit{imagen~\ref{fig:histoeventos1}} contiene a la izquierda el histograma
     \label{fig:histoeventos2}
 \end{figure}
 
-La \textit{imagen~\ref{fig:histoeventos2}} es muy parecida a la \textit{imagen~\ref{fig:histoeventos1}} puesto que presenta las mismas gráficas, los histogramas a la izquierda y las distribuciones al derecha.  Pero en esta ocasión el servicio que observamos es el control de semáforos. Este servició genera  tráfico con el modelo periódico, razón por la cual el tiempo entre nacimiento de paquetes  es constante y no sigue una distribución exponencial.\newline
+La \textit{figura~\ref{fig:histoeventos2}} es muy parecida a la \textit{figura~\ref{fig:histoeventos1}} puesto que presenta las mismas gráficas, los histogramas a la izquierda y las distribuciones al derecha.  Pero en esta ocasión el servicio que observamos es el control de semáforos. Este servició genera  tráfico con el modelo periódico, razón por la cual el tiempo entre nacimiento de paquetes  es constante y no sigue una distribución exponencial.\newline
 
-Finalmente en las \textit{imagenes \ref{fig:propagacion1} y \ref{fig:propagacion2}} se ven los mapas de calor producidos por una alarma que se transmite siguiendo el modelo \textit{Raised-cosine window} y \textit{Decaying exponential} respectivamente. Se puede notar cómo la propagación de la alarma siguiendo el modelo \textit{Raised-cosine window} tiene lugar de manera uniforme por dentro del círculo de radio dth  y con origen en su lugar de su nacimiento, para después desvanecerse y terminar abrúptamente para radios mayores al ancho de la ventana . Por otro lado la alarma que sigue el modelo de propagación exponencial se desvanece desde el origen y su efecto decae según crezca la distancia (de manera exponencial), pero no se detiene abrúptamente.\newline
+Finalmente en las \textit{figuras \ref{fig:propagacion1} y \ref{fig:propagacion2}} se ven los mapas de calor producidos por una alarma que se transmite siguiendo el modelo \textit{Raised-cosine window} y \textit{Decaying exponential} respectivamente. Se puede notar cómo la propagación de la alarma siguiendo el modelo \textit{Raised-cosine window} tiene lugar de manera uniforme por dentro del círculo de radio dth  y con origen en su lugar de su nacimiento, para después desvanecerse y terminar abrúptamente para radios mayores al ancho de la ventana . Por otro lado la alarma que sigue el modelo de propagación exponencial se desvanece desde el origen y su efecto decae según crezca la distancia (de manera exponencial), pero no se detiene abrúptamente.\newline
 
 \begin{figure}[th]
     \centering
@@ -554,7 +554,7 @@ Los resultados que presentan estas imágenes muestran que el algoritmo de genera
 
 \section{Interconexión de los 4 módulos del Simulador}
 
-Los 4 módulos del sistema, cuya implementación se ha discutido en la primera parte de este capítulo son: el despliegue de los dispositivos, el modelo del canal, el esquema de acceso múltiple al medio y los modelos de tráfico IoT. La forma en la que se llevo acabo la interconexión de estos módulos se encuentra descrita en el diagrama de la \textit{imagen~\ref{fig:interconexion4}}. \newline
+Los 4 módulos del sistema, cuya implementación se ha discutido en la primera parte de este capítulo son: el despliegue de los dispositivos, el modelo del canal, el esquema de acceso múltiple al medio y los modelos de tráfico IoT. La forma en la que se llevo acabo la interconexión de estos módulos se encuentra descrita en el diagrama de la \textit{figura~\ref{fig:interconexion4}}. \newline
 
 El simulador se encuentra entonces dividido en 2 programas, el \textbf{Generador de Tráfico IoT} y el \textbf{Simulador de eventos discretos}. La razón por la que se implemento esta arquitectura tiene que ver con los paradigmas que ambos programas siguen, ya que mientras el Generador de tráfico IoT tiene una rutina que realiza avances constantes en el tiempo, el Simulador de eventos discretos avanza en el tiempo apartir de los eventos evaluados. \newline
 
@@ -589,7 +589,7 @@ En las siguientes secciones se aborda con más detalle la implementación de los
 
 \subsection{Interfaz de Usuario}
 
-    La \textit{imagen~\ref{fig:GUITrafico}} es una captura de pantalla de la interfaz de usuario del Generador de Tráfico IoT. En el primer bloque arriba a la izquierda se encuentran parámetros referentes a la distribución de usuarios, como son el radio del área circular en la que se distribuirán y su modelo de distribución. Los siguientes 7 bloques sirven para introducir los parámetros de generación de tráfico para los 7 distintos servicios contemplados. Finalmente se debe indicar hasta abajo: el tiempo de corte de la simulación y el diferencial de tiempo entre ciclos antes de poder iniciar la rutina. El botón de cargar datos abajo a la derecha permite leer los parámetros de un archivo y desplegarlos en las casillas correspondientes, lo que permite guardar una configuración inicial y acelerar la introducción de valores. \newline
+    La \textit{figura~\ref{fig:GUITrafico}} es una captura de pantalla de la interfaz de usuario del Generador de Tráfico IoT. En el primer bloque arriba a la izquierda se encuentran parámetros referentes a la distribución de usuarios, como son el radio del área circular en la que se distribuirán y su modelo de distribución. Los siguientes 7 bloques sirven para introducir los parámetros de generación de tráfico para los 7 distintos servicios contemplados. Finalmente se debe indicar hasta abajo: el tiempo de corte de la simulación y el diferencial de tiempo entre ciclos antes de poder iniciar la rutina. El botón de cargar datos abajo a la derecha permite leer los parámetros de un archivo y desplegarlos en las casillas correspondientes, lo que permite guardar una configuración inicial y acelerar la introducción de valores. \newline
 
     
 \begin{figure}[th]
@@ -604,7 +604,7 @@ Al terminar la rutina se generarán en la misma carpeta del programa 4 archivos 
 
 \subsection{Archivos de Salida}
 
-Los principales archivos que resultan de ejecutar cada rutina del Generador de Tráfico son el archivo de dispositivos y el archivo de eventos. En la \textit{imagen~\ref{fig:archivodispositivos}} se puede ver un ejemplo del primer archivo, en él se guarda: a qué tipo de dispositivo corresponde cada servicio y su posición en el plano. Estos datos son después utilizados en el Simulador de eventos discretos para instanciar nodos del tipo especificado en esa posición y poder adjudicarles sus nacimientos de paquetes. La \textit{imagen~\ref{fig:archivoeventos}} muestra un ejemplo de archivo de eventos, en el cual encontramos los nacimientos de paquetes a lo largo del tiempo de simulación. Desde tál archivo se podrá conocer el dispositivo que originó el paquete, su tamaño y si este surgió apartir de una alarma, todos estos datos importantes para que el simulador pueda procesar los eventos.  \newline
+Los principales archivos que resultan de ejecutar cada rutina del Generador de Tráfico son el archivo de dispositivos y el archivo de eventos. En la \textit{figura~\ref{fig:archivodispositivos}} se puede ver un ejemplo del primer archivo, en él se guarda: a qué tipo de dispositivo corresponde cada servicio y su posición en el plano. Estos datos son después utilizados en el Simulador de eventos discretos para instanciar nodos del tipo especificado en esa posición y poder adjudicarles sus nacimientos de paquetes. La \textit{figura~\ref{fig:archivoeventos}} muestra un ejemplo de archivo de eventos, en el cual encontramos los nacimientos de paquetes a lo largo del tiempo de simulación. Desde tál archivo se podrá conocer el dispositivo que originó el paquete, su tamaño y si este surgió apartir de una alarma, todos estos datos importantes para que el simulador pueda procesar los eventos.  \newline
 
 \begin{figure}[th]
     \centering
@@ -637,7 +637,7 @@ Los últimos dos archivos resultados de cada rutina de este programa son el de c
 
 El Simulador de eventos discretos se trata del otro programa además del Generador de tráfico IoT que conforma al \textbf{Simulador de modelos de tráfico para nodos IoT en una red de 5G}. Fue también programado en python 3.6 y sigue el paradigma de eventos discretos. La Inicialización del simulador se hace a travez de un archivo de configuración .json que permite modificar varios parámetros de la simulación sin necesidad de alterar el código.\newline
 
-La funcionalidad básica del programa se puede observar en el diagrama de la \textit{imagen~\ref{fig:flowdes}}. En el diagrama se puede ver que cuando se toma el siguiente evento en la cola, este es procesado y es aquí donde la mayor parte de la lógica del simulador recide. En la siguiente sección se describen los distintos eventos y cómo son procesados.\newline
+La funcionalidad básica del programa se puede observar en el diagrama de la \textit{figura~\ref{fig:flowdes}}. En el diagrama se puede ver que cuando se toma el siguiente evento en la cola, este es procesado y es aquí donde la mayor parte de la lógica del simulador recide. En la siguiente sección se describen los distintos eventos y cómo son procesados.\newline
 
 \begin{figure}[th]
     \centering
@@ -653,7 +653,7 @@ A la salida del simulador, se tiene un archivo .csv con un historial de \textit{
 
 \subsection{Definición de eventos}
 
-El primero de los posibles eventos que el simulador procesa es el nacimiento de un nuevo paquete. Este evento tiene una correspondencia entera con el archivo de eventos (\textit{imagen~\ref{fig:archivoeventos}}) puesto que cada linea en ese archivo resulta en un evento de nacimiento en este Simulador. La \textit{imagen~\ref{fig:flownacimiento}} muestra la manera en que se procesa el evento, de ella se puede ver que si el dispositivo está disponible para transmitir se calendizará un proceso noma en el que posiblemente se le asignará un conjunto de recursos y comenzará a transmistir su paquete.\newline
+El primero de los posibles eventos que el simulador procesa es el nacimiento de un nuevo paquete. Este evento tiene una correspondencia entera con el archivo de eventos (\textit{figura~\ref{fig:archivoeventos}}) puesto que cada linea en ese archivo resulta en un evento de nacimiento en este Simulador. La \textit{figura~\ref{fig:flownacimiento}} muestra la manera en que se procesa el evento, de ella se puede ver que si el dispositivo está disponible para transmitir se calendizará un proceso noma en el que posiblemente se le asignará un conjunto de recursos y comenzará a transmistir su paquete.\newline
 
 \begin{figure}[th]
     \centering
@@ -663,7 +663,7 @@ El primero de los posibles eventos que el simulador procesa es el nacimiento de 
     \label{fig:flownacimiento}
 \end{figure}
 
-El siguiente posible evento es el de proceso noma. La \textit{imagen~\ref{fig:flownoma}} muestra cómo se procesa en el simulador y se puede observar que se realiza el algoritmo noma (\textit{algoritmo~\ref{A2}}) con los dispositivos que están haciendo uso del canal y aquellos que quieren transmitir. Los dispositivos que tengan la suerte de contar con un cluster (un conjunto de recursos) comenzará a transmitir y creará o actualizará su evento de fin de transmisión, tenindo en cuenta su nueva tasa de transmisión. Aquellos dispositivos que no consigan recursos cancelarán sus eventos de final de transmisión, y sus paquetes serán considerados en la estadística de bloqueos por falta de recursos. \newline
+El siguiente posible evento es el de proceso noma. La \textit{figura~\ref{fig:flownoma}} muestra cómo se procesa en el simulador y se puede observar que se realiza el algoritmo noma (\textit{algoritmo~\ref{A2}}) con los dispositivos que están haciendo uso del canal y aquellos que quieren transmitir. Los dispositivos que tengan la suerte de contar con un cluster (un conjunto de recursos) comenzará a transmitir y creará o actualizará su evento de fin de transmisión, tenindo en cuenta su nueva tasa de transmisión. Aquellos dispositivos que no consigan recursos cancelarán sus eventos de final de transmisión, y sus paquetes serán considerados en la estadística de bloqueos por falta de recursos. \newline
 
 \begin{figure}[th]
     \centering
@@ -679,7 +679,7 @@ La condición de paro del simuador es que se llegue al tiempo límite de la simu
 
 \subsection{Descripción de los \textit{logs} de salida}
 
-La \textit{imagen~\ref{fig:logsdes}} muestra una porción del archivo de \textit{logs} resultante del Simulador de eventos discretos. En él se puede ver cúando y donde ocurrieron los eventos. Por ejemplo en el instante de tiempo 0 hubo el nacimiento de 5 paquetes provenientes de distintos dispositivos, cada uno de estos nacimientos propició que los dispoitivos contendieran por recursos del canal, razón por la cual todos enviaron un preámbulo. Un instante de tiempo después se realiza el proceso noma con estos 5 dispositivos (no había más dispoitivos utilizando el canal) y aquellos dispoitivos que consiguieron recursos comienzan a transmitir. En el evento nuevo cluster cáda dispositivo que consiguió recursos imprime a qué cluster pertenece y a qué tasa transmite. Finalmente el último evento que se ve en la imagen muestrá cuantos dispositivos están transmitiendo a una tasa menor de la que requieren. \newline
+La \textit{figura~\ref{fig:logsdes}} muestra una porción del archivo de \textit{logs} resultante del Simulador de eventos discretos. En él se puede ver cúando y donde ocurrieron los eventos. Por ejemplo en el instante de tiempo 0 hubo el nacimiento de 5 paquetes provenientes de distintos dispositivos, cada uno de estos nacimientos propició que los dispoitivos contendieran por recursos del canal, razón por la cual todos enviaron un preámbulo. Un instante de tiempo después se realiza el proceso noma con estos 5 dispositivos (no había más dispoitivos utilizando el canal) y aquellos dispoitivos que consiguieron recursos comienzan a transmitir. En el evento nuevo cluster cáda dispositivo que consiguió recursos imprime a qué cluster pertenece y a qué tasa transmite. Finalmente el último evento que se ve en la imagen muestrá cuantos dispositivos están transmitiendo a una tasa menor de la que requieren. \newline
 
 \begin{figure}[th]
     \centering
@@ -693,6 +693,8 @@ Con este archivo es posible ver cómo reaccionó el sistema en momentos específ
 
 \subsection{Resultados a la salida del simulador}
 
+A la salida del simulador se obtiene además del archivo con los \textit{logs} de los eventos que se evaluaron: El tráfico ofrecido, el \textit{throughput} del sistema, la probabilidad de bloqueo por negación de servicio (por falta de recursos, que ocurre cuando un dispositivo no alcanza lugar en algún cluster), y el porcentaje de tasas no cubiertas tanto para dispositivos mMTC como para dispositivos URLLC.
+
 \hfill
 
 \break
@@ -703,9 +705,9 @@ Con este archivo es posible ver cómo reaccionó el sistema en momentos específ
 
 \section{Optimización de tiempos de simulación}
 
-La generación de distintas variables aleatorias y el uso de algoritmos de asignación de recursos nos mantuvo en la preocupación de que los tiempos de simulación probablemente llegarán a ser excesivamente largos, por tal se propuso utilizar una técnica de paralelismo en python. Favorablemente esto no sucedió como se esperaba, el tiempo máximo de espera para una simulación rondó los 20 minutos como máximo.\newline
+La generación de distintas variables aleatorias y el uso de algoritmos de asignación de recursos nos obligaron a pensar que los tiempos de simulación probablemente llegarían a ser excesivamente largos, por tal se propuso utilizar una técnica de paralelismo en python.\newline
 
-De cualquier forma, la técnica de paralelización si se implementó pero solamente en la generación de resultados de NOMA para un TTI ya que en esta parte fue que se necesitaron obtener resultados promedio donde cada punto o muestra de los datos necesitaba simularse 1000 repeticiones para así obtener un promedio. En la Figura~\ref{fig:SIMmultiprocessing} se observa la comparación de los tiempos de simulación en un caso normal (solamente 1 núcleo en uso) e implementando la paralelización (uso de todos los núcleos de la PC).\newline
+La técnica de paralelización se implementó pero sólamente en la generación de resultados de NOMA para un TTI ya que en esta parte fue que se necesitaron obtener resultados promedio donde cada punto o muestra de los datos necesitaba simularse 1000 repeticiones para así obtener un promedio. En la Figura~\ref{fig:SIMmultiprocessing} se observa la comparación de los tiempos de simulación en un caso normal (solamente 1 núcleo en uso) e implementando la paralelización (uso de todos los núcleos de la PC).\newline
 
 Cabe mencionar que esta simulación se montó en una PC con procesador Intel(R) Core(TM) i7-7700HQ CPU @2.80 GHz y 16 GB de Memoria RAM.
 
