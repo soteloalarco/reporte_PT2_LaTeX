@@ -145,27 +145,20 @@ Finalmente se consideraron también dispositivos URLLC en el simulador. Esto per
 
 \subsection{Análisis de las tecnologías para IoT y selección de casos considerados}
 
-NB-IoT y LTE-M (\textit{LTE for MTC}) son dos tecnologías LPWA desarrolladas para aplicaciones IoT. Ambas son protocolos para comunicaciones celulares con un ancho de banda bajo que conectan a internet dispositivos que necesitan transmitir pequeñas cantidades de datos, a bajo coste (tanto en lo relativo al hardware como a la suscripción) y con una alta duración de la batería.\newline
+NB-IoT y LTE-M (\textit{LTE for MTC}) son dos tecnologías LPWA desarrolladas para aplicaciones IoT. Ambas tecnologías contemplan comunicaciones celulares con un ancho de banda bajo, y conectan dispositivos que necesitan transmitir pequeñas cantidades de datos, a bajo coste. Debido a que se espera que NB-IoT y LTE-M cumplan con los requerimientos LPWAN del estándar 5G, 3GPP indicó a ITU-R que ambas tecnologías formarán parte estándar. Estas tecnologías coexistirán con los demás componentes de 5G NR que en conjunto brindarán servicio a los distintos casos de uso. Esto convierte a NB-IoT y LTE-M parte de 5G \parencite{EricssonAB2016}. \newline
 
-Para ser muy específicos, LTE-M y NB-IoT son las dos categorías de nivel superior de dispositivos de baja potencia y bajo ancho de banda explicados por el 3GPP. Dentro de cada uno hay subtipos y subtipos, muy necesarios para una mayor especialización en el estándar 3GPP. \newline
+Las redes de largo alcance LPWAN utilizan tecnología capaz de transferir mensajes a decenas de kilómetros de distancia y cubrir una amplia área. Son redes especializadas en interconectar dispositivos en ambientes restringidos, de difícil acceso o que simplemente buscan reducir el consumo de energía en estos, manteniendo un bajo costo y complejidad. Por lo tanto sse concentran en un eficiente consumo de la energía y una cobertura amplia \parencite{NetTrafficIoT}. Esto se acopla bastante bien a lo que requieren los nodos de IoT pertenecientes a las aplicaciones seleccionadas en la sección anterior. \newline
 
-Debido a la espera que NB-IoT y LTE-M cumplan con los requerimientos LPWAN del estándar 5G, 3GPP ha indicado a ITU-R que ambas tecnologías serán propuestas para el estándar, coexistiendo con los demás componentes de la red que en conjunto cumplirán con la QoS de todos los distintos casos de uso de la red 5G. De manera que esto convierte a NB-IoT y LTE-M como parte de 5G \parencite{EricssonAB2016}. \newline
+Las tecnologías que darán servicio a dispositivos IoT son entonces:
 
-Las redes de largo alcance LPWAN utilizan tecnología capaz de transferir mensajes a decenas de kilómetros de distancia y cubrir una amplia área. Son redes especializadas en interconectar dispositivos en ambientes restringidos, de difícil acceso o que simplemente buscan reducir el consumo de energía en estos, manteniendo un bajo costo y complejidad. Por lo tanto concentran en un eficiente consumo de la energía y una cobertura amplia \parencite{NetTrafficIoT}, (que se acopla bastante bien a lo que se requieren los nodos de IoT de las aplicaciones seleccionadas en la sección anterior). \newline
-
-A continuación se presentan las tecnologías de red actuales para nodos de IoT en redes móviles, especificadas por la 3GPP, que formarán parte también de las especificaciones de 5G:
 \begin{enumerate}
     \item \textit{\underbar{eMTC (enhanced Machine Type Communication:)}} Forma parte de la familia LTE-M y es una evolución de LTE optimizada para IoT. Se desarrolló con el objetivo de una eficiencia energética.
     \item \textit{\underbar{NB-IoT (Narrow-Band Internet of Things:)}} fue estandarizado en el \textit{release }13 de 3GPP y se espera que consiga dar servicio a más dispositivos con energía limitada que eMTC. NB-IoT no requiere ningún desarrollo adicional de redes ya que se implementa en funcionalidades ya existentes de LTE \parencite{NetTrafficIoT} y en un futuro será implementado directamente en la banda de frecuencias de 5G NR [\textit{véase Figura~\ref{fig:5gnr}}] \parencite{EricssonAB2016}.
 \end{enumerate}
 
-IoT masivo (mIoT) incluye principalmente áreas amplias que conectan grandes números de dispositivos, objetos y maquinas ya sean estáticos o móviles de baja complejidad y bajo costo con una batería de larga duración y un rendimiento relativamente bajo. \newline
+El soporte para IoT masivo (mIoT) ya se brinda en las redes LTE de hoy con NB-IoT y eMTC. Estas tecnologías se complementan entre sí y existe una tendencia emergente de los proveedores de servicios de implementar una red común que admita ambas tecnologías. eMTC es adecuada para casos de uso que requieren un rendimiento relativamente más alto, una latencia más baja y soporte de voz, mientras que la tecnología NB-IoT es conveniente para casos de uso que toleren demoras pero requieren una cobertura extendida \parencite{EricssonAB2016}. \newline
 
-El soporte para mIoT ya se brinda en las redes LTE de hoy con NB-IoT y eMTC. Estas tecnologías se complementan entre sí y existe una tendencia emergente hacia los proveedores de servicios que implementan una red común que admita ambas tecnologías.\newline
-
-eMTC es adecuado para usar casos que requieren un rendimiento relativamente más alto, una latencia más baja y soporte de voz, mientras que la tecnología NB-IoT es conveniente para casos de uso bajo que toleran demoras pero requieren una cobertura extendida, además de que presenta una mejor cobertura en interiores \parencite{EricssonAB2016}. \newline
-
-Según \parencite{Ericsson2019} a finales de 2024, se espera que NB-IoT y eMTC representen cerca del 45 por ciento de todas las conexiones CIoT (\textit{Celullar IoT}). Además, en el futuro NB-IoT y eMTC podrán coexistir completamente en bandas de espectro con 5G NR, \textit{Figura~\ref{fig:5gnr}}.\newline
+Según \parencite{Ericsson2019} a finales de 2024, se espera que NB-IoT y eMTC representen cerca del 45 por ciento de todas las conexiones CIoT (\textit{Celullar IoT}). Además, en el futuro NB-IoT y eMTC podrán coexistir completamente en las bandas de frecuencia de 5G NR, \textit{Figura~\ref{fig:5gnr}}.\newline
 
 \begin{figure}[th]
 \centering
@@ -175,7 +168,7 @@ Según \parencite{Ericsson2019} a finales de 2024, se espera que NB-IoT y eMTC r
 \label{fig:5gnr}
 \end{figure}
 
-En la \textit{Tabla~\ref{tab:tecIoT}} se pueden encontrar características de estas tecnologías antes descritas, tales como la banda de frecuencia a la que operan y su tasa de transmisión y si bien pareciera que la diferencia entre ambas tecnologías es sutil, en realidad, ésta marca una clara pauta en el servicio que pueden brindar. \newline
+En la \textit{Tabla~\ref{tab:tecIoT}} se pueden encontrar características de estas tecnologías antes descritas, tales como la banda de frecuencia a la que operan y su tasa de transmisión. Si bien pareciera que la diferencia entre ambas tecnologías es sutil, en realidad, esta marca una clara pauta en el servicio que pueden brindar. \newline
 
 \begin{table}
 \caption{Características de las tecnologías de red para IoT en la red celular}
@@ -189,23 +182,21 @@ En la \textit{Tabla~\ref{tab:tecIoT}} se pueden encontrar características de es
 
 \end{table}
 
+En la \textit{Figura~\ref{fig:lpwa}} se puede observar otra comparación entre ambas tecnologías pero en esta ocasión se comparan las aplicaciones a las que  NB-IoT y LTE-M estarían dando servicio preferentemente. A la izquierda de la \textit{Figura~\ref{fig:lpwa}} tenemos las aplicaciones LPWAN a las que NB-IoT daría servicio. Estas aplicacioness coinciden con una menor velocidad de transferencia y mayor tolerancia a la latencia mientras que a la derecha se aglomeran las aplicaciones que requieren una comunicación de baja latencia y una mayor tasa de transmisión. A estas últimas aplicaciones les estaría dando servicio preferentemente la tecnología eMTC. \newline
 
-En la \textit{Figura~\ref{fig:lpwa}} se puede observar otra comparación entre ambas tecnologías pero en esta ocasión desde la perspectiva de las aplicaciones a la que tanto NB-IoT y/o LTE-M estarían dando servicio preferentemente. A la izquierda de la \textit{Figura~\ref{fig:lpwa}} tenemos las aplicaciones LPWAN a las que NB-IoT daría servicio que coinciden con una menor velocidad de transferencia y mayor tolerancia a la latencia mientras que a la derecha se aglomeran las aplicaciones que requieren una comunicación en tiempo real y una mayor tasa de transmisión, aplicaciones a las que estaría dando servicio preferentemente la tecnología eMTC. \newline
-
-Se decidió entonces concentrarse en la tecnología NB-IoT puesto que la totalidad de los servicios que se considerarán en nuestro sistema pueden situarse a la izquierda de la \textit{Figura~\ref{fig:lpwa}}, donde se presenta una mínima movilidad de los dispositivos, por ejemplo el control de la iluminación y el control dinámico de los semáforos podríamos colocarlos en \textit{Iluminación pública y Ciudades inteligentes }respectivamente, mientras que el monitoreo de consumo energético y el de la condición del aire podrían corresponder a \textit{Medidores inteligentes}, de manera que quizá el único servicio que se encontraría en los límites de la tecnología NB-IoT sería el de detección de cortes en el suministro energético, el cual en \parencite{NetTrafficIoT} establece que requeriría de una mínima latencia.\newline
+Se decidió entonces concentrarse en la tecnología NB-IoT puesto que la totalidad de los servicios que se considerarán en nuestro sistema pueden situarse a la izquierda de la \textit{Figura~\ref{fig:lpwa}}, donde se presenta una mínima movilidad de los dispositivos. Por ejemplo el control de la iluminación y el control dinámico de los semáforos podríamos colocarlos en \textit{Iluminación pública y Ciudades inteligentes }respectivamente, mientras que el monitoreo de consumo energético y el de la condición del aire podrían corresponder a \textit{Medidores inteligentes}, de manera que el único servicio que se situa en los límites de la tecnología NB-IoT o del otro lado incluso es el de dispositivos URLLC. Debido a esto se seleccionó a NB-IoT como la tecnología fundamental para diseñar el simulador a la que después se agregaron mejoras propuestas en otros trabajos.  \newline
 
 
 \begin{figure}[th]
 \centering
 \includegraphics[scale=1]{Tecnología líder para el caso de uso LPWA}
 \decoRule
-\caption[Tecnologías líder para el caso de uso LPWA]{Tecnologías líder para el caso de uso LPWA, [Fuente: https://www.iotforall.com/cellular-iot-explained-nb-iot-vs-lte-m/]}
+\caption[Tecnologías líderes para el caso de uso LPWA]{Tecnologías líder para el caso de uso LPWA, [Fuente: https://www.iotforall.com/cellular-iot-explained-nb-iot-vs-lte-m/]}
 \label{fig:lpwa}
 \end{figure}
 
-Con esta argumentación se explica la decisión de haber seleccionado la tecnología de red NB-IoT como de la que partiremos para después agregar mejoras propuestas en otros trabajos y diseñar un modelo de sistema para la simulación en el que con modelos de tráfico adecuados se puedan medir los indicadores clave de rendimiento y determinar si la calidad de servicio esperada para los servicios LPWAN seleccionados se cumplirán en redes celulares 5G.
 
-La \textit{Figura~\ref{fig:5gqos}} muestra las distintas tecnologías con las que estaría trabando 5G NR para poder brindar servicio al amplio espectro de casos de uso de MTC \parencite{5GAmericas}. La tecnología NB-IoT podemos situarla en las frecuencias de operación baja y con un una tolerancia al retardo mayor que la mayoría de las demás tecnologías.
+La \textit{Figura~\ref{fig:5gqos}} muestra las distintas tecnologías con las que 5G NR estaría trabajando para poder brindar servicio al amplio espectro de casos de uso de MTC \parencite{5GAmericas}. La tecnología NB-IoT podemos situarla en las frecuencias de operación baja y con un una tolerancia al retardo mayor que la mayoría de las demás tecnologías.
 
 \begin{figure}[th]
 \centering
