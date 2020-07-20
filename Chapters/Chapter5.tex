@@ -146,17 +146,15 @@ El segundo modelo se trata de uno determinístico, y fué el que se implementó 
 \textit{3 - Detección de terremotos\newline (Ambiente Inteligente) } & \footnotesize{ Media a grande, cientos a miles de dispositivos } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Alta, tolerante al retardo 3seg } & \footnotesize{ mMTC } & \footnotesize{ Activación aleatoria\newline \textbf{UL}: 20 bytes \textit{payload}\newline \textbf{DL}: ACK de 0 bytes } \\ \hline 
 \textit{4 - Monitoreo de contaminación del aire\newline (Ambiente Inteligente) } & \footnotesize{ Media a grande, cientos a miles de dispositivos } & \footnotesize{ Periódico, 1 msj cada 15 min por dispositivo } & \footnotesize{ Media, tolerante al retardo 15seg } & \footnotesize{ mMTC } & \footnotesize{ Activación periódica\newline \textbf{UL}: distribución de Pareto con parámetro alfa = 2.5 y tamaño mínimo de carga útil de la aplicación = 20 bytes con un corte a 200 bytes\newline \textbf{DL}: ACK de 0 bytes 50\% de las veces. } \\ \hline 
 \textit{5 - Control dinámico de semáforos\newline (Transporte y Movilidad Inteligentes) } & \footnotesize{ Grande, miles de dispositivos } & \footnotesize{ Periódico, 1 msj cada min por dispositivo } & \footnotesize{ Alta, tolerante al retardo 5seg } & \footnotesize{ mMTC } & \footnotesize{ Activación periódica\newline \textbf{UL}: distribución de Pareto con parámetro alfa = 2.5 y tamaño mínimo de carga útil de la aplicación = 20 bytes con un corte a 200 bytes\newline \textbf{DL}: ACK de 0 bytes 50\% de las veces. } \\ \hline 
-\textit{6 - Otros Dispositivos mMTC}  & \footnotesize{ Grande, miles de dispositivos } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Alta, tolerante al retardo 5seg } & \footnotesize{ mMTC } & \footnotesize{ Activación aleatoria\newline \textbf{UL}: 20 bytes \textit{payload}\newline \textbf{DL}: ACK de 0 bytes } \\ 
+\textit{6 - Otros Dispositivos mMTC}  & \footnotesize{ Grande, miles de dispositivos } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Alta, tolerante al retardo 5seg } & \footnotesize{ mMTC } & \footnotesize{ Activación aleatoria\newline \textbf{UL}: 20 bytes \textit{payload}\newline \textbf{DL}: ACK de 0 bytes } \\ \hline 
+\textit{7 - Dispositivos URLLC}  & \footnotesize{ Grande, miles de dispositivos } & \footnotesize{ Aleatorio, poco frecuente } & \footnotesize{ Alta, tolerante al retardo 3seg } & \footnotesize{ URLLC } & \footnotesize{ Activación aleatoria\newline \textbf{UL}: 20 bytes \textit{payload}\newline \textbf{DL}: ACK de 0 bytes } \\
 \end{tabular}
 \end{table}
 
-Ahora, en la \textit{Tabla~\ref{tab:AppsSimulacion}} se presentan las aplicaciones mencionadas en la \textit{sección \ref{AppsEscenario}} junto a su caracterización. Adicionalmente se anexó la distinción de las aplicaciones en dos clases distintas, mMTC y URLLC que permitió realizar el algoritmo de agrupaciones NOMA.\newline
+Ahora, en la \textit{Tabla~\ref{tab:AppsSimulacion}} se presentan las aplicaciones mencionadas en la \textit{sección \ref{AppsEscenario}} junto a su caracterización. Adicionalmente se anexó la distinción de las aplicaciones en dos clases distintas, mMTC y URLLC que permitió realizar el algoritmo de agrupaciones NOMA. Se buscó que por cada nodo URLLC hubieran por lo menos 3 nodos mMTC. por lo tanto se utilizaron distintas intensidades de dispositivos que conservaran la relación. \newline
 
-El hecho de considerar dos clases de nodos, es decir, clase 1 y clase 2, se buscará que por cada nodo de clase 2 hayan por lo menos 3 nodos de clase 1. por lo tanto se utilizarán diferentes tasas para la generación de estos nodos. \newline
 
-También, en la \textit{Tabla~\ref{tab:AppsSimulacion}} se puede ver que para las transmisiones de bajada (\textit{downlink}) se componen de simples confirmaciones de llegadas (ACK) de paquetes de longitud 0 (\textit{bytes)}, es la razón por la que se limitó el análisis a un estudio del el enlace de subida (\textit{uplink}). En el enlace de subida, solo se considerará la interferencia intracelular, proveniente de los UE que compartan un mismo grupo (\textit{cluster}).
-
-En la \textit{Figura~\ref{fig:EscenarioMTC}} se plantea una aproximación del escenario mMTC descrito, usando un agrupamiento con cuatro nodos.
+En la \textit{Figura~\ref{fig:EscenarioMTC}} se muestra una aproximación del escenario implementado, usando un agrupamiento con cuatro nodos.
 
 \begin{figure}[th]
 \centering
@@ -168,7 +166,7 @@ En la \textit{Figura~\ref{fig:EscenarioMTC}} se plantea una aproximación del es
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Parámetros generales del simulador}\label{parametrossimulador}
 
-Para planear un modelo de sistema valido y coherente se contempló la incorporación de algunos parámetros generales de diseño revisados en artículos \parencite{Shahini2019}, \parencite{Mostafa2019} y \parencite{Gupta2018}. La \textit{Tabla~\ref{tab:ParametrosGral}} describe el conjunto de parámetros de la simulación.
+Para planear un modelo de sistema válido y coherente se incorporaron algunos parámetros generales de diseño revisados en los artículos \parencite{Shahini2019}, \parencite{Mostafa2019} y \parencite{Gupta2018}. La \textit{Tabla~\ref{tab:ParametrosGral}} describe el conjunto de parámetros de la simulación.
 
 \begin{table}
     \caption{Parámetros de la simulación a nivel de sistema}
@@ -186,7 +184,7 @@ Para planear un modelo de sistema valido y coherente se contempló la incorporac
     \textit{Modelo de canal de propagación `Path Loss' } & \footnotesize{ Modelo CI\newline $L^{CI}_p(f,d)_{\left[dB\right]}=32.4+\ 10\ n{\ log}_{10}\left(\frac{d}{d_0}\right)+{\ 20\ log}_{10}\left(d_0\right)+{20\ log}_{10}\left(f\right)+x^{CI}_{\sigma .}$ } \\ \hline 
     \textit{PLE}  & \footnotesize{ 2 } \\ \hline 
     \textit{$d_0$}  & \footnotesize{ 1m } \\ \hline 
-    \textit{Modelo de Tráfico} & \footnotesize{ CMMPP } \\ \hline 
+    \textit{Modelo de Tráfico} & \footnotesize{ CMMPP y Periódico} \\ \hline 
     \textit{Esquema de acceso múltiple al medio } & \footnotesize{ NOMA usando agrupamientos } \\ \hline 
     \textit{Relación entre dispositivos mMTC y uRLLC } & \footnotesize{ 3 a 1 } \\ \hline 
     \textit{$K_{max}$ } & \footnotesize{ 1, 2, 3 y 4 } \\ \hline 
