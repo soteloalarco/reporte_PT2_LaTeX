@@ -134,8 +134,43 @@ Para finalizar esta sección, se pudo examinar que de la Figura~\ref{fig:NOMA_ev
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{Escenario II} % Simulación completa con tráfico - ROLANDO
-\subsection{Descripción del escenario}%TODO:  CUCHAREAR!
+\section{Escenario II} % Simulación completa con tráfico - 
+
+Este segundo escenario pone a prueba la capacidad que tiene el programa principal \textbf{Simulador de modelos de tráfico para nodos IoT en una red celular de 5G}, de generar resultados que permitan comparar el efecto que tiene establecer distintos parámetros de la red en el \textit{throughput} del sistema y en el porcentaje de dispositivos que cumplen su tasa deseada. \newline
+
+\subsection{Descripción del escenario}
+
+En este este escenario se consideraron únicamente los dispoitivos de tipo URLLC y los llamados Otros dispositivos mMTC, esto para facilitar el cumplir con la relación de 3 a 1 entre ambos tipos de dispositivos. Entonces en el programa \textbf{Generador de tráfico IoT} se generó tráfico dentro de una célula de radio igual a 200 metros. La distribución de usuarios se hizo con la opción PPP y se establecieron las intensidades de la siguiente forma: La intensidad de los dispositivos mMTC se fijo en 0.3 $dispositivos/m^2$ y la de los dispositivos URLLC se fijo en 0.1 $dispositivos/m^2$. La relación de dispositivos se eligió 3 a 1 para después fijar las tasas de nacimientos de paquetes y de alarmas idénticas en ambos tipos de servicios y garantizar que el tráfico ofrecido al sistema conserve esa relación. La tasa de nacimiento de paquetes es $\lambda_{normal} = 0.0167 paquetes/seg.$ y la de nacimiento de alarmas es $\lambda_{alarma} = 0.1 alarmas/seg.$ para ambos tipos de dispositivos. Finalmente, las características en las que se transmiten las alarmas son compartidas también entre ambos dispositivos: $velocidad_{alarma} = 500 m/s$ y modelo de propagación espacial = \textit{Rised-cosine window} con $d_{th}=200$ y $d_{th}=100$. \newline
+
+De manera que virtualmente, ambos tipos los dispositivos generan tráfico del mismo tipo, pero al haber 3 veces más dispositivos mMTC, en los algoritmos NOMA se conservará en promedio esta relación.
+
+El tráfico generado por el \textbf{Generador de tráfico IoT} correspondió a 10 segundos y la iteración seleccionada para ser evaluada por el simulador de eventos discretos contenía 2 alarmas, una para cada tipo de dispositivo, lo que es el promedio esperado, dado que $\lambda_{alarma} = 0.1 alarmas/seg.$. Se seleccionó esta iteración por ser una buena representación de los parámetros ingresados. Finalmente se inició la simulación con 48 dispositivos ya utilizando el canal, 26 dispositivos mMTC y 12 URLLC, esto para que el sistema se encontrara ya en un equilibrio de operación.
+
 \subsection{Parámetros de entrada}
+
+La instancia de tráfico utilizada como entrada del simulador de eventos discretos, comprendía $37541$ dispositivos mMTC y $12611$ dispositivos URLLC. El tiempo de la simulación se fijo en $10$ segundos y las potencias máximas de transmisión en los dispositivos se fijaron como $23dBm$ para los URLLC y $20dBm$ para los mMTC. Finalmente se usó $d0=1m$, $PLE=2.0$ y el bloque de frecuencias que inicia en $2Ghz$. 
+
+Se corrieron 4 rutinas en las que se variaron los valores de $k$ desde $1$ hasta $4$.
+
 \subsection{Resultados obtenidos}
 
+Para \textbf{k=1} se obtuvo:\newline
+Tráfico ofrecido = $48182.749345 bytes/s$ \newline
+Throughput = $31578.300434 bytes/s$ \newline
+Tasas no cubiertas URLLC = $25.670367 porciento$ \newline
+Tasas no cubiertas URLLC = $17.796712 porciento$ \newline
+Para \textbf{k=2} se obtuvo:\newline
+Tráfico ofrecido = $48182.749345 bytes/s$ \newline
+Throughput = $33391.109178 bytes/s$ \newline
+Tasas no cubiertas URLLC = $22.322801 porciento$ \newline
+Tasas no cubiertas URLLC = $11.487657 porciento$ \newline
+Para \textbf{k=3} se obtuvo:\newline
+Tráfico ofrecido = $48182.749345 bytes/s$ \newline
+Throughput = $34457.869843 bytes/s$ \newline
+Tasas no cubiertas URLLC = $24.560205 porciento$ \newline
+Tasas no cubiertas URLLC = $11.829281 porciento$ \newline
+Para \textbf{k=4} se obtuvo:\newline
+Tráfico ofrecido = $48182.749345 bytes/s$ \newline
+Throughput = $35150.834596 bytes/s$ \newline
+Tasas no cubiertas URLLC = $24.184458 porciento$ \newline
+Tasas no cubiertas URLLC = $11.427156 porciento$ \newline
