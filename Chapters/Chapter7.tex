@@ -25,6 +25,15 @@ De acuerdo con los parámetros generales del modelo de sistema [véase Tabla~\re
 \subsection{Resultados obtenidos}
 En primera instancia, en el capítulo anterior se analizó el histograma de las pérdidas de canal, del Modelo CI y también del Modelo de canal que proponen en el artículo \parencite{Shahini2019} , de acuerdo con los histogramas se tiene que el valor promedio de las perdidas [dB] en el Modelo CI son de 80.35 dBs. En contrario con las pérdidas del modelo de canal del artículo, tienen un valor promedio de 74.67 dBs. Es decir nuestro canal tiene 3.7 (5.68 dBs) veces más perdidas en comparación del canal que se implementa en \parencite{Shahini2019}, por lo que se espera que el rendimiento sea menor, esto se puede observar en la Figura\ref{fig: NOMA_comprobacion_CI} donde se observa que en el caso de 192 usuarios el desempeño de la simulación del artículo es aproximadamente 140 usuarios, es decir 73\% de los usuarios alcanzan su tasa objetivo. Por el contrario en la evaluación de la simulación con el modelo de canal CI en NOMA se obtiene que aproximadamente 115 usuarios alcanzan su tasa objetivo, es decir, un 60\%. Hay un impacto del canal CI de aproximadamente 13\% del desempeño en comparación con el canal propuesto en \parencite{Shahini2019}.\newline
 
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/ResultadosNOMA/NOMA_comprobacion_CI.png}
+    \decoRule
+    \caption[]{}
+    \label{fig:NOMA_comprobacion_CI}
+\end{figure}
+
 En la Figura~\ref{ NOMA_evaluacion_K_Pm_Variable_3D } se evaluó el número de usuarios que alcanzaron su tasa objetivo, se realizaron comparaciones con respecto a tres tipos de clase de potencia para los mMTC y un variable número de dispositivos por grupo (kmax).\newline
 
 \begin{figure}[th]
@@ -51,17 +60,23 @@ En las siguientes figuras se evaluo la misma métrica del número de usuarios qu
     \includegraphics[scale=.6]{Figures/ResultadosNOMA/Kmax4_DiferentesPM.png}
     \decoRule
     \caption[]{}
-    \label{fig:}
+    \label{fig:Kmax4_DiferentesPM}
 \end{figure}
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.4]{Figures/ResultadosNOMA/Kmax4_DiferentesPM_Porcentual.png}
+    \includegraphics[scale=.6]{Figures/ResultadosNOMA/Kmax4_DiferentesPM_Porcentual.png}
     \decoRule
     \caption[]{}
-    \label{fig:}
+    \label{fig:Kmax4_DiferentesPM_Porcentual}
 \end{figure}
 
+
+La Figura~\ref{ fig:Kmax4_DiferentesPM} representa graficas de barras acerca de la evaluación del número de usuarios mMTC y uRLLC que alcanzaron su tasa objetivo en un TTI, esto con un Kmax = 4 (192 usuarios como máximo), se realizaron comparaciones con diferentes potencias de los dispositivos mMTC. Igualmente, En la Figura~\ref{ fig:Kmax4_DiferentesPM_Porcentual} se representan graficas de barras acerca de la evaluación del número de usuarios mMTC y uRLLC que alcanzaron su tasa objetivoI, pero esta vez mostrando el porcentaje de dispositivos mMTC y uRLLC que alcanzan su tasa objetivo, de acuerdo a la relación 3 a 1 que se planteó en los parámetros de entrada.\newline
+
+Primeramente, con una potencia de 23dBm para los dispositivos mMTC (color azul), se observa que entre mayor sea el número de usuarios la correlación entre dispositivos uRLLC y mMTC que alcanzan su tasa se va volviendo más desproporcional, esto se puede ver más claramente en la Figura~\ref{ Kmax4_DiferentesPM_Porcentual}. P. Ej., cuando son 25 usuarios la proporción uRLLC y mMTC es de 51\%- 98\% respectivamente y cuando el número de usuarios aumenta a 192 usuarios la proporción uRLLC y mMTC es de 2\%- 80\% respectivamente (esto es con base en la relación 3 a 1). Como se observa la proporción de uRLLC y mMTC que alcanzan su tasa es muy desproporcional o injusta.\newline
+
+En los casos en donde la potencia de los usuarios mMTC es menor a la de los uRLLC, se observa una mejor proporción entre los tipos de dispositivos. P. Ej. Con una potencia de 14dBm para los dispositivos mMTC (color verde) la proporción de dispositivos uRLLC y mMTC es de 51\%- 64\% respectivamente y cuando el número de usuarios aumenta a 192 usuarios la proporción uRLLC y mMTC es de 16\%- 44\% respectivamente (esto es con base en la relación 3 a 1). Como se observa la proporción de uRLLC y mMTC que alcanzan su tasa es más proporcional comparado con el análisis de potencia de los usuarios mMTC en 23 dBm. \newline
 
 
 \begin{figure}[th]
@@ -80,6 +95,15 @@ En las siguientes figuras se evaluo la misma métrica del número de usuarios qu
     \label{fig:}
 \end{figure}
 
+
+Las Figuras~\ref{ fig:Kmax3_DiferentesPM} y ~\ref{ fig:Kmax3_DiferentesPM_Porcentual} representan graficas de barras acerca de la evaluación del número de usuarios mMTC y uRLLC que alcanzaron su tasa objetivo en un TTI, esto con un Kmax = 3 (144 usuarios como máximo), se realizaron comparaciones con diferentes potencias de los dispositivos mMTC.
+
+Primeramente, con una potencia de 23dBm para los dispositivos mMTC (color azul), se observó que de igual manera, entre mayor sea el número de usuarios la correlación entre dispositivos uRLLC y mMTC que alcanzaban su tasa se va volviendo más desproporcional, esto se puede ver más claramente en la Figura~\ref{ Kmax3_DiferentesPM_Porcentual}. P. Ej., cuando son 25 usuarios la proporción uRLLC y mMTC es de 52\%- 98\% respectivamente y cuando el número de usuarios aumenta a 144 usuarios la proporción uRLLC y mMTC es de 14\%- 82\% respectivamente (esto es con base en la relación 3 a 1). Como se observa la proporción de uRLLC y mMTC que alcanzan su tasa sigue siendo desproporcional pero no tanto comparado con kmax = 4, esto es porque menos dispositivos son agrupados.\newline
+
+En los casos en donde la potencia de los usuarios mMTC es menor a la de los uRLLC, se observó de la misma manera que estos obtienen una mejor proporción. P. Ej. Con una potencia de 14dBm para los dispositivos mMTC (color verde) la proporción de dispositivos uRLLC y mMTC es de 51\%- 64\% respectivamente y cuando el número de usuarios aumenta a 144 usuarios, la proporción uRLLC y mMTC es de 35\%- 44\% respectivamente (esto es con base en la relación 3 a 1). Como se observa la proporción de uRLLC y mMTC que alcanzan su tasa es más proporcional comparado con el análisis de potencia de los usuarios mMTC en 23 dBm. \newline
+
+
+
 \begin{figure}[th]
     \centering
     \includegraphics[scale=.5]{Figures/ResultadosNOMA/Kmax2_DiferentesPM.png}
@@ -90,27 +114,20 @@ En las siguientes figuras se evaluo la misma métrica del número de usuarios qu
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.6]{Figures/ResultadosNOMA/Kmax2_DiferentesPM_Porcentual.png}
+    \includegraphics[scale=.5]{Figures/ResultadosNOMA/Kmax2_DiferentesPM_Porcentual.png}
     \decoRule
     \caption[]{}
     \label{fig:}
 \end{figure}
 
+Las Figuras~\ref{ fig:Kmax2_DiferentesPM} y ~\ref{ fig:Kmax2_DiferentesPM_Porcentual} representan graficas de barras acerca de la evaluación del número de usuarios mMTC y uRLLC que alcanzaron su tasa objetivo en un TTI, esto con un Kmax = 2 (96 usuarios como máximo), se realizaron comparaciones con diferentes potencias de los dispositivos mMTC.\newline
 
-\begin{figure}
-    \centering
-    \begin{minipage}{.45\linewidth}
-      \includegraphics[width=\linewidth]{Figures/ResultadosNOMA/Kmax1_DiferentesPM.png}
-      \captionof{figure}{}
-      \label{fig:img1}
-    \end{minipage}
-    \hspace{.0\linewidth}
-    \begin{minipage}{.45\linewidth}
-      \includegraphics[width=\linewidth]{Figures/ResultadosNOMA/Kmax1_DiferentesPM_Porcentual.png}
-      \captionof{figure}{}
-      \label{fig:img2}
-    \end{minipage}
-\end{figure}
+Primeramente, con una potencia de 23dBm para los dispositivos mMTC (color azul), se observó que de igual manera, entre mayor sea el número de usuarios la correlación entre dispositivos uRLLC y mMTC que alcanzaban su tasa se va volviendo más desproporcional, esto se puede ver más claramente en la Figura~\ref{ Kmax2_DiferentesPM_Porcentual}. P. Ej., cuando son 25 usuarios la proporción uRLLC y mMTC es de 52\%- 98\% respectivamente y cuando el número de usuarios aumenta a 96 usuarios la proporción uRLLC y mMTC es de 28\%- 85\% respectivamente (esto es con base en la relación 3 a 1). Como se observa la proporción de uRLLC y mMTC que alcanzan su tasa sigue siendo desproporcional pero no tanto comparado con kmax = 3, esto es porque menos dispositivos son agrupados.\newline
+
+En los casos en donde la potencia de los usuarios mMTC es menor a la de los uRLLC, se observó de la misma manera que estos obtienen una mejor proporción. P. Ej. Con una potencia de 14dBm para los dispositivos mMTC (color verde) la proporción de dispositivos uRLLC y mMTC es de 52\%- 64\% respectivamente y cuando el número de usuarios aumenta a 144 usuarios, la proporción uRLLC y mMTC es de 41\%- 47\% respectivamente (esto es con base en la relación 3 a 1). Como se observa la proporción de uRLLC y mMTC que alcanzan su tasa es más proporcional comparado con el análisis de potencia de los usuarios mMTC en 23 dBm. \newline
+
+
+Para finalizar esta sección, se pudo examinar que de la Figura~\ref{fig:NOMA_evaluacion_K_Pm_Variable_3D}, se concluye que entre menor sea la potencia de los mMTC, el número de dispositivos que alcanzan su tasa objetivo es menor, pero al hacer el análisis de las gráficas de barras enfocadas en cuantos dispositivos uRLLC y mMTC fueron los que alcanzaron su tasa, se observó que la proporción de los tipos de dispositivos mejoraba.
 
 
 %----------------------------------------------------------------------------------------
@@ -118,7 +135,7 @@ En las siguientes figuras se evaluo la misma métrica del número de usuarios qu
 %----------------------------------------------------------------------------------------
 
 \section{Escenario II} % Simulación completa con tráfico - ROLANDO
-\subsection{Descripción del escenario}
+\subsection{Descripción del escenario}%TODO:  CUCHAREAR!
 \subsection{Parámetros de entrada}
 \subsection{Resultados obtenidos}
 
