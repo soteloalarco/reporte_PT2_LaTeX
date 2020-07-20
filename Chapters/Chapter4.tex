@@ -411,19 +411,13 @@ Por último, los autores proponen a $d_{0} = 1 m$ en los modelos de pérdida por
 
 \subsubsection{Acceso Múltiple No Ortogonal (NOMA)}\label{NOMA_C4}
 
-Se estudió en la Sección~\ref{NOMA_C2}, el uso de NOMA soporta eficientemente la conectividad masiva y cumple con los diversos requisitos de QoS de los usuarios. El diseño de NOMA en transmisiones de subida (\textit{uplink}) ha sido propuesto en \parencite{Al-Imari2014} y el diseño óptimo de NOMA en transmisiones de bajada (\textit{downlink}) ha sido propuesto en \parencite{Zhu2019}.\newline
+Se estudió en la Sección~\ref{NOMA_C2}, el uso de NOMA y su soporte eficientemente de conectividad masiva. El diseño de NOMA en transmisiones de subida (\textit{uplink}) ha sido propuesto en \parencite{Al-Imari2014} y el diseño óptimo de NOMA en transmisiones de bajada (\textit{downlink}) ha sido propuesto en \parencite{Zhu2019}.\newline
 
-Por una parte, en \parencite{Zhang2017} se implementó NOMA emparejando selectivamente dos usuarios, es decir, se escogía a un usuario con una condición de canal muy buena (cerca de la BS) y otro con una condición de canal muy pobre (en el borde de la celda). Por otro lado en \parencite{Shahini2019}, se implementó NOMA usando la técnica de agrupamiento de usuarios, para esto, considerando un entorno donde conviven dispositivos mMTC y URLLC (mayores requisitos de velocidad de datos en comparación con los dispositivos mMTC), de igual manera se agrupan a un grupo de usuarios (p.ej., 2, 3 o 4 usuarios) de diferente tipo (mMTC y URLLC), se ordenan convenientemente para implementar SIC.\newline
+En \parencite{Zhang2017} se implementó NOMA emparejando selectivamente dos usuarios, es decir, se escogía a un usuario con una condición de canal muy buena (cerca de la BS) y otro con una condición de canal muy pobre (en el borde de la celda). Por otro lado en \parencite{Shahini2019}, se implementó NOMA usando la técnica de agrupamiento de usuarios, considerando un entorno donde conviven dispositivos mMTC y URLLC (estos tienen mayores requisitos de tasa en comparación con los dispositivos mMTC), de igual manera se agrupan con otros usuarios (p.ej., 2, 3 o 4 usuarios) de diferente tipo (mMTC y URLLC) y se ordenan convenientemente para implementar SIC.\newline
 
-Entonces, como vemos hay dos maneras de implementar NOMA. Las dos son propuestas que han sido estudiadas para para cubrir los requerimientos de mMTC ya que NB-IoT no es capaz de proveer conectividad a una cantidad masiva de dispositivos IoT como se espera en el futuro.\newline
+NB-IoT no es capaz de proveer conectividad a una cantidad masiva de dispositivos IoT como se espera en el futuro, así para el diseño se consideró la metodologia en \parencite{Shahini2019}, donde los dispositivos activos de URLLC y mMTC comparten un PRB para la transmisión de datos en el enlace ascendente. El ancho de banda disponible se divide en un conjunto de frecuencias (subcanales) $S$. De hecho, el ancho de banda del sistema se puede dividir por igual en 48 o 12 subportadoras en los sistemas NB-IoT. La relación de la distribución de dispositivos mMTC con los URLLC se fijó a 3 a 1. Todo esto con base en las consideraciones del modelo de sistema en \parencite{Shahini2019}.\newline
 
-En nuestro simulador se implementará la metodologia en \parencite{Shahini2019}, donde los dispositivos activos de URLLC y mMTC comparten un PRB para la transmisión de datos de enlace ascendente en un intervalo de tiempo de transmisión (TTI). Se supone que el ancho de banda disponible de un PRB se divide en un conjunto de frecuencias de subcanal S y el ancho de banda de cada subcanal es W . De hecho, el ancho de banda del sistema se puede dividir por igual en 48 o 12 subportadoras en los sistemas NB-IoT.\newline
-
-En particular, el espacio de subportadora de 3.75 kHz puede ser soportado para transmisiones de enlace ascendente [9] . Por lo tanto, en este artículo, consideraron un PRB con 48 subportadoras de 3.75 kHz para las transmisiones de datos de enlace ascendente. Tenga en cuenta que, a diferencia del FDMA de una sola portadora (SC-FDMA) que se usa actualmente para las transmisiones de enlace ascendente en NB-IoT, este modelo de sistema puede admitir más dispositivos conectados al asignar múltiples dispositivos a cada subportadora. Por lo tanto, los dispositivos MTC se deben clasificar en diferentes grupos para compartir los mismos recursos espectrales asignados a su grupo.\newline
-
-Por lo tanto, en el simulador se propone implementar NOMA usando la técnica de agrupamiento de usuarios, en nuestro caso como consideraremos dos tipos de clase de sensores NB-IoT (mMTC) clase I y NB-IoT (uRLLC) clase II (con mayores requisitos de velocidad de datos en comparación con clase I). La relación de la distribución de dispositivos clase 1 con los de clase 2 será de 3 a 1. Con el fin de que por lo menos se un dispositivo de clase II se agrupe con tres de clase I. Todo esto con base en las consideraciones del modelo de sistema en \parencite{Shahini2019}.\newline
-
-De acuerdo con \parencite{Shahini2019}, su modelo de sistema considera lo siguiente:\label{VariablesSHahini}
+En \parencite{Shahini2019}, se tiene en cuenta lo siguiente:\label{VariablesSHahini}
 
 \begin{itemize}
     \item U: Lista de dispositivos uRLLC
@@ -446,13 +440,13 @@ De acuerdo con \parencite{Shahini2019}, su modelo de sistema considera lo siguie
     \item $\alpha$, $\gamma$, $\beta$ son variables binarias que indican asignaciones.
 \end{itemize}
 
-La tasa de datos alcanzable de un dispositivo $m$ (mMTC) en términos de la tasa agregada sobre las subportadoras asignadas se puede expresar como \parencite{Shahini2019}:
+La tasa de datos alcanzable por un dispositivo $m$ (mMTC) en términos de la tasa agregada sobre las subportadoras asignadas se puede expresar como \parencite{Shahini2019}:
 \begin{equation}
 {R_{m}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\alpha _{m}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {M}\backslash m} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}} } }}} }\right)
 \label{eqn:Rm}
 \end{equation}
 
-Del mismo modo, la Tasa de datos alcanzable de un dispositivo $u$ (URLLC) puede determinarse mediante el teorema de Shannon-Hartley. Hay que tomar en cuenta que los rangos de URLLC siempre son mayores que los de mMTC en cada clúster NOMA. Por lo tanto, reciben interferencia de todos los miembros del clúster mMTC, así como de los miembros del clúster URLLC con rangos más altos. 
+Del mismo modo, la Tasa de datos alcanzable por un dispositivo $u$ (URLLC) puede determinarse mediante el teorema de Shannon-Hartley. Hay que tomar en cuenta que los rangos de URLLC siempre son mayores que los de mMTC en cada clúster NOMA. Por lo tanto, reciben interferencia de todos los miembros del clúster mMTC, así como de los miembros del clúster URLLC con rangos más altos. 
 Por lo tanto, la tasa de datos alcanzable de un dispositivo $u$ URLLC sobre las subportadoras asignadas es \parencite{Shahini2019}:
 \begin{equation}
 {R_{u}}=\sum \limits _{c \in \mathcal {C}} {\sum \limits _{k \in \mathcal {K}} {\beta _{u}^{c,k}\sum \limits _{s \in \mathcal {S}} {{\gamma ^{s,c}}W} } } \times {\log _{2}}\left ({{1 + \frac {{{{\left |{ {h_{u}^{s}} }\right |}^{2}}p_{u}^{s}}}{{N_{0}W + \sum \limits _{d \in \mathcal {U}\backslash u} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\beta _{d}^{c,h}{{\left |{ {h_{d}^{s}} }\right |}^{2}}p_{d}^{s}}} \sum \limits _{m \in \mathcal {M}} {\sum \limits _{h = k + 1}^{{k_{\max }}} {\alpha _{d}^{c,h}{{\left |{ {h_{m}^{s}} }\right |}^{2}}p_{m}^{s}} } }}} }\right)
@@ -461,7 +455,7 @@ Por lo tanto, la tasa de datos alcanzable de un dispositivo $u$ URLLC sobre las 
 
 \subsection{MODELOS DE TRÁFICO}
 
-Los modelos de tráfico en comunicaciones móviles buscan acercarse, lo más posible a cómo transmiten datos o realizan peticiones de acceso los dispositivos que intentan modelar. Estos modelos de tráfico pueden clasificarse en modelos de tráfico\textbf{ }agregado y modelos de tráfico fuente \parencite{Laner2013}, el tráfico agregado simula un flujo de tráfico que se agrupa para recibir un tratamiento común, mientras que en los modelos de tráfico fuente es justamente cada una de las fuentes generadoras del tráfico la que se simula y frecuentemente se hace acompañada de una cadena de Markov que intenta representar los distintos estados del dispositivo fuente y la probabilidad de transición entre ellos.\newline
+Los modelos de tráfico en comunicaciones móviles buscan acercarse, lo más posible a cómo transmiten datos o realizan peticiones de acceso los dispositivos que intentan modelar. Estos modelos de tráfico pueden clasificarse en modelos de tráfico\textbf{agregado } y modelos de tráfico \textbf{fuente} \parencite{Laner2013}. El tráfico agregado simula un flujo de tráfico que se agrupa para recibir un tratamiento común, mientras que en los modelos de tráfico fuente es justamente cada una de las fuentes generadoras del tráfico la que se simula y frecuentemente se hace acompañada de una cadena de Markov que intenta representar los distintos estados del dispositivo fuente y la probabilidad de transición entre ellos.\newline
 
 Sin importar el modelo de tráfico a utilizar, en \parencite{Laner2013} se señala que los modelos de tráfico que pretendan simular el comportamiento de dispositivos de MTC (\textit{Machine Type Communications}) deben:
 
@@ -470,7 +464,7 @@ Sin importar el modelo de tráfico a utilizar, en \parencite{Laner2013} se seña
 \item  Permitir la simulación concurrente de una cantidad masiva de dispositivos con su potencial reacción síncrona a un evento.
 \end{itemize}
 
-La importancia de la elección correcta de un modelo de tráfico para los dispositivos IoT recae en un diseño correcto y la optimización futura de la red y el cumplimiento de su respectiva QoS sin comprometer los servicios convencionales de datos, voz y video. Sin embargo, antes de elegir un modelo es importante conocer las propiedades del tráfico máquina a máquina (M2M, \textit{Machine to Machine}), el cual se considera una forma de transmisión de datos que no requiere necesariamente de la interacción humana (ETSI, 2010) y corresponde justamente al tráfico de los nodos IoT, de \parencite{Laner2013} tenemos:
+Antes de elegir un modelo es importante conocer las propiedades del tráfico máquina a máquina (M2M, \textit{Machine to Machine}), el cual se considera una forma de transmisión de datos que no requiere necesariamente de la interacción humana (ETSI, 2010) y corresponde justamente al tráfico de los nodos IoT, de \parencite{Laner2013} tenemos:
 
 \begin{itemize}
 \item  Cantidad masiva de dispositivos
@@ -490,7 +484,7 @@ Además, se hace  la distinción de 3 patrones de tráfico que pueden presentars
     \item \underbar{Intercambio de carga útil (PE, }\textit{\underbar{Payload Exchange}}\underbar{):} este último tipo de tráfico ocurre después de una transmisión previa (PU o ED). Comprende todos los casos en los que es necesario un mayor intercambio de datos entre el dispositivo que envía y su servidor, este tráfico se espera sea predominantemente de subida y puede ser de tamaño constante o variable según la aplicación.
 \end{enumerate}
 
-Las aplicaciones en el mundo real que implementan dispositivos de IoT serán casi siempre una combinación de estos tipos de tráfico más un estado de reposo o de ahorro de batería.
+Las aplicaciones en el mundo real que brindan servico a dispositivos de IoT generarán casi siempre tráfico en una combinación de estos tipos, más un estado de reposo o de ahorro de batería.
 \begin{figure}[th]
 \centering
 \includegraphics[scale=1]{Figures/Estructura de los estados principales del tráfico M2M}
@@ -499,7 +493,7 @@ Las aplicaciones en el mundo real que implementan dispositivos de IoT serán cas
 \label{fig:}
 \end{figure}
 
-Ahora se presentan los modelos de tráfico más recurrentes en la literatura para la simulación de comunicaciones M2M.
+Ahora se presentan los modelos de tráfico más recurrentes para la simulación de comunicaciones M2M.
 
 \subsubsection{Modelos de tráfico agregado}
 
@@ -526,7 +520,7 @@ La principal ventaja de los modelos de tráfico agregado es su fácil implementa
 
 \subsubsection{Modelos de tráfico fuente}
 
-Los modelos de tráfico fuente de dispositivos MTC, modelan justamente el tráfico que genera cada uno de los dispositivos. Este tipo de modelado es más preciso que el de tráfico agregado ya que modela el comportamiento de cada fuente, sin embargo, puede fácilmente volverse muy complejo cuando se agrega una gran cantidad de dispositivos (fuentes). A continuación se presentan y analizan dos modelos de tráfico fuente.
+Los modelos de tráfico fuente, modelan justamente el tráfico que genera cada uno de los dispositivos. Este tipo de modelado es más preciso que el de tráfico agregado ya que modela el comportamiento de cada nodo, sin embargo, puede fácilmente volverse muy complejo cuando se agrega una gran cantidad de dispositivos (fuentes) y comportamientos. A continuación se presentan y analizan dos modelos de tráfico fuente.
 
 \begin{itemize}
 \item  \textit{Modelo 3:} Modelo de fuente de \textit{Semi-Markov} (\textit{Semi-Markov Models, SMM)}
@@ -543,13 +537,13 @@ La probabilidad de transición entre el mismo estado es 0, además los tiempos d
 \label{fig:SMM}
 \end{figure}
 
-La principal ventaja del modelo de tráfico fuente SMM es que permitiría una descripción más detallada del comportamiento de los dispositivos IoT de manera individual, sin embargo no es capaz de capturar la relación que existe entre dos dispositivos cercanos que pudieran tener una cierta sincronía entre ellos, otra desventaja es que la complejidad del sistema aumenta considerablemente entre más dispositivos se simulan a diferencia de los modelos de tráfico agregado.
+La principal ventaja del modelo de tráfico fuente SMM es que permitiría una descripción más detallada del comportamiento de los dispositivos IoT de manera individual, sin embargo no es capaz de capturar la relación que existe entre dos dispositivos cercanos que pudieran tener una cierta sincronía. Otra desventaja es que la complejidad del sistema aumenta considerablemente entre más dispositivos se simulan a diferencia de los modelos de tráfico agregado.
 
 \item  \textit{Modelo 4:} Modelo de fuente de Procesos de Poisson emparejados Markov-modulados (CMMPP\textit{, Coupled Markov Modulated Poisson Process)}
 
-En el modelo de tráfico CMPP cada dispositivo MTC es representado como una entidad por separado en el que a diferencia del modelo SMM sí puede representarse una sincronización espacial y temporal entre dispositivos similares. La clave en el diseño del modelo CMMPP se presenta en encontrar un balance entre el emparejamiento entre distintos dispositivos y una complejidad tolerable del sistema cuando se tiene una gran cantidad de dispositivos \parencite{Gupta2018}.
+En el modelo de tráfico CMMPP cada dispositivo MTC es representado como una entidad por separado y a diferencia del modelo SMM sí puede representarse una sincronización espacial y temporal entre dispositivos similares. La clave en el diseño del modelo CMMPP se presenta en encontrar un balance entre el emparejamiento entre distintos dispositivos y una complejidad tolerable del sistema cuando se tiene una gran cantidad de dispositivos \parencite{Gupta2018}.
 
-Los procesos de Poisson Modulados con Markov (\textit{Markov modulated Poisson processes, MMPP}) consisten en procesos de Poisson que son modulados por la tasa $\lambda_{i[t]}$, que viene determinada por el estado de una cadena de Markov $sn[t]$, este principio se ve presentado en la \textit{Figura~\ref{fig:CMMPP}} donde \textit{p${}_{i,j}$}${}_{\ }$son las probabilidades de transición entre los estados de la cadena. En este modelo cada dispositivo \textit{n} del total\textit{ N} se encuentra representado por una cadena de Markov y un correspondiente proceso de Poisson. Debido a que existe una alta correlación en el cambio de estados de distintos dispositivos, tanto en el espacio como en el tiempo, es necesario realizar un emparejamiento. En los modelos genéricos, el emparejamiento se realiza introduciendo enlaces bidireccionales entre los dispositivos, pero esto sería sin lugar a dudas muy complejo de simular, de manera que en \parencite{Gupta2018} se propone un proceso de fondo actuando como \textit{maestro} el cual modula todos los dispositivos.
+Los procesos de Poisson Modulados con Markov (\textit{Markov modulated Poisson processes, MMPP}) consisten en procesos de Poisson que son modulados por la tasa $\lambda_{i[t]}$, que viene determinada por el estado de una cadena de Markov $sn[t]$, este principio se ve presentado en la \textit{Figura~\ref{fig:CMMPP}} donde \textit{p${}_{i,j}$}${}_{\ }$son las probabilidades de transición entre los estados de la cadena. En este modelo cada dispositivo \textit{n} del total\textit{ N} se encuentra representado por una cadena de Markov y un correspondiente proceso de Poisson. Debido a que existe una alta correlación en el cambio de estados de distintos dispositivos, tanto en el espacio como en el tiempo, es necesario realizar un emparejamiento. En los modelos genéricos, el emparejamiento se realiza introduciendo enlaces bidireccionales entre los dispositivos, pero esto sería sin lugar a dudas muy complejo de simular, de manera que en \parencite{Gupta2018} se propone un proceso de fondo actuando como \textit{maestro} el cual modula todos los dispositivos del mismo tipo.
 
 \begin{figure}[th]
 \centering
@@ -580,7 +574,7 @@ La principal ventaja como ya se mencionó del tráfico fuente frente al tráfico
 \end{tabular}
 \end{table}
 
-Como puede observarse en la \textit{Tabla~\ref{tab:Traficos}}, las ventajas que trae consigo la utilización de un modelo de tráfico como el CMMPP son bastante convenientes para modelar el tráfico de dispositivos mIoT, pues este es capaz de simular la relación espacial y temporal que existiría entre los nodos. Si se regresa a la \textit{Tabla~\ref{tab:appssim}} en la que se presentan los servicios que se simularan, se encuentra que servicios como el monitoreo de la condición del aire en la ciudad, la detección de terremotos, la manipulación de la iluminación y demás tendrá un comportamiento similar en un espacio confinado y para poder hacer hincapié en la importancia del diseño de la red para a la hora de cumplir con la QoS esperada, es necesario que se implemente la posibilidad de recibir una gran cantidad de dispositivos en el caso de uso mMTC, los cuales estarían tratando de acceder a los recursos del sistema simultáneamente. De manera que el modelo CMMPP es el seleccionado para la simulación de este sistema complementándolo con un modelo determinístico para las aplicaciones que sólo producen tráfico periódico.\newline
+Como puede observarse en la \textit{Tabla~\ref{tab:Traficos}}, las ventajas que trae consigo la utilización de un modelo de tráfico como el CMMPP son bastante convenientes generar tráfico de dispositivos mIoT, pues este es capaz de simular la relación espacial y temporal que existiría entre los nodos. Si se regresa a la \textit{Tabla~\ref{tab:appssim}} en la que se presentan los servicios que se simularan, se encuentra que servicios como el monitoreo de la condición del aire en la ciudad, la detección de terremotos, la manipulación de la iluminación y demás tendrá un comportamiento similar en un espacio confinado y para poder hacer hincapié en la importancia del diseño de la red para a la hora de cumplir con la QoS esperada, es necesario que se implemente la posibilidad de recibir una gran cantidad de dispositivos en el caso de uso mMTC, los cuales estarían tratando de acceder a los recursos del sistema simultáneamente. De manera que el modelo CMMPP se seleccionó para la simulación de este sistema, complementándolo con un modelo determinístico para las aplicaciones que sólo producen tráfico periódico.\newline
 
 Una explicación resumida del modelado  de tráfico fuente CMMPP se realiza a continuación \parencite{Gupta2018}:
 
