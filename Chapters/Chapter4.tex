@@ -23,11 +23,11 @@ El Internet de las cosas (IoT) tendrá un importante papel en las redes 5G. La a
 
 Se tomó como referencia el trabajo realizado en \parencite{NetTrafficIoT} como una guía de los servicios que se espera los nodos IoT brinden en un futuro próximo. Los servicios se presentan en 8 dominios: edificios inteligentes y vivienda (\textit{Smart buildings and living}), cuidado de la salud inteligente (\textit{Smart healthcare}), medio ambiente inteligente (\textit{Smart environment}), ciudades inteligentes (\textit{Smart city}), energía inteligente (\textit{Smart energy}), transporte y movilidad  inteligentes (\textit{Smart transport and mobility}), fabricación y venta inteligentes (\textit{Smart manufacturing and retail}), agricultura inteligente (\textit{Smart agriculture}). Para cada uno de los dominios se especifican aplicaciones típicas que se podrían encontrar, sus características de tráfico y las tecnologías de red más adecuadas para darles servicio entre otras cosas.\newline
 
-La primera parte del análisis correspondió a la selección de los dominios que resultasen adecuados para el sistema que se diseña, es decir los dominios cuya red que les brindará servicio primordialmente será una red de área amplia de bajo consumo (LPWAN, \textit{Low Power Wide Area Network}). Esto se debe a que algunas de las aplicaciones en los dominios antes mencionados están pensadas para redes de distintas características en las que tecnologías como RFID, \textit{Bluetooth }o \textit{ZigBee }podrían ser una mejor solución. A continuación se presenta la caracterización de cada uno de los dominios que en \parencite{NetTrafficIoT} se consideran viables para redes LPWAN.
+La primera parte del análisis correspondió a la selección de los dominios que resultasen adecuados para el sistema que se diseñó. Estos fueron aquellos cuya red que les brindará servicio primordialmente es una red de área amplia de bajo consumo (LPWAN, \textit{Low Power Wide Area Network}). Por el contrario, algunas de las aplicaciones en los dominios antes mencionados están pensadas para redes con tecnologías como RFID, \textit{Bluetooth }o \textit{ZigBee }. A continuación se presenta la caracterización de cada uno de los dominios que en \parencite{NetTrafficIoT} se consideran viables para redes LPWAN.
 
-\subsection{Ciudades inteligentes \textit{(Smart City)}:}
+\subsection{Ciudades inteligentes \textit{(Smart Cities)}:}
 
-Con el rápido incremento de la población y su concentración en poblaciones urbanas, se ha convertido en una prioridad la reducción del uso de recursos públicos, así como la reducción de costos de operación del día a día de una ciudad, ambas de la manera más óptima posible. Las aplicaciones en este dominio tratan justamente de abordar estos problemas y los servicios que brindan son bastante variados, los ejemplos van desde el control de luminarias hasta el manejo de desechos, estos y otros  pueden encontrarse en la \textit{Tabla~\ref{tab:smartcity}}, acompañados de más información tal como la caracterización de su tráfico y su demanda de QoS.
+Con la rápida concentración de la poblacion en zonas urbanas, se ha convertido en una prioridad la reducción del uso de recursos públicos, así como la reducción de costos de operación del día a día de una ciudad. Las aplicaciones en este dominio tratan justamente de abordar estos problemas y los servicios que brindan son bastante variados. Los ejemplos van desde el control de luminarias hasta el manejo de desechos, estos y otros  pueden encontrarse en la \textit{Tabla~\ref{tab:smartcity}}, acompañados de más información tal como la caracterización de su tráfico y su demanda de QoS.
 
 \begin{table}
 \caption{Características de las aplicaciones de Ciudades Inteligentes}
@@ -47,7 +47,7 @@ Con el rápido incremento de la población y su concentración en poblaciones ur
 
 \subsection{Ambiente inteligente \textit{(Smart Environment)}}
 
-Este dominio comprende las aplicaciones que se encargan de monitorear el ambiente a nuestro alrededor y lo que ocurre en él, y aunque no se pueda controlar la fuerza de la naturaleza, con una correcta observación se pueden detectar distintos fenómenos naturales y reaccionar a tiempo ante ellos. En el caso especial de eventos que podrían ocasionar una catástrofe, es importante reaccionar lo más rápido posible por lo que el brindar el servicio a algunas de las aplicaciones de este dominio se volverá crítico. En la \textit{Tabla~\ref{tab:smartenv}} podemos encontrar la caracterización de las aplicaciones consideradas en \parencite{NetTrafficIoT} para \textit{Ambiente Inteligente.}
+Este dominio comprende las aplicaciones que se encargan de monitorear lo que ocurre a nuestro alrededor. Una de las ventajas de monitorear el ambiente es el poder reaccionar con antelación a eventos que de otra forma causarían muchos daños. En la \textit{Tabla~\ref{tab:smartenv}} podemos encontrar la caracterización de las aplicaciones consideradas en \parencite{NetTrafficIoT} para Ambiente Inteligente.
 
 \begin{table}
 \caption{Características de las aplicaciones de Ambiente Inteligente}
@@ -67,9 +67,9 @@ Este dominio comprende las aplicaciones que se encargan de monitorear el ambient
 
 \subsection{Energía inteligente \textit{(Smart Energy)}:}
 
-El dominio de Energía Inteligente\textit{Smart Energy }se refiere a las mejoras en la distribución y el consumo de fuentes de energía o recursos necesarios, tales como la electricidad, el gas y el agua. Aunque el foco de atención está en la electricidad ya que existe una tendencia más marcada hacia su ahorro y la utilización de fuentes renovables. \newline
+El dominio de Energía Inteligente (\textit{Smart Energy}) contempla mejoras en la distribución y el consumo de fuentes de energía o recursos vitales, tales como la electricidad, el gas y el agua. Actualmente el foco de atención está en la electricidad ya que existe una tendencia más marcada hacia su ahorro y la utilización de fuentes renovables. \newline
 
-Los nodos de IoT para aplicaciones de este dominio podrían monitorear las condiciones cambiantes de la red, para posteriormente generar una reconfiguración apropiada del servicio. En la \textit{Tabla~\ref{tab:smartenergy}} podemos encontrar la caracterización descrita en \parencite{NetTrafficIoT} para distintas aplicaciones de Energía Inteligente.
+Los nodos de IoT que operen dentro de este dominio podrían monitorear las condiciones cambiantes de la red eléctrica, para posteriormente generar una reconfiguración apropiada del servicio. En la \textit{Tabla~\ref{tab:smartenergy}} podemos encontrar la caracterización descrita en \parencite{NetTrafficIoT} para distintas aplicaciones de Energía Inteligente.
 
 \begin{table}
 \caption{Características de las aplicaciones de Energía Inteligente}
@@ -85,9 +85,9 @@ Los nodos de IoT para aplicaciones de este dominio podrían monitorear las condi
 
 \subsection{Transporte y movilidad inteligentes \textit{(Smart Transport and Mobility)}:}
 
-Tanto el crecimiento urbano como el crecimiento de las fuentes de transporte de pasajeros y de mercancías, con más frecuentes congestiones viales y una mayor movilidad requerida, han creado una demanda de administrar el transporte y la movilidad de una manera más inteligente. \newline
+Tanto el crecimiento urbano como el crecimiento de las fuentes de transporte de pasajeros y de mercancías, han creado la necesidad de administrar más eficientemente la movilidad en ciudades y carreteras. \newline
 
-El objetivo de aplicaciones IoT en el dominio de Transporte y movilidad inteligentes\textit{ (Smart Transport and Mobility)}es ayudar a resolver el problema de movilidad tanto de pasajeros como de mercancías, haciéndolo más rápido, más barato y más seguro. En la \textit{Tabla~\ref{tab:smartrans}} se encuentra la caracterización presentada en \parencite{NetTrafficIoT} para distintas aplicaciones de este dominio.
+El objetivo de aplicaciones IoT en el dominio de Transporte y movilidad inteligentes (\textit{ (Smart Transport and Mobility)}) es ayudar a resolver el problema de movilidad tanto de pasajeros como de mercancías, haciéndolo más rápido, más barato y más seguro. En la \textit{Tabla~\ref{tab:smartrans}} se encuentra la caracterización presentada en \parencite{NetTrafficIoT} para distintas aplicaciones de este dominio.
 
 \begin{table}
 \caption{Características de las aplicaciones de Transporte y Movilidad inteligentes}
