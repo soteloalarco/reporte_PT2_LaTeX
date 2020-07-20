@@ -4,7 +4,7 @@
 
 \label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este capítulo se explica la implementación del modelo de sistema propuesto en los capítulos anteriores, se generaron los escenarios de prueba pertinentes para los cuatro modelos que comprende nuestro simulador y se muestran resultados específicos por cada modelo. Por último, se definió la metodología en cómo se interconectaron estos cuatro modelos con el fin de dar por terminada la fase de implementación y con esto poder generar distintos resultados globales del simulador en el capítulo siguiente.
+En este capítulo se explica la implementación del modelo de sistema propuesto en los capítulos anteriores, se generaron los escenarios de prueba pertinentes para los cuatro modelos que comprenden el simulador y se muestran resultados específicos por cada modelo. Por último, se definió la metodología de cómo se interconectaron estos cuatro modelos con el fin de dar por terminada la fase de implementación y con esto poder generar distintos resultados globales del simulador en el capítulo siguiente.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -14,7 +14,7 @@ En este capítulo se explica la implementación del modelo de sistema propuesto 
 
 Generación de Puntos de Poisson en un círculo: \newline
 
-Para una generación de puntos en un círculo correcta que cumpla con la definición de un HPPP [Sección \ref{PPP_C4}], el número total de puntos que se formaron en el círculo siguió una variable aleatoria de Poisson, además, estos puntos se distribuyeron de acuerdo a una distribución uniforme dentro del círculo, por último, al considerar un proceso homogéneo, la densidad de los puntos fue constante.\newline
+Para la generación de puntos en un círculo correcta, que cumpla con la definición de un HPPP [Sección \ref{PPP_C4}], el número total de puntos que se formaron en el círculo siguió una variable aleatoria de Poisson, además, estos puntos se distribuyeron de acuerdo a una distribución uniforme dentro del círculo, por último, al considerar un proceso homogéneo, la densidad de los puntos fue constante.\newline
 
 1. Número total de puntos:\newline
 
@@ -330,9 +330,9 @@ Como se observa, no se logran satisfacer todos los requisitos de velocidad de da
 %----------------------------------------------------------------------------------------
 
 \section{Generación de Tráfico Fuente}
-La generación de tráfico fuente requirió de un paradigma distinto al de eventos discretos, pues como se deja ver en el diagrama de la \textit{figura~\ref{fig:CMMPP_Algoritmo}}, un avance periódico en el tiempo es necesario para calcular las matrices de cambio de estado en los dispositivos y generar así el tráfico CMMPP, de esta manera el algoritmo de generación de tráfico fuente sigue un paradigma de simulación normalmente llamado \textit{time driven}. Adicional a este algoritmo se anexó la lógica para generar tráfico periódico en los dispositivos que así lo requirieran, teniendo así dos posibles modelos. Tal algoritmo corresponde al \textit{algoritmo \ref{A2}}. \newline
+La generación de tráfico fuente requirió de un paradigma distinto al de eventos discretos, pues como se deja ver en el diagrama de la \textit{figura~\ref{fig:CMMPP_Algoritmo}}, un avance periódico en el tiempo es necesario para calcular las matrices de cambio de estado en los dispositivos y generar así el tráfico CMMPP, de esta manera el algoritmo de generación de tráfico fuente sigue un paradigma de simulación normalmente llamado \textit{time driven}. Adicional a este algoritmo se anexó la lógica para generar tráfico periódico en los dispositivos que así lo requirieran, teniendo así dos posibles modelos. Tal algoritmo corresponde al \textit{algoritmo \ref{generacionTrafico}}. \newline
 
-El programa Generador de Tráfico IoT se trata de la interconexión entre el algoritmo de distribución de usuarios, tratado en [6.1] y el de generación de tráfico fuente tratado en esta sección. A este programa se agrega una interfaz gráfica para facilitar la introducción de los parámetros que se consideran para generar el tráfico IoT y  se  describe más a detalle en la sección [6.6]. \newline
+El programa Generador de Tráfico IoT se trata de la interconexión entre el algoritmo de distribución de usuarios, tratado en \ref{generarGeoEstocastica} y el de generación de tráfico fuente tratado en esta sección. A este programa se agrega una interfaz gráfica para facilitar la introducción de los parámetros que se consideran para generar el tráfico IoT y  se  describe más a detalle en la sección \ref{generadortraficoiot}. \newline
 
 En las siguientes dos secciones se muestran los parámetros que fueron implementados para caracterizar el tráfico generado por los modelos CMMPP y Periódico. \newline
 \subsection{Tráfico CMMPP}
@@ -578,7 +578,7 @@ En las siguientes secciones se aborda con más detalle la implementación de los
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{Generador de tráfico IoT}
+\section{Generador de tráfico IoT} \label{generadortraficoiot}
 
     El Generador de tráfico IoT distribuye dispositivos IoT en una célula circular siguiendo un PPP, para después generar tráfico de estos dispositivos con los modelos CMMPP y Periódico. La rutina principal del programa sigue el paradigma \textit{time-driven}, puesto que realiza avances constantes en el tiempo. La salida del programa se da en forma de archivos .csv, de los cuales los dos más importantes son el archivo de dispositivos y el archivo de eventos. El archivo de dispositivos contiene información referente a cada uno de los dispositivos generados mientras que el archivo de eventos contiene la información del nacimientos de cada paquete.\newline
 
