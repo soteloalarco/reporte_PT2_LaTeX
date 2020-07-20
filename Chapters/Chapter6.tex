@@ -4,7 +4,7 @@
 
 \label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este capítulo se explica la implementación del modelo de sistema propuesto en los capítulos anteriores, se generaron los escenarios de prueba pertinentes para los cuatro modelos que comprende nuestro simulador y se muestran resultados específicos por cada modelo. Por último, se definió la metodología en cómo se interconectaron estos cuatro modelos con el fin de dar por terminada la fase de implementación y con esto poder generar distintos resultados globales del simulador en el capítulo siguiente.
+En este capítulo se explica la implementación del modelo de sistema propuesto en los capítulos anteriores, se generaron los escenarios de prueba pertinentes para los cuatro modelos que comprenden el simulador y se muestran resultados específicos por cada modelo. Por último, se definió la metodología de cómo se interconectaron estos cuatro modelos con el fin de dar por terminada la fase de implementación y con esto poder generar distintos resultados globales del simulador en el capítulo siguiente.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -14,7 +14,7 @@ En este capítulo se explica la implementación del modelo de sistema propuesto 
 
 Generación de Puntos de Poisson en un círculo: \newline
 
-Para una generación de puntos en un círculo correcta que cumpla con la definición de un HPPP [Sección \ref{PPP_C4}], el número total de puntos que se formaron en el círculo siguió una variable aleatoria de Poisson, además, estos puntos se distribuyeron de acuerdo a una distribución uniforme dentro del círculo, por último, al considerar un proceso homogéneo, la densidad de los puntos fue constante.\newline
+Para la generación de puntos en un círculo correcta, que cumpla con la definición de un HPPP [Sección \ref{PPP_C4}], el número total de puntos que se formaron en el círculo siguió una variable aleatoria de Poisson, además, estos puntos se distribuyeron de acuerdo a una distribución uniforme dentro del círculo, por último, al considerar un proceso homogéneo, la densidad de los puntos fue constante.\newline
 
 1. Número total de puntos:\newline
 
@@ -22,21 +22,21 @@ En primer lugar, para cumplir con la definición de HPPP, el número total de pu
 
 2. Ubicación de los puntos:\newline
 
-Después, para la distribución uniforme de puntos en un círculo, se consideraron dos variables aleatorias uniformes, una que represente el radio y otra el ángulo (esto con base en las coordenadas polares).\newline
+Después, para la distribución uniforme de puntos en un círculo, se generaron dos variables aleatorias uniformes, una que representa el radio y otra el ángulo (en coordenadas polares).\newline
 
-Entonces, debido a que el área aumenta de manera cuadrática con relación al radio, un punto aleatorio ubicado uniformemente en un círculo de radio $r$ tiene las coordenadas polares $[r(\sqrt{U}), 2\pi V]$, donde U y V son las dos variables aleatorias uniformes independientes, $U, V \in{[0,1]}$.
+Entonces, debido a que el área aumenta de manera cuadrática con relación al radio, un punto aleatorio ubicado uniformemente en un círculo de radio $r$ tiene las coordenadas polares $[r(\sqrt{U}), 2\pi V]$, donde U y V son las dos variables aleatorias antes mencionadas, $U, V \in{[0,1]}$.
 
 \subsection{Escenario de Prueba de PPP}
 
 En este escenario se validó la generación de una geometría estocastica siguiendo un HPPP.\newline
 
-En primer lugar, el número total de puntos debe seguir una distribución discreta de Poisson, esta se comprobó con la generación de la variable aleatoria Poisson en Python usando la libreria \textit{scipy} [Véase Apéndice~\ref{AppendixA}].\newline
+En primer lugar, el número total de puntos debe seguir una distribución discreta de Poisson, esta se implementó con la libreria \textit{scipy} [Véase Apéndice~\ref{AppendixA}].\newline
 
-Después, se comprobó la generación de puntos aleatorio ubicados uniformemente en un círculo de radio $r$ en coordenadas polares $[r(\sqrt{U}), 2\pi V]$.\newline
+Después, se comprobó la generación de puntos aleatorios ubicados uniformemente en un círculo de radio $r$ en coordenadas polares $[r(\sqrt{U}), 2\pi V]$.\newline
 
-Se graficó en un círculo 2D la generación de puntos, con tasa constante $\lambda = 1x10_3$ y $r = 100$ con media $\lambda A$ donde $A=\pi r^{2}$ [\textit{véase Figura~\ref{fig:PPPCirculo1}}].
+Se graficaron los puntos en un círculo, con tasa constante $\lambda = 1x10_3$ y $r = 100$ con media $\lambda A$ donde $A=\pi r^{2}$ [\textit{véase Figura~\ref{fig:PPPCirculo1}}].
 
-Por último, se validó que todos los puntos se generen dentro del areá del circulo, para esto se graficó de igual manera la distribución espacial de los puntos en un círculo en plano 2D pero ahora con una densidad mayor ($\lambda = 1x10_6$), de modo que se observe que los puntos rellenan toda el área del círculo [\textit{véase Figura~\ref{fig:PPPCirculo2}}].
+Por último, se validó que todos los puntos se generen dentro del areá del circulo, para esto se graficó de igual manera la distribución espacial de los puntos en un círculo en plano 2D pero ahora con una densidad mayor ($\lambda = 1x10_6$), de modo que se observe que los puntos rellenan toda el área del círculo de manera uniforme [\textit{véase Figura~\ref{fig:PPPCirculo2}}].
 
 \begin{figure}
     \centering
@@ -59,7 +59,7 @@ Por último, se validó que todos los puntos se generen dentro del areá del cir
 %----------------------------------------------------------------------------------------
 \section{Generación de ganancias de canal implementando pérdidas por distancia (PLE) y desvanecimiento Rayleigh}
 
-De acuerdo con el modelo de canal propuesto, el modelo CI (\textit{Ecuación~\ref{eqn:CI}} de \parencite{Sun2016}), este implementa pérdidas de acuerdo con la distancia y frecuencia, dado un exponente de pérdida por trayectoria (PLE) y agrega pérdidas por el desvanecimiento rápido de Rayleigh.\newline
+El canal propuesto, con modelo CI (\textit{Ecuación~\ref{eqn:CI}} de \parencite{Sun2016}), implementa pérdidas de acuerdo con la distancia y frecuencia, dado un exponente de pérdida por trayectoria (PLE) y agrega pérdidas por el desvanecimiento rápido de Rayleigh.\newline
 
 En primera instancia, para el cálculo de la pérdida por trayectoria, se utilizó la ecuación~\ref{eqn:CI}.
 
@@ -81,7 +81,7 @@ Se propuso un escenario UMa en exteriores en un ambiente con línea de vista (Lo
 
 \subsection{Escenario de Prueba del Modelo de canal CI}
 
-Ahora bien, al incorporar el desvanecimiento tipo Rayleigh y las pérdidas por trayectoria, siguiendo la Tabla~\ref{tab:ParametrosGral} donde se definen los parámetros de la simulación (PLE= 2 con radio celular de 200m, en una banda de 2 GHz), se generó el histograma (pdf) de los coeficientes de canal (pérdidas del canal) esperados para el simulador, véase Figura~\ref{fig:GananciasCI_C6}, se puede observar que el valor promedio de las ganancias ($h$) es de 80.35 dB. \newline
+Ahora bien, al incorporar el desvanecimiento tipo Rayleigh y las pérdidas por trayectoria, siguiendo la Tabla~\ref{tab:ParametrosGral} donde se definen los parámetros de la simulación (PLE= 2 con radio celular de 200m, en una banda de 2 GHz), se generó el histograma normalizado (pdf) de los coeficientes de canal (ganancias de canal) esperados para el simulador, véase Figura~\ref{fig:GananciasCI_C6}, se puede observar que el valor promedio de las ganancias ($h$) es de 80.35 dB. \newline
 
 \begin{figure}[th]
     \centering
@@ -100,15 +100,20 @@ Ahora bien, al incorporar el desvanecimiento tipo Rayleigh y las pérdidas por t
 
 \section{Esquema de acceso múltiple al medio no ortogonal, basado en potencia (PD-NOMA)}
 
-De acuerdo con el modelo de sistema del Capítulo~\ref{Chapter5} en esta sección se implementa un esquema de acceso múltiple no ortogonal (NOMA), con base en \parencite{Shahini2019}, los autores desarrollaron un esquema NOMA basado en NB-IoT por medio de un agrupamiento óptimo de los usuarios y una optimización en la asignación de recursos, de acuerdo con la maximización de la tasa de transmisión total de subida de los dispositivos MTC.\newline
+En el diseño del sistema se decidió implementar un esquema de acceso múltiple no ortogonal (NOMA), con base en \parencite{Shahini2019}, los autores desarrollaron un esquema NOMA basado en NB-IoT por medio de un agrupamiento óptimo de los usuarios y una optimización en la asignación de recursos. Esto se realiza teniendo en cuenta la maximización de la tasa de transmisión total de subida de los dispositivos MTC.\newline
 
 \subsection{Algoritmo de Agrupación de dispositivos uRLLC  y mMTC}
 
-Se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC descrito en \parencite{Shahini2019}[\textit{véase Algorithm \ref{A1}}], este algoritmo realiza un ordenamiento conveniente con respecto al uso de la Cancelación Sucesiva de Interferencia (SIC), es decir, se ordenan los dispositivos URLLC y mMTC de acuerdo con su ganancia de canal promedio dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo[\textit{véase Figura~\ref{fig:NOMAgrupoexample}}]. Por lo tanto, un mensaje combinado de los dispositivos mMTC y uRLLC con ruido aditivo es recibido en la BS, la BS emplea la recepción SIC de acuerdo en cómo son ordenados los dispositivos. \newline
+Primero se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC descrito en \parencite{Shahini2019}[\textit{véase Algorithm \ref{A1}}], este algoritmo realiza un ordenamiento conveniente con respecto al uso de la Cancelación Sucesiva de Interferencia (SIC), es decir, se ordenan los dispositivos URLLC y mMTC de acuerdo con su ganancia de canal promedio dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo[\textit{véase Figura~\ref{fig:NOMAgrupoexample}}]. El Algoritmo da prioridad a los dispositivos URLLC para que obtengan los rangos más bajos. \newline
 
-La recepción SIC decodifica primero el mensaje del dispositivo con el rango más bajo, por consiguiente los usuarios con los rangos siguientes (o más altos) le introducen interferencia y a su vez el usuario con el rango más alto no experimenta interferencia de ninguna señal. \newline
+Por lo tanto, un mensaje combinado de los dispositivos mMTC y URLLC con ruido aditivo es recibido en la BS, la BS emplea la recepción SIC de acuerdo en cómo son ordenados los dispositivos. \newline
 
-Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de datos más altos, por lo tanto, su potencia de transmisión será mayor que la de los dispositivos mMTC. Es por esto que en cada grupo los dispositivos uRLLC tendrán los rangos más bajos y los dispositivos mMTC los más altos. De hecho, el decodificador SIC en la BS comienza a decodificar con URLLC y, en consecuencia, los dispositivos mMTC no se ven afectados por la alta interferencia de los URLLC, en la Figura~ref{NOMAgrupoexample} se puede observar un ejemplo de un agrupamiento de de 4 usuarios uRLLC y 8 usuarios mMTC en 3 grupos NOMA, es importante notar que si los dispositivos URLLC no se alcanzan a agrupar en el primer rango de los grupos NOMA, estos se seguirán agrupando hasta un segundo rango.\newline
+La recepción SIC decodifica primero el mensaje del dispositivo con el rango más bajo, por consiguiente los usuarios con los rangos siguientes (o más altos) le introducen interferencia y por el contrario el usuario con el rango más alto no experimenta interferencia de ninguna señal.\newline
+
+Es importante notar que los dispositivos URLLC tienen requerimientos de tasas de datos más altos, por lo tanto, su potencia de transmisión será mayor que la de los dispositivos mMTC. Es por esto que en cada grupo los dispositivos uRLLC tendrán los rangos más bajos y los dispositivos mMTC los más altos. De hecho, el decodificador SIC en la BS comienza a decodificar el mensaje URLLC y, en consecuencia, los dispositivos mMTC no se ven afectados por la alta interferencia [véase \textit{figura~\ref{NOMAgrupoexample}}].\newline
+
+
+
 
 \begin{figure}[th]
     \centering
@@ -124,7 +129,7 @@ Es importante notar que los dispositivos uRLLC tienen requerimientos de tasas de
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       EJEMPLO DE ALGORITMO EN LaTeX       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Entonces, siguiendo la definición de variables de los algoritmos en \parencite{Shahini2019} [descritas en la Sección~\ref{VariablesSHahini}], se tiene:\newline
+Siguiendo la definición de las variables de los algoritmos en \parencite{Shahini2019} [descritas en la Sección~\ref{VariablesSHahini}], se tiene:\newline
 
 \makeatletter
 % Reinsert missing \algbackskip
@@ -170,11 +175,16 @@ Entonces, siguiendo la definición de variables de los algoritmos en \parencite{
 
 Este algoritmo garantiza una óptima asignación de portadoras (S), de acuerdo con la maximización de la tasa total de transmisión, para los grupos NOMA parencite{Shahini2019}. En el \textit{Algoritmo \ref{A2}} se plantea la metodología para la asignación de subportadoras a los grupos NOMA. \newline
 
-Después de haberse creado los grupos NOMA con el Algoritmo ref{A1}, se procede a asignar los recursos (subportadoras), para cada subportadora, el mejor grupo $c^*$ es el que maximiza el rendimiento total. Luego, por consecuencia, las velocidades de datos de los dispositivos mMTC y URLLC y sus potencias de transmisión se actualizan. Durante el proceso de asignación de subportadoras, los clústeres asignados se excluyen del conjunto de Cns. \newline
+Este algoritmo asigna subportadoras ($S$) de forma óptima, de acuerdo con la maximización de la tasa total de transmisión, para los grupos NOMA. En \parencite{Shahini2019} se plantea la metodología para la asignación de subportadoras a los grupos NOMA. \newline
 
-El algoritmo asigna iterativamente las subportadoras disponibles una por una. Dado que cada dispositivo MTC divide por igual su potencia de transmisión máxima entre todas las subportadoras asignados, las potencias de transmisión de los dispositivos MTC a través de las diferentes subportadoras no son óptimas utilizando el algoritmo planteado. \newline
+Cabe destacar que en \parencite{Shahini2019}, el modelo de sistema no es implementado hacia una banda de frecuencias en específico, las ganancias de las subportadoras son estadíticas. En el caso de este sistema como se ocupa un modelo de canal que depende de la frecuencia, se tuvo que escoger un PRB de 180 KHz, con un conjunto de subportadoras fijadas en una banda LTE, se escogió la banda de 2GHz, esto por el hecho de que LTE se implementa en bandas de microondas. \newline
 
-La fase de asignación de recursos termina hasta que las 48 subportadoras se asignan a los 48 clústeres NOMA, es decir una subportadora por grupo, esto del hecho que se adaptó el algoritmo para una transmisión singletone. \newline
+Para cada subportadora, el mejor grupo (c*) es el que maximiza el rendimiento total, [\textit{véase Algorithm \ref{A2}}]. Luego, por consecuencia, las velocidades de transmisión de los dispositivos mMTC y URLLC y sus potencias de transmisión se actualizan. Durante el proceso de asignación de subportadoras, los clústeres asignados se excluyen del conjunto de Cns. \newline
+
+El algoritmo asigna iterativamente las subportadoras disponibles una por una. Dado que cada dispositivo MTC divide por igual su potencia de transmisión máxima entre todas las subportadoras asignados, las potencias de transmisión de los dispositivos a través de las diferentes subportadoras no son óptimas utilizando el algoritmo planteado, es decir se trata de un algoritmo heurístico. \newline
+
+La fase de asignación de recursos termina hasta que las 48 subportadoras se asignan a los 48 clústeres NOMA. \newline
+
 
 
 \begin{figure}[th]
@@ -254,68 +264,73 @@ La fase de asignación de recursos termina hasta que las 48 subportadoras se asi
 
     \subsection{Escenario de Prueba de NOMA}
 
-    En este escenario de pruebas, se evaluó el rendimiento del sistema del esquema NB-IoT basado en NOMA propuesto en \parencite{Shahini2019}, se programaron en python los dos Algoritmos, el de formación de grupos y el de asignación de recursos. \newline
-    
-    Su modelo de sistema consideró una celda con un radio de 0.5 km donde las ubicaciones de los dispositivos mMTC y URLLC se generaron aleatoriamente (de manera uniforme) dentro de la celda. Además, consideraron un PRB con 48 subportadoras de 3.75 kHz para las transmisiones de enlace ascendente (UL) en un solo intervalo de tiempo (TTI). \newline
-    
-    Modelaron las ganancias de canal de los dispositivos mMTC como $h_{s}^{m} = \gamma d^{ -\beta}_{ m, s}$ (de manera similar $h_{s}^{u}$ para los URLLCs), donde $\gamma$ es un valor aleatorio generado por la PDF de Rayleigh, $d_{-\beta}^{m,s}$ representa la distancia entre el UE y la BS, y $\beta$ es el PLE el cual lo establecieron en $\beta = 3$ y $d$ varía entre 0.1 y 500 m. Se generó el histograma (pdf) de los coeficientes de canal (pérdidas del canal) esperados para el este modelo de sistema, véase Figura~\ref{fig: CoeficientesCanalShahini}, se puede observar que el valor promedio de las ganancias ($h$) es de 74.67 dB. \newline
-    
-    \begin{figure}[th]
-        \centering
-        \includegraphics[scale=.7]{Figures/CoeficientesCanalShahini}
-        \decoRule
-        \caption[]{}
-        \label{fig:CoeficientesCanalShahini}
-    \end{figure}
+En este escenario de pruebas, se evalua el rendimiento del sistema del esquema NB-IoT basado en NOMA propuesto en \parencite{Shahini2019}, el cual implementó dos algoritmos: uno para la formación de grupos y otro para la asignación de recursos. \newline
 
-    También, consideraron el ruido gaussiano blanco aditivo $(AWGN)$ con una densidad espectral de potencia de $-173 dBm / Hz$. Los presupuestos de potencia de transmisión máxima de todos los dispositivos URLLC y mMTC, $Pmax ^{u}$ y $Pmax ^{m}$ ($\forall m \in \mathcal {M} , \forall u \in \mathcal {U}$), se establecen en 23 dBm. Los umbrales de velocidad de datos de los dispositivos mMTC siguen una distribución uniforme, es decir, $R_{th}^{ m} = Uniforme (0.1, 2) kb / s$, $R_{th}^{u} = Uniforme (0.1, 20) kb / s$.\newline
-    
-    Cabe destacar que los autores en \parencite{Shahini2019} propusieron la oportunidad de asignar más de una subportadora (\textit{multitone}) por grupo NOMA en transmisiones UL con anchos de banda de 3.75KHz en NB-IoT. Entonces, aunque aún no ha sido especificada esta característica, se tomó la propuesta de la asignación de múltiples subportadoras por cluster en anchos de banda de 3.75KHz en este simulador. \newline
-    
-    Es importante enfatizar que no necesariamente deben coincidir nuestros resultados con los del artículo ya que se tomaron algunas consideraciones diferentes a la de ellos. En la implementación del Algoritmo \ref{A2} se percató que los autores \parencite{Shahini2019} siempre buscan alcanzar la tasa objetivo de los dispositivos uRLLC y mMTC en cada grupo, realizando la agregación de multiples subportadoras a cada grupo, el problema que surge con esto es que muchas de las veces que se corría la simulación, la mayoría de las subportadoras se asignaban de entre 1 - 6 clusters esto porque parecía difícil cumplir con las tasas de todos los dispositivos en estos grupos, dejando a los otros grupos sin subportadora. La modificación que se implementó es que siempre se logre asignar una subportadora para cada grupo aunque sus dispositivos no alcancen su tasa objetivo, es decir se adoptó un número fijo de grupos NOMA igual a 48. \newline
-    
-    Por otra parte, se intentó aplicar una transmisión \textit{multitone} de otro modo (esto con fines de una evaluación comparativa con singletone), analizemos el siguiente ejemplo: \newline
-    
-    Si en un TTI, 50 dispositivos desean transmitir, en un modo \textit{singletone} se crearían siempre 48 grupos, entonces, 48 usuarios se agruparían en el primer rango de cada grupo y los otros dos restantes se agruparían en el segundo rango de los dos primeros grupos. En este caso no puede hacerse \textit{multitone} ya que las 48 subportadoras serían ocupadas por cada grupo NOMA. \newline
-    
-    Ahora bien, un modo \textit{multitone} se podría aplicar de la siguiente manera: si se consideran 50 dispositivos queriendo transmitir, estos se pueden dividir en dos grupos de 25 dispositivos, es decir crear 25 grupos con su primer y segundo rangos completos, esto con la finalidad de que las 23 subportadoras restantes se agreguen en los grupos donde sus dispositivos aún no alcanzan su tasa objetivo, esto se implementó siguiendo la metodología del $Algorithm$ \ref{A3}. \newline
-    
-    En la Figura \ref{fig:ResultsNOMA} se muestra una gráfica de la evaluación del número de usuarios que alcanzan su tasa objetivo en un TTI, se compararon los resultados de NOMA del artículo, los resultados NOMA de nuestra simulación (en modo singletone y multitone) y OFDMA. Se puede observar que los resultados del artículo muestran mejor desempeño cuando el núm. de usuarios ronda entre los 50 y 175 usuarios, y cuando llegan a ser 192 usuarios el rendimiento de ambos es muy similar. También se agregó el desempeño de OFDMA donde solo se puede dar servicio a un usuario por subportadora, lo que son 48 usuarios.\newline
-    
-    Con respecto a los resultados entre \textit{multitone} y \textit{singletone} de nuestra simulacion, se puede ver que el desempeño de ambos modos de operación es muy similar en varios puntos. EN particular, en multitone, cuando son 25 usuarios , este logra un mayor rendimiento a comparación que singletone. Esto se debe a que en singletone cuando el número de dispositivos es menor al número de clusters, hay desperdicio de recursos, por ej. con 25 grupos, estos se agrupan a solo 25 subportadoras dejando a las restantes sin utilizar, caso contrario con multitone, donde sí se aprovecharían todas.\newline
-    
-    En la figura \ref{fig:ResultsNOMA} se muestra una gráfica de la evaluación de la tasa suma alcanzable en un TTI, se compararon los resultados de NOMA del artículo y los resultados NOMA de nuestra simulación en modo singletone y multitone. Se puede observar que \textit{multitone} alcanza una mayor tasa-suma en comparación con \textit{singletone}, esto es por lo que se comentó anteriormente, que \textit{multitone} no desperdicia subportadoras por eso alcanza una mayor tasa-suma. Pero que llega a empatar (con\textit{singletone}) cuando son 48 usuarios, esto es porque ya no hay más subportadoras que se puedan agregar.
-    
-    \begin{figure}[th]
-        \centering
-        \includegraphics[scale=.7]{Figures/NOMA_results_comparation.png}
-        \decoRule
-        \caption[]{}
-        \label{fig:ResultsNOMA}
-    \end{figure}
-    
-    El impacto de la agregación de las subportadoras solo beneficia a aquellos dispositivos que tienen una buena condición de canal o que están en los últimos rangos (ya que experimentan menos interferencia), por lo tanto, la compensación de tasa no es equitativa para todos los dispositivos en un grupo NOMA. \newline
-    
-    \begin{figure}[th]
-        \centering
-        \includegraphics[scale=.7]{Figures/NOMA_sumrate.png}
-        \decoRule
-        \caption[]{}
-        \label{fig:ResultsNOMA}
-    \end{figure}
-    
-    \hfill
-    \break
-    
+Se consideró una celda con un radio de 0.5 km donde las ubicaciones de los dispositivos mMTC y URLLC se generaron aleatoriamente (de manera uniforme) dentro de la celda. Además, consideraron un solo PRB con 48 subportadoras de 3.75 kHz para las transmisiones de enlace ascendente (UL) en un intervalo de tiempo (TTI). \newline
+
+Se modelaron las ganancias de canal de los dispositivos mMTC como $h_{s}^{m} = \gamma d^{ -\beta}_{ m, s}$ (de manera similar $h_{s}^{u}$ para URLLCs), donde $\gamma$ es un valor aleatorio generado por la PDF de Rayleigh, $d_{-\beta}^{m,s}$ representa la distancia entre el UE y la BS, y $\beta$ es el PLE el cual lo establecieron en $\beta = 3$ y $d$ varía entre 0.1 y 500 m. \newline
+
+También, consideraron el ruido gaussiano blanco aditivo $(AWGN)$ con una densidad espectral de potencia de $-173 dBm / Hz$. Los presupuestos de potencia de transmisión máxima de todos los dispositivos URLLC y mMTC, $Pmax ^{u}$ y $Pmax ^{m}$ ($\forall m \in \mathcal {M} , \forall u \in \mathcal {U}$), se establecen en 23 dBm. Los umbrales de velocidad de datos de los dispositivos mMTC siguen una distribución uniforme, es decir, $R_{th}^{ m} = Uniforme (0.1, 2) kb / s$, $R_{th}^{u} = Uniforme (0.1, 20) kb / s$.\newline
+
+Los autores en \parencite{Shahini2019} proponen la oportunidad de asignar más de una subportadora (\textit{multitone}) por grupo NOMA en transmisiones con anchos de banda UL de 3.75KHz para NB-IoT. Entonces, aunque aún no ha sido especificada la asignación de múltiples subportadoras por cluster en anchos de banda de 3.75KHz para NB-IoT, se tomó la propuesta de \parencite{Shahini2019} en este simulador. \newline
+
+Cabe destacar que no necesariamente deben coincidir nuestros resultados con los del artículo ya que se tomaron algunas consideraciones diferentes a la de ellos. Durante la implementación del Algoritmo \ref{A2} se notó que los autores \parencite{Shahini2019} siempre buscan alcanzar la tasa objetivo de cada dispositivo URLLC y mMTC en cada cluster haciendo la agregación de multiples subportadoras a cada clúster, el problema que surge con esto, es que muchas de las veces que se corría la simulación, la mayoría de las subportadoras se asignaban de entre 1 - 3 clusters esto porque parecía difícil cumplir con las tasas de todos los dispositivos en estos grupos, dejando a los otros grupos sin subportadora. La modificación que se implementó fue que siempre se logre asignar una subportadora para cada grupo aunque sus dispositivos no alcancen su tasa objetivo, es decir se adoptó un número fijo de grupos NOMA igual a 48. \newline
+
+Se intentó aplicar una transmisión \textit{multitone} de otro modo, analizemos el siguiente ejemplo: \newline
+
+En un TTI, 50 dispositivos desean transmitir, en un modo \textit{singletone} se crearían siempre 48 grupos, entonces, 48 usuarios se agruparían en el primer rango de cada grupo y los otros dos restantes se agruparían en el segundo rango de los dos primeros grupos. En este caso no puede hacerse \textit{multitone} ya que las 48 subportadoras son ocupadas por cada grupo NOMA. \newline
+
+Ahora bien, un modo \textit{multitone} se podría aplicar de la siguiente manera, si se consideran de igual manera 50 dispositivos queriendo transmitir, estos se pueden dividir en dos grupos de 25 dispositivos, es decir crear 25 grupos con su primer y segundo rangos completos, esto con la finalidad de que las 23 subportadoras restantes se agreguen en los grupos donde sus dispositivos aún no alcanzan su tasa objetivo, esto se implementó siguiendo la metodología del $algorithm$ \ref{A3}. \newline
+
+Al comparar los resultados entre \textit{multitone} y \textit{singletone} en la \textit{figura~\ref{fig:ResultsNOMA}} se puede ver que el desempeño de ambos es similar cuando el número de dispositivos es menor al número de clusters, es decir, en un modo \textit{singletone}.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/NOMA_results_comparation.png}
+    \decoRule
+    \caption[]{}
+    \label{fig:ResultsNOMA}
+\end{figure}
+
+El impacto de la agregación de las subportadoras solo beneficia a aquellos dispositivos que tienen una buena condición de canal o que están en los últimos rangos (ya que experimentan menos interferencia). \newline
+
+Se estudió de igual manera el impacto de \textit{multitone} con diferentes clases de potencia para los dispositivos MTC con $kmax = 4$ y su desempeño no resultó ser favorable. Igualmente, se evaluó el desempeño con diferentes tamaños de grupos. Por ese motivo esos resultados no se reportaron.\newline
+
+Como se observa, no se logran satisfacer todos los requisitos de tasa de datos de los dispositivos mMTC y URLLC pero sí se incrementa significativamente la conectividad de usuarios en comparación con OFDMA donde sólo se puede dar servicio a un usuario por subportadora, lo que son 48 usuarios.\newline
+
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/NOMA_sumrate.png}
+    \decoRule
+    \caption[]{}
+    \label{fig:ResultsNOMA}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/CoeficientesCanalShahini}
+    \decoRule
+    \caption[]{}
+    \label{fig:CoeficientesCanalShahini}
+\end{figure}
+
+
+
+
+
+\hfill
+
+\break
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
 \section{Generación de Tráfico Fuente}
-La generación de tráfico fuente requirió de un paradigma distinto al de eventos discretos, pues como se deja ver en el diagrama de la \textit{figura~\ref{fig:CMMPP_Algoritmo}}, un avance periódico en el tiempo es necesario para calcular las matrices de cambio de estado en los dispositivos y generar así el tráfico CMMPP, de esta manera el algoritmo de generación de tráfico fuente sigue un paradigma de simulación normalmente llamado \textit{time driven}. Adicional a este algoritmo se anexó la lógica para generar tráfico periódico en los dispositivos que así lo requirieran, teniendo así dos posibles modelos. Tal algoritmo corresponde al \textit{algoritmo \ref{A2}}. \newline
+La generación de tráfico fuente requirió de un paradigma distinto al de eventos discretos, pues como se deja ver en el diagrama de la \textit{figura~\ref{fig:CMMPP_Algoritmo}}, un avance periódico en el tiempo es necesario para calcular las matrices de cambio de estado en los dispositivos y generar así el tráfico CMMPP, de esta manera el algoritmo de generación de tráfico fuente sigue un paradigma de simulación normalmente llamado \textit{time driven}. Adicional a este algoritmo se anexó la lógica para generar tráfico periódico en los dispositivos que así lo requirieran, teniendo así dos posibles modelos. Tal algoritmo corresponde al \textit{algoritmo \ref{generacionTrafico}}. \newline
 
-El programa Generador de Tráfico IoT se trata de la interconexión entre el algoritmo de distribución de usuarios, tratado en [6.1] y el de generación de tráfico fuente tratado en esta sección. A este programa se agrega una interfaz gráfica para facilitar la introducción de los parámetros que se consideran para generar el tráfico IoT y  se  describe más a detalle en la sección [6.6]. \newline
+El programa Generador de Tráfico IoT se trata de la interconexión entre el algoritmo de distribución de usuarios, tratado en \ref{generarGeoEstocastica} y el de generación de tráfico fuente tratado en esta sección. A este programa se agrega una interfaz gráfica para facilitar la introducción de los parámetros que se consideran para generar el tráfico IoT y  se  describe más a detalle en la sección \ref{generadortraficoiot}. \newline
 
 En las siguientes dos secciones se muestran los parámetros que fueron implementados para caracterizar el tráfico generado por los modelos CMMPP y Periódico. \newline
 \subsection{Tráfico CMMPP}
@@ -485,7 +500,7 @@ Los resultados de la simulación se presentan en las siguientes gráficas las cu
     \label{fig:histoeventos}
 \end{figure}
 
-La \textit{imagen~\ref{fig:histoeventos}} muestra el histograma de nacimientos a lo largo de toda la simulación, el ancho de las barras es el mismo que $\Delta T$. En este histograma se contempla el tráfico generado por los 7 distintos servicios, de manera que es difícil extraer mucha información. A eso ayudan más las \textit{imagenes \ref{fig:histoeventos1} y \ref{fig:histoeventos2}}, las cuales se concentran en el tráfico de un sólo servicio, es decir de todos los dispositivos de un mismo tipo.\newline
+La \textit{figura~\ref{fig:histoeventos}} muestra el histograma de nacimientos a lo largo de toda la simulación, el ancho de las barras es el mismo que $\Delta T$. En este histograma se contempla el tráfico generado por los 7 distintos servicios, de manera que es difícil extraer mucha información. A eso ayudan más las \textit{figuras \ref{fig:histoeventos1} y \ref{fig:histoeventos2}}, las cuales se concentran en el tráfico de un sólo servicio, es decir de todos los dispositivos de un mismo tipo.\newline
 
 \begin{figure}[th]
     \centering
@@ -495,7 +510,7 @@ La \textit{imagen~\ref{fig:histoeventos}} muestra el histograma de nacimientos a
     \label{fig:histoeventos1}
 \end{figure}
 
-La \textit{imagen~\ref{fig:histoeventos1}} contiene a la izquierda el histograma de  nacimiento de paquetes junto con el nacimiento de las alarmas para los dispositivos  del tipo Otros dispositivos mMTC. Las gráficas a la derecha por otra parte son más fáciles de interpretar y se trata de la distribuciones que sigue el tiempo entre nacimiento de paquetes y de alarmas, las cuales podemos ver  siguen una distribución exponencial a la tasas establecidas como parámetros en la  \textit{tabla~\ref{tab:paramPruebaTrafico}}, justo como se esperaba.\newline
+La \textit{figura~\ref{fig:histoeventos1}} contiene a la izquierda el histograma de  nacimiento de paquetes junto con el nacimiento de las alarmas para los dispositivos  del tipo Otros dispositivos mMTC. Las gráficas a la derecha por otra parte son más fáciles de interpretar y se trata de la distribuciones que sigue el tiempo entre nacimiento de paquetes y de alarmas, las cuales podemos ver  siguen una distribución exponencial a la tasas establecidas como parámetros en la  \textit{tabla~\ref{tab:paramPruebaTrafico}}, justo como se esperaba.\newline
 
 \begin{figure}[th]
     \centering
@@ -505,9 +520,9 @@ La \textit{imagen~\ref{fig:histoeventos1}} contiene a la izquierda el histograma
     \label{fig:histoeventos2}
 \end{figure}
 
-La \textit{imagen~\ref{fig:histoeventos2}} es muy parecida a la \textit{imagen~\ref{fig:histoeventos1}} puesto que presenta las mismas gráficas, los histogramas a la izquierda y las distribuciones al derecha.  Pero en esta ocasión el servicio que observamos es el control de semáforos. Este servició genera  tráfico con el modelo periódico, razón por la cual el tiempo entre nacimiento de paquetes  es constante y no sigue una distribución exponencial.\newline
+La \textit{figura~\ref{fig:histoeventos2}} es muy parecida a la \textit{figura~\ref{fig:histoeventos1}} puesto que presenta las mismas gráficas, los histogramas a la izquierda y las distribuciones al derecha.  Pero en esta ocasión el servicio que observamos es el control de semáforos. Este servició genera  tráfico con el modelo periódico, razón por la cual el tiempo entre nacimiento de paquetes  es constante y no sigue una distribución exponencial.\newline
 
-Finalmente en las \textit{imagenes \ref{fig:propagacion1} y \ref{fig:propagacion2}} se ven los mapas de calor producidos por una alarma que se transmite siguiendo el modelo \textit{Raised-cosine window} y \textit{Decaying exponential} respectivamente. Se puede notar cómo la propagación de la alarma siguiendo el modelo \textit{Raised-cosine window} tiene lugar de manera uniforme por dentro del círculo de radio dth  y con origen en su lugar de su nacimiento, para después desvanecerse y terminar abrúptamente para radios mayores al ancho de la ventana . Por otro lado la alarma que sigue el modelo de propagación exponencial se desvanece desde el origen y su efecto decae según crezca la distancia (de manera exponencial), pero no se detiene abrúptamente.\newline
+Finalmente en las \textit{figuras \ref{fig:propagacion1} y \ref{fig:propagacion2}} se ven los mapas de calor producidos por una alarma que se transmite siguiendo el modelo \textit{Raised-cosine window} y \textit{Decaying exponential} respectivamente. Se puede notar cómo la propagación de la alarma siguiendo el modelo \textit{Raised-cosine window} tiene lugar de manera uniforme por dentro del círculo de radio dth  y con origen en su lugar de su nacimiento, para después desvanecerse y terminar abrúptamente para radios mayores al ancho de la ventana . Por otro lado la alarma que sigue el modelo de propagación exponencial se desvanece desde el origen y su efecto decae según crezca la distancia (de manera exponencial), pero no se detiene abrúptamente.\newline
 
 \begin{figure}[th]
     \centering
@@ -537,7 +552,7 @@ Los resultados que presentan estas imágenes muestran que el algoritmo de genera
 
 \section{Interconexión de los 4 módulos del Simulador}
 
-Los 4 módulos del sistema, cuya implementación se ha discutido en la primera parte de este capítulo son: el despliegue de los dispositivos, el modelo del canal, el esquema de acceso múltiple al medio y los modelos de tráfico IoT. La forma en la que se llevo acabo la interconexión de estos módulos se encuentra descrita en el diagrama de la \textit{imagen~\ref{fig:interconexion4}}. \newline
+Los 4 módulos del sistema, cuya implementación se ha discutido en la primera parte de este capítulo son: el despliegue de los dispositivos, el modelo del canal, el esquema de acceso múltiple al medio y los modelos de tráfico IoT. La forma en la que se llevo acabo la interconexión de estos módulos se encuentra descrita en el diagrama de la \textit{figura~\ref{fig:interconexion4}}. \newline
 
 El simulador se encuentra entonces dividido en 2 programas, el \textbf{Generador de Tráfico IoT} y el \textbf{Simulador de eventos discretos}. La razón por la que se implemento esta arquitectura tiene que ver con los paradigmas que ambos programas siguen, ya que mientras el Generador de tráfico IoT tiene una rutina que realiza avances constantes en el tiempo, el Simulador de eventos discretos avanza en el tiempo apartir de los eventos evaluados. \newline
 
@@ -561,7 +576,7 @@ En las siguientes secciones se aborda con más detalle la implementación de los
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{Generador de tráfico IoT}
+\section{Generador de tráfico IoT} \label{generadortraficoiot}
 
     El Generador de tráfico IoT distribuye dispositivos IoT en una célula circular siguiendo un PPP, para después generar tráfico de estos dispositivos con los modelos CMMPP y Periódico. La rutina principal del programa sigue el paradigma \textit{time-driven}, puesto que realiza avances constantes en el tiempo. La salida del programa se da en forma de archivos .csv, de los cuales los dos más importantes son el archivo de dispositivos y el archivo de eventos. El archivo de dispositivos contiene información referente a cada uno de los dispositivos generados mientras que el archivo de eventos contiene la información del nacimientos de cada paquete.\newline
 
@@ -572,7 +587,7 @@ En las siguientes secciones se aborda con más detalle la implementación de los
 
 \subsection{Interfaz de Usuario}
 
-    La \textit{imagen~\ref{fig:GUITrafico}} es una captura de pantalla de la interfaz de usuario del Generador de Tráfico IoT. En el primer bloque arriba a la izquierda se encuentran parámetros referentes a la distribución de usuarios, como son el radio del área circular en la que se distribuirán y su modelo de distribución. Los siguientes 7 bloques sirven para introducir los parámetros de generación de tráfico para los 7 distintos servicios contemplados. Finalmente se debe indicar hasta abajo: el tiempo de corte de la simulación y el diferencial de tiempo entre ciclos antes de poder iniciar la rutina. El botón de cargar datos abajo a la derecha permite leer los parámetros de un archivo y desplegarlos en las casillas correspondientes, lo que permite guardar una configuración inicial y acelerar la introducción de valores. \newline
+    La \textit{figura~\ref{fig:GUITrafico}} es una captura de pantalla de la interfaz de usuario del Generador de Tráfico IoT. En el primer bloque arriba a la izquierda se encuentran parámetros referentes a la distribución de usuarios, como son el radio del área circular en la que se distribuirán y su modelo de distribución. Los siguientes 7 bloques sirven para introducir los parámetros de generación de tráfico para los 7 distintos servicios contemplados. Finalmente se debe indicar hasta abajo: el tiempo de corte de la simulación y el diferencial de tiempo entre ciclos antes de poder iniciar la rutina. El botón de cargar datos abajo a la derecha permite leer los parámetros de un archivo y desplegarlos en las casillas correspondientes, lo que permite guardar una configuración inicial y acelerar la introducción de valores. \newline
 
     
 \begin{figure}[th]
@@ -587,7 +602,7 @@ Al terminar la rutina se generarán en la misma carpeta del programa 4 archivos 
 
 \subsection{Archivos de Salida}
 
-Los principales archivos que resultan de ejecutar cada rutina del Generador de Tráfico son el archivo de dispositivos y el archivo de eventos. En la \textit{imagen~\ref{fig:archivodispositivos}} se puede ver un ejemplo del primer archivo, en él se guarda: a qué tipo de dispositivo corresponde cada servicio y su posición en el plano. Estos datos son después utilizados en el Simulador de eventos discretos para instanciar nodos del tipo especificado en esa posición y poder adjudicarles sus nacimientos de paquetes. La \textit{imagen~\ref{fig:archivoeventos}} muestra un ejemplo de archivo de eventos, en el cual encontramos los nacimientos de paquetes a lo largo del tiempo de simulación. Desde tál archivo se podrá conocer el dispositivo que originó el paquete, su tamaño y si este surgió apartir de una alarma, todos estos datos importantes para que el simulador pueda procesar los eventos.  \newline
+Los principales archivos que resultan de ejecutar cada rutina del Generador de Tráfico son el archivo de dispositivos y el archivo de eventos. En la \textit{figura~\ref{fig:archivodispositivos}} se puede ver un ejemplo del primer archivo, en él se guarda: a qué tipo de dispositivo corresponde cada servicio y su posición en el plano. Estos datos son después utilizados en el Simulador de eventos discretos para instanciar nodos del tipo especificado en esa posición y poder adjudicarles sus nacimientos de paquetes. La \textit{figura~\ref{fig:archivoeventos}} muestra un ejemplo de archivo de eventos, en el cual encontramos los nacimientos de paquetes a lo largo del tiempo de simulación. Desde tál archivo se podrá conocer el dispositivo que originó el paquete, su tamaño y si este surgió apartir de una alarma, todos estos datos importantes para que el simulador pueda procesar los eventos.  \newline
 
 \begin{figure}[th]
     \centering
@@ -620,7 +635,7 @@ Los últimos dos archivos resultados de cada rutina de este programa son el de c
 
 El Simulador de eventos discretos se trata del otro programa además del Generador de tráfico IoT que conforma al \textbf{Simulador de modelos de tráfico para nodos IoT en una red de 5G}. Fue también programado en python 3.6 y sigue el paradigma de eventos discretos. La Inicialización del simulador se hace a travez de un archivo de configuración .json que permite modificar varios parámetros de la simulación sin necesidad de alterar el código.\newline
 
-La funcionalidad básica del programa se puede observar en el diagrama de la \textit{imagen~\ref{fig:flowdes}}. En el diagrama se puede ver que cuando se toma el siguiente evento en la cola, este es procesado y es aquí donde la mayor parte de la lógica del simulador recide. En la siguiente sección se describen los distintos eventos y cómo son procesados.\newline
+La funcionalidad básica del programa se puede observar en el diagrama de la \textit{figura~\ref{fig:flowdes}}. En el diagrama se puede ver que cuando se toma el siguiente evento en la cola, este es procesado y es aquí donde la mayor parte de la lógica del simulador recide. En la siguiente sección se describen los distintos eventos y cómo son procesados.\newline
 
 \begin{figure}[th]
     \centering
@@ -636,7 +651,7 @@ A la salida del simulador, se tiene un archivo .csv con un historial de \textit{
 
 \subsection{Definición de eventos}
 
-El primero de los posibles eventos que el simulador procesa es el nacimiento de un nuevo paquete. Este evento tiene una correspondencia entera con el archivo de eventos (\textit{imagen~\ref{fig:archivoeventos}}) puesto que cada linea en ese archivo resulta en un evento de nacimiento en este Simulador. La \textit{imagen~\ref{fig:flownacimiento}} muestra la manera en que se procesa el evento, de ella se puede ver que si el dispositivo está disponible para transmitir se calendizará un proceso noma en el que posiblemente se le asignará un conjunto de recursos y comenzará a transmistir su paquete.\newline
+El primero de los posibles eventos que el simulador procesa es el nacimiento de un nuevo paquete. Este evento tiene una correspondencia entera con el archivo de eventos (\textit{figura~\ref{fig:archivoeventos}}) puesto que cada linea en ese archivo resulta en un evento de nacimiento en este Simulador. La \textit{figura~\ref{fig:flownacimiento}} muestra la manera en que se procesa el evento, de ella se puede ver que si el dispositivo está disponible para transmitir se calendizará un proceso noma en el que posiblemente se le asignará un conjunto de recursos y comenzará a transmistir su paquete.\newline
 
 \begin{figure}[th]
     \centering
@@ -646,7 +661,7 @@ El primero de los posibles eventos que el simulador procesa es el nacimiento de 
     \label{fig:flownacimiento}
 \end{figure}
 
-El siguiente posible evento es el de proceso noma. La \textit{imagen~\ref{fig:flownoma}} muestra cómo se procesa en el simulador y se puede observar que se realiza el algoritmo noma (\textit{algoritmo~\ref{A2}}) con los dispositivos que están haciendo uso del canal y aquellos que quieren transmitir. Los dispositivos que tengan la suerte de contar con un cluster (un conjunto de recursos) comenzará a transmitir y creará o actualizará su evento de fin de transmisión, tenindo en cuenta su nueva tasa de transmisión. Aquellos dispositivos que no consigan recursos cancelarán sus eventos de final de transmisión, y sus paquetes serán considerados en la estadística de bloqueos por falta de recursos. \newline
+El siguiente posible evento es el de proceso noma. La \textit{figura~\ref{fig:flownoma}} muestra cómo se procesa en el simulador y se puede observar que se realiza el algoritmo noma (\textit{algoritmo~\ref{A2}}) con los dispositivos que están haciendo uso del canal y aquellos que quieren transmitir. Los dispositivos que tengan la suerte de contar con un cluster (un conjunto de recursos) comenzará a transmitir y creará o actualizará su evento de fin de transmisión, tenindo en cuenta su nueva tasa de transmisión. Aquellos dispositivos que no consigan recursos cancelarán sus eventos de final de transmisión, y sus paquetes serán considerados en la estadística de bloqueos por falta de recursos. \newline
 
 \begin{figure}[th]
     \centering
@@ -662,7 +677,7 @@ La condición de paro del simuador es que se llegue al tiempo límite de la simu
 
 \subsection{Descripción de los \textit{logs} de salida}
 
-La \textit{imagen~\ref{fig:logsdes}} muestra una porción del archivo de \textit{logs} resultante del Simulador de eventos discretos. En él se puede ver cúando y donde ocurrieron los eventos. Por ejemplo en el instante de tiempo 0 hubo el nacimiento de 5 paquetes provenientes de distintos dispositivos, cada uno de estos nacimientos propició que los dispoitivos contendieran por recursos del canal, razón por la cual todos enviaron un preámbulo. Un instante de tiempo después se realiza el proceso noma con estos 5 dispositivos (no había más dispoitivos utilizando el canal) y aquellos dispoitivos que consiguieron recursos comienzan a transmitir. En el evento nuevo cluster cáda dispositivo que consiguió recursos imprime a qué cluster pertenece y a qué tasa transmite. Finalmente el último evento que se ve en la imagen muestrá cuantos dispositivos están transmitiendo a una tasa menor de la que requieren. \newline
+La \textit{figura~\ref{fig:logsdes}} muestra una porción del archivo de \textit{logs} resultante del Simulador de eventos discretos. En él se puede ver cúando y donde ocurrieron los eventos. Por ejemplo en el instante de tiempo 0 hubo el nacimiento de 5 paquetes provenientes de distintos dispositivos, cada uno de estos nacimientos propició que los dispoitivos contendieran por recursos del canal, razón por la cual todos enviaron un preámbulo. Un instante de tiempo después se realiza el proceso noma con estos 5 dispositivos (no había más dispoitivos utilizando el canal) y aquellos dispoitivos que consiguieron recursos comienzan a transmitir. En el evento nuevo cluster cáda dispositivo que consiguió recursos imprime a qué cluster pertenece y a qué tasa transmite. Finalmente el último evento que se ve en la imagen muestrá cuantos dispositivos están transmitiendo a una tasa menor de la que requieren. \newline
 
 \begin{figure}[th]
     \centering
@@ -676,6 +691,8 @@ Con este archivo es posible ver cómo reaccionó el sistema en momentos específ
 
 \subsection{Resultados a la salida del simulador}
 
+A la salida del simulador se obtiene además del archivo con los \textit{logs} de los eventos que se evaluaron: El tráfico ofrecido, el \textit{throughput} del sistema, la probabilidad de bloqueo por negación de servicio (por falta de recursos, que ocurre cuando un dispositivo no alcanza lugar en algún cluster), y el porcentaje de tasas no cubiertas tanto para dispositivos mMTC como para dispositivos URLLC.
+
 \hfill
 
 \break
@@ -686,9 +703,9 @@ Con este archivo es posible ver cómo reaccionó el sistema en momentos específ
 
 \section{Optimización de tiempos de simulación}
 
-La generación de distintas variables aleatorias y el uso de algoritmos de asignación de recursos nos mantuvo en la preocupación de que los tiempos de simulación probablemente llegarán a ser excesivamente largos, por tal se propuso utilizar una técnica de paralelismo en python. Favorablemente esto no sucedió como se esperaba, el tiempo máximo de espera para una simulación rondó los 20 minutos como máximo.\newline
+La generación de distintas variables aleatorias y el uso de algoritmos de asignación de recursos nos obligaron a pensar que los tiempos de simulación probablemente llegarían a ser excesivamente largos, por tal se propuso utilizar una técnica de paralelismo en python.\newline
 
-De cualquier forma, la técnica de paralelización si se implementó pero solamente en la generación de resultados de NOMA para un TTI ya que en esta parte fue que se necesitaron obtener resultados promedio donde cada punto o muestra de los datos necesitaba simularse 1000 repeticiones para así obtener un promedio. En la Figura~\ref{fig:SIMmultiprocessing} se observa la comparación de los tiempos de simulación en un caso normal (solamente 1 núcleo en uso) e implementando la paralelización (uso de todos los núcleos de la PC).\newline
+La técnica de paralelización se implementó pero sólamente en la generación de resultados de NOMA para un TTI ya que en esta parte fue que se necesitaron obtener resultados promedio donde cada punto o muestra de los datos necesitaba simularse 1000 repeticiones para así obtener un promedio. En la Figura~\ref{fig:SIMmultiprocessing} se observa la comparación de los tiempos de simulación en un caso normal (solamente 1 núcleo en uso) e implementando la paralelización (uso de todos los núcleos de la PC).\newline
 
 Cabe mencionar que esta simulación se montó en una PC con procesador Intel(R) Core(TM) i7-7700HQ CPU @2.80 GHz y 16 GB de Memoria RAM.
 
