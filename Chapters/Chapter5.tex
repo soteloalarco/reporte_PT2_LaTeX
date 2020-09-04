@@ -11,7 +11,7 @@ En este capítulo se muestra el diseño del simulador programado. El objetivo  d
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{MODELO DE SISTEMA}
+\section{Modelo de sistema}
 
 En principio, se comenzó con la etapa de análisis (\textit{Capítulo \ref{Chapter4}}), donde se analizaron los requisitos de la red, las características que debía tener el escenario que se propuso y los distintos modelos que formaron parte de la simulación.\newline
 
@@ -36,11 +36,11 @@ El simulador se enfocó en el caso de uso de mMTC (o mIoT) el cual se caracteriz
 
 A continuación se definen las características generales de cada sub-sistema:
 
-\subsection{Uso de una geometría estocástica, es decir, despliegue de UEs siguiendo un PPP}
+\subsection{Despliegue de dispositivos}
 
 De igual manera que se realizó en \parencite{Kouzayha2018} y \parencite{Zhang2017} con el fin de obtener un análisis fundamental y más realista, se propuso la generación de una geometría estocástica en 2D para la distribución de los UEs. Se tomó como modelo de despliegue de UE un \textit{ Homogeneous Poisson Point Process }(proceso puntual de Poisson homogeneo, HPPP) con distintas densidades para los diferentes tipos de dispositivos que se implementaron.\newline
 
-\subsection{Pérdidas de canal usando un modelo CI para ambientes exteriores}
+\subsection{Pérdidas de canal}
 
 En la \textit{Sección \ref{AppsEscenario} } se establecieron las aplicaciones de los diferentes dominios de IoT que se utilizaron en el simulador. Todas estas aplicaciones se encuentran presentes, no exclusivamente pero sí particularmente, en escenarios urbanos y en exteriores, por lo tanto se implementó el Modelo CI (ecuación \ref{eqn:CI} ) el cual de acuerdo a lo estudiado en \parencite{Sun2016} es el modelo que mejor estima la señal en este tipo de ambientes. Además, se agregarón perdidas por el desvanecimiento rápido, usando el modelo de desvanecimiento de Rayleigh (siguiendo una distribución Rayleiggh con desviación estándar unitaria y que se distribuyó de forma independiente e idéntica [i.i.d.]), este es ideal para entornos urbanos en situaciones donde hay un gran número de multi-trayectorias de la señal y reflexiones causadas por los edificios y objetos que obstruyen la línea de vista. \newline
 
@@ -58,14 +58,12 @@ Con base en \parencite{Sun2016}, para el Modelo CI en ambientes urban macro se t
 
 Algunos parámetros siguieron las características de las mediciones que se hicieron para validar el modelo CI, en \parencite{Sun2016}. Las mediciones se realizaron en Vestby, Aalborg, Dinamarca, en las bandas de frecuencia de 2, 10, 18 y 28 GHz en marzo. Vestby representa una típica ciudad europea de tamaño mediano con construcciones y anchos de calle regulares, que son de aproximadamente 17 m (cinco pisos) y 20 m, respectivamente. Para el escenario UMa, la antena BS está por encima de la altura de la azotea, típicamente 25 m más o menos por encima del suelo \parencite{Sun2016}.\newline
 
-Por último, para la definición del rango de frecuencia de las transmisiones, como se pudó leer en la Sección~\ref{NBIoT}, en la actualidad el despliegue de redes NB-IoT se ha realizado en bandas EUTRA (Acceso de radio en LTE) y bandas GSM (SA), por lo que este sistema se implementó en la banda de microondas, se ocupó la banda mas baja en la cual el modelo CI es válido, es decir, la banda de 2GHz.
+Por último, para la definición del rango de frecuencia de las transmisiones, como se pudo leer en la Sección~\ref{NBIoT}, en la actualidad el despliegue de redes NB-IoT se ha realizado en bandas EUTRA (Acceso de radio en LTE) y bandas GSM (SA), por lo que este sistema se implementó en la banda de microondas, se ocupó la banda mas baja en la cual el modelo CI es válido, es decir, la banda de 2GHz.
 
-\subsection{Incorporación de un esquema de acceso al medio no ortogonal (NOMA) usando una técnica de agrupamiento de usuarios}
+\subsection{Esquema de acceso al medio no ortogonal}
 Se predefinió que exista un bloque de recursos (PRB) para la BS dedicado para el estándar NB-IoT en la banda de 2GHz, dando servicio a comunicaciones tipo maquina (MTC). El recurso de radio tiene un ancho de banda de 180kHz y este recurso se dividió en 48 sub-portadoras de 3.75kHz con operación \textit{singletone y multitone}.\newline
 
-Por lo tanto, para la compartición de recursos, en vías de dar servicio a un gran número de dispositivos, propuso implementar un esquema de acceso múltiple al medio no ortogonal (NOMA) descrito en la \textit{Sección~\ref{NOMA_C4}} y la implementación de una técnica de agrupamiento de usuarios (\textit{clustering}) y se aprovechará la no ortogonalidad, para agrupar diferentes clases de nodos IoT en una misma sub-banda.\newline
-
-En este caso como consideraremos dos tipos de sensores los mMTC y los URLLC, (con mayores requisitos de transmisión de datos los segundos). La relación de la distribución de dispositivos mMTC con los URLLC fue de 3 a 1.\newline
+Por lo tanto, para la compartición de recursos, en vías de dar servicio a un gran número de dispositivos, propuso implementar un esquema de acceso múltiple al medio no ortogonal (NOMA) descrito en la \textit{Sección~\ref{NOMA_C4}} y la implementación de una técnica de agrupamiento de usuarios (\textit{clustering}) y se aprovechó la no ortogonalidad, para agrupar diferentes clases de nodos IoT en una misma sub-banda.\newline
 
 El cálculo de las tasas de los dispositivos URLLC y mMTC, se describen con las Ecuaciones~\ref{eqn:Ru} y ~\ref{eqn:Rm} respectivamente.\newline
 
@@ -79,9 +77,9 @@ Donde:
 \[\gamma \to ganancia\ desvanecimiento\ Rayleigh\]
 \[\ L_{p [dB]}^{CI} \to \textit{Path\ Loss}\ Modelo\ CI \]
 
-\subsection{Diferentes modelos de tráfico que simulen distintos servicios para NB-IoT}
+\subsection{Modelos de tráfico para servicios NB-IoT}
 
-En la implementación de modelos de tráfico se tuvo en cuenta el modelo CMMPP y un modelo determinístico. El modelo CMMPP pudo tener una instancia distinta para cada una de las aplicaciones que se propusieron en \textit{Tabla~\ref{tab:appssim} } a excepción de aquellas aplicaciones con transmisiones periódicas, para las cuales se utilizó un modelo determinístico\textit{.}\newline
+En la implementación de modelos de tráfico se tuvo en cuenta el modelo CMMPP y un modelo determinístico. El modelo CMMPP pudo tener una instancia distinta para cada una de las aplicaciones que se propusieron en \textit{Tabla~\ref{tab:appssim} }, a excepción de aquellas aplicaciones con transmisiones periódicas, para las cuales se utilizó un modelo determinístico\textit{.}\newline
 
 Cada tipo de dispositivo tiene una instancia de \textit{procesos maestros}. Estos procesos, están modificando las probabilidades de cambio de estado de cada nodo según su proximidad a otros nodos que estén cambiando de estado. Por ejemplo, digamos que un nodo, que llamaremos N1, que detecta terremotos se encuentra en estado de reposo y su probabilidad de transición al estado de transmisión por alarma es del 1\%, ahora de pronto otro nodo (de la misma aplicación) en su proximidad cambia de estado a transmisión por evento, y unos instantes después la probabilidad de transición en nuestro nodo que antes era del 1\% aumenta hasta 90\%, lo que desencadena que este nodo también comience a transmitir al cambiar de estado unos momentos después. El ejemplo anterior, en la vida real se traduciría como un terremoto ocurriendo en un lugar y una gran cantidad de nodos que se encargan de detectarlo comenzando de pronto a transmitir con una indudable coordinación espacial y temporal.\newline
 
@@ -103,7 +101,7 @@ P_n\left[k\right]=\ _n\left[k\right] P_c+\left(1-\ _n\left[k\right]\right)\ P_u
 \[donde:\ n\ corresponde\ al\ n-\textrm{é}simo\ nodo\] 
 \[y\ k\ a\ un\ determinado\ instante\ de\ tiempo\] 
 
-En la ecuación \ref{eqn:Pn} vemos la forma en la que se modulan las matrices de probabilidad de transición entre los estados. Entonces para calcular la matriz $P_n\left[k\right]$, es decir la perteneciente al nodo \textit{n }en el instante \textit{k, }necesitamos de las matrices $P_c$ y $P_u$ que corresponden al comportamiento coordinado y no coordinado respectivamente y del valor $_n\left[k\right]$. Las matrices $P_c$ y $P_u$ marcan el comportamiento que tendría el nodo en los casos extremos de coordinación o en la ausencia de esta, esto debido a que $_n\left[k\right]$ varía entre [0 ,1], entonces si existe una perfecta coordinación entre nodos y este valor es 1, en algún momento, el segundo sumando de la ecuación \ref{eqn:Pn} sería 0 y $P_n\left[k\right]=\ P_c$. La propuesta para $P_c$ y $P_u$, tal y como se ha utilizado en \parencite{Gupta2018} y \parencite{Smiljkovic2014} fue:
+En la ecuación \ref{eqn:Pn} vemos la forma en la que se modulan las matrices de probabilidad de transición entre los estados. Entonces para calcular la matriz $P_n\left[k\right]$, es decir la perteneciente al nodo \textit{n }en el instante \textit{k, }necesitamos de las matrices $P_c$ y $P_u$ que corresponden al comportamiento coordinado y no coordinado respectivamente y del valor $_n\left[k\right]$. Las matrices $P_c$ y $P_u$ marcan el comportamiento que tendría el nodo en los casos extremos de coordinación o en la ausencia de ésta, esto debido a que $_n\left[k\right]$ varía entre [0 ,1], entonces si existe una perfecta coordinación entre nodos y este valor es 1, en algún momento, el segundo sumando de la ecuación \ref{eqn:Pn} sería 0 y $P_n\left[k\right]=\ P_c$. La propuesta para $P_c$ y $P_u$, tal y como se ha utilizado en \parencite{Gupta2018} y \parencite{Smiljkovic2014} fue:
 
 \begin{equation}
 P_{u} =  
@@ -163,6 +161,53 @@ En la \textit{Figura~\ref{fig:EscenarioMTC}} se muestra una aproximación del es
 \caption[Ejemplo ilustrativo de un escenario mIoT unicelular aproximado, usando agrupaciones de 4 dispositivos]{Ejemplo ilustrativo de un escenario mIoT unicelular aproximado, usando agrupaciones de 4 dispositivos}
 \label{fig:EscenarioMTC}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Interconexión de los 4 módulos del Simulador}
+
+Los 4 módulos del sistema, cuyo diseño se ha discutido en la primera parte de este capítulo son: el despliegue de los dispositivos, el modelo del canal, el esquema de acceso múltiple al medio y los modelos de tráfico IoT. El diseño de la implementación de estos módulos se encuentra descrita en el diagrama de la \textit{figura~\ref{fig:interconexion4}}. \newline
+
+El simulador se encuentra entonces dividido en 2 programas, el \textbf{Generador de Tráfico IoT} y el \textbf{Simulador de eventos discretos}. La razón por la que se diseñó esta arquitectura se debe a que el algoritmo de tráfico CMMPP requiere de un ciclo que avance periodicamente el tiempo, mientras que para el simulador principal se propuso un algoritmo de eventos discretos.\newline
+
+Ambos sistemas fueron programados en Python 3.6 y fueron diseñados para operar  de manera modular. Es decir el programa Generador de Tráfico IoT es una herramienta funcional y modificable por sí sola para generar tráfico de tipo máquina con los modelos CMMPP y Periódico, con usuarios distribuidos a partir de un PPP. Los resultados de este programa podrían entonces ser utilizados en algúno otro, realizando los ajustes de interfaz necesarios. De la misma manera el Simulador de Eventos discretos que contiene el modelo del canal y el esquema de acceso múltiple al medio, podría procesar tráfico y usuarios generados y distribuidos en un programa distinto al presentado en este proyecto. Esta modularidad es posible en gran parte grácias a que la interfaz existente entre ambos programas es el uso de archivos .csv, los cuales son fáciles de generar y modificar.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.74]{Figures/interconexion4modulos.png}
+    \decoRule
+    \caption[Interconexión de los 4 módulos en un simulador]{Interconexión de los 4 módulos en un simulador}
+    \label{fig:interconexion4}
+\end{figure}
+
+En el siguiente capítulo se aborda con más detalle la implementación de los dos programas que integran el simulador. \newline
+
+\subsection{Definición de eventos}
+
+El primero de los posibles eventos que el simulador procesa es el nacimiento de un nuevo paquete. Este evento tiene una correspondencia entera con el archivo de eventos (\textit{figura~\ref{fig:archivoeventos}}) puesto que cada linea en ese archivo resulta en un evento de nacimiento en este Simulador. La \textit{figura~\ref{fig:flownacimiento}} muestra la manera en que se procesa el evento, de ella se puede ver que si el dispositivo está disponible para transmitir se transmite un preámbulo (que contiene la información del paquete), el cual sirve para contender por recursos del canal. Finalmente se calendizará un proceso NOMA en el que posiblemente se le asignará un conjunto de recursos y comenzará a transmistir su paquete.\newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=.7]{Figures/flownacimiento.png}
+    \decoRule
+    \caption[Procesamiento del evento: nacimiento de paquete]{Procesamiento del evento: nacimiento de paquete}
+    \label{fig:flownacimiento}
+\end{figure}
+
+El siguiente posible evento es el de proceso NOMA. La \textit{figura~\ref{fig:flownoma}} muestra cómo se procesa en el simulador y se puede observar que se realiza el algoritmo NOMA (\textit{algoritmo~\ref{A2}}) con los dispositivos que están haciendo uso del canal y aquellos que quieren transmitir. Los dispositivos que tengan la suerte de contar con un cluster (un conjunto de recursos) comenzará a transmitir y creará o actualizará su evento de fin de transmisión, teniendo en cuenta su nueva tasa de transmisión. Aquellos dispositivos que no consigan recursos cancelarán sus eventos de final de transmisión, y sus paquetes serán considerados en la estadística de bloqueos por falta de recursos. \newline
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=1]{Figures/flownoma.png}
+    \decoRule
+    \caption[Procesamiento del evento: proceso noma]{Procesamiento del evento: proceso noma}
+    \label{fig:flownoma}
+\end{figure}
+
+El último evento se trata del fin de transmisión, en este evento un dispositivo termina de transmitir todo su paquete y un nuevo proceso NOMA es calendarizado para redistribuir los recursos. El dispositivo que recien termina de transmitir vuelve al estado \textit{idle} si no tiene paquetes en la cola, de lo contrario transmite el siguiente. Es aquí también cuando se calcula la tasa efectiva a la que se transmitió el paquete haciendo la resta entre el momento en que se comenzó a transmitir y el tiempo actual de la simulación. Esta tasa efectiva es considerada al calcular el porcentaje de paquetes que fueron transmitidos a las tasas requeridas.\newline
+
+La condición de paro del simuador es que se llegue al tiempo límite de la simulación o que se terminen los eventos en la cola. Cuando pase cualquiera de esas dos cosas la simulación termina y un archivo .csv con \textit{logs} de los eventos es generado utilizando la librería $pandas$. Este archivo es descrito en la siguiente sección. \newline
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Parámetros generales del simulador}\label{parametrossimulador}
 
