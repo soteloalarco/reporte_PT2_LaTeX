@@ -4,11 +4,11 @@
 
 \label{Chapter2} 
 
-El objetivo de este capítulo fue revisar los fundamentos teóricos de los sistemas de comunicaciones móviles. Se comenzó con los diferentes modelos de despliegue para estaciones base (BSs, \textit{base stations}) y dispositivos,estos últimos comunmente conocidos como equipos de usuario (UEs, \textit{user equipments}). Se estudiaron las características de una geometría estocástica y se repasó la teoría del concepto celular, la cual aborda los efectos de la interferencia en estos sistemas.\newline
+El objetivo de este capítulo fue revisar los fundamentos teóricos de los sistemas de comunicaciones móviles. Se comenzó con los diferentes modelos de despliegue para estaciones base (BSs, \textit{base stations}) y dispositivos ,estos últimos comunmente conocidos como equipos de usuario (UEs, \textit{user equipments}). Se estudiaron las características de una geometría estocástica y se repasó la teoría del concepto celular, la cual aborda los efectos de la interferencia en estos sistemas.\newline
 
-Después se ahondó en las pérdidas producidas en un sistema celular por medio de los modelos de canal más comunes, caracterizados por los parámetros a larga y pequeña escala, p.ej., la pérdida por trayectoria y el desvanecimiento de las señales de radio. Además, se revisaron los diferentes esquemas de acceso al medio en comunicaciones móviles.\newline
+Después se ahondó en las pérdidas producidas en un sistema celular por medio de los modelos de canal más comunes, caracterizados por los parámetros a larga y pequeña escala. Además, se revisaron los diferentes esquemas de acceso al medio en comunicaciones móviles.\newline
 
-Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunicaciones, los organismos más importantes de estandarización de redes móviles y algunos conceptos de las simulaciones a nivel de sistema y el paradigma de eventos discretos, junto con los lenguajes de programación más utilizados para programarlas.\newline
+Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunicaciones, los organismos más importantes de estandarización de redes móviles. También, algunos conceptos de las simulaciones a nivel de sistema y el paradigma de eventos discretos, junto con los lenguajes de programación más utilizados para programarlas.\newline
 
 
 %----------------------------------------------------------------------------------------
@@ -17,9 +17,9 @@ Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunica
 
 \section{MODELADO DEL DESPLIEGUE CELULAR}
 
-La teoría del diseño celular ofrece la forma simplificada de un diseño para redes móviles. Esta teoría se desarrolló en la literatura desde el comienzo del concepto celular [1975 aprox.], sin embargo el despliegue uniforme que propone la teoría celular es idealizado, ya que en la realidad nunca se tenían despliegues de este tipo. Frecuentemente, en ubicaciones donde se producía mayor cantidad de tráfico, se instalaba otra BS y por lo tanto se rompía con la uniformidad.\newline
+La teoría del diseño celular ofrece la forma simplificada de un diseño para redes móviles. Esta teoría se desarrolló en la literatura desde el comienzo del concepto celular [1975 aprox.], sin embargo, el despliegue uniforme que propone la teoría celular es idealizado, ya que en la realidad nunca se tenían despliegues de este tipo. Frecuentemente, en ubicaciones donde se producía mayor cantidad de tráfico, se instalaba otra BS y por lo tanto se rompía con la uniformidad.\newline
 
-El modelo considera diferentes estrategías de despliegué de BSs (como se puede ver en la \textit{Figura~\ref{fig:BSs}}):
+Existen diferentes estrategías de despliegué de BSs (como se puede ver en la \textit{Figura~\ref{fig:BSs}}). Como se mencionaba en el parrafo anterior, un despliegue uniforme no es realista es por esto que para modelar la ubicaciones de BSs y UEs se han utilizado modelos estadísticos como los procesos puntuales de Poisson (\textit{Poisson Point Process - PPP}) o en su caso estrategias híbridas que consideren ambos modelos, uno uniforme y uno estadístico.
 
 \begin{figure}[th]
 \centering
@@ -29,24 +29,21 @@ El modelo considera diferentes estrategías de despliegué de BSs (como se puede
 \label{fig:BSs}
 \end{figure}
 
-\subsection{Procesos puntuales (PPs)}
-\textit{Point Process} \parencite{Haenggi2009}\newline
+\subsection{Despliegue aleatorio}\label{PPP_C2}
 
-En primer lugar, para realizar un despliegue aleatorio, se recurre a los PPs ya que son los objetos elementales estudiados en la teoría de geometría estocástica.\newline
+En primer lugar, para realizar un despliegue aleatorio, se recurre a los procesos puntuales (\textit{Point Process - PP}) \parencite{Haenggi2009} ya que son los objetos elementales estudiados en la teoría de geometría estocástica.\newline
 
 Visualmente, un PP se puede representar como una colección aleatoria de puntos en el espacio. Más formalmente, un proceso puntual es un mapeo medible $\Phi$ desde algún espacio de probabilidad al espacio de medidas puntuales (una medida puntual es una medida que es localmente finita y que solo toma valores enteros) en algún espacio $E$.\newline
 
-Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R}^{d}$ son las siguientes:\newline
+Algunas dicotomías sobre procesos puntuales en el espacio Euclidiano $\mathbb{R}^{d}$ son las siguientes:
 
 \begin{itemize}
     \item Un PP puede ser simple o no. Es simple si la multiplicidad de un punto es como máximo uno (no hay dos puntos en la misma ubicación).
     \item Un PP puede ser estacionario o no. La estacionariedad se cumple si la ley del proceso puntual es invariante por traslación.
-    \item Un PP puede ser Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
+    \item Un PP puede ser de Poisson o no. En la siguiente subsección se proporciona una definición formal de los procesos puntuales de Poisson (PPP).
 \end{itemize}
 
 Antes de abordar la teoría de los PPP, es necesario definir un Proceso de Poisson. \newline
-
-\subsection{Procesos de Poisson}
 
 Los procesos de Poisson son frecuentemente utilizados para representar o modelar fenómenos en las telecomunicaciones, p. ej. la generación de llamadas telefónicas.\newline
 
@@ -70,10 +67,9 @@ La fórmula anterior nos da la probabilidad de ocurrencia de $k$ eventos en unid
 
 Los procesos de Poisson tienen una subestructura notable. Aunque el número de eventos ocurridos se modela usando una distribución de Poisson discreta, el intervalo de tiempo entre eventos consecutivos se puede modelar usando una distribución exponencial, que por el contrario, es una distribución continua \parencite{PoissonMedium}.\newline
 
-\subsection{Procesos Puntuales de Poisson (PPP)}\label{PPP_C4}
-\textit{Poisson Point Process} \parencite{Haenggi2009}\newline
+Finalmente, se puede proceder a la definicion formal de un proceso puntual de Poisson (\textit{Poisson Point Process - PPP}).\newline
 
-Ahora bien, sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es de Poisson en $E$ si:
+Sea $\gamma$ una medida localmente finita en algún espacio métrico $E$. Un proceso puntual $\Phi $ es de Poisson en $E$ si:
 
 \begin{itemize}
     \item Para todos los subconjuntos disjuntos $A1, ..., An$ de $E$, las variables aleatorias $\Phi(Ai)$ son independientes.
@@ -87,12 +83,12 @@ Una propiedad clave establece que condicionalmente $\Phi(A)= n$, estos $n$ punto
     \item El PPP homogéneo es estacionario y simple. Esto puede considerarse como el proceso puntual más simple (y más natural).
 \end{itemize}
 
-Los PPP no homogéneos se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio. \newline
+Los PPP no homogéneos se pueden usar para modelar distribuciones de usuarios que no son uniformes en el espacio.
 
 %	SUB-SECTION 
 %----------------------------------------------------------------------------------------
 
-\subsection{Geometría Clásica Celular}
+\subsection{Despliegue determinístico}
 
 Ahora bien, para un despliegue determinístico, se suele optar por un esquema hexágonal el cual recurre a la teoria clasica celular donde se busca que los sistemas celulares brinden determinada cobertura para un servicio. Para tal despliegue se divide el área geográfica en segmentos llamados celdas. El espectro de frecuencia también es dividido en canales y estos últimos son agrupados para repartirse entre las celdas. Estos sistemas logran una alta capacidad gracias al reúso del canal de comunicación permitiendo a las estaciones base compartir los recursos, sin embargo, este reúso resulta en una interferencia co-canal generada  entre usuarios que comparten el mismo canal. Esta interferenica limita el rendimiento y la capacidad de un sistema celular \parencite{Tranter2003}. \newline
 
@@ -106,8 +102,6 @@ Los sistemas celulares son caracterizados por \parencite{Correia2018}:
     \item Tener celdas de distintas coberturas.
     \item Permitir \textit{handover}.
 \end{itemize}
-
-\subsection{Planeación Celular}
 
 Una buena planeación celular es de crucial importancia para lograr un buen rendimiento en el sistema y una buena Calidad de servicio (QoS).\newline
 
@@ -152,17 +146,9 @@ N_{cc}=\frac{S_{clu}}{S_{cel}}
 \label{eqn:N}
 \end{equation}
 
-$Siendo\ valores\ posibles\ para\ N_{cc}\ ,\ \ \ \ 1,\ 3,\ 4,\ 7,\ 9,\ 12,\ 13,\ .\ .\ .\ $\textit{[Véase Figura~\ref{fig:clusterizacion} y Figura~\ref{fig:celdascocanal}]}.\newline
+$Siendo\ valores\ posibles\ para\ N_{cc}\ ,\ \ \ \ 1,\ 3,\ 4,\ 7,\ 9,\ 12,\ 13,\ .\ .\ .\ $\textit{[Véase Figura~\ref{fig:celdascocanal}]}.\newline
 
 Para implementar el reúso, se deben asignar un conjunto de canales disponibles para un grupo de celdas, el clúster y repetir ese conjunto a través de toda el área de servicio.
-
-\begin{figure}[th]
-    \centering
-    \includegraphics[scale=.5]{Figures/Clusterización de celdas con un factor de reúso de 3 celdas}
-    \decoRule
-    \caption[Clusterización de celdas con un factor de reúso de 3 celdas]{Clusterización de celdas con un factor de reúso de 3 celdas, [Fuente: Tranter 2003]}
-    \label{fig:clusterizacion}
-\end{figure}
 
 \begin{equation}
 N_{ch/c}=\frac{N_{ch/s}}{N_{cc}} 
@@ -187,61 +173,20 @@ El clúster es escogido lo más pequeño posible, tomando los umbrales de interf
 \[LTE,\ {N}_{cc}=3\] 
 \begin{figure}[th]
 \centering
-\includegraphics[scale=.6]{Figures/Localización de celdas co-canal con distintos factores de reuso}
+\includegraphics[scale=.5]{Figures/Localización de celdas co-canal con distintos factores de reuso}
 \decoRule
 \caption[Localización de celdas co-canal con distintos factores de reúso]{Localización de celdas co-canal con distintos factores de reúso, [Fuente: Tranter 2003]}
 \label{fig:celdascocanal}
 \end{figure}
-Diferentes tamaños de celda son usados para distribuciones no uniformes de tráfico \parencite{TurjmanSmallCells}.\newline
-\begin{figure}[th]
-\centering
-\includegraphics[scale=.5]{Figures/Sistema celular con celdas de tamaño no uniforme}
-\decoRule
-\caption[Sistema celular con celdas de tamaño no uniforme]{Sistema celular con celdas de tamaño no uniforme, [Fuente: Yacoub 1993]}
-\label{fig:nouniformcells}
-\end{figure}
-
-El uso de diferentes tamaños de celdas:\newline
+Diferentes tamaños de celda son usados para distribuciones no uniformes de tráfico \parencite{TurjmanSmallCells}. El uso de diferentes tamaños de celdas:\newline
 •	Conduce a un incremento de la interferencia, debido a la poca uniformidad en la estructura celular.\newline
 •	Requiere cuidado adicional en el despliegue de BSs
-
-\subsection{Planeación de frecuencia}
-La decisión de qué bandas de frecuencia son usadas en los diversos sistemas de comunicaciones es tomada por la ITU. La asignación de canales en una banda dada para un operador es decidido a nivel nacional por un cuerpo regulatorio, IFT en México. El hecho de que el espectro sea muy escaso incita a un eficiente uso de sus frecuencias.\newline
-
-El número de frecuencias (portadoras, canales de radio) por celda $N_{fc}$ depende del clúster, $N_{cc}$, y del bloque de recursos asignado al sistema $N_{fs}$, de manera que:
-\begin{equation}
-    N_{fc}={N_{fs}}/{N_{cc}}
-    \label{eqn:Nfc}
-\end{equation}
-
-Debido a la limitación en el número de frecuencias, debe haber una compensación entre la interferencia $N_{cc}\ $y la capacidad$\ N_{ch/c}\ $en el sistema.\newline
-
-La asignación de frecuencias en las celdas debería reducir la interferencia de celda-adyacente maximizando la separación de las frecuencias en una celda.\newline
-
-En un sistema celular simple, las frecuencias deberían ser asignadas a las celdas de acuerdo a:\newline
-\begin{equation}
-    f_{ij}=i+N_{cc}\ (j-1)
-    \label{eqn:fij}
-\end{equation}
-
-\[i=1,\ \dots ,\ N_{cc}\] 
-\[j=1,\ \dots ,\ N_{fc}\] 
-
-Cuando $N_{sc}$ sectores por celdas son implementados, cada sector deberá contener su propio grupo de frecuencias:\newline
-\begin{equation}
-    f_{ijk}=i+N_{cc}\ \left(k-1\right)+N_{cc}\ N_{sc}\ (j-1)
-    \label{eqn:fijk}
-\end{equation}
-
-\[i=1,\ \dots ,\ N_{cc}\] 
-\[j=1,\ \dots ,\ N_{fc}\] 
-\[k=1,\ \dots ,\ N_{sc}\] 
-
 
 %	SUB-SECTION 
 %----------------------------------------------------------------------------------------
 
 \subsection{Interferencia en los sistemas de comunicaciones}
+SINR representa la relación entre el nivel de la señal recibida y la suma de la interferencia y el ruido. Es una cantidad utilizada para dar límites superiores teóricos sobre la capacidad del canal (o la tasa de transferencia de información) en sistemas de comunicación inalámbrica como las redes celulares. \newline
 
 En general el receptor recibe:\newline
 \begin{equation}
@@ -262,9 +207,7 @@ Quedando entonces como la relación portadora a interferencia:\newline
 \label{eqn:SIR}
 \end{equation}
 
-La interferencia co-canal $I_{cc}$ es un problema aceptado en los sistemas de comunicaciones móviles. \newline
-
-La estimación de la relación portadora a interferencia co-canal ${S}/{I_{cc}}$ es calculada de acuerdo  a las siguientes asunciones:
+La interferencia co-canal $I_{cc}$, es decir, la interferencia que se produce por los canales con reuso de frecuencias, es un problema trabajado en los sistemas de comunicaciones móviles. La estimación de la relación portadora a interferencia co-canal ${S}/{I_{cc}}$ es calculada de acuerdo  a las siguientes asunciones:
 
 \begin{enumerate}
 \item  Todas las celdas son del mismo tamaño
@@ -325,30 +268,32 @@ En resumen, la planeación de una red celular es ejecutada de la siguiente maner
 La teoría de la información de Shannon nos dice la cantidad de información que un canal puede transportar. En otras palabras, especifica la capacidad del canal. La capacidad de un sistema de comunicación es la velocidad de datos máxima en bits por segundo que se puede transferir de manera confiable del transmisor al receptor. En el sentido estricto de la teoría de la información, este es un límite superior infranqueable. En un único enlace Tx-Rx de ancho de banda de unidad sujeto a AWGN, la capacidad en bits por uso de canal (es decir, bps / Hz) viene dada por la fórmula de \emph{Shannon-Hartley}:\newline
 
 \begin{equation}
-C=B{{\mathrm{log}}_2 \left(1+\frac{S}{N}\right)\   [bps] }
+C=B{{\mathrm{log}}_2 \left(1+\frac{S}{I}\right)\   [bps] }
 \label{eqn:Shannon}
 \end{equation}
 Donde:
 \[B:\ es\ el\ ancho\ de\ banda\ del\ canal\ en\ Hertzios.\]
 \[C:\ es\ la\ capacidad\ del\ canal\ (tasa\ de\ bits\ de\ informaci\textrm{ó}n\ bit/s)\]
 \[S:\ es\ la\ potencia\ de\ la\ se\textrm{\~{n}}al\ \textrm{ú}til\ (W,\ mW,\ etc.)\]
-\[N:\ es\ la\ potencia\ del\ ruido\ presente\ en\ el\ canal,\left(W,\ mW,\ etc.\right),\ \ que\ trata\ de\ enmascarar\ a\ la\ se\textrm{\~{n}}al\ \textrm{ú}til.\] 
+\[I:\ es\ la\ potencia\ de\ las\ señales\ interferentes \] 
 También descrita como:
 \begin{equation}
-    C =Blog_2(1 + \frac {P_{tx} H}{N_0B})
+    C =Blog_2(1 + \frac {P_{tx} H}{N_0BI})
     \label{eqn:Shannon2}
 \end{equation}
 Donde:
 \[P_{tx}:\ es\ la\ potencia\ de\ transmisión\ promedio\]
 \[H:\ es\ la\ ganancia\ de\ potencia\ del\ canal\]
-\[N_0:\ es\ la\ densidad\ de\ potencia\ del\ ruido (~-173 dBm/Hz)\]
+\[N_0:\ es\ la\ densidad\ de\ potencia\ del\ ruido (aprox. ~-173 dBm/Hz)\]
+\[I:\ es\ la\ potencia\ de\ las\ señales\ interferentes \] 
+
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
 \section{MODELADO DEL CANAL CELULAR}
 
-Los modelos de propagación por radio se clasifican en modelos a gran escala y a pequeña escala. Los efectos a gran escala generalmente ocurren en el orden de cientos a miles de metros de distancia. Los efectos a pequeña escala se localizan y ocurren temporalmente (en el orden de unos pocos segundos) o espacialmente (en el orden de unos pocos metros). Los parámetros del canal generalmente se dividen en Pérdida por trayectoria (PL), parámetros de gran escala (LSP, como sombreado, dispersión de retardo, dispersión angular, etc.) y parámetros de pequeña escala (como demora, ángulo de llegada y salida, etc.), que reflejan conjuntamente las características de desvanecimiento del canal. El procedimiento de generación de los coeficientes del canal se puede apreciar en la \textit{Figura~\ref{fig:Procedimiento de generacion de coeficientes de canal} }. La pérdida por trayectoria generalmente se expresa en una o dos fórmulas y un conjunto de valores numéricos de parámetros, que reflejan las relaciones con el entorno de transmisión, la distancia y la frecuencia, etc. \newline
+Los modelos de propagación por radio se clasifican en modelos a gran escala y a pequeña escala. Los efectos a gran escala generalmente ocurren en el orden de cientos a miles de metros de distancia. Los efectos a pequeña escala se localizan y ocurren temporalmente (en el orden de unos pocos segundos) o espacialmente (en el orden de unos pocos metros). Los parámetros del canal generalmente se dividen en Pérdida por trayectoria (PL), parámetros de gran escala (LSP, como ensombrecimiento, dispersión de retardo, dispersión angular, etc.) y parámetros de pequeña escala (como demora, ángulo de llegada y salida, etc.), que reflejan conjuntamente las características de desvanecimiento del canal. El procedimiento de generación de los coeficientes del canal se puede apreciar en la \textit{Figura~\ref{fig:Procedimiento de generacion de coeficientes de canal} }. La pérdida por trayectoria generalmente se expresa en una o dos fórmulas y un conjunto de valores numéricos de parámetros, que reflejan las relaciones con el entorno de transmisión, la distancia y la frecuencia, etc. \newline
 
 \begin{figure}[th]
 \centering
@@ -389,9 +334,9 @@ P_{EIRP[dBm]}=P_{tx\left[dBm\right]}{\ +\ G}_{tx[dBi]}
 \label{eqn:EIRP}
 \end{equation}
 
-\subsection{Pérdida por trayectoria en el Espacio Libre (FSPL, \textit{Free Space Path Loss})}
+\subsection{Pérdida por trayectoria en el Espacio Libre}
 
-El receptor puede recibir una señal atenuada directa (también llamada señal de línea de vista (LoS)) del transmisor. El FSPL se utiliza para predecir la pérdida de trayectoria cuando hay LoS clara y sin obstrucciones entre el transmisor y el receptor. Se basa en la ley de distancia al cuadrado inverso que establece que la potencia recibida ($P_{rx}$) decae por un factor de cuadrado de la distancia ($d$) desde el transmisor.\newline
+El receptor puede recibir una señal atenuada directa (también llamada señal de línea de vista (LoS)) del transmisor. Las pérdidas en el espacio libre (FSPL, \textit{Free Space Path Loss}) se utilizan para predecir la pérdida de trayectoria cuando hay una linea de vista (LoS, \textit{Line of Sight}) clara y sin obstrucciones entre el transmisor y el receptor. Se basa en la ley de distancia al cuadrado inverso que establece que la potencia recibida ($P_{rx}$) decae por un factor de cuadrado de la distancia ($d$) desde el transmisor.\newline
 
 Se considera a la propagación en el espacio libre como la mínima atenuación que una señal puede sufrir en el medio.\newline
 
@@ -424,7 +369,7 @@ L_{p[dB]}=L_{ref}+10a_{pd}{\mathrm{log} \left(d_{\left[km\right]}\right)\ }
 \label{eqn:Lp_ref}
 \end{equation}
 \[a_{pd}=2,\ \ \ para\ una\ propagacion\ en\ el\ espacio\ libre\ \] 
-El $a_{pd}$ (también conocido como PLE) es un valor que va de 2 a 4 frecuentemente. El valor mínimo (i.e. 2) proviene de la perdida FSPL y el máximo (i.e. 4) de la pérdida del modelo \textit{Flat Earth} (modelo de tierra plana). En algunos modelos se llega a incluir valores de PLE más altos que los aquí definidos.
+El $a_{pd}$ o también conocido como exponente de pérdida (PLE, \textit{Path Loss Exponent}) es un valor que va de 2 a 4 frecuentemente. El valor mínimo (i.e. 2) proviene de la perdida por el espacio libre y el máximo (i.e. 4) de la pérdida del modelo de tierra plana ()\textit{Flat Earth}). En algunos modelos se llega a incluir valores de PLE más altos que los aquí descritos.
 
 \subsection{Caracterización del canal de radio}
 
@@ -459,13 +404,30 @@ Características de desvanecimiento:
 En la \textit{Figura~\ref{fig:Desvanecimientos}} se observa que al principio, la señal parece muy aleatoria. Mirando más de cerca podemos observar tres componentes principales que forman a la señal, como se muestra en la mitad derecha \parencite{Mathuranathan2016}.
 \begin{enumerate}
     \item  Pérdida por trayectoria \textit{(Path loss)}
-    \item  Sombreado (\textit{Shadowing}) o desvanecimiento lento
+    \item  Ensombrecimiento (\textit{Shadowing}) o desvanecimiento lento
     \item  Multitrayectoria (\textit{Multipath}) o desvanecimiento rápido.
 \end{enumerate}
 
 El desvanecimiento lento puede ser causado por eventos como el \textit{shadowing}, donde una gran obstrucción, como una colina o un gran edificio, oscurece la trayectoria de la señal principal entre el transmisor y el receptor. Se considera un parámetro a gran escala.\newline
 
 El desvanecimiento rápido ocurre cuando la amplitud y el cambio de fase impuestos por el canal varían considerablemente durante el período de uso. Una señal que viaja en un entorno puede verse reflejada por varios objetos en el camino. Esto da lugar a varias señales reflejadas. Las señales reflejadas llegan al receptor en diferentes instantes de tiempo y con diferentes intensidades que conducen a la propagación multitrayectoria. Se considera un parámetro a pequeña escala.\newline
+
+Para una banda estrecha (\textit{narrowband}), donde prevalece el desvanecimiento plano en lugar de un desvanecimiento selectivo de frecuencia, el desvanecimiento se caracteriza de la siguiente manera:
+\begin{itemize}
+    \item Desvanecimiento rápido:
+    \begin{itemize}
+        \item LoS: Distribución Rice (no intenso)
+        \item NLoS: Distribución Rayleigh (intenso)
+    \end{itemize}
+    \item Desvanecimiento lento:
+    \begin{itemize}
+        \item Distribución Log-Normal
+    \end{itemize}
+    \item Ambos desvanecimiento rápido y lento:
+    \begin{itemize}
+        \item Distribución Susuki
+    \end{itemize}
+\end{itemize}
 
 Cuando se habla del desvanecimiento de Rayleigh en enlaces inalambricos en la literatura \parencite{RayleighScienceDirect}, se encuentra que las componentes en cuadratura y en fase de la señal recibida son variables aleatorias Gaussianas con media cero que se distribuyen de forma independiente e idéntica (iid), siendo así, que la magnitud de la señal banda base compleja sigue una distribución de Rayleigh [Ecuación~\ref{eqn:Rayleigheqn}]. Por otra parte, la distribución de la potencia normalizada de una señal de banda base compleja recibida bajo el desvanecimiento unitario de Rayleigh es modelada por medio de una distribución exponencial unitaria [Ecuación~\ref{eqn:Exponeqn}]. \label{DesvRayleigC2} \newline 
 
@@ -488,51 +450,32 @@ Los márgenes de desvanecimiento deben tomarse en cuenta para caracterizar la va
 •	Características del ambiente (LoS o NLoS)\newline
 •	Calidad de servicio (QoS, \textit{Quality of Service})\newline
 
-Para una \textit{narrowband} (banda estrecha, donde prevalece el desvanecimiento plano en lugar de un desvanecimiento selectivo de frecuencia) el desvanecimiento se caracteriza de la siguiente manera:
+Además de estos modelos estadísticos de estimación de señal, existen otros que se han sido utilizados para modelar las pérdidas en entornos celulares. Estos son los teóricos y los empíricos. \newline
+
+Teóricos: Son una aproximación a la realidad, no toman en cuenta todos los factores de la propagación pero permiten cambios fáciles de los parámetros. Algunos ejemplos son los siguientes:
 \begin{itemize}
-    \item Desvanecimiento rápido:
-    \begin{itemize}
-        \item LoS: Distribución Rice (no intenso)
-        \item NLoS: Distribución Rayleigh (intenso)
-    \end{itemize}
-    \item Desvanecimiento lento:
-    \begin{itemize}
-        \item Distribución Log-Normal
-    \end{itemize}
-    \item Ambos desvanecimiento rápido y lento:
-    \begin{itemize}
-        \item Distribución Susuki
-    \end{itemize}
+    \item \textit{Ray Tracing}
+    \item Modelo Ikegami [1984]
+    \item Modelo Walfish-Bertoni [1988]
 \end{itemize}
 
-Los modelos de estimación de señal pueden ser divididos en dos categorías:
-\begin{enumerate}
-    \item Teóricos: Son una aproximación a la realidad, no toman en cuenta todos los factores de la propagación pero permiten cambios fáciles de los parámetros. 
+Empíricos: Están basados en la observación de mediciones, conduciendo al mejor ajuste de ecuaciones. Tienen la ventaja de tomar en cuenta todos los factores que influyen en la propagación.\newline
+Para ambientes exteriores hay dos modelos fundamentales:
+\begin{itemize}
+    \item COST 231 Okumura-Hata
     \begin{itemize}
-        \item Ray Tracing
-        \item Modelo Ikegami [1984]
-        \item Modelo Walfish-Bertoni [1988]
+        \item Largas distancias (>5km)
+        \item Ambientes rurales, urbanos y suburbanos
+        \item Alta desviacion estandar
+        \item Rango de frecuencias aplicables [1.5,2.0] GHz
     \end{itemize}
-    \item Empíricos: Están basados en la observación de mediciones, conduciendo al mejor ajuste de ecuaciones. Tienen la ventaja de tomar en cuenta todos los factores que influyen en la propagación.\newline
-    
-    Para ambientes exteriores hay dos modelos fundamentales:
+    \item COST 231 Walfish-Ikegami [1999]
     \begin{itemize}
-        \item COST 231 Okumura-Hata
-        \begin{itemize}
-            \item Largas distancias (>5km)
-            \item Ambientes rurales, urbanos y suburbanos
-            \item Alta desviacion estandar
-            \item Rango de frecuencias aplicables [1.5,2.0] GHz
-        \end{itemize}
-        \item COST 231 Walfish-Ikegami [1999]
-        \begin{itemize}
-            \item Cortas distancias (<5km)
-            \item Ambientes urbanos y suburbanos
-            \item Rango de frecuencias aplicables [.8,2.0] GHz
-        \end{itemize}
-        \item COST 207 [1989]
+        \item Cortas distancias (<5km)
+        \item Ambientes urbanos y suburbanos
+        \item Rango de frecuencias aplicables [.8,2.0] GHz
     \end{itemize}
-\end{enumerate}
+\end{itemize}
 
 
 %----------------------------------------------------------------------------------------
@@ -597,37 +540,11 @@ Dada la madurez técnica de OFDMA, es muy probable que este tipo de OMA se incor
 
 Acerca del uso de arreglos múltiples de antenas (MIMO) para NOMA. Estos han sido tema de mucho interés. El ordenamiento de usuarios en escenarios de MIMO-NOMA es una tarea difícil \parencite{DIng2017}. En el caso de SISO, los canales de los usuarios son escalados, por lo que es sencillo ordenar a los usuarios de acuerdo con las condiciones de su canal. Sin embargo, cuando los nodos están equipados con antenas múltiples, los canales de los usuarios están en forma de vectores o matrices, lo que significa que ordenar a los usuarios de acuerdo con las condiciones de sus canales como en el caso SISO se vuelve complejo.
 
-\subsection{Interfaz de Radio}
-Los canales de transmisión dirigidos desde la BS hasta los UEs, son referidos como canal \textit{downlink} y los dirigidos desde los UEs a la BS como canales \textit{uplink}, estos canales juntos se identifican como canales ``dúplex''. La transmisión bidireccional de la información en sistemas dúplex puede dividirse en \parencite{Correia2018}:
-
-\begin{enumerate}
-\item  Frecuencia: Donde los canales UL (\textit{uplink}) y DL (\textit{downlink}) ocupan diferentes bandas de frecuencia - FDD (\textit{Frequency Division Multiplexing}).
-\item  Tiempo: Donde los canales UL y DL ocupan diferentes ventanas de tiempo- TDD (\textit{Time Division Multiplexing}).
-\end{enumerate}
-
-FDD se caracteriza por: 
-\begin{itemize}
-\item  Cuando es utilizada una división dúplex de frecuencia FDD estos canales son transmitidos en diferentes frecuencias
-\item  Permitir transmisión simultánea en ambos caminos
-\item  Requieren filtros con un buen rechazo en la banda adyacente
-\item  Requieren en general el uso de filtros dúplex
-\end{itemize}
-
-TDD se caracteriza por: 
-\begin{itemize}
-\item  Cuando se usa una división dúplex de tiempo TDD los canales son transmitidos en la misma frecuencia pero utilizando diferentes ranuras de tiempo.
-\item  Permitir transmisión secuencial en ambos caminos
-\item  Requiere sincronización
-\item  No requieren uso de filtros dúplex
-\end{itemize}
-
-El uso de una técnica de división dúplex puede depender de la técnica de acceso múltiple utilizada para el sistema.
-
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{GENERACIONES PASADAS DE LOS SISTEMAS DE COMUNICACIÓN MÓVIL}
+\section{GENERACIONES DE LOS SISTEMAS CELULARES}
 
 La generación 1G fue la primera generación de tecnología celular inalámbrica. 1G se introdujo en la década de 1980. Las señales de radio utilizadas por la red 1G fueron analógicas y proporcionaba comunicación sólo por voz, alcanzaba una velocidad de 2.4 Kbps. La técnica de acceso múltiple utilizada en 1G es el acceso múltiple por división de frecuencia (FDMA) [véase Figura~\ref{fig:MAs}]\parencite{Nair2018}. Esta generación utilizó el método de conmutación de circuitos para la transmisión de datos. \newline
 
@@ -649,7 +566,7 @@ Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en 
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{SISTEMAS DE COMUNICACIONES MÓVILES DE QUINTA GENERACIÓN (5G)}
+\section{SISTEMAS CELULARES 5G}
 
 La NGMN define su visión de una red 5G de la siguiente manera: "5G es un ecosistema de extremo a extremo para permitir una sociedad totalmente móvil y conectada."\newline
 
@@ -675,14 +592,7 @@ En términos generales, ITU-R ha concluido tres casos de uso para abordar la gra
     \item \textbf{Comunicaciones masivas de tipo máquina (mMTC)}: este caso de uso se caracteriza por un gran número de dispositivos conectados que transmiten un volumen relativamente bajo de datos no sensibles al retardo. Los dispositivos deben ser de bajo costo y tener una batería de larga duración.
 \end{enumerate}
 
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{INTERNET DE LAS COSAS (IoT)}
-
-
-El internet de las cosas (IoT) es una emergente y prometedora tecnología que habilitará la interconexión global de objetos físicos (comúnmente dispositivos de bajo consumo) mediante el uso del internet \parencite{5GSurveyAkpaku}. Una de las características más importantes de esta tecnología es que hace uso de la comunicación máquina a máquina (M2M) con el fin de que los dispositivos se conecten y comuniquen entre sí sin alguna intervención humana.\newline
+Se espera que en redes 5G, el internet de las cosas (IoT) atienda las demandas para el caso de uso mMTC. IoT es una emergente y prometedora tecnología que habilitará la interconexión global de objetos físicos (comúnmente dispositivos de bajo consumo) mediante el uso del internet \parencite{5GSurveyAkpaku}. Una de las características más importantes de esta tecnología es que hace uso de la comunicación máquina a máquina (M2M) con el fin de que los dispositivos se conecten y comuniquen entre sí sin alguna intervención humana.\newline
 
 Para habilitar esta tecnología se requiere del soporte para conexiones masivas, es decir, admitir una gran cantidad de sensores por cada celda. Debido a que la mayoría de estos sensores deben operar durante varios años, la eficiencia energética en las transmisiones inalámbricas es un requisito importante. Finalmente, se debe también reducir el costo de implementación de tales sensores \parencite{IoT5GWire}.
 
@@ -691,15 +601,15 @@ Para habilitar esta tecnología se requiere del soporte para conexiones masivas,
 %----------------------------------------------------------------------------------------
 
 \section{MODELADO DEL TRÁFICO EN TELECOMUNICACIONES}
+Es importante calcular el tráfico en unidades bien definidas mediante modelos matemáticos y determinar la relación existente entre calidad de servicio y capacidad del sistema, de tal manera que la teoría se convierta en una herramienta útil para la planificación de recursos.\newline
 
-Conceptos básicos:
+Algunos conceptos básicos sobre la teoria del teletráfico se enlistan a continuación:
 \begin{enumerate}
 \item  \underbar{Tráfico}: Es el acumulado de peticiones de servicio de todos los usuarios atendidos por la red o por una parte de ella.
 \item  \underbar{Recurso o servidor}: medio físico, usualmente sólo es capaz de atender un solo servicio.
 \item  \underbar{Sistema de colas}: conjunto de servidores de uso compartido.
 \end{enumerate}
 
-\subsection{Caracterización del Tráfico}
 Para caracterizar el tráfico se deben definir previamente los siguientes conceptos:
 \begin{enumerate}
 \item  \underbar{Volumen de Tráfico Cursado}. Suma de la duración de todos los servicios atendidos por el sistema.
@@ -715,9 +625,7 @@ Suponiendo un sistema que es capaz de atender todas las peticiones de servicio y
 
 Para un sistema que atiende todas las peticiones el tráfico cursado y el ofrecido son iguales, sin embargo, cuando se analizan sistemas que no cumplan esta característica, $a$ se vuelve un valor hipotético (la intensidad de tráfico cursado, si todas las peticiones se atendieran), sin embargo, seguirá describiendo la intensidad del tráfico que se ofrece. Es importante mencionar que el desempeño de un sistema (en términos de algún parámetro de calidad de servicio) no va a depender del valor de $\lambda$ o de $\mu$ por sí solos, sino del producto de ellos. Por ejemplo, un sistema se puede saturar tanto por una alta tasa de arribos como por una gran duración del tiempo de servicio.\newline
 
-\subsection{Modelado de tiempos entre llegadas}
-
-Sean $X1, X2, X3, ... Xi$ variables aleatorias tales que:
+Ahora bien, para el modelado de llegadas, sean $X1, X2, X3, ... Xi$ variables aleatorias tales que:
 \begin{itemize}
     \item $X1$ = el intervalo de tiempo entre el inicio del proceso y el primer evento, es decir, la primera llegada,
     \item $X2$ = el tiempo entre llegadas entre la primera y la segunda llegada,
@@ -771,22 +679,9 @@ Una técnica que simplifica significativamente el cálculo de las probabilidades
 
  Otra consideración de suma importancia en el sistema de colas es tomar en cuenta que tan grande es la cantidad de posibles fuentes de tráfico en comparación con la cantidad de recursos; cuando la cantidad de fuentes es muy grande se puede aproximar con infinito y los análisis se simplifican considerablemente.\newline
 
- También es importante mencionar que hay sistemas en los que las peticiones pueden experimentar bloqueo o retardo. Además de las consideraciones previas: la distribución del TEA y del TDS, la cantidad de recursos y el tamaño de la cola de espera son parámetros que influyen en el desempeño de un sistema.
+ También es importante mencionar que hay sistemas en los que las peticiones pueden experimentar bloqueo o retardo. Además de las consideraciones previas: la distribución del TEA y del TDS, la cantidad de recursos y el tamaño de la cola de espera son parámetros que influyen en el desempeño de un sistema.\newline
 
- \subsection{Notación Kendall}
-
- Para describir a un sistema mediante estos parámetros se puede usar la notación de Kendall, la cual se expresa de la forma:
-$c1/ c2/ s/ K$
-
- Donde:
-\begin{enumerate}
-    \item  \textbf{c1} representa la distribución del TEA y pueden asignársele las letras M (arribos Markovianos, es decir distribución exponencial negativa) o G (General, es decir cualquier otra distribución).
-    \item  \textbf{c2} es la distribución del TDS y puede ser M (exponencial negativa), D (Determinístico, es decir el TDS es constante) o G (general).
-    \item  \textbf{s} es el número de servidores.
-    \item  \textbf{K} es la longitud de la cola de espera.
-\end{enumerate}
-
- Se refiere como $\lambda$ a la tasa de arribos generada por todas las fuentes de tráfico y se denotó anteriormente $\mu$ a la duración promedio de un servicio. El inverso de dicho tiempo se considera la tasa a la que finaliza un servicio en curso. En caso de que existan j servicios en curso la tasa a la que finalizan las llamadas es j/$\mu$. Esta fórmula concuerda con el hecho de que a medida que hay más servicios en curso, menos tiempo se tiene que esperar a que alguno de ellas finalice, es decir, la tasa de finalización se incrementa.
+ Se refiere como $\lambda$ a la tasa de arribos generada por todas las fuentes de tráfico y se denotó anteriormente $\mu$ a la duración promedio de un servicio. El inverso de dicho tiempo se considera la tasa a la que finaliza un servicio en curso. En caso de que existan j servicios en curso la tasa a la que finalizan las llamadas es j/$\mu$. Esta fórmula concuerda con el hecho de que a medida que hay más servicios en curso, menos tiempo se tiene que esperar a que alguno de ellas finalice, es decir, la tasa de finalización se incrementa.\newline
 
  La probabilidad de bloqueo está dada por:
 \begin{equation}
@@ -809,7 +704,9 @@ Notese que en la Ecuación~\ref{eqn:Pb} el producto $\lambda \mu$ se puede susti
 
 \section{SIMULACIÓNES A NIVEL DE SISTEMA}
 
-Debido a las complicadas estructuras de los sistemas de comunicación celular móvil, no se pueden describir completamente a través de un modelo matemático simple y abstracto. Por lo tanto, se recurre a la simulación para evaluar su rendimiento. La simulación a nivel de sistema se ha utilizado ampliamente para evaluar el rendimiento integral de diferentes sistemas celulares móviles \parencite{Chen2011}. El rendimiento de estos sistemas se puede reflejar en última instancia por los resultados obtenidos de los programas de simulación.\newline
+Debido a las complicadas estructuras de los sistemas de comunicación celular móvil, no se pueden describir completamente a través de un modelo matemático simple y abstracto. Por lo tanto, se recurre a la simulación para evaluar su rendimiento. Una simulación es casi siempre la imitación de algún proceso o sistema que toma o podría tomar lugar en el mundo real. Estas son implementadas utilizando un paradigma de programación y ejecutadas por computadoras. \newline
+
+La simulación a nivel de sistema se ha utilizado ampliamente para evaluar el rendimiento integral de diferentes sistemas celulares móviles \parencite{Chen2011}. El rendimiento de estos sistemas se puede reflejar en última instancia por los resultados obtenidos de los programas de simulación.\newline
 
 \begin{figure}[th]
 \centering
@@ -819,16 +716,9 @@ Debido a las complicadas estructuras de los sistemas de comunicación celular m�
 \label{fig:sim_sistema}
 \end{figure}
 
-El escenario para la simulación a nivel de sistema generalmente consiste en una red con múltiples BSs y UEs [\textit{véase Figura~\ref{fig:sim_sistema}}]. A diferencia de la simulación a nivel de enlace, la simulación a nivel de sistema se centra en las métricas de rendimiento de la capa de aplicación expresadas por el rendimiento del sistema, la imparcialidad del usuario, la calidad de servicio percibida por el usuario (QoS), el retraso de la transferencia o la tasa de éxito, etc.
+El escenario para la simulación a nivel de sistema generalmente consiste en una red con múltiples BSs y UEs [\textit{véase Figura~\ref{fig:sim_sistema}}]. A diferencia de la simulación a nivel de enlace, la simulación a nivel de sistema se centra en las métricas de rendimiento de la capa de aplicación expresadas por el rendimiento del sistema, la imparcialidad del usuario, la calidad de servicio percibida por el usuario (QoS), el retraso de la transferencia o la tasa de éxito, etc.\newline
 
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{SIMULACIONES ORIENTADAS A EVENTOS DISCRETOS}
-
-
-Una simulación es casi siempre la imitación de algún proceso o sistema que toma o podría tomar lugar en el mundo real. Estas son implementadas utilizando un paradigma de programación y ejecutadas por computadoras. Para realizar un simulador, debe tenerse en cuenta un previo estudio del sistema real o de algún modelo o modelos existentes, junto con un análisis detallado de las variables presentes. Además es necesario hacer distintas suposiciones que faciliten la realización sin comprometer los resultados. Todo esto para permitir una simulación que simplifique el sistema, pero aun siendo capaz de generar resultados que puedan ayudar a su caracterización y a su dimensionamiento. \newline
+Para realizar un simulador, debe tenerse en cuenta un previo estudio del sistema real o de algún modelo o modelos existentes, junto con un análisis detallado de las variables presentes. Además es necesario hacer distintas suposiciones que faciliten la realización sin comprometer los resultados. Todo esto para permitir una simulación que simplifique el sistema, pero aun siendo capaz de generar resultados que puedan ayudar a su caracterización y a su dimensionamiento. \newline
 
 En \parencite{Banks2005} se describe a un sistema discreto como: \textit{``[{\dots}] aquel en el cual las variables de estado cambian únicamente en un número discreto de instantes en el tiempo''.} Por lo que la simulación de eventos discretos es la implementación en hardware de un sistema en el que sus variables de estado cambian de tal forma con el arribo de eventos, los cuales se tratan de ocurrencias que se presentan de forma instantánea y cuentan con un nacimiento y una muerte.\newline
 
@@ -869,7 +759,7 @@ El mecanismo que degrada el desempeño de CPython es la ejecución de bytecode p
 Afortunadamente, existen métodos para evitar este comportamientto del interpretador, haciendo que se usen todos los nucleos del PC con ayuda de la librería \textit{multiprocessing} \parencite{Multiprocessing}.\newline
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.35]{Figures/Multiprocesamiento}
+    \includegraphics[scale=.33]{Figures/Multiprocesamiento}
     \decoRule
     \caption[Concurrencia Vs Paralelismo]{Concurrencia  Vs Paralelismo}
     \label{fig:multiprocessing}
@@ -879,37 +769,3 @@ El módulo de multiprocessing permite al programador aprovechar al máximo múlt
 \hfill 
 
 \break
-
-
-
-
-
-
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
-\section{ORGANISMOS INTERNACIONALES DE ESTANDARIZACIÓN}
-
-Para la creación de estándares de las redes de nueva generación, existen más que en otras ocasiones, organizaciones desarrolladoras de estándares de telecomunicaciones (TSDOs) \parencite{3GPP2019}, lo que significa que hay muchas partes que debieran moverse en armonía. Estas organizaciones comparten entre sí: sus recomendaciones, artículos, especificaciones, estándares, presentaciones, visiones y demás. \newline
-
-Unos de los TSDO más importantes que han contribuido a definir el funcionamiento de redes móviles como por ejemplo UMTS, LTE, NB-IoT entre otros, es el Proyecto de Asociación de 3ra Generación (3GPP), el cual unifica a siete organizaciones internacionales de desarrollo de estándares de telecomunicaciones (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC), conocidas en conjunto como "Socios Organizacionales". 3GPP proporciona a sus miembros un entorno estable para producir los Informes y Especificaciones que definen las tecnologías 3GPP \parencite{3GPP2019}. El proyecto cubre tecnologías de telecomunicaciones celulares, incluyendo acceso de radio, red central y capacidades de servicio, que proporcionan una descripción completa del sistema para comunicaciones móviles. \newline
-
-
-\begin{figure}[th]
-\centering
-\includegraphics[scale=.5]{Figures/Socios Internacionales con los que colabora la 3GPP}
-\decoRule
-\caption[Socios Internacionales con los que colabora la 3GPP]{Socios Internacionales con los que colabora la 3GPP, [Fuente: https://www.3gpp.org/about-3gpp/partners]}
-\label{fig:socios}
-\end{figure}
-
-Además, los socios organizacionales de 3GPP pueden invitar a un socio de representación del mercado a participar en 3GPP, con el fin de ofrecer asesoramiento de mercado a 3GPP y traer a 3GPP una visión consensuada de los requisitos del mercado [\textit{véase Figura~\ref{fig:socios}}].\newline
-
-Los tres grupos de especificaciones técnicas (TSG, \textit{Technical Specifications Group}) de 3GPP,  quienes cada determinado tiempo liberan \textit{releases} (lanzamientos) en los cuales especifican estándares \parencite{3GPP2019}, son:
-
-\begin{enumerate}
-\item  Redes de acceso por radio (RAN).
-\item  Servicios y aspectos de sistemas (SA).
-\item  Red central y terminales (CT).
-\end{enumerate}

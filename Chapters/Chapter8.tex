@@ -4,17 +4,51 @@
 
 \label{Chapter8} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este capítulo se concluye el presente proyecto, compilando una discusión y un análisis crítico de los resultados en general, presentando las posibilidades de evolución futura de las comunicaciones móviles, así como las propuestas de trabajo académico futuro a mediano plazo.
+En este capítulo se concluye el presente proyecto, compilando una discusión y un análisis crítico de los resultados en general, presentando las posibilidades de evolución futura de las comunicaciones móviles, así como las propuestas de trabajo académico futuro a mediano plazo.\newline
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{Generales}
+Al analizar todos los elementos que hay en una simulación a nivel de sistema en redes celulares, se llegó a la conclusión que se puede realizar una buena representación modelando principalmente estos cuatro aspectos:
+
+\begin{itemize}
+    \item Modelo de despliegue
+    \item Modelo de canal
+    \item Esquema de acceso múltiple al medio
+    \item Modelos de tráfico
+\end{itemize}
+
+El análisis individual de los modelos sentó las bases para los resultados que se obtuvieron de manera conjunta, en el análisis por separado se obtuvieron las siguientes conclusiones:
+
+\begin{itemize}
+    \item La opción mas realista para el modelado de la localización de usuarios en un plano es por medio de un PPP.
+  \item Tras revisar los modelos de canal de distintos escenarios urbanos se concluyó que un modelo de canal idoneo es considerar pérdidas por trayectoria junto con el desvanecimiento rápido.  El modelo CI es un modelo de canal mas realista que predice las pérdidas en un ambiente urbano (UMa). El desvanecimiento tipo Rayleigh, es de suma importancia en anchos de banda pequeños como el de NB-IoT, debido a las variaciones rapidas que pueden ocurrir en el canal.
+    \item Los esquemas no ortogonales han tenido un gran auge en la literatura cientifica, por el hecho de que consiguen aumentar la capacidad en los sistemas.
+    \item Se llegó a la conclusión de que para el uso de esquemas no ortogonales con dos clases de dispositivos, existe una compensación entre la conectividad de usuarios y la potencia de los usuarios que tienen menos requerimientos de tasas.
+    \item Se optó por escoger un modelo de tráfico fuente CMMPP ya que da una buena representación del tráfico espacial y temporal, que lo caracteriza por ser mas realista.
+\end{itemize}
+
+
+Es importante mencionar que este proyecto se hicieron algunas suposiciones que  difieren de la realidad:
+\begin{itemize}
+    \item No se consideraron los efectos de la interferencia intercelular, la que proviene de otras células. 
+    \item Se tomó la consideración de que en el escenario por cada tres usuarios tipo MTC hay uno con requerimientos de tasas mas altos URLLC.
+    \item El modelo de la generación de tráfico tipo máquina omitió los estados de ahorro de energía y \textit{sleep} en los que los dispositivos pueden estar.
+    \item no se modeló el movimiento de los dispositivos.
+    \item se obvio la arquitectura del canal de subida NB-IoT.
+\end{itemize}
+
+Dadas las limitaciones enlistadas previamente, se considera como trabajo a futuro a las siguientes líneas de investigación:
+\begin{itemize}
+    \item NOMA para NBIoT con mejores estrategias para un modo de operación multitone
+    \item MIMO para esquemas NOMA
+    \item Efectos del control de potencia en esquemas NOMA
+    \item Análisis de tráfico tipo máquina en conjunto con un tráfico tipo humano.
+    \item Una cuestión importante es el consumo de energía de los dispositivos, por lo tanto un acceso eficiente debería ser diseñado para minimizar los altos consumos de energía
+\end{itemize}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
 %----------------------------------------------------------------------------------------
-
-\section{Específicas}
 
