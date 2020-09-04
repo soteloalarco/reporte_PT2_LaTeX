@@ -4,15 +4,13 @@
 
 \label{AppendixA} % For referencing this appendix elsewhere, use \ref{AppendixA}
 
-El objetivo de este capítulo fue revisar las distribuciones de probabilidad mas utilizadas en los sistemas de comunicaciones móviles para caracterizar los fenómenos más importantes en este ámbito, después se describió la implementación y puesta a prueba de la generación de las variables aleatorias utilizadas en el simulador, esto con el fin de brindar fiabilidad en los resultados obtenidos.
+El objetivo de este apéndice fue revisar las distribuciones de probabilidad mas utilizadas en los sistemas de comunicaciones móviles para caracterizar los fenómenos más importantes en este ámbito, después se describió la implementación y puesta a prueba de la generación de las variables aleatorias utilizadas en el simulador, esto con el fin de brindar fiabilidad en los resultados obtenidos.\newline
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{DISTRIBUCIONES MÁS IMPORTANTES EN TELECOMUNICACIONES}
-
-El uso de modelos estadísticos es importante para describir \parencite{Correia2018}:
+El uso de modelos estadísticos es importante para describir diferentes fenomenos en el campo de las telecomunicaciones\parencite{Correia2018}:
 \begin{itemize}
     \item Llamadas telefónicas y conexiones de datos
     \item Influencia del usuario en el rendimiento de la red
@@ -34,7 +32,7 @@ Comúnmente se utilizan las siguientes distribuciones de probabilidad en telecom
     \item Distribución binomial: Es usada para describir llamadas telefónicas.
 \end{enumerate}
 
-\subsection{Generación de números aleatorios}
+\section{Generación de números aleatorios}
 
 La distribución uniforme (también llamada distribución rectangular) es una familia de curvas de dos parámetros que es notable porque tiene una función de distribución de probabilidad constante (PDF) entre sus dos parámetros delimitadores. La distribución uniforme se utiliza en técnicas de generación de números aleatorios, como el método de inversión \parencite{ UniformMatlab}.\newline
 
@@ -59,7 +57,7 @@ En teoría de la probabilidad y estadística, hay varias relaciones entre las di
 
 \break
 
-\section{IMPLEMENTACIÓN DE DISTRIBUCIONES UTILIZADAS EN EL SIMULADOR}
+\section{Generación de distribuciones estadísticas para el simulador}
 
 \subsection{Generación de variable aleatoria tipo \textit{Poisson}}
 Como se revisó en la sección~\ref{generarGeoEstocastica}, uno de los requisitos para generar una geometría estocástica es que el número de puntos en el plano sea Poisson, es por esto que en esta sección se comprobó la generación de la variable aleatoria Poisson en Python usando la libreria \textit{scipy}.\newline
@@ -70,7 +68,7 @@ Se observa que la distribución del histograma sigue a la función masa de proba
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.7]{Figures/PoissonDistribution}
+    \includegraphics[scale=.5]{Figures/PoissonDistribution}
     \decoRule
     \caption[Gráfica comparación PMF e histograma de distribución Poisson en Python]{Gráfica comparación PMF e histograma de distribución Poisson en Python}
     \label{fig:generacionPoisson}
@@ -89,7 +87,7 @@ Se observa que la distribuciones de los histogramas siguen a su respectiva funci
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=.7]{Figures/ExponentialDisitribution.png}
+    \includegraphics[scale=.6]{Figures/ExponentialDisitribution.png}
     \decoRule
     \caption[Gráfica comparación PDF e histograma de distribución Exponencial en Python]{Gráfica comparación PDF e histograma de distribución Exponencial en Python}
     \label{fig:generacionExpon}
