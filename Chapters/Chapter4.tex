@@ -23,7 +23,7 @@ El Internet de las cosas (IoT) tendrá un importante papel en las redes 5G. La a
 
 Se tomó como referencia el trabajo realizado en \parencite{NetTrafficIoT} como una guía de los servicios que se espera los nodos IoT brinden en un futuro próximo. Los servicios se presentan en 8 dominios: edificios inteligentes y vivienda (\textit{Smart buildings and living}), cuidado de la salud inteligente (\textit{Smart healthcare}), medio ambiente inteligente (\textit{Smart environment}), ciudades inteligentes (\textit{Smart city}), energía inteligente (\textit{Smart energy}), transporte y movilidad  inteligentes (\textit{Smart transport and mobility}), fabricación y venta inteligentes (\textit{Smart manufacturing and retail}), agricultura inteligente (\textit{Smart agriculture}). Para cada uno de los dominios se especifican aplicaciones típicas que se podrían encontrar, sus características de tráfico y las tecnologías de red más adecuadas para darles servicio entre otras cosas.\newline
 
-La primera parte del análisis correspondió a la selección de los dominios que resultasen adecuados para el sistema que se diseñó. Estos fueron aquellos cuya red que les brindará servicio primordialmente es una red de área amplia de bajo consumo (LPWAN, \textit{Low Power Wide Area Network}). Por el contrario, algunas de las aplicaciones en los dominios antes mencionados están pensadas para redes con tecnologías como RFID, \textit{Bluetooth }o \textit{ZigBee }. A continuación se presenta la caracterización de cada uno de los dominios que en \parencite{NetTrafficIoT} se consideran viables para redes LPWAN.
+La primera parte del análisis correspondió a la selección de los dominios que resultasen adecuados para el sistema que se diseñó. Los dominios seleccionados fueron aquellos que se acoplan primordialmente es una red de área amplia de bajo consumo (LPWAN, \textit{Low Power Wide Area Network}). Por el contrario, algunas de las aplicaciones en los dominios antes mencionados están pensadas para redes con tecnologías como RFID, \textit{Bluetooth }o \textit{ZigBee }. A continuación se presenta la caracterización de cada uno de los dominios que en \parencite{NetTrafficIoT} se consideran viables para redes LPWAN.
 
 \subsection{Ciudades inteligentes \textit{(Smart Cities)}:}
 
@@ -117,7 +117,7 @@ En las aplicaciones seleccionadas, lo primordial es tener un bajo consumo y comp
 
 De todos los servicios descritos en las tablas anteriores \textit{[Tabla~\ref{tab:smartcity}\ldots \ref{tab:smartrans}]}, se decidió implementar solamente un grupo diverso de aplicaciones provenientes de distintos dominios. Este grupo se seleccionó de tal manera que fuera representativo de distintos comportamientos y requerimientos de QoS. El escenario propuesto consta de los servicios de: control de iluminación, monitoreo del consumo de agua y electricidad, detección de terremotos, monitoreo de contaminación del aire, detección de interrupciones en el servicio (agua, luz, gas), control dinámico de semáforos y un último servicio que se llamó ``otros dispositivos mMTC''. Este último representó el conglomerado de todas las demás aplicaciones IoT que estarán presentes en la red y no corresponden a una de las primeras aplicaciones seleccionadas. \newline
 
-Se decidió entonces situar la simulación en un escenario urbano micro celular con nodos en exteriores, en el que se encontrarán todas las aplicaciones mencionadas en el párrafo anterior. El escenario urbano micro representa a zonas urbanas densamente pobladas. La elección de un escenario urbano micro celular se debió a que en este se puede experimentar una congestión producida por las  MTC y HTC más facilmente. Otra razón fue que en un escenario tal se tiene presente una mayor diversidad de aplicaciones IoT, con distintas características de tráfico y requerimientos de QoS.\newline
+Se decidió entonces situar la simulación en un escenario urbano micro celular con nodos en exteriores, en el que se encontrarán todas las aplicaciones mencionadas en el párrafo anterior. El escenario urbano micro representa a zonas urbanas densamente pobladas. La elección de un escenario urbano micro celular se debió a que en este se puede experimentar una congestión producida por las  MTC y HTC más facilmente. Otra razón fue que en tal escenario se tiene presente una mayor diversidad de aplicaciones IoT, con distintas características de tráfico y requerimientos de QoS.\newline
 
 En la \textit{Tabla~\ref{tab:appssim}} se presentan las aplicaciones IoT del escenario urbano que se implementaron.\newline
 
@@ -145,9 +145,9 @@ Finalmente se consideraron también dispositivos URLLC en el simulador. Esto per
 
 \subsection{Análisis de las tecnologías para IoT y selección de casos considerados}
 
-NB-IoT y LTE-M (\textit{LTE for MTC}) son dos tecnologías LPWA desarrolladas para aplicaciones IoT. Ambas tecnologías contemplan comunicaciones celulares con un ancho de banda bajo, y conectan dispositivos que necesitan transmitir pequeñas cantidades de datos, a bajo coste. Debido a que se espera que NB-IoT y LTE-M cumplan con los requerimientos LPWAN del estándar 5G, 3GPP indicó a ITU-R que ambas tecnologías formarán parte estándar. Estas tecnologías coexistirán con los demás componentes de 5G NR que en conjunto brindarán servicio a los distintos casos de uso. Esto convierte a NB-IoT y LTE-M parte de 5G \parencite{EricssonAB2016}. \newline
+NB-IoT y LTE-M (\textit{LTE for MTC}) son dos tecnologías LPWA desarrolladas para aplicaciones IoT. Ambas tecnologías contemplan comunicaciones celulares con un ancho de banda bajo, y conectan dispositivos que necesitan transmitir pequeñas cantidades de datos, a bajo coste. Debido a que se espera que NB-IoT y LTE-M cumplan con los requerimientos LPWAN del estándar 5G, 3GPP indicó a ITU-R que ambas tecnologías formarán parte del estándar. Estas tecnologías coexistirán con los demás componentes de 5G NR que en conjunto brindarán servicio a los distintos casos de uso. Esto convierte a NB-IoT y LTE-M parte de 5G \parencite{EricssonAB2016}. De entre las dos tecnologías, la que mejor satisface los requerimientos de las aplicaciones seleccionadas en la sección anterior es NB-IoT como se desarrolla a continuación.\newline
 
-Las redes de largo alcance LPWAN utilizan tecnología capaz de transferir mensajes a decenas de kilómetros de distancia y cubrir una amplia área. Son redes especializadas en interconectar dispositivos en ambientes restringidos, de difícil acceso o que simplemente buscan reducir el consumo de energía en estos, manteniendo un bajo costo y complejidad. Por lo tanto sse concentran en un eficiente consumo de la energía y una cobertura amplia \parencite{NetTrafficIoT}. Esto se acopla bastante bien a lo que requieren los nodos de IoT pertenecientes a las aplicaciones seleccionadas en la sección anterior. \newline
+Las redes de largo alcance LPWAN utilizan tecnología capaz de transferir mensajes a decenas de kilómetros de distancia y cubrir una amplia área. Son redes especializadas en interconectar dispositivos en ambientes restringidos, de difícil acceso o que simplemente buscan reducir el consumo de energía en estos, manteniendo un bajo costo y complejidad. Por lo tanto se concentran en un eficiente consumo de la energía y una cobertura amplia \parencite{NetTrafficIoT}. Esto se acopla bastante bien a lo que requieren los nodos de IoT pertenecientes a las aplicaciones seleccionadas en la sección anterior. \newline
 
 Las tecnologías que darán servicio a dispositivos IoT son entonces:
 
@@ -230,11 +230,8 @@ Es preciso puntualizar que para lograr una mayor tasa de datos, de acuerdo con e
 
 \subsection{Modos de operación}
 
-Independiente (\textit{stand-alone}).\newline
+NB-IoT puede implementarse como una portadora autónoma utilizando cualquier espectro disponible con un ancho de banda superior a 180 kHz. Esto se conoce como la implementación stand-alone. Un caso de uso de este despliegue autónomo es que un operador GSM despliegue NB-IoT en su banda GSM reajustando parte de su espectro \parencite{Liberg2018}.\newline
 
-NB-IoT puede implementarse como una portadora autónoma utilizando cualquier espectro disponible con un ancho de banda superior a 180 kHz. Esto se conoce como la implementación stand-alone. Un caso de uso de este despliegue autónomo es que un operador GSM despliegue NB-IoT en su banda GSM reajustando parte de su espectro GSM \parencite{Liberg2018}.\newline
-
-Despliegue en banda (\textit{in-band}) y en banda de guarda (\textit{guard-band}) LTE.\newline
 
 NB-IoT también está diseñado para su despliegue en las redes LTE existentes, ya sea utilizando uno de los bloques de recursos físicos (PRB) de LTE o utilizando la banda de guarda LTE.\newline
 
@@ -248,26 +245,19 @@ Para el modo de operación independiente y de banda de guarda, el PRB de enlace 
     \label{fig:NBIoT2}
 \end{figure}
 
-\subsection{Bandas de frecuencia}
-
-Como se muestra en la Figura~\ref{fig:5gnr}, en el futuro se espera que NB-IoT sea implementada en las bandas 5G NR. Por el momento, la 3GPP ha definido un conjunto de bandas de frecuencia para las cuales se pueda usar NB-IoT en bandas LTE (EUTRA). \newline
-
-En la especificación técnica TS-36.101 del \textit{release} 13, la 3GPP proporciona la lista de las bandas compatibles: 1, 2, 3, 5, 8, 12, 13, 17, 18, 19, 20, 26, 28, 66, el \textit{release} 14 agregó las bandas : 11, 25, 31 y 70. Y el \textit{release} 15 agregó más bandas: 4, 14 y 71. La información recibida por los miembros de \textit{Mobile IoT}, hasta ahora, indica que se han utilizado una variedad de estas bandas en diferentes regiones\parencite{NBIoTDeploymentGSMA}. Por ejemplo, en el caso de Latino América las bandas disponibles son las: \textbf{2} (1850-1990 MHz), \textbf{3} (1710-1880 MHz), \textbf{5} (824-894MHz) y \textbf{28} (703-803 MHz) \parencite{NBIoTDeploymentGSMA}.
 
 \subsection{Clases de Potencia}
 
 Algunas aplicaciones de IoT son particularmente sensibles al consumo de energía. Para minimizar el impacto de la conectividad en la duración de la batería del dispositivo, en el \textit{release} 13, se determinó que los UE podrán usar dos opciones de clase de potencia. Uno es el nivel de potencia del dispositivo móvil LTE tradicional de \textbf{23dBm} (\textit{Power Class 3}) y uno nuevo, con menos potencia de salida, de \textbf{20dBm} (\textit{Power Class 5}). El \textit{release} 14 de 3GPP agrega una nueva clase de potencia aún menor, de \textbf{14dBm} (\textit{PowerClass 6}) \parencite{NBIoTDeploymentGSMA}.
 
 \subsection{Modos de transmisión en enlace ascendente (UL) }
-Existen dos modos de transmisión para el enlace UL, en el modo \textit{singletone} sólo se puede asignar una subportadora a cada dispositivo NB-IoT, por el contrario en el modo \textit{multitone}, la agregación de subportadoras es posible, esto con el fin de alcanzar una mayor tasa de transmisión \parencite{RohdeNB}.\newline
+Existen dos modos de transmisión para el enlace UL, en el modo \textit{singletone} sólo se puede asignar una subportadora a cada dispositivo NB-IoT, por el contrario en el modo \textit{multitone}, la agregación de subportadoras es posible, esto con el fin de alcanzar una mayor tasa de transmisión \parencite{RohdeNB}. En \parencite{Shahini2019} se evaluó el uso \textit{multitone} en anchos de banda de subportadoras de 3.75 kHz, y es este escenario el que se evaluó en este trabajo puesto que permitiría dar servició a una mayor cantidad de dispositivos al mismo tiempo.\newline
 
-Solo se admite el modo de \textit{singletone}, cuando el PRB se divide en 48 subportadoras donde el ancho de banda de la subportadora es de 3.75 kHz. En \parencite{Shahini2019} se evaluó el uso \textit{multitone} en anchos de banda de subportadoras de 3.75 kHz.\newline
-
-Finalmente, se admiten los modos de \textit{singletone} y \textit{multitone}, cuando el PRB se divide en 12 subportadoras, cada una de ellas con un ancho de banda de 15 kHz. En \parencite{Mostafa2019} se estudió más a fondo el uso de \textit{singletone} y \textit{multitone} en transmisiones UL. Una de las reglas que incorporaron fue que en \textit{multitone}, para cada dispositivo IoT únicamente se le pueden asignar 0, 1, 3, 6 o 12 subportadoras.
+Finalmente, se admiten los modos de \textit{singletone} y \textit{multitone}, cuando el PRB se divide en 12 subportadoras, cada una de ellas con un ancho de banda de 15 kHz. En \parencite{Mostafa2019} se estudió más a fondo el uso de \textit{singletone} y \textit{multitone} en transmisiones UL.\newline
 
 \subsection{Características del tráfico IoT}
 
-En los Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting} se definen cuatro tipos de paquetes diferentes:
+En los Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting}) se definen cuatro tipos de paquetes diferentes:
 
 \subsubsection{Informes de excepción}
 
@@ -311,7 +301,7 @@ Para cumplir con el conjunto de requisitos de mMTC, NB-IoT debe admitir principa
 \item  Una tasa máxima alcanzable de hasta 200kbps (subida).
 \end{enumerate}
 
-El simulador obtuvo como resultados la tasa de datos alcanzada por el sistema y el porcentaje de dispositivos que transmitieron sus paquetes a la tasa requerida.
+De los KPIs antes enumerados este simulador obtuvo resultados acerca de la densidad de conexión masiva de dispositivos y de las tasas objetivo alcanzadas por estos.
 
 \break
 %----------------------------------------------------------------------------------------
@@ -332,11 +322,11 @@ Los modelos necesarios para caracterizar el comportamiento de redes móviles, de
 \end{enumerate}
 
 
-Los modelos que se incluyeron en el simulador son los siguientes:
+Los modelos que se incluyeron en el simulador se describen en las siguientes subsecciones:
 
 \subsection{MODELO DE DESPLIEGUE DE BSs Y UEs}
 
-Los modelos del posicionamiento de las estaciones base y los nodos IoT utilizan diferentes estrategias de despliegue (como se puede ver en la \textit{Figura~\ref{fig:BSs}}). Este aspecto como los demás es de mayor o menor importancia dependiendo de los objetivos de la simulación, es decir, para un alcance comercial resulta importante simular el despliegue determinístico de los actores de la red, por otro lado para un alcance con fines de análisis en el diseño y dimensionamiento de estas redes resulta más adecuado un despliegue aleatorio. \newline
+Los modelos del posicionamiento de las estaciones base y los nodos IoT utilizan diferentes estrategias de despliegue (como se puede ver en la \textit{Figura~\ref{fig:BSs}}). Este aspecto, como los demás, es de mayor o menor importancia dependiendo de los objetivos de la simulación, es decir, para un alcance comercial resulta importante simular el despliegue determinístico de los actores de la red. Por otro lado para un alcance con fines de análisis en el diseño y dimensionamiento de estas redes resulta más adecuado un despliegue aleatorio. \newline
 
 Diversos autores coinciden en que varias distribuciones de redes móviles siguen un proceso estocástico \parencite{Kouzayha2018}\parencite{Zhang2017}. La geometría estocástica es una rama de la probabilidad con muchas aplicaciones que permiten el estudio de fenómenos aleatorios en el plano o en dimensiones superiores \parencite{Haenggi2009}. Recientemente se ha utilizado con éxito para modelar la distribución espacial de células pequeñas como las femtoceldas \parencite{TurjmanSmallCells}. \newline
 
@@ -350,7 +340,7 @@ Los modelos de canal son necesarios para simular la propagación de una manera r
 
 Existe una gama amplia de modelos de canal propuestos para redes 5G, (p.ej. 3GPP, WINNER I/II, QuaDRiga/ mmMagic, 5GCM, METIS, MiWEBA, IEEE \parencite{WirelessSim}). Aunque existen diversos modelos, los modelos de canal 3GPP y WINNER II son los más conocidos y empleados en la industria de comunicaciones móviles \parencite{Sun2016}, conteniendo una gran diversidad de escenarios de despliegue como lo son \textit{UMi, UMa, indoor office (InH)}, etc. Además proveen parámetros clave del canal incluyendo probabilidades de línea de vista (\textit{LoS}), modelos de pérdida por trayectoria, retardos y niveles de potencia por trayectoria \parencite{Sun2016}. \newline
 
-El modelo implementado se trató de uno teórico y estocástico en vez de uno empírico, ya que este proyecto está enfocado en el teletráfico. Los modelos empíricos suelen ser más sofisticados y piden una gran cantidad de parámetros de entrada. Por lo tanto se eligieron modelos estocásticos que se adaptaran al rango de frecuencia de transmisión y a los ambientes urbanos que se propusieron.\newline
+El modelo implementado se trató de uno teórico y estocástico, en vez de uno empírico, ya que este proyecto está enfocado en el teletráfico. Los modelos empíricos suelen ser más sofisticados y piden una gran cantidad de parámetros de entrada. Por lo tanto se eligieron modelos estocásticos que se adaptaran al rango de frecuencia de transmisión y a los ambientes urbanos que se propusieron.\newline
 
 En \parencite{Sun2016}, los autores evaluaron tres diferentes modelos de propagación estocásticos de perdida por trayectoria a larga escala para ser implementados a través de la banda de frecuencias de microondas y ondas milimétricas. ABG, CI y CIF son modelos estadísticos de propagación para multi-frecuencias (estocásticos) que describen los parámetros de larga escala con pérdida de trayectoria de acuerdo a la distancia.
 
@@ -417,7 +407,7 @@ En \parencite{Zhang2017} se implementó NOMA emparejando selectivamente dos usua
 
 NB-IoT no es capaz de proveer conectividad a una cantidad masiva de dispositivos IoT como se espera en el futuro, así para el diseño se consideró la metodologia en \parencite{Shahini2019}, donde los dispositivos activos de URLLC y mMTC comparten un PRB para la transmisión de datos en el enlace ascendente. El ancho de banda disponible se divide en un conjunto de frecuencias (subcanales) $S$. De hecho, el ancho de banda del sistema se puede dividir por igual en 48 o 12 subportadoras en los sistemas NB-IoT. La relación de la distribución de dispositivos mMTC con los URLLC se fijó a 3 a 1. Todo esto con base en las consideraciones del modelo de sistema en \parencite{Shahini2019}.\newline
 
-En \parencite{Shahini2019}, se tiene en cuenta lo siguiente:\label{VariablesSHahini}
+En \parencite{Shahini2019}, se utiliza la nomenclatura que se enlista a continuación para desarrollar su propuesta, misma que se utilizó en este documento:\label{VariablesSHahini}
 
 \begin{itemize}
     \item U: Lista de dispositivos uRLLC
@@ -464,7 +454,7 @@ Sin importar el modelo de tráfico a utilizar, en \parencite{Laner2013} se seña
 \item  Permitir la simulación concurrente de una cantidad masiva de dispositivos con su potencial reacción síncrona a un evento.
 \end{itemize}
 
-Antes de elegir un modelo es importante conocer las propiedades del tráfico máquina a máquina (M2M, \textit{Machine to Machine}), el cual se considera una forma de transmisión de datos que no requiere necesariamente de la interacción humana (ETSI, 2010) y corresponde justamente al tráfico de los nodos IoT, de \parencite{Laner2013} tenemos:
+Antes de elegir un modelo es importante conocer las propiedades del tráfico máquina a máquina (M2M, \textit{Machine to Machine}), el cual se considera una forma de transmisión de datos que no requiere necesariamente de la interacción humana (ETSI, 2010) y corresponde justamente al tráfico de los nodos IoT, de \parencite{Laner2013} se tiene:
 
 \begin{itemize}
 \item  Cantidad masiva de dispositivos
@@ -484,7 +474,7 @@ Además, se hace  la distinción de 3 patrones de tráfico que pueden presentars
     \item \underbar{Intercambio de carga útil (PE, }\textit{\underbar{Payload Exchange}}\underbar{):} este último tipo de tráfico ocurre después de una transmisión previa (PU o ED). Comprende todos los casos en los que es necesario un mayor intercambio de datos entre el dispositivo que envía y su servidor, este tráfico se espera sea predominantemente de subida y puede ser de tamaño constante o variable según la aplicación.
 \end{enumerate}
 
-Las aplicaciones en el mundo real que brindan servico a dispositivos de IoT generarán casi siempre tráfico en una combinación de estos tipos, más un estado de reposo o de ahorro de batería.
+Las aplicaciones en el mundo real que brindan servico a dispositivos de IoT generarán casi siempre tráfico en una combinación de estos tipos, más un estado de reposo o de ahorro de batería. Este simulador como se verá en la sección \ref{Chapter5} generó tráfico únicamente de los tipos: Actualización periódica y Activación por evento.\newline
 \begin{figure}[th]
 \centering
 \includegraphics[scale=1]{Figures/Estructura de los estados principales del tráfico M2M}
@@ -516,11 +506,11 @@ Periodo \textit{T }: 10 s & Periodo \textit{T }: 60 s \\
 \end{tabular}
 \end{table}
 
-La principal ventaja de los modelos de tráfico agregado es su fácil implementación (en términos de una baja complejidad computacional) cuando se simulan una gran cantidad de dispositivos. Por otro lado, como se menciona en \parencite{IoTTrafficHossfeld}, la precisión de estos modelos al reflejar el comportamiento real del sistema es su principal desventaja.
+La principal ventaja de los modelos de tráfico agregado es su fácil implementación (en términos de una baja complejidad computacional) cuando se simulan una gran cantidad de dispositivos. Por otro lado, como se menciona en \parencite{IoTTrafficHossfeld}, la imprecisión de estos modelos para reflejar el comportamiento real del sistema es su principal desventaja.
 
 \subsubsection{Modelos de tráfico fuente}
 
-Los modelos de tráfico fuente, modelan justamente el tráfico que genera cada uno de los dispositivos. Este tipo de modelado es más preciso que el de tráfico agregado ya que modela el comportamiento de cada nodo, sin embargo, puede fácilmente volverse muy complejo cuando se agrega una gran cantidad de dispositivos (fuentes) y comportamientos. A continuación se presentan y analizan dos modelos de tráfico fuente.
+Los modelos de tráfico fuente, modelan justamente el tráfico que genera cada uno de los dispositivos. Este tipo de modelado es más preciso que el de tráfico agregado ya que modela el comportamiento de cada nodo, sin embargo, puede  volverse muy complejo cuando se agrega una gran cantidad de dispositivos (fuentes) y comportamientos. A continuación se presentan y analizan dos modelos de tráfico fuente.
 
 \begin{itemize}
 \item  \textit{Modelo 3:} Modelo de fuente de \textit{Semi-Markov} (\textit{Semi-Markov Models, SMM)}
@@ -543,7 +533,7 @@ La principal ventaja del modelo de tráfico fuente SMM es que permitiría una de
 
 En el modelo de tráfico CMMPP cada dispositivo MTC es representado como una entidad por separado y a diferencia del modelo SMM sí puede representarse una sincronización espacial y temporal entre dispositivos similares. La clave en el diseño del modelo CMMPP se presenta en encontrar un balance entre el emparejamiento entre distintos dispositivos y una complejidad tolerable del sistema cuando se tiene una gran cantidad de dispositivos \parencite{Gupta2018}.
 
-Los procesos de Poisson Modulados con Markov (\textit{Markov modulated Poisson processes, MMPP}) consisten en procesos de Poisson que son modulados por la tasa $\lambda_{i[t]}$, que viene determinada por el estado de una cadena de Markov $sn[t]$, este principio se ve presentado en la \textit{Figura~\ref{fig:CMMPP}} donde \textit{p${}_{i,j}$}${}_{\ }$son las probabilidades de transición entre los estados de la cadena. En este modelo cada dispositivo \textit{n} del total\textit{ N} se encuentra representado por una cadena de Markov y un correspondiente proceso de Poisson. Debido a que existe una alta correlación en el cambio de estados de distintos dispositivos, tanto en el espacio como en el tiempo, es necesario realizar un emparejamiento. En los modelos genéricos, el emparejamiento se realiza introduciendo enlaces bidireccionales entre los dispositivos, pero esto sería sin lugar a dudas muy complejo de simular, de manera que en \parencite{Gupta2018} se propone un proceso de fondo actuando como \textit{maestro} el cual modula todos los dispositivos del mismo tipo.
+Los procesos de Poisson Modulados con Markov (\textit{Markov modulated Poisson processes, MMPP}) consisten en procesos de Poisson que son modulados por la tasa $\lambda_{i[t]}$, que viene determinada por el estado de una cadena de Markov $sn[t]$. este principio se ve presentado en la \textit{Figura~\ref{fig:CMMPP}} donde \textit{p${}_{i,j}$}${}_{\ }$son las probabilidades de transición entre los estados de la cadena. En este modelo cada dispositivo \textit{n} del total\textit{ N} se encuentra representado por una cadena de Markov y un correspondiente proceso de Poisson. Debido a que existe una alta correlación en el cambio de estados de distintos dispositivos, tanto en el espacio como en el tiempo, es necesario realizar un emparejamiento. En los modelos genéricos, el emparejamiento se realiza introduciendo enlaces bidireccionales entre los dispositivos, pero esto sería sin lugar a dudas muy complejo de simular, de manera que en \parencite{Gupta2018} se propone un proceso de fondo actuando como \textit{maestro} el cual modula todos los dispositivos del mismo tipo.
 
 \begin{figure}[th]
 \centering
@@ -555,7 +545,7 @@ Los procesos de Poisson Modulados con Markov (\textit{Markov modulated Poisson p
 
 \end{itemize}
 
-La principal ventaja como ya se mencionó del tráfico fuente frente al tráfico agregado es su precisión, por otra parte, la del tráfico agregado es su fácil implementación para un gran número de dispositivos. El modelo CMMPP es un intermedio entre estos dos casos, es decir mantiene la precisión del modelado de tráfico fuente mientras se mantiene la viabilidad para un gran número de máquinas. A continuación se presenta la \textit{Tabla~\ref{tab:Traficos}} con una comparativa entre los distintos modelos mencionados.\newline
+La principal ventaja como ya se mencionó del tráfico fuente frente al tráfico agregado es su precisión, por otra parte, la del tráfico agregado es su fácil implementación para un gran número de dispositivos. El modelo CMMPP es un intermedio entre estos dos casos, es decir mantiene la precisión del modelado de tráfico fuente mientras se mantiene la viabilidad para un gran número de máquinas. A continuación se presenta en la \textit{Tabla~\ref{tab:Traficos}} una comparación entre los distintos modelos mencionados.\newline
 \begin{table}
 \caption{Comparativa entre los modelos de tráfico MTC abordados}
 \label{tab:Traficos}
@@ -574,13 +564,13 @@ La principal ventaja como ya se mencionó del tráfico fuente frente al tráfico
 \end{tabular}
 \end{table}
 
-Como puede observarse en la \textit{Tabla~\ref{tab:Traficos}}, las ventajas que trae consigo la utilización de un modelo de tráfico como el CMMPP son bastante convenientes generar tráfico de dispositivos mIoT, pues este es capaz de simular la relación espacial y temporal que existiría entre los nodos. Si se regresa a la \textit{Tabla~\ref{tab:appssim}} en la que se presentan los servicios que se simularan, se encuentra que servicios como el monitoreo de la condición del aire en la ciudad, la detección de terremotos, la manipulación de la iluminación y demás tendrá un comportamiento similar en un espacio confinado y para poder hacer hincapié en la importancia del diseño de la red para a la hora de cumplir con la QoS esperada, es necesario que se implemente la posibilidad de recibir una gran cantidad de dispositivos en el caso de uso mMTC, los cuales estarían tratando de acceder a los recursos del sistema simultáneamente. De manera que el modelo CMMPP se seleccionó para la simulación de este sistema, complementándolo con un modelo determinístico para las aplicaciones que sólo producen tráfico periódico.\newline
+Como puede observarse en la \textit{Tabla~\ref{tab:Traficos}}, el modelo CMMPP es bastante conveniente a la hora de generar tráfico de dispositivos mIoT, pues este es capaz de simular la relación espacial y temporal que existiría entre los nodos. Si se regresa a la \textit{Tabla~\ref{tab:appssim}}, en la que se presentan los servicios que se simularán, se encuentra que servicios como el monitoreo de la condición del aire en la ciudad, la detección de terremotos, la manipulación de la iluminación y demás tendrán un comportamiento similar en un espacio limitado. De manera que el modelo CMMPP se seleccionó para la simulación de este sistema, complementándolo con un modelo determinístico para las aplicaciones que sólo producen tráfico periódico.\newline
 
 Una explicación resumida del modelado  de tráfico fuente CMMPP se realiza a continuación \parencite{Gupta2018}:
 
 \begin{enumerate}
 \item  Un conjunto de \textit{k }estados se definen, cada uno asociado con una tasa de generación de paquetes ${\lambda }_k$. Un dispositivo IoT se encuentra en todo momento en algún de estos estados representados en una cadena de Markov formada por los estados antes mencionados.
-\item  La transición entre los \textit{k} estados para cualquier \textit{n-ésimo}\textbf{\textit{ }}dispositivo está definida por una matriz \textit{k x k} de $P_n$ la cual es a su vez una función de dos matrices de transición $P_u$ y $P_c$ (Para comportamiento no coordinado/no sincronizado y comportamiento coordinado/sincronizado respectivamente) definidas por la red de N nodos.
+\item  La transición entre los \textit{k} estados para cualquier dispositivo está definida por una matriz de probabilidad de cambio de estado $P_n$ ,la cual es a su vez una función de dos matrices de transición $P_u$ y $P_c$ ( que modelan el comportamiento no coordinado/no sincronizado y comportamiento coordinado/sincronizado respectivamente).
 \item  Un factor de correlación espacial ${\delta }_n$ se asigna a cada dispositivo \textit{n. }Esto modela qué tanto se involucra un dispositivo durante la generación de tráfico coordinado en la red y dicta efectivamente la contribución de $P_c$ en la matriz resultante de probabilidad de transición de ese dispositivo.
 \item  Se define un proceso $\mathit{\Theta}\left(t\right)$ el cual controla la matriz de  transición instantánea de estado del \textit{n-ésimo}\textbf{\textit{ }}dispositivo en el instante \textit{t.}
 \end{enumerate}
