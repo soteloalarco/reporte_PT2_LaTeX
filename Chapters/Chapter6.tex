@@ -99,7 +99,7 @@ En el diseño del sistema se decidió implementar un esquema de acceso múltiple
 
 \subsection{Algoritmo de Agrupación de dispositivos uRLLC  y mMTC}
 
-Primero se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC descrito en \parencite{Shahini2019}[\textit{véase Algorithm \ref{A1}}], este algoritmo realiza un ordenamiento conveniente con respecto al uso de la Cancelación Sucesiva de Interferencia (SIC), es decir, se ordenan los dispositivos URLLC y mMTC de acuerdo con su ganancia de canal promedio dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo[\textit{véase Figura~\ref{fig:NOMAgrupoexample}}]. El Algoritmo da prioridad a los dispositivos URLLC para que obtengan los rangos más bajos. \newline
+Primeramente, se implementó el algoritmo de agrupamiento NOMA para los dispositivos mMTC y uRLLC descrito en \parencite{Shahini2019}[\textit{véase Algorithm \ref{A1}}], este algoritmo realiza un ordenamiento conveniente con respecto al uso de la Cancelación Sucesiva de Interferencia (SIC), es decir, se ordenan los dispositivos URLLC y mMTC de acuerdo con su ganancia de canal promedio dentro de los diferentes grupos NOMA para que puedan compartir el mismo recurso espectral (subportadora) asignado a cada grupo[\textit{véase Figura~\ref{fig:NOMAgrupoexample}}]. El Algoritmo da prioridad a los dispositivos URLLC para que obtengan los rangos más bajos. \newline
 
 Por lo tanto, un mensaje combinado de los dispositivos mMTC y URLLC con ruido aditivo es recibido en la BS, la BS emplea la recepción SIC de acuerdo a cómo son ordenados los dispositivos. \newline
 

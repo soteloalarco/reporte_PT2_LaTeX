@@ -117,7 +117,7 @@ En las aplicaciones seleccionadas, lo primordial es tener un bajo consumo y comp
 
 De todos los servicios descritos en las tablas anteriores \textit{[Tabla~\ref{tab:smartcity}\ldots \ref{tab:smartrans}]}, se decidió implementar solamente un grupo diverso de aplicaciones provenientes de distintos dominios. Este grupo se seleccionó de tal manera que fuera representativo de distintos comportamientos y requerimientos de QoS. El escenario propuesto consta de los servicios de: control de iluminación, monitoreo del consumo de agua y electricidad, detección de terremotos, monitoreo de contaminación del aire, detección de interrupciones en el servicio (agua, luz, gas), control dinámico de semáforos y un último servicio que se llamó ``otros dispositivos mMTC''. Este último representó el conglomerado de todas las demás aplicaciones IoT que estarán presentes en la red y no corresponden a una de las primeras aplicaciones seleccionadas. \newline
 
-Se decidió entonces situar la simulación en un escenario urbano micro celular con nodos en exteriores, en el que se encontrarán todas las aplicaciones mencionadas en el párrafo anterior. El escenario urbano micro representa a zonas urbanas densamente pobladas. La elección de un escenario urbano micro celular se debió a que en este se puede experimentar una congestión producida por las  MTC y HTC más facilmente. Otra razón fue que en tal escenario se tiene presente una mayor diversidad de aplicaciones IoT, con distintas características de tráfico y requerimientos de QoS.\newline
+Se decidió entonces situar la simulación en un escenario urbano macro celular (UMa) con nodos en exteriores, en el que se encontrarán todas las aplicaciones mencionadas en el párrafo anterior. El escenario urbano macro representa a zonas urbanas densamente pobladas. La elección de un escenario urbano macro celular se debió a que en este se puede experimentar una congestión producida por las  MTC y HTC más facilmente. Otra razón fue que en tal escenario se tiene presente una mayor diversidad de aplicaciones IoT, con distintas características de tráfico y requerimientos de QoS.\newline
 
 En la \textit{Tabla~\ref{tab:appssim}} se presentan las aplicaciones IoT del escenario urbano que se implementaron.\newline
 
@@ -354,15 +354,14 @@ Los modelos evaluados fueron:
 \begin{flushleft}
  Para el primero, la ecuación del modelo ABG está dada por:
  \begin{equation}
-    L^{ABG}_p(f,d)_{\left[dB\right]}=10 \alpha {\ log}_{10}\left(\frac{d}{1m}\right)+\beta +\ 10gamma {\ log}_{10}\left(\frac{f}{1GHz}\right)+\ x^{ABG}_{\sigma .}, donde\ d\ge 1m
+    L^{ABG}_p(f,d)_{\left[dB\right]}=10 \alpha {\ log}_{10}\left(\frac{d}{1m}\right)+\beta +\ 10\gamma {\ log}_{10}\left(\frac{f}{1GHz}\right)+\ x^{ABG}_{\sigma .}, donde\ d\ge 1m
     \label{eqn:ABG}
 \end{equation}
 \[\alpha \to coeficiente\ que\ representa\ la\ dependencia\ de\ la\ perdida\ por\ trayectoria\ con\ la\ distancia\] 
 \[\gamma \to coeficiente\ que\ representa\ la\ dependencia\ de\ la\ perdida\ por\ trayectoria\ con\ la\ frecuencia\] 
 \[\beta \to es\ un\ valor\ de\ compensación\ para\ la\ pérdida\ por\ trayectoria\ (en\ dB's)\] 
 \[x^{ABG}_{\sigma .}\to es\ una\ variable\ aleatoria\ gaussiana\ de\ media\ cero\ con\ una\ desviaci\textrm{ó}n\ est\textrm{á}ndar \]
-\[sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ multitrayectoria)\]
-\[desvanecimiento\ tipo\ Rayleigh \] 
+\[sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ ensombrecimiento)\]
 
 Para el segundo, la ecuación del modelo CI está dada por:
 \begin{equation}
@@ -370,8 +369,7 @@ Para el segundo, la ecuación del modelo CI está dada por:
     \label{eqn:CI}
 \end{equation}
 \[x^{CI}_{\sigma .}\to es\ una\ variable\ aleatoria\ gaussiana\ de\ media\ cero\ con\ una\ desviaci\textrm{ó}n\ est\textrm{á}ndar \]
-\[sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ multitrayectoria)\]
-\[desvanecimiento\ tipo\ Rayleigh\] 
+\[sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ ensombrecimiento)\]
 
 Para el tercero, la ecuación del modelo CIF está dada por:
 \begin{equation}
@@ -379,8 +377,7 @@ Para el tercero, la ecuación del modelo CIF está dada por:
     \label{eqn:CIF}
 \end{equation}
 \[x^{CIF}_{\sigma .}\to es\ una\ variable\ aleatoria\ gaussiana\ de\ media\ cero\ con\ una\ desviaci\textrm{ó}n\ est\textrm{á}ndar  \]
-\[ sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ multitrayectoria)\]
-\[desvanecimiento\ tipo\ Rayleigh\]
+\[ sigma \ [dB], que\ describe\ las\ fluctuaciones\ de\ se\textrm{ñ}al\ a\ gran\ escala\ (es\ decir,\ ensombrecimiento)\]
 \end{flushleft}
 
 Cada uno de estos modelos han sido recientemente estudiados por organizaciones de estandarización como 3GPP y son propuestos para su uso en el diseño de sistemas inalámbricos de comunicación de 5G enfocados en escenarios \textit{UMa, UMi, InH,y SM}.\newline
@@ -391,9 +388,11 @@ Por otro lado, el modelo CIF es muy adecuado para entornos interiores, ya que pr
 
 Los modelos CI y CIF son más robustos y precisos en comparación con el modelo ABG, por lo que es confiable la aplicación del modelo CI para simular entornos en exteriores y el CIF para interiores \parencite{Sun2016}.\newline
 
-De acuerdo a lo propuesto en la \textit{sección~\ref{AppsEscenario} }, el ambiente urbano que consideraremos está dirigido a un entorno en exteriores. Por lo que se seleccionó al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano). \newline
+De acuerdo a lo propuesto en la \textit{sección~\ref{AppsEscenario} }, el ambiente macro urbano (UMa) que consideramos está dirigido a un entorno en exteriores. Por lo que se seleccionó al modelo CI (Modelo de pérdida por trayectoria de distancia de referencia de espacio libre cercano). \newline
 
-Los parámetros que requiere este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, la multitrayectoria[\textit{multipath}]).\newline
+Los parámetros que requiere este modelo (\textit{Ecuación~\ref{eqn:CI}}) son: la distancia entre la BS y el UE, la frecuencia fundamental de operación y una variable aleatoria de media cero con una desviación estándar $\sigma$ [dB], que describirá las fluctuaciones de señal a gran escala (es decir, ensombrecimiento[\textit{shadowing}]).\newline
+
+Sin embargo, para este modelo de canal no se implementaron las pérdidas por ensombrecimiento, se optó por incorporar las perdidas por multitrayectoria (\textit{multipath}) ya que en el caso del estándar NB-IoT, que usa anchos de banda pequeños, se espera que sea suceptible a las variaciones rápidas del canal. Por lo tanto, en lugar de utilizar la variable aleatoria gaussiana propia del modelo, se implementó el desvanecimiento rápido incorporando una variable aleatoria tipo Rayleigh.\newline
 
 Por último, los autores proponen a $d_{0} = 1 m$ en los modelos de pérdida por trayectoria para sistemas 5G ya que se espera que las distancias de cobertura serán más cortas a frecuencias más altas. Además, lo que se espera son futuras celdas pequeñas, es probable que las BS se monten más cerca de las obstrucciones. La estandarización a una distancia de referencia de 1 m simplifica las comparaciones de mediciones y modelos y proporciona una definición estándar para el PLE, al tiempo que permite la intuición y el cálculo rápido de la pérdida de trayectoria.
 
