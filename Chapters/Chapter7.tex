@@ -142,79 +142,64 @@ Este segundo escenario pone a prueba la capacidad que tiene el programa principa
 
 \subsection{Descripción del escenario}
 
-En este este escenario se consideraron únicamente los dispoitivos de tipo URLLC y los llamados Otros dispositivos mMTC, esto para facilitar el cumplir con la relación de 3 a 1 entre ambos tipos de dispositivos. Entonces en el programa \textbf{Generador de tráfico IoT} se generó tráfico dentro de una célula de radio igual a 200 metros. La distribución de usuarios se hizo con la opción PPP y se establecieron las intensidades de la siguiente forma: La intensidad de los dispositivos mMTC se fijo en 0.3 $dispositivos/m^2$ y la de los dispositivos URLLC se fijo en 0.1 $dispositivos/m^2$. La relación de dispositivos se eligió 3 a 1 para después fijar las tasas de nacimientos de paquetes y de alarmas idénticas en ambos tipos de servicios y garantizar que el tráfico ofrecido al sistema conserve esa relación. La tasa de nacimiento de paquetes es $\lambda_{normal} = 0.0167 paquetes/seg.$ y la de nacimiento de alarmas es $\lambda_{alarma} = 0.1 alarmas/seg.$ para ambos tipos de dispositivos. Finalmente, las características en las que se transmiten las alarmas son compartidas también entre ambos dispositivos: $velocidad_{alarma} = 500 m/s$ y modelo de propagación espacial = \textit{Rised-cosine window} con $d_{th}=200$ y $d_{th}=100$. \newline
+En este este escenario se consideraron únicamente los dispoitivos de tipo URLLC y los llamados Otros dispositivos mMTC, esto para cumplir fácilmente con la relación de 3 a 1 entre ambos tipos de dispositivos. Entonces en el programa \textbf{Generador de tráfico IoT} se generó tráfico dentro de una célula de radio igual a 200 metros. La distribución de usuarios se hizo con la opción PPP y se establecieron las intensidades de la siguiente forma: La intensidad de los dispositivos mMTC se fijo en 0.3 $dispositivos/m^2$ y la de los dispositivos URLLC se fijo en 0.1 $dispositivos/m^2$. La relación de dispositivos se eligió 3 a 1 para después fijar las tasas de nacimientos de paquetes y de alarmas idénticas en ambos tipos de servicios y garantizar que el tráfico ofrecido al sistema conserve esa relación. La tasa de nacimiento de paquetes es $\lambda_{normal} = 0.0167 paquetes/seg.$ y la de nacimiento de alarmas es $\lambda_{alarma} = 0.1 alarmas/seg.$ para ambos tipos de dispositivos. Finalmente, las características en las que se transmiten las alarmas son compartidas también entre ambos dispositivos: $velocidad_{alarma} = 500 m/s$ y para el modelo de propagación espacial se usó el modelo de ventana de coseno alzado con $d_{th}=200$ y $d_{th}=100$. \newline
 
-De manera que virtualmente, ambos tipos los dispositivos generan tráfico del mismo tipo, pero al haber 3 veces más dispositivos mMTC, en los algoritmos NOMA se conservará en promedio esta relación.
+De manera que virtualmente, ambos tipos los dispositivos generan tráfico a la misma tasa, pero al haber 3 veces más dispositivos mMTC, en los algoritmos NOMA se conservará en promedio esta relación.
 
 El tráfico generado por el \textbf{Generador de tráfico IoT} correspondió a 10 segundos y la iteración seleccionada para ser evaluada por el simulador de eventos discretos contenía 2 alarmas, una para cada tipo de dispositivo, lo que es el promedio esperado, dado que $\lambda_{alarma} = 0.1 alarmas/seg.$. Se seleccionó esta iteración por ser una buena representación de los parámetros ingresados. Finalmente se inició la simulación con 48 dispositivos ya utilizando el canal, 26 dispositivos mMTC y 12 URLLC, esto para que el sistema se encontrara ya en un equilibrio de operación.
 
 \subsection{Parámetros de entrada}
 
-La instancia de tráfico utilizada como entrada del simulador de eventos discretos, comprendía $37541$ dispositivos mMTC y $12611$ dispositivos URLLC. El tiempo de la simulación se fijo en $10$ segundos y las potencias máximas de transmisión en los dispositivos se fijaron como $23dBm$ para los URLLC y $20dBm$ para los mMTC. Finalmente se usó $d0=1m$, $PLE=2.0$ y el bloque de frecuencias que inicia en $2Ghz$. 
+La instancia de tráfico utilizada como entrada del simulador de eventos discretos, comprendía $37541$ dispositivos mMTC y $12611$ dispositivos URLLC. El tiempo de la simulación se fijo en $10$ segundos y la potencia máxima de transmisión se fijó como $23dBm$ para los dispositivos URLLC. Finalmente se usó $d0=1m$, $PLE=2.0$ y el bloque de frecuencias que inicia en $2Ghz$. 
 
-Se corrieron 4 rutinas en las que se variaron los valores de $k$ desde $1$ hasta $4$.
+Se corrieron 12 rutinas en las que se variaron los valores de $k$ desde $1$ hasta $4$ y la potencia máxima de transmisión de los dispoitivos mMTC tomó valores de 23, 20 y 14 dBm.
 
 \subsection{Resultados obtenidos}
 %                                           PONER ESTO EN TABLA
-Para \textbf{k=1} se obtuvo:\newline
-Tráfico ofrecido = $48182.749345 bytes/s$ \newline
-Throughput = $31578.300434 bytes/s$ \newline
-Probabilidad de bloqueo sin clúster = $36.674849 porciento$ \newline
-Tasas no cubiertas URLLC = $25.670367 porciento$ \newline
-Tasas no cubiertas URLLC = $17.796712 porciento$ \newline
 
-Para \textbf{k=2} se obtuvo:\newline
-Tráfico ofrecido = $48182.749345 bytes/s$ \newline
-Throughput = $33391.109178 bytes/s$ \newline
-Probabilidad de bloqueo sin clúster = $32.644499 porciento$ \newline
-Tasas no cubiertas URLLC = $22.322801 porciento$ \newline
-Tasas no cubiertas URLLC = $11.487657 porciento$ \newline
-
-Para \textbf{k=3} se obtuvo:\newline
-Tráfico ofrecido = $48182.749345 bytes/s$ \newline
-Throughput = $34457.869843 bytes/s$ \newline
-Probabilidad de bloqueo sin clúster = $30.363758 porciento$ \newline
-Tasas no cubiertas URLLC = $24.560205 porciento$ \newline
-Tasas no cubiertas URLLC = $11.829281 porciento$ \newline
-
-Para \textbf{k=4} se obtuvo:\newline
-Tráfico ofrecido = $48182.749345 bytes/s$ \newline
-Throughput = $35150.834596 bytes/s$ \newline
-Probabilidad de bloqueo sin clúster = $28.829673 porciento$ \newline
-Tasas no cubiertas URLLC = $24.184458 porciento$ \newline
-Tasas no cubiertas URLLC = $11.427156 porciento$ \newline
-
-De los resultados se puede ver que aumentar k también aumenta el \textit{throughput} y reduce la probabilidad de bloqueo por negación de servicio sin comprometer el porcentaje de tasas no cubiertas, pero variar la potencia de transmisión y evaluar más iteraciones de tráfico son necesarias para dar una respuesta definitiva, sin embargo se puede ver que el simulador genera los datos requeridos, y apartir de estos se puede identificar el comportammiento del sistema para distintos parámetros de entrada.
+Los resultados obtenidos en este escenario II se encuentran registrados en las siguientes tablas y corresponden siempre a evaluación de 12 puntos, generados apartir de las 12 combinaciones posibles de tamaño de cluster y potencia máxima de transmisión de los dispositivos mMTC. \newline
 
 %                                           HACER ANALISIS DE GRAFICAS
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=1]{Figures/ResultadosTrafico/Figure_1.png}
+    \includegraphics[scale=0.9]{Figures/ResultadosTrafico/Figure_1.png}
     \decoRule
-    \caption[]{}
-    \label{fig:}
+    \caption[Probabilidad de bloque por falta de recursos]{[Probabilidad de bloque por falta de recursos}
+    \label{fig:bloqueocluster}
 \end{figure}
+
+La Figura~\ref{fig:bloqueocluster}, muestra la probabilidad de bloqueo por falta de cluster. Se trata de la probabilidad que tiene cada paquete generado de ser bloqueado debido a que el dispositivo IoT no consiguió entrar a un cluster (es decir no se le asignaron recursos). Se puede notar que esta probabilidad decrece cuando se agregan más rangos a cada cluster y cuando aumenta $P_{m}^{s}$. De manera que la menor probabilidad de bloque por falta de un cluster o recursos asignados es cuando $k_{max}=4$ y $P_{m}^{s}=0.200 W$. \newline
+
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=1]{Figures/ResultadosTrafico/Figure_2.png}
+    \includegraphics[scale=0.9]{Figures/ResultadosTrafico/Figure_2.png}
     \decoRule
-    \caption[]{}
-    \label{fig:}
+    \caption[Probabilidad de no cumplir la tasa objetivo]{Probabilidad de no cumplir la tasa objetivo}
+    \label{fig:tasa}
 \end{figure}
+
+La Figura~\ref{fig:tasa}, muestra la probabilidad que tiene cada dispositivo de no cumplir con su tasa objetivo. Esta se calcula al final de la transmisión de cada paquete, utilizando el tamaño del paquete y el tiempo que tomó transmitirlo. En la figura se puede apreciar que la menor probabilidad de que un paquete no cumpla con su tasa objetivo es para los clusters de tamaño uno, es decir cuando no se realiza NOMA. Al mismo tiempo, cuando la potencia máxima de los dispoitivos mMTC toma el valor mínimo, la probabilidad de no cumplir con la tasa objetivo parece aumentar, sin embargo se necesitarían de más corridas para concluir sobre esto. Pero pareciera que la potencia no es suficiente, cuando el tamaño de los cluster aumenta, para que todos los dispositivos mMTC cumplan con su tasa objetivo. \newline
+
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=1]{Figures/ResultadosTrafico/Figure_3.png}
+    \includegraphics[scale=0.9]{Figures/ResultadosTrafico/Figure_3.png}
     \decoRule
-    \caption[]{}
-    \label{fig:}
+    \caption[Probabilidad de no cumplir la tasa objetivo entre procesos NOMA]{Probabilidad de no cumplir la tasa objetivo durante un proceso NOMA}
+    \label{fig:tasaNOMA}
 \end{figure}
+
+La Figura~\ref{fig:tasaNOMA}, muestra la probabilidad de que un dispositivo no consiga transmitir a su tasa objetivo al terminar un proceso NOMA y hasta el inicio del siguiente. Es importante recordar que un proceso NOMA se realiza cada que nace y cada que se termina de transmitir un paquete, de manera que muchos procesos NOMA tendrán lugar durante la transmisión completa de un sólo paquete. La tasa mostrada en la gráfica anterior podría considerarse la tasa efectiva, mientras que esta muestra la tasa en pequeños intervalos de tiempo. En la figura se puede apreciar que el orden de las probabilidades es mucho mayor que aquel en la Figura~\ref{fig:tasa}, lo que deja ver que aunque los dispositivos transmitan paquetes por debajo de su tasa objetivo durante muchos intervalos de tiempo, finalmente logran cumplir con su tasa objetivo en un porcentaje mucho mayor. Un comportamiento esperado, que se podría inferir también de esta figura es que al aumentar el tamaño de los clusters, menos dispositivos alcanzarán su tasa objetivo en estos pequeños intervalos de tiempo. Sin embargo no es tan fácil concluir esto de la tasa efectiva (La mostrada en la Figura~\ref{fig:tasa}).\newline
 
 \begin{figure}[th]
     \centering
-    \includegraphics[scale=1]{Figures/ResultadosTrafico/Figure_4.png}
+    \includegraphics[scale=0.9]{Figures/ResultadosTrafico/Figure_4.png}
     \decoRule
-    \caption[]{}
-    \label{fig:}
+    \caption[Throughput]{Throughput}
+    \label{fig:throughput2}
 \end{figure}
+
+Finalmente, la Figura~\ref{fig:throughput2}, muestra el \textit{throughput} logrado en cada una de las 12 corridas de la simulación. Se puede ver que se logra un aumento en éste cuando se admiten más dispositivos en cada cluster y cuando aumenta la potencia de máxima de transmisión de los dispositivos mMTC.\newline 
+
+Con ayuda de estas gráficas se puede comenzar a inferir que la mejor opción para aumentar el \textit{throughput} y reducir la probabilidad de bloqueo por falta de recursos es seleccionando $k_{max}=4$ y $P_{m}^{s}=0.200W$, a cambio claro de aumentar la probabilidad de no cumplir con las tasas objetivo de cada dispositivo. Sin embargo más corridas serían necesarias para hacer conclusiones, pero se puede apreciar que los resultados arrojados por el simulador son capaces de mostrar los efectos que tiene cambiar dos variables sobre el comportamiento del sistema.\newline
