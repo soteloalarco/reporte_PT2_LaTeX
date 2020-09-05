@@ -10,7 +10,7 @@ Por último, se presentan los modelos que fueron usados para caracterizar el des
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{REDES 5G/IoT}
+\section{Redes 5G/IoT}
 
 El Internet de las cosas (IoT) tendrá un importante papel en las redes 5G. La actual red celular LTE (4G) no está diseñada para satisfacer las demandas de conectividad de múltiples dispositivos, velocidad de datos, calidad de servicio (QoS) de baja latencia y de eficiencia energética. Para abordar estos desafíos, 5G contempló a IoT como uno de sus pilares \parencite{Chetri2020}. \newline
 
@@ -19,7 +19,7 @@ El Internet de las cosas (IoT) tendrá un importante papel en las redes 5G. La a
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{CLASIFICACIÓN Y ANÁLISIS DE LOS ÁMBITOS DE IoT}
+\section{Clasificación y análisis de los ámbitos de IoT}
 
 Se tomó como referencia el trabajo realizado en \parencite{NetTrafficIoT} como una guía de los servicios que se espera los nodos IoT brinden en un futuro próximo. Los servicios se presentan en 8 dominios: edificios inteligentes y vivienda (\textit{Smart buildings and living}), cuidado de la salud inteligente (\textit{Smart healthcare}), medio ambiente inteligente (\textit{Smart environment}), ciudades inteligentes (\textit{Smart city}), energía inteligente (\textit{Smart energy}), transporte y movilidad  inteligentes (\textit{Smart transport and mobility}), fabricación y venta inteligentes (\textit{Smart manufacturing and retail}), agricultura inteligente (\textit{Smart agriculture}). Para cada uno de los dominios se especifican aplicaciones típicas que se podrían encontrar, sus características de tráfico y las tecnologías de red más adecuadas para darles servicio entre otras cosas.\newline
 
@@ -109,7 +109,7 @@ El análisis de las aplicaciones seleccionadas, provenientes de distintos domini
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{CARACTERÍSTICAS DEL ESCENARIO A IMPLEMENTAR}\label{AppsEscenario}
+\section{Características del escenario a implementar}\label{AppsEscenario}
 
 Las distintas aplicaciones presentadas en la sección anterior muy seguramente se verán desplegadas en un futuro próximo en ciudades alrededor de todo el mundo. Una aserción que resulta importante es la gran cantidad de aplicaciones que se esperan para IoT \parencite{Ericsson2019}, pero en este análisis se tomaron en consideración únicamente aquellas que operan en una red LPWAN. Para estas aplicaciones, una red celular de 5G podría ser las más idónea para brindarles servicio. \newline
 
@@ -212,7 +212,7 @@ La \textit{Figura~\ref{fig:5gqos}} muestra las distintas tecnologías con las qu
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{ANÁLISIS DEL ESTÁNDAR NB-IoT} \label{NBIoT}
+\section{Análisis del estándar NB-IoT} \label{NBIoT}
 
 El estándar NB-IoT fue especificado en el reporte TR 45.820 (\textit{release} 13) de la 3GPP \parencite{3GPP2019}. Sus parámetros fundamentales son:\newline
 
@@ -257,14 +257,13 @@ Existen dos modos de transmisión para el enlace UL, en el modo \textit{singleto
 
 Finalmente, se admiten los modos de \textit{singletone} y \textit{multitone}, cuando el PRB se divide en 12 subportadoras, cada una de ellas con un ancho de banda de 15 kHz. En \parencite{Mostafa2019} se estudió más a fondo el uso de \textit{singletone} y \textit{multitone} en transmisiones UL.\newline
 
-\subsection{Características del tráfico IoT}
+\subsection{Características del tráfico NB-IoT}
 
 En los Reportes autónomos móviles (MAR, \textit{Mobile Autonomous Reporting}) se definen cuatro tipos de paquetes diferentes:
 
 \subsubsection{Informes de excepción}
 
 Se espera que muchas aplicaciones de tipo sensor monitoreen una condición física y activen un informe de excepción cuando se detecte un evento en específico. Estos eventos serán, en general, raros y ocurrirán cada par de horas, pocos días o incluso meses. Ejemplos de tales paquetes incluyen los producidos por detectores de humo, notificaciones de fallas de energía de medidores inteligentes, notificaciones de manipulación, etc.\newline
-
 
 \subsubsection{Informes periódicos}\label{Informesperiodicos}
 
@@ -310,7 +309,7 @@ De los KPIs antes enumerados este simulador obtuvo resultados acerca de la densi
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{ANÁLISIS DE MODELOS PARA LA EVALUACIÓN DE REDES 5G/IoT}\label{AnalisisMODELOS}
+\section{Análisis de modelos para la evaluación de redes 5G/IoT}\label{AnalisisMODELOS}
 Los modelos necesarios para caracterizar el comportamiento de redes móviles, desde el punto de vista de simulaciones a nivel de sistema, se presentan a continuación \parencite{WirelessSim}:
 \begin{enumerate}
     \item  Modelo de despliegue de BSs y UEs.
@@ -326,7 +325,7 @@ Los modelos necesarios para caracterizar el comportamiento de redes móviles, de
 
 Los modelos que se incluyeron en el simulador se describen en las siguientes subsecciones:
 
-\subsection{MODELO DE DESPLIEGUE DE BSs Y UEs}
+\subsection{Modelo de despliegue de UEs}
 
 Los modelos del posicionamiento de las estaciones base y los nodos IoT utilizan diferentes estrategias de despliegue (como se puede ver en la \textit{Figura~\ref{fig:BSs}}). Este aspecto, como los demás, es de mayor o menor importancia dependiendo de los objetivos de la simulación, es decir, para un alcance comercial resulta importante simular el despliegue determinístico de los actores de la red. Por otro lado para un alcance con fines de análisis en el diseño y dimensionamiento de estas redes resulta más adecuado un despliegue aleatorio. \newline
 
@@ -334,7 +333,7 @@ Diversos autores coinciden en que varias distribuciones de redes móviles siguen
 
 En este proyecto con fines de diseño y análisis, se simularon ambos despliegues, uno uniforme y otro siguiendo una geometría estocástica, es decir, un PPP.
 
-\subsection{MODELO DE CANAL}
+\subsection{Modelo de canal}
 
 Un buen diseño de sistema necesitó de conocer las características del canal de propagación a través de las frecuencias de microondas y ondas milimétricas. \newline
 
@@ -398,7 +397,7 @@ Sin embargo, para este modelo de canal no se implementaron las pérdidas por ens
 
 Por último, los autores proponen a $d_{0} = 1 m$ en los modelos de pérdida por trayectoria para sistemas 5G ya que se espera que las distancias de cobertura serán más cortas a frecuencias más altas. Además, lo que se espera son futuras celdas pequeñas, es probable que las BS se monten más cerca de las obstrucciones. La estandarización a una distancia de referencia de 1 m simplifica las comparaciones de mediciones y modelos y proporciona una definición estándar para el PLE, al tiempo que permite la intuición y el cálculo rápido de la pérdida de trayectoria.
 
-\subsection{ESQUEMA DE ACCESO MÚLTIPLE AL MEDIO}
+\subsection{Esquema de acceso múltiple al medio}
 
 \subsubsection{Acceso Múltiple No Ortogonal (NOMA)}\label{NOMA_C4}
 
@@ -444,7 +443,7 @@ Por lo tanto, la tasa de datos alcanzable de un dispositivo $u$ URLLC sobre las 
 \label{eqn:Ru}
 \end{equation}
 
-\subsection{MODELOS DE TRÁFICO}
+\subsection{Modelos de tráfico}
 
 Los modelos de tráfico en comunicaciones móviles buscan acercarse, lo más posible a cómo transmiten datos o realizan peticiones de acceso los dispositivos que intentan modelar. Estos modelos de tráfico pueden clasificarse en modelos de tráfico\textbf{agregado } y modelos de tráfico \textbf{fuente} \parencite{Laner2013}. El tráfico agregado simula un flujo de tráfico que se agrupa para recibir un tratamiento común, mientras que en los modelos de tráfico fuente es justamente cada una de las fuentes generadoras del tráfico la que se simula y frecuentemente se hace acompañada de una cadena de Markov que intenta representar los distintos estados del dispositivo fuente y la probabilidad de transición entre ellos.\newline
 

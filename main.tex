@@ -90,7 +90,7 @@
 \addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
 \subject{Comunicaciones Móviles} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
-\keywords{mMTC, NB-IoT, PD-NOMA, 5G, simulador de eventos discretos, QoS.} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
+\keywords{mMTC, NB-IoT, PD-NOMA, 5G, simulador de eventos discretos.} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
 \university{\href{https://www.upiita.ipn.mx/}{INSTITUTO POLITÉCTINO NACIONAL - Unidad Profesional interdisciplinaria de Ingeniería y Tecnologías Avanzadas}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
 \department{\href{}{}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
 \group{\href{}{}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
@@ -144,7 +144,7 @@ Dr. Noe \textsc{Torres Cruz}
 %\textit{in the}\\[0.4cm]
 %\groupname\\\deptname\\[2cm] % Research group name and department name
 \vfill
-{\large CDMX, Julio 2020}\\[4cm] % Date
+{\large CDMX, Septiembre 2020}\\[4cm] % Date
 \vfill
 \end{center}
 \end{titlepage}
@@ -190,10 +190,17 @@ Dr. Noe \textsc{Torres Cruz}
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
-\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+	\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+	\addchaptertocentry{Abstract} % Add the abstract to the table of contents
 
-En este documento se presenta el desarrollo de un simulador a nivel de sistema, programado bajo el paradigma de eventos discretos, que permite modelar el servicio que la red de comunicación celular de quinta generación (5G), ofrece a nodos de Internet de las cosas (IoT). El simulador se enfocó en el caso de uso mIoT, el cual comprende principalmente de nodos IoT estáticos de baja complejidad que además se encuentran en gran cantidad dentro de los escenarios de esta red. La arquitectura del simulador contempló cuatro módulos clave para su ejecución: un modelo de despliegue de UEs, un modelo de canal, un esquema de acceso múltiple al medio no ortogonal y modelos de tráfico adecuados para modelar distintos servicios. Asimismo, se consideró el fundamentar la fiabilidad de los resultados obtenidos por el simulador mediante la previa prueba e implementación de modelos de tráfico ya estudiados en la literatura concerniente al desempeño de sistemas celulares. Con los resultados del simulador se determinaron qué configuraciones y parámetros iniciales de la arquitectura de red propuesta satisfacen una óptima calidad de servicio (QoS) para el caso de uso mIoT.\newline \\
-Palabras clave: \keywordnames\\ 
+		En este documento se presenta el desarrollo de un simulador a nivel de sistema, programado bajo el paradigma de eventos discretos, que permite modelar el servicio que la red de comunicación celular de quinta generación (5G), ofrece a nodos de Internet de las cosas (IoT). El simulador se enfocó en el caso de uso mIoT, el cual comprende principalmente de nodos IoT estáticos de baja complejidad que además se encuentran en gran cantidad dentro de los escenarios de esta red. La arquitectura del simulador contempló cuatro modelos clave para su ejecución: un modelo de despliegue de UEs, un modelo de canal, un esquema de acceso múltiple al medio no ortogonal y modelos de tráfico adecuados para modelar distintos servicios. Asimismo, se consideró el fundamentar la fiabilidad de los resultados obtenidos por el simulador mediante la previa prueba e implementación de dichos modelos ya estudiados en la literatura concerniente al desempeño de sistemas celulares. Con los resultados del simulador se determinaron qué configuraciones y parámetros iniciales de la arquitectura de red propuesta podrían mejorar significativamente la calidad de servicio (QoS) para el caso de uso mIoT.\newline \\
+		Palabras clave: \textbf{\keywordnames} \\
+		\begin{center}
+			{\huge\textit{Abstract} \par}
+			\bigskip
+		\end{center}
+		\textit{This document presents the development of a system-level simulator, programmed under the discrete events paradigm, which allows modeling the service that the fifth generation cellular communication network (5G) offers to Internet of Things (IoT) nodes. The simulator was focused on the mIoT use case, which mainly comprises low complexity static IoT nodes that are also found in large numbers within the scenarios of this network. The simulator architecture included four key models for its execution: an user equipment deployment model, a channel model, a non-orthogonal multiple access scheme and some traffic models in accordance to different services. The project also contemplates the reliability of the results obtained by the simulator through the previous test and implementation of the models already studied in the literature on the performance of cellular systems. With the simulator results, was determined which initial configurations and parameters of the network architecture proposed, satisfy the expected quality of service (QoS) for the massive IoT use case.}\newline \\
+		\textit{Keywords: \textbf{massiveMTC, NarrowBand-IoT, Power-Domain NOMA, 5G, discrete-event simulation (DES)} }\\ 
 
 \end{abstract}
 

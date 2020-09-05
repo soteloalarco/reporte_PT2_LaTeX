@@ -270,7 +270,7 @@ Una celda con un radio de 0.5 km donde las ubicaciones de los dispositivos mMTC 
 
 Modelaron las ganancias de canal de los dispositivos mMTC como $h_{s}^{m} = \gamma d^{ -\beta}_{ m, s}$ (de manera similar $h_{s}^{u}$ para URLLCs), donde $\gamma$ es un valor aleatorio generado por la PDF de Rayleigh, $d_{-\beta}^{m,s}$ representa la distancia entre el UE y la BS, y $\beta$ es el PLE el cual lo establecieron en $\beta = 3$ y $d$ varía entre 0.1 y 500 m. \newline
 
-Los coeficientes de canal del modelo de sistema en \parencite{Shahini2019}, se representan en la Figura ~\ref{CoeficientesCanalShahini}.
+Los coeficientes de canal del modelo de sistema en \parencite{Shahini2019}, se representan en la Figura ~\ref{fig:CoeficientesCanalShahini}.
 
 \begin{figure}[th]
     \centering
@@ -480,7 +480,6 @@ El escenario de pruebas para el algoritmo de generación de tráfico considera l
 
 Los resultados de la simulación se presentan en las siguientes gráficas las cuales muestran los histogramas de arribos para algunos servicios junto con de las distribuciones que estos siguen, además de algunos mapas de calor que muestran el comportamiento de la propagación espacial de las alarmas. \newline
 
-
 \begin{figure}[th]
     \centering
     \includegraphics[scale=.55]{Figures/Otros_dispositivos_mMTC.png}
@@ -500,6 +499,10 @@ La \textit{figura~\ref{fig:histoeventos1}} contiene a la izquierda el histograma
 \end{figure}
 
 La \textit{figura~\ref{fig:histoeventos2}} es muy parecida a la \textit{figura~\ref{fig:histoeventos1}} puesto que presenta las mismas gráficas, los histogramas a la izquierda y las distribuciones al derecha.  Pero en esta ocasión el servicio que observamos es el control de semáforos. Este servició genera  tráfico con el modelo periódico, razón por la cual el tiempo entre nacimiento de paquetes  es constante y no sigue una distribución exponencial.\newline
+
+\hfill
+
+\break
 
 Finalmente en las \textit{figuras \ref{fig:propagacion1} y \ref{fig:propagacion2}} se ven los mapas de calor producidos por una alarma que se transmite siguiendo el modelo de ventana de coseno alzado y decrecimiento exponencial respectivamente. Se puede notar cómo la propagación de la alarma siguiendo el modelo de ventana de coseno alzado tiene lugar de manera más uniforme por dentro del círculo de radio dth  y con origen en su lugar de su nacimiento, para después terminar con un breve decaimiento, pero incluso se pueden ver varios puntos amarillos (mayor cantidad de alarmas) cerca de los límites de propagación. Por otro lado la alarma que sigue el modelo de decaimiento exponencial se desvanece desde su punto de origen y su efecto decae según crezca la distancia (de manera exponencial), en este caso por ejemplo no se tienen puntos amarillos alejados del origen (teniendo en cuenta la distancia a la que se propagó la alarma).\newline
 
@@ -529,10 +532,6 @@ Los resultados que presentan estas imágenes muestran que el algoritmo de genera
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-%----------------------------------------------------------------------------------------
-%	SECTION 
-%----------------------------------------------------------------------------------------
-
 \section{Generador de tráfico IoT} \label{generadortraficoiot}
 
     El Generador de tráfico IoT distribuye dispositivos IoT en una célula circular siguiendo un PPP, para después generar tráfico de estos dispositivos con los modelos CMMPP y Periódico. La rutina principal del programa sigue el paradigma \textit{time-driven}, puesto que realiza avances constantes en el tiempo. La salida del programa se da en forma de archivos .csv, de los cuales los dos más importantes son el archivo de dispositivos y el archivo de eventos. El archivo de dispositivos contiene información referente a cada uno de los dispositivos generados mientras que el archivo de eventos contiene la información del nacimientos de cada paquete.\newline
@@ -554,6 +553,10 @@ Los resultados que presentan estas imágenes muestran que el algoritmo de genera
     \caption[Interfaz de Usuario, Generador de Tráfico IoT]{Interfaz de Usuario, Generador de Tráfico IoT}
     \label{fig:GUITrafico}
 \end{figure}
+
+\hfill
+
+\break
 
 Al terminar la rutina se generarán en la misma carpeta del programa 4 archivos .csv de los cuales 2 son utilizados en el \textbf{Simulador de eventos discretos}. Estos archivos son descritos con más detalle en la siguiente sección. \newline
 

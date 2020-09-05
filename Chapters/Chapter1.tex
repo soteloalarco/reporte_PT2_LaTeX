@@ -18,7 +18,7 @@
 %----------------------------------------------------------------------------------------
 
 
-\section{ANTECEDENTES}
+\section{Antecedentes}
 
 Imaginar nuestra vida sin los beneficios brindados por los sistemas de comunicación de hoy en día, o tan sólo sin la tecnología presente en este ámbito desde los últimos 20 años es ya muy difícil, y esto se debe a que en el presente una gran parte de las tareas y actividades, muchas de ellas cruciales para el funcionamiento de nuestras sociedades, operan eficientemente sí y sólo sí se está propiamente conectado y en facultades de compartir información \parencite{Fettweis2014}.\newline
 
@@ -36,7 +36,7 @@ Este proyecto presenta el diseño de un simulador de eventos discretos, el cual 
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
-\section{PLANTEAMIENTO DEL PROBLEMA}
+\section{Planteamiento del problema}
 
 En los recientes años se ha estado presenciando la definición de la tecnología de comunicación móvil 5G en estándares, para su posterior introducción a partir de 2020, y como se resalta en \parencite{Fettweis2016} la nueva generación no sólo seguirá la línea de incrementar la velocidad de transmisión como se ha venido haciendo en cada salto generacional, sino que también traerá consigo la posibilidad de una conectividad adicional sin precedentes, todo esto motivado por la cantidad masiva de dispositivos de IoT que se esperan. Según \textit{Ericsson Mobility Report} \parencite{Ericsson2019}, 22.3 mil millones de dispositivos en el 2024, pertenecerán a una aplicación de IoT. De manera que 5G dará servicio a una enorme cantidad de dispositivos IoT, cada dispositivo enviará pequeños paquetes de datos a lo largo de mucho tiempo, además de que existirá una cierta sincronía en el tráfico generado. Lo anterior ha provocado el desarrollo de nuevas tecnologías que proponen distintas formas de agrupamiento de estos nodos, distintas formas de acceder a los recursos, distintas propuestas de comunicación entre ellos y nuevas formas de que ahorren energía. Siempre teniendo en cuenta los parámetros clave de desempeño (\textit{Key Performance Parameters - KPI}) de la red, como dar servicio a una cantidad masiva de nodos, la duración de la batería de estos y la menor latencia en comunicaciones críticas \footnote{\ Comunicaciones\ que\ requieren\ de\ una\ urgente\ respuesta\ debido\ a\ su\ naturaleza,\ por\ ejemplo\ los\ coches\ auto-dirigidos.} , como se menciona en \parencite{NGMN}.\newline
 
@@ -53,12 +53,12 @@ Por lo anterior, para la red 5G se necesitan realizar simulaciones en sus distin
 %	SECTION 3
 %----------------------------------------------------------------------------------------
 
-\section{OBJETIVOS}
-\subsection{OBJETIVO GENERAL}
+\section{Objetivos}
+\subsection{Objetivo general}
 
 Diseñar e implementar un simulador de teletráfico para el ambiente de Internet de las cosas masivo (mIoT) en una red celular de quinta generación (5G), por medio de la programación de eventos discretos, con la finalidad de evaluar el desempeño de esta red en términos de la cantidad de recursos requeridos para satisfacer niveles esperados de calidad de servicio (\textit{Quality of Service - QoS}).\newline
 
-\subsection{OBJETIVOS ESPECÍFICOS}
+\subsection{Objetivos específicos}
 
 \begin{itemize}
     \item Determinar el escenario a implementar, mediante el análisis de requerimientos, para definir después los parámetros de entrada en el modelado del simulador.
@@ -76,7 +76,7 @@ Diseñar e implementar un simulador de teletráfico para el ambiente de Internet
 %	SECTION 4
 %----------------------------------------------------------------------------------------
 
-\section{JUSTIFICACIÓN}
+\section{Justificación}
 
 En la gran mayoría de los trabajos de investigación revisados, se han realizado estudios de rendimiento de los sistemas de comunicación móvil de quinta generación. Estos se concentran en evaluar distintos modelos, frecuentemente se considera, un modelo de distribución de BSs y UEs, uno de canal, y un esquema de acceso multiple, sin embargo no hay mucha investigación acerca de incorporar todos estos componentes en conjunto con modelos de tráfico para el caso específico de mIoT. La aportación que se pretende hacer con este proyecto se encuentra precisamente en ese ámbito.\newline
 
@@ -92,7 +92,7 @@ Por otra parte, se debe enfatizar que el desarrollo de este proyecto requiere de
 %	SECTION 5
 %----------------------------------------------------------------------------------------
 
-\section{PROPUESTA DE SOLUCIÓN}
+\section{Propuesta de solución}
 
 Considerando lo expuesto anteriormente, se propuso desarrollar un simulador a nivel sistema programado de acuerdo con el paradigma de eventos discreto. La elección de una simulación a nivel de sistema se deriva del enfoque que tiene nuestro proyecto hacia los distintos tipos de tráfico de nodos NB-IoT y la simulación de cada uno de ellos como fuente de tráfico. Las simulaciones a nivel de sistema permiten modelar el comportamiento de múltiples radio bases, múltiples nodos como fuentes de tráfico, la propagación de las señales y la interferencia que estas causan, a la vez que se realizan abstracciones más simples de lo que sucede más allá de estas interacciones. Esto facilita la implementación de una gran cantidad de actores. La generación de variables aleatorias vino de la mano de las distintas aplicaciones mIoT y sus patrones de transmisión estocásticos, además de la localización de  nodos en un plano la cual no será uniforme.\newline
 
@@ -110,7 +110,7 @@ Este análisis conllevó distintos parámetros de la red 5G y los dispositivos N
 %	SECTION 6
 %----------------------------------------------------------------------------------------
 
-\section{ALCANCES}
+\section{Alcances}
 
 Se obtuvieron resultados que permitieron analizar las configuraciones de la arquitectura de red propuesta que conllevan a mejorar significativamente la calidad de servicio. Teniendo como métricas principales la densidad de usuarios soportada y la tasa de transmisión máxima alcanzada. Estos resultados reflejaron a su vez las ventajas que puede traer la selección de cierta arquitectura de red y su despliegue. Es aquí donde se encuentra una de las ventajas de realizar un simulador, ya que con la ayuda de múltiples computadoras, se pueden simular miles de nodos mIoT en esta red. Las configuraciones y parámetros de la red se pueden modificar al inicio de cada simulación, y también inspeccionar mientras esta corre. La variación de estos parámetros a lo largo de múltiples simulaciones permitió generar tablas y gráficas de los resultados obtenidos.\newline
 

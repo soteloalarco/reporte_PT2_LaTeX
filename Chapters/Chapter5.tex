@@ -40,7 +40,7 @@ A continuación se definen las características generales de cada sub-sistema:
 
 De igual manera que se realizó en \parencite{Kouzayha2018} y \parencite{Zhang2017} con el fin de obtener un análisis fundamental y más realista, se propuso la generación de una geometría estocástica en 2D para la distribución de los UEs. Se tomó como modelo de despliegue de UE un \textit{ Homogeneous Poisson Point Process }(proceso puntual de Poisson homogeneo, HPPP) con distintas densidades para los diferentes tipos de dispositivos que se implementaron.\newline
 
-\subsection{Pérdidas de canal}
+\subsection{Pérdidas del canal}
 
 En la \textit{Sección \ref{AppsEscenario} } se establecieron las aplicaciones de los diferentes dominios de IoT que se utilizaron en el simulador. Todas estas aplicaciones se encuentran presentes, no exclusivamente pero sí particularmente, en escenarios urbanos y en exteriores, por lo tanto se implementó el Modelo CI (ecuación \ref{eqn:CI} ) el cual de acuerdo a lo estudiado en \parencite{Sun2016} es el modelo que mejor estima la señal en este tipo de ambientes. Además, se agregarón perdidas por el desvanecimiento rápido, usando el modelo de desvanecimiento de Rayleigh (siguiendo una distribución Rayleiggh con desviación estándar unitaria y que se distribuyó de forma independiente e idéntica [i.i.d.]), este es ideal para entornos urbanos en situaciones donde hay un gran número de multi-trayectorias de la señal y reflexiones causadas por los edificios y objetos que obstruyen la línea de vista. \newline
 
@@ -211,8 +211,9 @@ La condición de paro del simuador es que se llegue al tiempo límite de la simu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Parámetros generales del simulador}\label{parametrossimulador}
 
-Para planear un modelo de sistema válido y coherente se incorporaron algunos parámetros generales de diseño revisados en los artículos \parencite{Shahini2019}, \parencite{Mostafa2019} y \parencite{Gupta2018}. La \textit{Tabla~\ref{tab:ParametrosGral}} describe el conjunto de parámetros de la simulación.
+Para planear un modelo de sistema válido y coherente se incorporaron algunos parámetros generales de diseño revisados en los artículos \parencite{Shahini2019}, \parencite{Mostafa2019} y \parencite{Gupta2018}. La \textit{Tabla~\ref{tab:ParametrosGral}} describe el conjunto de parámetros de la simulación.\newline
 
+Para la generación de variables aleatorias se usaron las librerías \textit{scipy, numpy ó random} en Python.\newline
 \begin{table}
     \caption{Parámetros de la simulación a nivel de sistema}
     \label{tab:ParametrosGral}
@@ -245,4 +246,3 @@ Para planear un modelo de sistema válido y coherente se incorporaron algunos pa
     \end{tabular}
 \end{table}
 
-Para la generación de variables aleatorias se usaron las librerías \textit{scipy, numpy ó random} en Python.

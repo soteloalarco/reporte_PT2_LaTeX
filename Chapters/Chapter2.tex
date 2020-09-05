@@ -15,7 +15,7 @@ Finalmente, se revisaron los aspectos de la teoría del tráfico en telecomunica
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{MODELADO DEL DESPLIEGUE CELULAR}
+\section{Modelos de despliegue celular}
 
 La teoría del diseño celular ofrece la forma simplificada de un diseño para redes móviles. Esta teoría se desarrolló en la literatura desde el comienzo del concepto celular [1975 aprox.], sin embargo, el despliegue uniforme que propone la teoría celular es idealizado, ya que en la realidad nunca se tenían despliegues de este tipo. Frecuentemente, en ubicaciones donde se producía mayor cantidad de tráfico, se instalaba otra BS y por lo tanto se rompía con la uniformidad.\newline
 
@@ -291,7 +291,7 @@ Donde:
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{MODELADO DEL CANAL CELULAR}
+\section{Modelos de canal celular}
 
 Los modelos de propagación por radio se clasifican en modelos a gran escala y a pequeña escala. Los efectos a gran escala generalmente ocurren en el orden de cientos a miles de metros de distancia. Los efectos a pequeña escala se localizan y ocurren temporalmente (en el orden de unos pocos segundos) o espacialmente (en el orden de unos pocos metros). Los parámetros del canal generalmente se dividen en Pérdida por trayectoria (PL), parámetros de gran escala (LSP, como ensombrecimiento, dispersión de retardo, dispersión angular, etc.) y parámetros de pequeña escala (como demora, ángulo de llegada y salida, etc.), que reflejan conjuntamente las características de desvanecimiento del canal. El procedimiento de generación de los coeficientes del canal se puede apreciar en la \textit{Figura~\ref{fig:Procedimiento de generacion de coeficientes de canal} }. La pérdida por trayectoria generalmente se expresa en una o dos fórmulas y un conjunto de valores numéricos de parámetros, que reflejan las relaciones con el entorno de transmisión, la distancia y la frecuencia, etc. \newline
 
@@ -482,7 +482,7 @@ Para ambientes exteriores hay dos modelos fundamentales:
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{ESQUEMAS DE ACCESO MÚLTIPLE AL MEDIO}
+\section{Esquemas de acceso múltiple al medio}
 Las técnicas de acceso múltiple (MA) generalmente se pueden dividir en enfoques ortogonales y no ortogonales \parencite{Tse2004}. En MA ortogonal (OMA), los recursos de radio se dividen ortogonalmente entre dispositivos, donde las señales de diferentes dispositivos no se superponen entre sí. Las distintas instancias de OMA son: acceso múltiple por división de tiempo (TDMA), acceso múltiple por división de frecuencia (FDMA), acceso múltiple por división de frecuencia ortogonal (OFDMA), y FDMA de portadora única (SC-FDMA).
 
 \subsection{OMA}
@@ -544,7 +544,7 @@ Acerca del uso de arreglos múltiples de antenas (MIMO) para NOMA. Estos han sid
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{GENERACIONES DE LOS SISTEMAS CELULARES}
+\section{Generaciones de los sistemas celulares}
 
 La generación 1G fue la primera generación de tecnología celular inalámbrica. 1G se introdujo en la década de 1980. Las señales de radio utilizadas por la red 1G fueron analógicas y proporcionaba comunicación sólo por voz, alcanzaba una velocidad de 2.4 Kbps. La técnica de acceso múltiple utilizada en 1G es el acceso múltiple por división de frecuencia (FDMA) [véase Figura~\ref{fig:MAs}]\parencite{Nair2018}. Esta generación utilizó el método de conmutación de circuitos para la transmisión de datos. \newline
 
@@ -566,7 +566,7 @@ Las redes celulares 2G de segunda generación fueron lanzadas comercialmente en 
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{SISTEMAS CELULARES 5G}
+\section{Sistemas celulares 5G}
 
 La NGMN define su visión de una red 5G de la siguiente manera: "5G es un ecosistema de extremo a extremo para permitir una sociedad totalmente móvil y conectada."\newline
 
@@ -600,7 +600,7 @@ Para habilitar esta tecnología se requiere del soporte para conexiones masivas,
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{MODELADO DEL TRÁFICO EN TELECOMUNICACIONES}
+\section{Modelos de tráfico en telecomunicaciones}
 Es importante calcular el tráfico en unidades bien definidas mediante modelos matemáticos y determinar la relación existente entre calidad de servicio y capacidad del sistema, de tal manera que la teoría se convierta en una herramienta útil para la planificación de recursos.\newline
 
 Algunos conceptos básicos sobre la teoria del teletráfico se enlistan a continuación:
@@ -702,7 +702,7 @@ Notese que en la Ecuación~\ref{eqn:Pb} el producto $\lambda \mu$ se puede susti
 %	SECTION 
 %----------------------------------------------------------------------------------------
 
-\section{SIMULACIÓNES A NIVEL DE SISTEMA}
+\section{Simulaciones a nivel de sistema}
 
 Debido a las complicadas estructuras de los sistemas de comunicación celular móvil, no se pueden describir completamente a través de un modelo matemático simple y abstracto. Por lo tanto, se recurre a la simulación para evaluar su rendimiento. Una simulación es casi siempre la imitación de algún proceso o sistema que toma o podría tomar lugar en el mundo real. Estas son implementadas utilizando un paradigma de programación y ejecutadas por computadoras. \newline
 
@@ -767,5 +767,4 @@ Afortunadamente, existen métodos para evitar este comportamientto del interpret
 
 El módulo de multiprocessing permite al programador aprovechar al máximo múltiples procesadores en paralelo. Se ejecuta tanto en Unix como en Windows, es importante no confundir la técnica con la concurrencia (esta hace uso de múltiples hilos) [véase Figura~\ref{fig:multiprocessing}].
 \hfill 
-
 \break
